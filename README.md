@@ -1,2 +1,2 @@
-# belangwetan
-e-learning SMKN 4 Klaten
+# skripsi-belangwetan
+skripsi e-learning belangwetan
