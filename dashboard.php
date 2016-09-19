@@ -8,7 +8,7 @@ checkUserRole(array(0, 1, 2, 10));
 $ui_register_page = 'dashboard';
 
 // LOAD HEADER
-loadAssetsHead('Dashboard - E-Learning SMKN 4 Klaten');
+loadAssetsHead('Dashboard - Sistem Informasi Akademik SDN II Manangga');
 
 // FORM PROCESSING
 // ... code here ...
@@ -31,7 +31,7 @@ loadAssetsHead('Dashboard - E-Learning SMKN 4 Klaten');
         <article class="uk-article">
 
     		  <div class="uk-vertical-align uk-text-right uk-height-1-1">
-    			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="E-Learning SMK N 4 Klaten" title="E-Learning SMK N 4 Klaten">
+    			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="E-Learning SMK N 4 Klaten" title="Sistem Informasi Akademik SDN II Manangga">
     		  </div>
 
             <hr class="uk-article-divider">
@@ -41,12 +41,12 @@ loadAssetsHead('Dashboard - E-Learning SMKN 4 Klaten');
 
               <div class='uk-form-row'>
                 <div class='uk-alert'>
-                Selamat datang di E-Learning.
+                Selamat datang di Sistem Informasi Akademik.
                 </div>
               </div>
 
               <div class="panel panel-info">
-          <div class="panel-heading">Pengumuman</div>
+          <div class="panel-heading">Berita</div>
           <div class="panel-body">
 <table cellpadding="0" cellspacing="0" border="0" id="table" class="tinytable">
             <thead>
@@ -75,8 +75,8 @@ loadAssetsHead('Dashboard - E-Learning SMKN 4 Klaten');
                 <?php echo"
               <div class='uk-form-row'>
                 <div class='uk-alert'>
-                <a href='./tampil-news?id_berita={$row['id_berita']}'><code>{$row['judul_berita']}</code></a>
-                  <span class='uk-text-success'>Jum'at, 12 September 2014 18:51:45 WIB</span><img style='width:120px; float:left; margin:0px; margin-right: 8px;' src='gallery/news/{$row['gambar']}' alt=''>$artikel ";?>
+
+                <a href='./tampil-news?id_berita={$row['id_berita']}'><pre><code><center><h4>{$row['judul_berita']}</h4></center></a></code></pre><img style='width:120px; float:left; margin:0px; margin-right: 8px;' src='gallery/news/{$row['gambar']}' alt=''>  $artikel ";?>
                    <?php if($jumlah>600){ echo"
                   <a class='uk-button uk-button-primary'  href='./tampil-news?id={$row['id_woro']}' style='margin: 2; float: right; color: #FFF;'><i class='uk-icon-search'></i> Lihat</a>";?>
                    <?php if(isset($_SESSION['administrator'])){ echo"
