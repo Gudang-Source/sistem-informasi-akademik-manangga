@@ -78,11 +78,11 @@ loadAssetsHead('Dashboard - Sistem Informasi Akademik SDN II Manangga');
 
                 <a href='./tampil-news?id_berita={$row['id_berita']}'><pre><code><center><h4>{$row['judul_berita']}</h4></center></a></code></pre><img style='width:120px; float:left; margin:0px; margin-right: 8px;' src='gallery/news/{$row['gambar']}' alt=''>  $artikel ";?>
                    <?php if($jumlah>600){ echo"
-                  <a class='uk-button uk-button-primary'  href='./tampil-news?id={$row['id_woro']}' style='margin: 2; float: right; color: #FFF;'><i class='uk-icon-search'></i> Lihat</a>";?>
+                  <a class='uk-button uk-button-primary'  href='./tampil-news?id={$row['id_berita']}' style='margin: 2; float: right; color: #FFF;'><i class='uk-icon-search'></i> Lihat</a>";?>
                    <?php if(isset($_SESSION['administrator'])){ echo"
-                   <a class='uk-button uk-button-primary'  href='./berita.update?id={$row['id_woro']}' style='margin: 2; float: right; color: #FFF;'><i class='uk-icon-pencil'></i> Edit</a>";}?>
-                   <?php if(isset($_SESSION['administrator'])){ echo"
-                   <a class='uk-button uk-button-primary'  href='./berita.hapus?id={$row['id_woro']}' onclick='return : confirm('Apakah anda yakin akan menghapus berita ini?')'; style='margin: 2; float: right; color: #FFF;'><i class='uk-icon-remove'></i> Hapus</a>";}?> 
+                   <a class='uk-button uk-button-primary'  href='./berita.update?id={$row['id_berita']}' style='margin: 2; float: right; color: #FFF;'><i class='uk-icon-pencil'></i> Edit</a>";}?>
+                   <?php if(isset($_SESSION['administrator'])){?>
+                   <a class="uk-button uk-button-primary"  href="./berita.hapus?id=<?php echo "{$row['id_berita']}";?>&file=<?php echo $row['gambar'];?>" onclick="return : confirm("Apakah anda yakin akan menghapus berita ini?")"; style="margin: 2; float: right; color: #FFF;"><i class="uk-icon-remove"></i> Hapus</a><?php }?> 
                 </div>
               </div>
              <?php
