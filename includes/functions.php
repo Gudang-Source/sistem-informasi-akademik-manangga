@@ -73,7 +73,16 @@ function loadAssetsHead($title = 'index'){
   <link href="assets/admin/paneladmin/fonts/css/font-awesome.min.css" rel="stylesheet">
   <link href="assets/admin/paneladmin/css/animate.min.css" rel="stylesheet">
 
+<link rel="stylesheet" href="assets/fileupload/css/bootstrap-fileupload.min.css" />
+    <script src="assets/fileupload/js/jquery-2.0.3.min.js"></script>
+    <script src="assets/fileupload/js/bootstrap-fileupload.js"></script>
+<script type="text/javascript" language="javascript" src="assets/jquery.js"></script>
+
   <!-- Custom styling plus plugins -->
+
+
+
+
 
   <link rel="stylesheet" type="text/css" href="assets/admin/paneladmin/css/maps/jquery-jvectormap-2.0.3.css" />
   <link href="assets/admin/paneladmin/css/icheck/flat/green.css" rel="stylesheet" />
