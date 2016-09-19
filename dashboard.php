@@ -56,42 +56,47 @@ loadAssetsHead('Dashboard - E-Learning SMKN 4 Klaten');
               </tr>
             </thead>
               <tbody>
-              <?php
+            <?php if (isset($_SESSION['administrator'])) { ?>
+          <a href="./berita.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Berita"><i class="uk-icon-plus"></i> Berita</a>
+          <br>
+          <br>
 
-              $nip="SELECT
-pengumuman.kd_pengumuman,
-pengumuman.nip,
-pengumuman.judul_pengumuman,
-pengumuman.isi,
-pengumuman.tanggal,
-guru.nm_guru
-FROM
-pengumuman
-INNER JOIN guru ON pengumuman.nip = guru.nip";
-            $lihat=mysql_query($nip);
-            $no=0;
-            while ($data=mysql_fetch_array($lihat)) { $no++;
-
-            
-                ?>
-
-                <div class="col-md-4 col-sm-4 col-xs-4"><strong>Pengumuman dari:</strong> <?php echo $data['nm_guru']?></div></br>
-                <div class="col-md-4 col-sm-4 col-xs-4"><strong>Judul: </strong><?php echo $data['judul_pengumuman']?></div></br>
-                <div class="col-md-4 col-sm-4 col-xs-4"><strong>Isi: </strong><?php echo $data['isi']?></div>
-                </br></br></br>
-              
-                <?php } ?>            
-                </tr>
-            
-              </tbody>
-          </table>
-
- 
-                
-          </div>
+      <?php } ?>
+            <?php
+            include "config.php";
+              $sql="SELECT * FROM berita order by id_berita desc";            
+              $result = mysql_query($sql);
+              $num = mysql_num_rows($result); // menghitung jumlah record
+                if($num>0){     // jika ditemukan record akan ditampilkan
+                while($row = mysql_fetch_array($result)){   // perintah mysql_fetch_array untuk
+                                $berapa=500;
+                                $artikel=substr($row['keterangan'], 0, $berapa);
+                                $jumlah=strlen($row['keterangan']);?>
+                <?php echo"
+              <div class='uk-form-row'>
+                <div class='uk-alert'>
+                <a href='./tampil-news?id_berita={$row['id_berita']}'><code>{$row['judul_berita']}</code></a>
+                  <span class='uk-text-success'>Jum'at, 12 September 2014 18:51:45 WIB</span><img style='width:120px; float:left; margin:0px; margin-right: 8px;' src='gallery/news/{$row['gambar']}' alt=''>$artikel ";?>
+                   <?php if($jumlah>600){ echo"
+                  <a class='uk-button uk-button-primary'  href='./tampil-news?id={$row['id_woro']}' style='margin: 2; float: right; color: #FFF;'><i class='uk-icon-search'></i> Lihat</a>";?>
+                   <?php if(isset($_SESSION['administrator'])){ echo"
+                   <a class='uk-button uk-button-primary'  href='./berita.update?id={$row['id_woro']}' style='margin: 2; float: right; color: #FFF;'><i class='uk-icon-pencil'></i> Edit</a>";}?>
+                   <?php if(isset($_SESSION['administrator'])){ echo"
+                   <a class='uk-button uk-button-primary'  href='./berita.hapus?id={$row['id_woro']}' onclick='return : confirm('Apakah anda yakin akan menghapus berita ini?')'; style='margin: 2; float: right; color: #FFF;'><i class='uk-icon-remove'></i> Hapus</a>";}?> 
+                </div>
               </div>
-
-		    </article>
+             <?php
+              }
+              }         }
+            else{
+              echo "Tidak ada record";
+            }
+            ?>
+        </article>
+        </tbody>
+        </table>
+        </div>
+        </div>
       </div>
     </div>
   </div>
