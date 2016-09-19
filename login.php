@@ -56,20 +56,19 @@ if( isset($_POST['login']) ){
 					$_SESSION['id_user'] = $c['id_user'];
 					$_SESSION['usernamesiswa'] = $c['nis'];
 					$_SESSION['tingkat_user'] = $c['tingkat_user'];
-					$_SESSION['kd_kelas'] = $c['kd_kelas'];
 					header("location:dashboard");
 				}
 			}
 //>>>>>>>>>>>>>>ADMIN<<<<<<<<<<<<<<<<
 			elseif(strlen($username)==5){
-				$pengguna="pengguna";
-				$cek = mysql_query("SELECT * FROM user, admin WHERE user.id_user=admin.id_user AND username='$username' AND password='$password' AND pengguna=$pengguna");
+				$administrator="administrator";
+				$cek = mysql_query("SELECT * FROM user, admin WHERE user.id_user=admin.id_user AND username='$username' AND password='$password' AND administrator=$administrator");
 				if(mysql_num_rows($cek)==1){//jika berhasil akan bernilai 1
 					$c = mysql_fetch_array($cek);
 					$_SESSION['id_user'] = $c['id_user'];
 					$_SESSION['usernameadmin'] = $c['username'];
 					$_SESSION['tingkat_user'] = $c['tingkat_user'];
-					$_SESSION['pengguna'] = $c['pengguna'];
+					$_SESSION['administrator'] = $c['administrator'];
 					header("location:dashboard");
 				}
 			}
@@ -85,7 +84,7 @@ if( isset($_POST['login']) ){
 				}
 			}
 //>>>>>>>>>>>>>>>>>GURU PIKET<<<<<<<<<<<<<<<<<
-			elseif(strlen($username)==18){
+			elseif(strlen($username)==12){
 				date_default_timezone_set("asia/jakarta");
 				$a_hari = array(1=>"Senin","Selasa","Rabu","Kamis","Jumat", "Sabtu");
 				$hari = $a_hari[date("N")];	
@@ -118,8 +117,7 @@ if( isset($_POST['login']) ){
 							$_SESSION['id_user'] = $c['id_user'];
 							$_SESSION['usernameguru'] = $c['nip'];
 							$_SESSION['tingkat_user'] = $c['tingkat_user'];
-							$_SESSION['nm_guru'] = $c['nm_guru'];					
-							$_SESSION['kd_kelas'] = $c['kd_kelas'];		
+							
 							header("location:dashboard");
 						}
 						else {
@@ -153,21 +151,14 @@ if( isset($_POST['login']) ){
   <div class="uk-container uk-container-center uk-margin-top uk-margin-bottom uk-margin-top">
 
 	  <div class="uk-vertical-align uk-text-right uk-height-1-1">
-		  <img class="uk-margin-bottom" width="500px" height="70px" src="assets/images/banner.png" alt="SI Inventaris" title="SI Inventaris">
+		<img class="uk-margin-bottom" width="500px" height="70px" src="assets/images/banner.png" alt="SI Inventaris" title="SI Inventaris">
 	  </div>
 
-      <hr class="uk-article-divider">
+    <hr class="uk-article-divider">
     <article class="uk-article">
-	
-	
-	
-
       <h1 class="uk-article-title uk-text-center">Login</h1>
 	  <br>
-
         <div class="uk-panel uk-width-1-2 uk-container-center uk-text-center">
-		
-		
 			<?php
 				//kode php ini kita gunakan untuk menampilkan pesan eror
 				if (!empty($_GET['error'])) {
@@ -185,12 +176,11 @@ if( isset($_POST['login']) ){
 					}
 				}
 			?>
-
           <form class="uk-form uk-form-stacked" name="login" method="post" action="login.php?op=in">
 
             <div class="uk-form-row">
               <div class="uk-form-controls"><input type="text" name="username" placeholder="Username" class="uk-form-large" required></div>
-            </div	>
+            </div>
 
             <div class="uk-form-row">
               <div class="uk-form-controls"><input type="password" name="password" placeholder="Password" class="uk-form-large" required>
@@ -204,11 +194,15 @@ if( isset($_POST['login']) ){
           </form>
 
         </div>
-
     </article>
   </div>
+  </div>
 </body>
-
+</br>
+</br>
+</br>
+</br>
+</br>
 <?php
 // LOAD FOOTER
 loadAssetsFoot();
