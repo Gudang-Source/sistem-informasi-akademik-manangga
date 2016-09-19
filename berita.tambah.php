@@ -1,17 +1,17 @@
 <?php
+// user login
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(10));
+checkUserRole(array(1, 10));
 
-// TEMPLATE CONTROL
-$ui_register_page     = 'dashboard';
+/*template control*/
+$ui_register_page     = 'berita.tambah';
 $ui_register_assets   = array('datepicker');
 
-// LOAD HEADER
-loadAssetsHead('Tambah Berita');
+/*load header*/
+loadAssetsHead('Tambah Data Berita');
 
-// FORM PROCESSING
-
+/*form processing*/
 if (isset ($_POST["berita_simpan"]) )
 {
 $file_formats = array("jpg", "png", "gif", "bmp");
@@ -23,15 +23,15 @@ $filepath = "gallery/news/";
  $judul = $_POST['judul'];
  $isi   = $_POST['isi'];
  if (strlen($name)) {
- 	$extension = substr($name, strrpos($name, '.')+1);
- 	if (in_array($extension, $file_formats)) { // check it if it's a valid format or not
- 		if ($size < (2048 * 1024)) { // check it if it's bigger than 2 mb or no
- 			$imagename = md5(uniqid() . time()) . "." . $extension;
+  $extension = substr($name, strrpos($name, '.')+1);
+  if (in_array($extension, $file_formats)) { // check it if it's a valid format or not
+    if ($size < (2048 * 1024)) { // check it if it's bigger than 2 mb or no
+      $imagename = md5(uniqid() . time()) . "." . $extension;
             $gambar= $imagename;
- 			$tmp = $_FILES['imagefile']['tmp_name'];
- 				if (move_uploaded_file($tmp, $filepath . $imagename)) {
+      $tmp = $_FILES['imagefile']['tmp_name'];
+        if (move_uploaded_file($tmp, $filepath . $imagename)) {
                     $query = mysql_query("insert into woroworo values ('','$judul', '$gambar','$isi', NOW())") or die(mysql_error());
-	  if ($query){
+    if ($query){
                                                  echo "<script>";
                                                  echo 'alert("Berhasil.")';
                                                  echo "</script>";
@@ -42,25 +42,25 @@ $filepath = "gallery/news/";
                                                  echo "</script>";
                                                  echo '<script> window.location="./berita.tambah"</script>';       
       }
-				} else {
+        } else {
                                                  echo "<script>";
                                                  echo 'alert("Gagal upload gambar.")';
                                                  echo "</script>";
                                                  echo '<script> window.location="./berita.tambah"</script>';       
- 				}
- 		} else {
+        }
+    } else {
                                                  echo "<script>";
                                                  echo 'alert("Ukuran Gambar melebihi 2MB.")';
                                                  echo "</script>";
                                                  echo '<script> window.location="./berita.tambah"</script>';       
- 		}
- 	} else {
+    }
+  } else {
                                                  echo "<script>";
                                                  echo 'alert("Format gambar salah.")';
                                                  echo "</script>";
                                                  echo '<script> window.location="./berita.tambah"</script>';       
 
- 	}
+  }
  } else {
                                                  echo "<script>";
                                                  echo 'alert("Gagal.Silahkan pilih gambar.")';
@@ -71,28 +71,15 @@ $filepath = "gallery/news/";
  exit();
 }
 ?>
-<head>
-         <script type="text/javascript" src="assets/js/jquery.min.js"></script>
-        <script type="text/javascript" src="assets/js/jquery.form.js"></script>
 
-        <script type="text/javascript" >
-            $(document).ready(function() {
-                $('#submitbtn').click(function() {
-                    $("#viewimage").html('');
-                    $(".uk-form uk-form-stacked").ajaxForm({
-                        target: '#viewimage'
-                    }).submit();
-                });
-            });
-        </script> 
-
-</head>
 <body>
 
   <?php
   // LOAD MAIN MENU
   loadMainMenu();
   ?>
+
+
 
   <div class="uk-container uk-container-center uk-margin-large-top">
     <div class="uk-grid" data-uk-grid-margin data-uk-grid-match>
@@ -101,97 +88,127 @@ $filepath = "gallery/news/";
       </div>
       <div class="uk-width-medium-5-6 tm-article-side">
         <article class="uk-article">
-    		  <div class="uk-vertical-align uk-text-right uk-height-1-1">
-    			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi" title="Sistem Informasi">
-    		  </div>
-    		  <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Berita <span class="uk-text-large">{ Tambah Berita }</span></h1>
+          <div class="uk-vertical-align uk-text-right uk-height-1-1">
+            <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="E-Learning" title="E-Learning">
+          </div>
+          <hr class="uk-article-divider">
+          <h1 class="uk-article-title">Berita <span class="uk-text-large">{ Tambah Data Berita }</span></h1>
           <br>
-          <a href="./" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Kelas"><i class="uk-icon-angle-left"></i> Kembali</a>
+          <a href="./dashboard" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Dashboard"><i class="uk-icon-angle-left"></i> Kembali</a>
           <!-- <hr class="uk-article-divider"> -->
           <div class="uk-grid" data-uk-grid-margin>
             <div class="uk-width-medium-1-1">
-     <form class="uk-form uk-form-stacked" method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+             <form id="form_berita" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
+        
+        <div class="item form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="judul_berita">Judul Berita<span class="required">*</span>
+           </label>
+           <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" id="judul_berita" name="judul_berita" value=" " required="required" class="form-control col-md-7 col-xs-12">
+          </div>
+        </div>
 
-                
-                     <div class="uk-form-row">
-                       <div class="uk-progress uk-progress-mini uk-progress-primary uk-progress-striped uk-active">
-                       <div class="uk-progress-bar" id="berita_progress" style="width: 0%;"></div>
-                       </div>
-                     </div>
-                
-                            <div class="uk-form-row">
-                              <label class="uk-form-label" for="">( <span class="uk-text-danger">*</span> ) <i> Wajib di isi</i></label>
-                            </div>
-                
-                     <div class="uk-form-row">
-                       <label class="uk-form-label" for="">Judul Berita<span class="uk-text-danger">*</span></label>
-                       <div class="uk-form-controls"><input type="text" name="judul" id="judul" class="uk-width-1-2" placeholder="Judul"  autofocus required></div>
-                     </div>
-                
-                            <div class="uk-form-row">
-                              <label class="uk-form-label" for="">Isi<span class="uk-text-danger">*</span></label>
-                              <div class="uk-form-controls"><textarea  rows="10" class="uk-width-1-2" name="isi" id="isi"  placeholder="Minimal 600 karakter" required></textarea></div>
-                            </div>
-                
-                     <div class="uk-form-row">
-                       <label class="uk-form-label" for="">Foto<span class="uk-text-danger">*</span></label>
-                       <div class="uk-form-controls"><input type="file" class="uk-width-1-2" name="imagefile" id="foto" data-uk-tooltip="{pos:'bottom-left'}" title="Maksimal 2MB"  autofocus required></div>
-                     </div>
-                
-                            <div class="uk-form-row">
-                              <div class="uk-alert">Pastikan semua isian sudah terisi dengan benar !</div>
-                            </div>
-                
-                     <div class="uk-form-row">
-                       <button type="submit" value="Simpan Data" name="berita_simpan" id="berita_simpan" class="uk-button uk-button-large uk-button-success" title="Simpan Berita" disabled><i class="uk-icon-paper-plane"></i> Simpan</button>
-                     </div>
-     </form>
+
+        <div class="item form-group">
+ <label class="control-label col-md-3 col-sm-3 col-xs-12" for="keterangan">Isi <span class="required">*</span>
+ </label>
+ <div class="col-md-6 col-sm-6 col-xs-12">
+  <textarea rows="9" id="keterangan" required="required" name="keterangan" class="form-control col-md-7 col-xs-12"></textarea>
+</div>
+</div>  
+ <div class="item form-group">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="foto">Image <span class="required">*</span>
+      </label>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="col-lg-8">
+          <div class="fileupload fileupload-new" data-provides="fileupload">
+            <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="./assets/fileupload/images/nopict.jpg" alt="" /></div>
+            <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+            <div>
+              <span class="btn btn-file btn-primary btn-xs"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" accept="image/*" name="file" id="file" placeholder="file" /></span>
+              <a href="#" class="btn btn-danger btn-xs fileupload-exists" data-dismiss="fileupload">Remove</a>
             </div>
           </div>
-        </article>
-		<br><br>
+        </div>
       </div>
     </div>
-  </div>
+
+        <div style="text-align:center" class="form-actions no-margin-bottom">
+         <button type="submit" id="berita_simpan" name="berita_simpan" class="btn btn-success">Submit</button>
+       </div>
+     </form>    
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+
+<script src="assets/validator/js/bootstrapValidator.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="vendor/formvalidation/css/formValidation.min.css">
+<script src="vendor/formvalidation/js/formValidation.min.js"></script>
+<script src="vendor/formvalidation/js/framework/uikit.min.js"></script>
+<script type="text/javascript">
+ var form_berita = $("#form_berita").serialize();
+ var validator = $("#form_berita").bootstrapValidator({
+  framework: 'bootstrap',
+  feedbackIcons: {
+    valid: "glyphicon glyphicon-ok",
+    invalid: "glyphicon glyphicon-remove", 
+    validating: "glyphicon glyphicon-refresh"
+  }, 
+  excluded: [':disabled'],
+  fields : {
+    judul_berita : {
+     validators: {
+      notEmpty: {
+       message: 'Harus Diisi '
+     }
+     
+   }
+ }, 
+keterangan: {
+  message: 'Isi Berita Tidak Benar',
+  validators: {
+    notEmpty: {
+      message: 'Data Berita Harus Diisi'
+    },
+    stringLength: {
+      min: 1,
+      max: 50,
+      message: 'Data Berita Harus Lebih dari 1 Huruf dan Maksimal 50 Huruf'
+    },
+    regexp: {
+      regexp: /^[a-zA-Z0-9_ \. ]+$/,
+      message: 'Karakter Boleh Digunakan (Angka, Huruf, Titik, Underscore)'
+    }
+
+
+  }
+},
+    file : {
+      validators : {
+        notEmpty: {
+         message: 'Belum Memilih Gambar'
+       },
+       file : {
+        extention : 'jpeg,jpg,png',
+        type : 'image/jpeg,image/png',
+              //maxSize : 2097152, //2048*1024
+              message : 'file tidak benar'
+            }
+          }
+        }
+
+}
+});
+</script>
+
 </body>
 
 <?php
-// ADDITIONAL SCRIPTS
-$scripts = <<<'JS'
-<script>
-// FORM SUBMIT and PROGRESS BAR CONTROL
-$(document).ready(function (){
-  $('#judul, #isi, #foto').on('change', function(){
-    validate();
-    progress();
-  });
-});
-
-function validate(){
-  if (
-    $('#judul').val().length > 0 &&
-    $('#isi').val().length > 0 &&
-    $('#foto').val().length > 0 
-    ) 
-{
-    $('#berita_simpan').prop('disabled', false);
-  }
-  else {
-    $('#berita_simpan').prop('disabled', true);
-  }
-}
-function progress(){
-  var w1 = ($('#judul').val().length > 0) ? 35 : 0;
-  var w2 = ($('#isi').val().length > 0) ? 35 : 0;
-  var w3 = ($('#foto').val().length != '') ? 30 : 0;
-  var wt = w1 + w2 + w3;
-  $('#berita_progress').css('width', wt+'%');
-}
-</script>
-
-JS;
 // LOAD FOOTER
-loadAssetsFoot($scripts);
+loadAssetsFoot();
+
 ob_end_flush();
 ?>
