@@ -3,7 +3,7 @@ error_reporting( 0 ); // development only, disable on live site
 
 //** MySQL settings - You can get this info from your web host ** //
 /** MySQL database name */
-define( 'DB_NAME', 'belangwetan' ); // Diisi nama database
+define( 'DB_NAME', 'manangga' ); // Diisi nama database
 
 /** MySQL database username */
 define( 'DB_USER', 'root' ); // Diisi username MySQL
