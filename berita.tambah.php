@@ -11,66 +11,87 @@ $ui_register_assets   = array('datepicker');
 /*load header*/
 loadAssetsHead('Tambah Data Berita');
 
-/*form processing*/
-if (isset ($_POST["berita_simpan"]) )
-{
-$file_formats = array("jpg", "png", "gif", "bmp");
 
-$filepath = "gallery/news/";
- 
- $name  = $_FILES['imagefile']['name']; // filename to get file's extension
- $size  = $_FILES['imagefile']['size'];
- $judul = $_POST['judul'];
- $isi   = $_POST['isi'];
- if (strlen($name)) {
-  $extension = substr($name, strrpos($name, '.')+1);
-  if (in_array($extension, $file_formats)) { // check it if it's a valid format or not
-    if ($size < (2048 * 1024)) { // check it if it's bigger than 2 mb or no
-      $imagename = md5(uniqid() . time()) . "." . $extension;
-            $gambar= $imagename;
-      $tmp = $_FILES['imagefile']['tmp_name'];
-        if (move_uploaded_file($tmp, $filepath . $imagename)) {
-                    $query = mysql_query("insert into woroworo values ('','$judul', '$gambar','$isi', NOW())") or die(mysql_error());
-    if ($query){
-                                                 echo "<script>";
-                                                 echo 'alert("Berhasil.")';
-                                                 echo "</script>";
-                                                 echo '<script> window.location="./dashboard"</script>';       
-      }else{
-                                                 echo "<script>";
-                                                 echo 'alert("Gagal.")';
-                                                 echo "</script>";
-                                                 echo '<script> window.location="./berita.tambah"</script>';       
+
+//processing
+    # TOMBOL SIMPAN DIKLIK
+                if (isset($_POST['berita_simpan'])) {
+    # baca variabel 
+    
+                  $judul_berita= $_POST['judul_berita'];
+                  $keterangan = $_POST['keterangan'];
+
+      #VALIDASI UNTUK FORM JIKA FORM KOSONG
+
+                  function compress_image($source_url, $destination_url, $quality) 
+                  { 
+                    $info = getimagesize($source_url); 
+                    if ($info['mime'] == 'image/jpeg') 
+                      $image = imagecreatefromjpeg($source_url); 
+                    elseif ($info['mime'] == 'image/gif') 
+                      $image = imagecreatefromgif($source_url); 
+                    elseif ($info['mime'] == 'image/png') 
+                      $image = imagecreatefrompng($source_url); 
+                    imagejpeg($image, $destination_url, $quality); 
+                    return $destination_url; 
+                  } 
+
+      $nama_foto = $_FILES["file"]["name"];
+      $file_sik_dipilih = substr($nama_foto, 0, strripos($nama_foto, '.')); // strip extention
+      $bagian_extensine = substr($nama_foto, strripos($nama_foto, '.')); // strip name
+      $ukurane = $_FILES["file"]["size"];
+
+      $pesanError= array();
+      if (trim($judul_berita)=="") {
+        $pesanError[] = "Data <b>Judul Berita</b> tidak boleh kosong !";    
       }
-        } else {
-                                                 echo "<script>";
-                                                 echo 'alert("Gagal upload gambar.")';
-                                                 echo "</script>";
-                                                 echo '<script> window.location="./berita.tambah"</script>';       
+      if (trim($keterangan)=="") {
+        $pesanError[] = "Data <b>Keterangan/ Isi Berita</b> tidak boleh kosong !";    
+      }
+      if (empty($file_sik_dipilih)){
+        $pesanError[] = "Anda Belum Memilih Foto !";    
+      }
+
+      #JIKA ADA PESAN ERROR DARI VALIDASI FORM 
+      if (count($pesanError)>=1) {
+        echo "
+        <div class='alert alert-danger alert-dismissable'>
+          <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+          $noPesan= 0;
+          foreach ($pesanError as $indeks => $pesan_tampil) {
+            $noPesan++;
+            echo "&nbsp;&nbsp; $noPesan. $pesan_tampil<br>";
+          }
+          echo "</div><br />";
         }
-    } else {
-                                                 echo "<script>";
-                                                 echo 'alert("Ukuran Gambar melebihi 2MB.")';
-                                                 echo "</script>";
-                                                 echo '<script> window.location="./berita.tambah"</script>';       
+        else{
+
+         if(($_FILES["file"]["type"] == "image/gif") || ($_FILES["file"]["type"] == "image/jpeg") || ($_FILES["file"]["type"] == "image/png") || ($_FILES["file"]["type"] == "image/pjpeg")){
+             $lokasi = 'gallery/news/';
+             
+             //$jeneng = $id_pegawai.'.jpg';
+
+             $file = md5(rand(1000,1000000000))."-".$nama_foto;
+             $newfilename = $file . $bagian_extensine;
+             $jeneng=str_replace(' ','-',$file);
+             $url = $lokasi . $jeneng;
+             $filename = compress_image($_FILES["file"]["tmp_name"], $url, 80); 
+            
+             $query = mysql_query("INSERT INTO berita SET  judul_berita ='$judul_berita', keterangan='$keterangan', gambar='$jeneng' ") or die(mysql_error());
+                
+
+             }
+             if ($query){
+             header('location: ./dashboard');
+              }
+  else { $error = "Uploaded image should be jpg or gif or png"; } 
+
+      }
+    
     }
-  } else {
-                                                 echo "<script>";
-                                                 echo 'alert("Format gambar salah.")';
-                                                 echo "</script>";
-                                                 echo '<script> window.location="./berita.tambah"</script>';       
+    ?>
 
-  }
- } else {
-                                                 echo "<script>";
-                                                 echo 'alert("Gagal.Silahkan pilih gambar.")';
-                                                 echo "</script>";
-                                                 echo '<script> window.location="./berita.tambah"</script>';       
 
- }
- exit();
-}
-?>
 
 <body>
 
@@ -172,15 +193,6 @@ keterangan: {
   validators: {
     notEmpty: {
       message: 'Data Berita Harus Diisi'
-    },
-    stringLength: {
-      min: 1,
-      max: 50,
-      message: 'Data Berita Harus Lebih dari 1 Huruf dan Maksimal 50 Huruf'
-    },
-    regexp: {
-      regexp: /^[a-zA-Z0-9_ \. ]+$/,
-      message: 'Karakter Boleh Digunakan (Angka, Huruf, Titik, Underscore)'
     }
 
 
