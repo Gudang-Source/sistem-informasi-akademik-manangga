@@ -39,13 +39,13 @@ loadAssetsHead('Dashboard');
             <br>
             <?php
             include "config.php";
-          $id=$_GET['id_woro'];
-          $sql="select * from woroworo where id_woro={$id}";
+          $id=$_GET['id'];
+          $sql="select * from berita where id_berita={$id}";
           $result=mysql_query($sql);
           $row=mysql_fetch_array($result); ?>
               <div class="uk-form-row">
                 <div class="uk-alert">
-                <h2><code><?php echo"{$row['nm_woro']}";?></code></h2>
+                <h2><code><?php echo"{$row['judul_berita']}";?></code></h2>
                   <span class="uk-text-success">Jum'at, 12 September 2014 18:51:45 WIB</span><br><br><img style="width:500px; float:left; margin:0px; margin-right: 8px;" src="<?php echo"gallery/news/{$row['gambar']}";?>" alt=""><?php echo "{$row['keterangan']}";?>
                    <a class="uk-button uk-button-primary"  href="./dashboard" style="margin: 2; float: right; color: #FFF;">Kembali</a>            
                 </div>
