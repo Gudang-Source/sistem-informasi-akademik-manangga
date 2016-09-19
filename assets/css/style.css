@@ -119,7 +119,7 @@ body, h1, h2, h3, h4, h5, h6 {
 
 /* uk-container for larger screen */
 .uk-container {
-  max-width: 100%;
+  
   padding: 0 35px;
 }
 @media (min-width: 2500px) {
@@ -460,5 +460,3 @@ li .underline-menu {
   height:30px;
   width:245px;
 } 
-
-
