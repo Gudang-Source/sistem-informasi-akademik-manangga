@@ -76,7 +76,7 @@ loadAssetsHead('Dashboard - Sistem Informasi Akademik SDN II Manangga');
               <div class='uk-form-row'>
                 <div class='uk-alert'>
 
-                <a href='./tampil-news?id_berita={$row['id_berita']}'><pre><code><center><h4>{$row['judul_berita']}</h4></center></a></code></pre><img style='width:120px; float:left; margin:0px; margin-right: 8px;' src='gallery/news/{$row['gambar']}' alt=''>  $artikel ";?>
+                <a href='./tampil-news?id={$row['id_berita']}'><pre><code><center><h4>{$row['judul_berita']}</h4></center></a></code></pre><img style='width:120px; float:left; margin:0px; margin-right: 8px;' src='gallery/news/{$row['gambar']}' alt=''>  $artikel ";?>
                    <?php if($jumlah>600){ echo"
                   <a class='uk-button uk-button-primary'  href='./tampil-news?id={$row['id_berita']}' style='margin: 2; float: right; color: #FFF;'><i class='uk-icon-search'></i> Lihat</a>";?>
                    <?php if(isset($_SESSION['administrator'])){ echo"
