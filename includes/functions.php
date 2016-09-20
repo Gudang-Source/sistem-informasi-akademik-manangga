@@ -117,10 +117,7 @@ echo $scripts;
 	<div class="uk-vertical-align uk-text-center ">
 		<div class="uk-vertical-align-middle uk-text-center">
 			<label class="uk-text-success">
-  Made with  <i class="fa fa-headphones"></i>  &   <i class="fa fa-coffee"></i>  from Yogyakarta, Indonesia.
-  <p>
-  © 2016 Beranda Siber Labs - Irfan Ofa. All rights reserved.
-  </p>
+  Develop on progress with <i class="fa fa-headphones"></i>  &   <i class="fa fa-coffee"></i> 
 </label>
 		</div>
 	</div>
