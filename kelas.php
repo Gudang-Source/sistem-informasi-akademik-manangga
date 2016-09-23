@@ -38,11 +38,11 @@ loadAssetsHead('Master Data Kelas');
 		  
 		  <hr class="uk-article-divider">
           <h1 class="uk-article-title">Kelas <span class="uk-text-large">
-          <?php  if (isset($_SESSION['pengguna'])) {?>
+          <?php  if (isset($_SESSION['administrator'])) {?>
 		  { Master Data }</span></h1>
           <?php  }?>
           <br>
-          <?php if (isset($_SESSION['pengguna'])) { ?>
+          <?php if (isset($_SESSION['administrator'])) { ?>
           <a href="./kelas.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Kelas"><i class="uk-icon-plus"></i> Kelas</a>
 		  <?php } ?>
 		   <br><br>
@@ -62,9 +62,9 @@ loadAssetsHead('Master Data Kelas');
 						<thead>
 							<tr>
 								<th><h3 class="uk-text-center">No</h3></th>
-								<th><h3 class="uk-text-center">Kode Kelas</h3></th>
+								
 								<th><h3 class="uk-text-center">Nama Kelas</h3></th>
-								<?php if (isset($_SESSION['pengguna'])) { ?>
+								<?php if (isset($_SESSION['administrator'])) { ?>
 								<th><h3 class="uk-text-center">Aksi</h3></th>
 								<?php }?>
 							</tr>
@@ -79,9 +79,9 @@ loadAssetsHead('Master Data Kelas');
 
 							  <tr>
 								<td><div class="uk-text-center"><?php echo $no?></div></td>
-								<td><div class="uk-text-center"><?php echo $row[0]?></div></td>
+								
 								<td><div class="uk-text-center"><?php echo $row[1]?></div></td>
-						          <?php if (isset($_SESSION['pengguna'])) { ?>
+						          <?php if (isset($_SESSION['administrator'])) { ?>
 								<td><div class="uk-text-center">
 								  <a href="kelas.update?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
 								  <a href="kelas.hapus?id=<?php echo $row[0]?>" onclick="return confirm('Apakah anda yakin akan menghapus data Kelas: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a>
