@@ -62,13 +62,11 @@ loadAssetsHead('Master Data Guru');
 						<thead>
 							<tr>
 								<th><h3 class="uk-text-center">No</h3></th>
-								<th><h3 class="uk-text-center">NIP</h3></th>
-								<th><h3 class="uk-text-center">Nama Guru</h3></th>
-								<th><h3 class="uk-text-center">JK</h3></th>
-								<th><h3 class="uk-text-center">Password</h3></th>
-								<th><h3 class="uk-text-center">Alamat</h3></th>
-								<th><h3 class="uk-text-center">No. HP</h3></th>
-								<th><h3 class="uk-text-center">Email</h3></th>
+								<th><h3 class="uk-text-center" >NIP</h3></th>
+								<th><h3 class="uk-text-center" >Nama Guru</h3></th>
+								
+								<th><h3 class="uk-text-center" >Alamat</h3></th>
+								
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<th><h3 class="uk-text-center">Aksi</h3></th>
 								<?php }?>
@@ -76,22 +74,23 @@ loadAssetsHead('Master Data Guru');
 						</thead>
 							<tbody>
 						  <?php 
-						  $query="SELECT * from guru";
+						
+						  $query="SELECT * from guru, kelurahan, kecamatan, kabupaten, provinsi where kelurahan.id_kel=guru.id_kel and kelurahan.id_kec=kecamatan.id_kec and kabupaten.id_kab=kecamatan.id_kab and kabupaten.id_prov=provinsi.id_prov ";
 						  $exe=mysql_query($query);
+
+						  
 						  $no=0;
 						  while ($row=mysql_fetch_array($exe)) { $no++;?>
 
 							  <tr>
-								<td><div class="uk-text-center"><?php echo $no?></div></td>
-								<td><?php echo $row[0]?></td>
-								<td><?php echo $row[3]?></td>
-								<td><?php echo $row[6]?></td>
-								<td><?php echo $row[2]?></td>
-								<td><?php echo $row[8]?></td>
-								<td><?php echo $row[9]?></td>
-								<td><?php echo $row[10]?></td>
+								<td ><div class="uk-text-center"><?php echo $no?></div></td>
+								<td ><?php echo $row[nip]?></td>
+								<td ><?php echo $row[nm_guru]?></td>
+								<td ><?php echo ucwords(strtolower('provinsi '.$row[nama_prov].', kabupaten '.$row[nama_kab].', kecamatan '.$row[nama_kec].', kelurahan '.$row[nama_kel].', '.$row[almt_sekarang]))?></td>
+								
 								<?php if (isset($_SESSION['administrator'])) { ?>
-								<td><div class="uk-text-center">
+								<td width="15%"><div class="uk-text-center">
+								  <a href="guru.lihat?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-search"></i></a>
 								  <a href="guru.update?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
 								  <a href="guru.hapus?id=<?php echo $row[0]?>" onclick="return confirm('Apakah anda yakin akan menghapus data guru: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a></div>
 								</td>
