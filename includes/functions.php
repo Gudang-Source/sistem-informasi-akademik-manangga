@@ -3,6 +3,31 @@
  * Check whenever user is already logged-in or not.
  * @return none
  */
+function kelolatanggal($vardate,$added)
+{
+$data = explode("-", $vardate);
+$date = new DateTime();
+$date->setDate($data[0], $data[1], $data[2]);
+$date->modify("".$added."");
+$day= $date->format("Y-m-d");
+return $day;
+}
+
+function IndonesiaTgl($tanggal){
+  $tgl=substr($tanggal,8,2);
+  $bln=substr($tanggal,5,2);
+  $thn=substr($tanggal,0,4);
+  $awal="$tgl-$bln-$thn";
+  return $awal;
+}
+
+function ubahformatTgl($tanggal) {
+    $pisah    = explode('/',$tanggal);
+    $urutan   = array($pisah[2],$pisah[1],$pisah[0]);
+    $satukan  = implode('-',$urutan);
+    return $satukan;
+  }
+  
 function checkUserAuth(){
   if ( empty($_SESSION['id_user']) ){
     header('location: login');
@@ -80,6 +105,8 @@ function loadAssetsHead($title = 'index'){
 
     <!-- Custom styling plus plugins -->
 
+<script src="assets/datepicker/js/bootstrap-datepicker.min.js"></script>
+    
 
 
 
