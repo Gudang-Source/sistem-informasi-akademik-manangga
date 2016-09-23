@@ -62,8 +62,8 @@ loadAssetsHead('Master Data Kelas');
 						<thead>
 							<tr>
 								<th><h3 class="uk-text-center">No</h3></th>
-								
 								<th><h3 class="uk-text-center">Nama Kelas</h3></th>
+								<th><h3 class="uk-text-center">Wali Kelas</h3></th>
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<th><h3 class="uk-text-center">Aksi</h3></th>
 								<?php }?>
@@ -79,8 +79,8 @@ loadAssetsHead('Master Data Kelas');
 
 							  <tr>
 								<td><div class="uk-text-center"><?php echo $no?></div></td>
-								
 								<td><div class="uk-text-center"><?php echo $row[1]?></div></td>
+								<td><div class="uk-text-center"><?php echo $row[nm_guru]?></div></td>
 						          <?php if (isset($_SESSION['administrator'])) { ?>
 								<td><div class="uk-text-center">
 								  <a href="kelas.update?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
