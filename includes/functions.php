@@ -54,44 +54,44 @@ function generateAdditionalAssets($type){
  * @return none
  */
 function loadAssetsHead($title = 'index'){
-?>
-<!DOCTYPE html>
-<?php global $ui_register_bg; echo ($ui_register_bg === 'secondary' ) ? '<html lang="en-us" dir="ltr" class="tm-bg-secondary">' : '<html lang="en-us" dir="ltr" class="tm-bg-primary">' ?>
+  ?>
+  <!DOCTYPE html>
+  <?php global $ui_register_bg; echo ($ui_register_bg === 'secondary' ) ? '<html lang="en-us" dir="ltr" class="tm-bg-secondary">' : '<html lang="en-us" dir="ltr" class="tm-bg-primary">' ?>
 
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title><?php echo $title ?></title>
-<link rel="shortcut icon" href="./" type="image/x-icon">
-<link rel="apple-touch-icon-precomposed" href="<?php echo ASSETS . LOGO ?>">
-<link rel="stylesheet" href="<?php echo ASSETS . UIKIT_CORE_CSS ?>">
-<link rel="stylesheet" href="<?php echo ASSETS . STYLESHEET ?>">
-<link rel="stylesheet" href="">
-<!-- Bootstrap core CSS -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><?php echo $title ?></title>
+    <link rel="shortcut icon" href="./" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" href="<?php echo ASSETS . LOGO ?>">
+    <link rel="stylesheet" href="<?php echo ASSETS . UIKIT_CORE_CSS ?>">
+    <link rel="stylesheet" href="<?php echo ASSETS . STYLESHEET ?>">
+    <link rel="stylesheet" href="">
+    <!-- Bootstrap core CSS -->
 
-  <link href="assets/admin/paneladmin/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/admin/paneladmin/fonts/css/font-awesome.min.css" rel="stylesheet">
-  <link href="assets/admin/paneladmin/css/animate.min.css" rel="stylesheet">
+    <link href="assets/admin/paneladmin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/admin/paneladmin/fonts/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/admin/paneladmin/css/animate.min.css" rel="stylesheet">
 
-<link rel="stylesheet" href="assets/fileupload/css/bootstrap-fileupload.min.css" />
+    <link rel="stylesheet" href="assets/fileupload/css/bootstrap-fileupload.min.css" />
     <script src="assets/fileupload/js/jquery-2.0.3.min.js"></script>
     <script src="assets/fileupload/js/bootstrap-fileupload.js"></script>
-<script type="text/javascript" language="javascript" src="assets/jquery.js"></script>
+    <script type="text/javascript" language="javascript" src="assets/jquery.js"></script>
 
-  <!-- Custom styling plus plugins -->
-
-
+    <!-- Custom styling plus plugins -->
 
 
 
-  <link rel="stylesheet" type="text/css" href="assets/admin/paneladmin/css/maps/jquery-jvectormap-2.0.3.css" />
-  <link href="assets/admin/paneladmin/css/icheck/flat/green.css" rel="stylesheet" />
-  <link href="assets/admin/paneladmin/css/floatexamples.css" rel="stylesheet" type="text/css" />
 
-  <script src="assets/admin/paneladmin/js/jquery.min.js"></script>
-  <script src="assets/admin/paneladmin/js/nprogress.js"></script>
-</head>
-<?php
+
+    <link rel="stylesheet" type="text/css" href="assets/admin/paneladmin/css/maps/jquery-jvectormap-2.0.3.css" />
+    <link href="assets/admin/paneladmin/css/icheck/flat/green.css" rel="stylesheet" />
+    <link href="assets/admin/paneladmin/css/floatexamples.css" rel="stylesheet" type="text/css" />
+
+    <script src="assets/admin/paneladmin/js/jquery.min.js"></script>
+    <script src="assets/admin/paneladmin/js/nprogress.js"></script>
+  </head>
+  <?php
 }
 
 /**
@@ -102,26 +102,26 @@ function loadAssetsHead($title = 'index'){
 
 function loadAssetsFoot($scripts = ''){
 
-?>
+  ?>
 
-<script src="assets/js/jquery.js"></script>
-<script src="assets/js/uikit.min.js"></script>
-<?php
-generateAdditionalAssets('js');
-echo $scripts;
-?>
-<br><br><br>
-<div class="sia-basic_main-full">
-<?php include "footer.php";?>
- <div class="copyright">
-	<div class="uk-vertical-align uk-text-center ">
-		<div class="uk-vertical-align-middle uk-text-center">
-			<label class="uk-text-success">
-  Develop on progress with <i class="fa fa-headphones"></i>  &   <i class="fa fa-coffee"></i> 
-</label>
-		</div>
-	</div>
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/uikit.min.js"></script>
+  <?php
+  generateAdditionalAssets('js');
+  echo $scripts;
+  ?>
+  <br><br><br>
+  <div class="sia-basic_main-full">
+    <?php include "footer.php";?>
+    <div class="copyright">
+     <div class="uk-vertical-align uk-text-center ">
+      <div class="uk-vertical-align-middle uk-text-center">
+       <label class="uk-text-success">
+        Develop on progress with <i class="fa fa-headphones"></i>  &   <i class="fa fa-coffee"></i> 
+      </label>
+    </div>
   </div>
+</div>
 </div>
 <?php
 }
@@ -138,7 +138,7 @@ function generateNavElement($roles, $page, $link, $name){
   $user_role = isset($_SESSION['tingkat_user']) ? $_SESSION['tingkat_user'] : -1;
 
   if ( in_array($user_role, $roles) )
-  echo ( $ui_register_page == $page ) ? '<li class="uk-active"><a href="'.$link.'">'.$name.'</a></li>' . "\n" : '<li><a href="'.$link.'">'.$name.'</a></li>' . "\n";
+    echo ( $ui_register_page == $page ) ? '<li class="uk-active"><a href="'.$link.'">'.$name.'</a></li>' . "\n" : '<li><a href="'.$link.'">'.$name.'</a></li>' . "\n";
 }
 
 /**
@@ -161,46 +161,54 @@ function loadMainMenu(){
  */
 
 if( isset($_SESSION['tingkat_user']) ) :
-?>
+  ?>
 
 <div class="sia-basic_header-top"></div>
 <div class="uk-container-center uk-text-center tm-menu-main">
-    <nav class="uk-button-dropdown uk-visible-small" data-uk-dropdown="{mode:'click'}">
-      <div><button class="uk-button uk-button-large uk-text-bold">- Menu -</button></div>
-      <div class="uk-dropdown">
-        <ul class="uk-nav uk-nav-dropdown uk-panel">
-          <?php generateNavElement(array(0,1,2,10), 'dashboard', './dashboard', 'Dashboard') ?>
-          <?php generateNavElement(array(), 'profil', './profil', 'Profil') ?>
-  <li class="uk-nav-header">Data Sekolah</li>
-    <?php generateNavElement(array(10), 'kelas', './kelas', 'Kelas') ?>
-    <?php generateNavElement(array(10), 'mapel', './mapel', 'Mata Pelajaran') ?>
-    <?php generateNavElement(array(), 'tahun-ajaran', './tahun-ajaran', 'Tahun Ajaran') ?>
-    <?php generateNavElement(array(10), 'pengumuman', './pengumuman', 'Pengumuman') ?>
-    <?php generateNavElement(array(0), 'siswa-profilsekolah', './siswa-profilsekolah', 'Profil Sekolah') ?>
-  <li class="uk-nav-header">Guru</li>
-   <?php generateNavElement(array(0,10), 'guru', './guru', 'Data Guru') ?>
-   <?php generateNavElement(array(0), 'siswa-lihatguru', './siswa-lihatguru', 'Daftar Guru') ?>
-    <?php generateNavElement(array(10), 'mengajar', './mengajar', 'Data Mengajar') ?>
-    <?php generateNavElement(array(10), 'materi-guru', './materi-guru', 'Materi') ?>
-    <?php generateNavElement(array(10), 'tugas-guru', './tugas-guru', 'Tugas') ?>
-    <?php generateNavElement(array(1), 'guru-mengajar', './guru-mengajar', 'Kelas Mengajar') ?>
-    <?php generateNavElement(array(1), 'guru-materi', './guru-materi', 'Materi Ajar') ?>
-    <?php generateNavElement(array(1), 'guru-tugas', './guru-tugas', 'Tugas') ?>
-    <?php generateNavElement(array(1), 'guru-pengumuman', './guru-pengumuman', 'Pengumuman') ?>
-  <li class="uk-nav-header">Siswa</li>
-  <li class="uk-nav-header"><?php generateNavElement(array(1,10), 'siswa', './siswa', 'Siswa') ?></li>
-    <?php generateNavElement(array(10), 'siswa', './siswa', 'Data Siswa') ?>
-    <?php generateNavElement(array(0), 'siswa-mapel', './siswa-mapel', 'Materi Pelajaran') ?>
-    <?php generateNavElement(array(0,2), 'siswa-materi', './siswa-materi', 'Materi Siswa') ?>
-    <?php generateNavElement(array(0,2), 'siswa-tugas', './siswa-tugas', 'Tugas Siswa') ?>
+  <nav class="uk-button-dropdown uk-visible-small" data-uk-dropdown="{mode:'click'}">
+    <div><button class="uk-button uk-button-large uk-text-bold">- Menu -</button></div>
+    <div class="uk-dropdown">
+      <ul class="uk-nav uk-nav-dropdown uk-panel">
+        <?php generateNavElement(array(0,1,2,10), 'dashboard', './dashboard', 'Dashboard') ?>
+        <?php generateNavElement(array(), 'profil', './profil', 'Profil') ?>
+        <li class="uk-nav-header">Data Pribadi Siswa</li>
+        <?php generateNavElement(array(10,2,10,1), 'isi-data-pribadi-siswa', './isi-data-pribadi-siswa', 'Isi Data Pribadi Siswa') ?>
+        <?php generateNavElement(array(10,2,10,1), 'isi-data-pribadi-orangtua', './isi-data-pribadi-orangtua', 'Isi Data Orangtua/ Wali Murid') ?>
+        <?php generateNavElement(array(10), 'tagihan-pembayaran', './tagihan-pembayaran', 'Tagihan Pembayaran') ?>
 
-          <?php// generateNavElement(array(0,1,10), 'name', 'link', 'value') ?>
-  <li class="uk-nav-divider"></li>
-          <li><a href="./logout.php">Keluar</a></li>
-        </ul>
-      </div>
-    </nav>
-  </div>
+        <li class="uk-nav-header">Data Sekolah</li>
+        <?php generateNavElement(array(10), 'kelas', './kelas', 'Kelas') ?>
+        <?php generateNavElement(array(10), 'mapel', './mapel', 'Mata Pelajaran') ?>
+        <?php generateNavElement(array(), 'tahun-ajaran', './tahun-ajaran', 'Tahun Ajaran') ?>
+        <?php generateNavElement(array(10), 'pengumuman', './pengumuman', 'Pengumuman') ?>
+        <?php generateNavElement(array(0), 'siswa-profilsekolah', './siswa-profilsekolah', 'Profil Sekolah') ?>
+        <li class="uk-nav-header">Pembayaran</li>isi-data-pribadi-siswa
+        <?php generateNavElement(array(10,2,10,1), 'riwayat-pembayaran', './riwayat-pembayaran', 'Riwayat Pembayaran') ?>
+        <?php generateNavElement(array(10), 'tagihan-pembayaran', './tagihan-pembayaran', 'Tagihan Pembayaran') ?>
+        <li class="uk-nav-header">Akademik</li>
+        <?php generateNavElement(array(0,10), 'guru', './guru', 'Data Guru') ?>
+        <?php generateNavElement(array(0), 'siswa-lihatguru', './siswa-lihatguru', 'Daftar Guru') ?>
+        <?php generateNavElement(array(10), 'mengajar', './mengajar', 'Data Mengajar') ?>
+        <?php generateNavElement(array(10), 'materi-guru', './materi-guru', 'Materi') ?>
+        <?php generateNavElement(array(10), 'tugas-guru', './tugas-guru', 'Tugas') ?>
+        <?php generateNavElement(array(1), 'guru-mengajar', './guru-mengajar', 'Kelas Mengajar') ?>
+        <?php generateNavElement(array(1), 'guru-materi', './guru-materi', 'Materi Ajar') ?>
+        <?php generateNavElement(array(1), 'guru-tugas', './guru-tugas', 'Tugas') ?>
+        <?php generateNavElement(array(1), 'guru-pengumuman', './guru-pengumuman', 'Pengumuman') ?>
+        <li class="uk-nav-header">Siswa</li>
+        <li class="uk-nav-header"><?php generateNavElement(array(1,10), 'siswa', './siswa', 'Siswa') ?></li>
+        <?php generateNavElement(array(10), 'siswa', './siswa', 'Data Siswa') ?>
+        <?php generateNavElement(array(0), 'siswa-mapel', './siswa-mapel', 'Materi Pelajaran') ?>
+        <?php generateNavElement(array(0,2), 'siswa-materi', './siswa-materi', 'Materi Siswa') ?>
+        <?php generateNavElement(array(0,2), 'siswa-tugas', './siswa-tugas', 'Tugas Siswa') ?>
+
+        <?php// generateNavElement(array(0,1,10), 'name', 'link', 'value') ?>
+        <li class="uk-nav-divider"></li>
+        <li><a href="./logout.php">Keluar</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
 <?php
 endif;
 }
@@ -229,109 +237,128 @@ function generateBreadcrumbs($arr){
  * @return none
  */
 function admin(){
-   $sql = "SELECT * from admin";
-                        $result = mysql_query($sql);
-                        $row=mysql_fetch_array($result);?>
-              <div class="sia-profile">
-                <p style="text-align:center"; font-weight:bold;>Selamat Datang</p>
-                <img class="sia-profile-image" <?php echo "src='gallery/admin/{$row['foto']}'";?> alt="">
-                <p style="text-align:center"; font-weight:bold;><b><?php echo "{$row['username']}";?></b></p>
-                <p style="text-align:center"; font-weight:bold;><?php echo "{$row['pengguna']}";?></p>
+ $sql = "SELECT * from admin";
+ $result = mysql_query($sql);
+ $row=mysql_fetch_array($result);?>
+ <div class="sia-profile">
+  <p style="text-align:center"; font-weight:bold;>Selamat Datang</p>
+  <img class="sia-profile-image" <?php echo "src='gallery/admin/{$row['foto']}'";?> alt="">
+  <p style="text-align:center"; font-weight:bold;><b><?php echo "{$row['username']}";?></b></p>
+  <p style="text-align:center"; font-weight:bold;><?php echo "{$row['pengguna']}";?></p>
 
-              </div>
-      <?php } ?>
+</div>
+<?php } ?>
 
 <?php function pegawai(){
 
-$sql = "SELECT * from pegawai where id_pegawai = $_SESSION[usernametu]";
-                        $result = mysql_query($sql);
-                        $row=mysql_fetch_array($result);?>
-              <div class="sia-profile">
-                <p style="text-align:center"; font-weight:bold;>Selamat Datang</p>
-                <img class="sia-profile-image" <?php echo "src='gallery/pegawai/{$row['file']}'";?> alt="">
-                <p style="text-align:center"; font-weight:bold;><b><?php echo "{$row['nm_pegawai']}";?></b></p>
-                <p style="text-align:center"; font-weight:bold;><?php echo "{$row['id_pegawai']}";?></p>
-              </div>
-        <?php } ?>
+  $sql = "SELECT * from pegawai where id_pegawai = $_SESSION[usernametu]";
+  $result = mysql_query($sql);
+  $row=mysql_fetch_array($result);?>
+  <div class="sia-profile">
+    <p style="text-align:center"; font-weight:bold;>Selamat Datang</p>
+    <img class="sia-profile-image" <?php echo "src='gallery/pegawai/{$row['file']}'";?> alt="">
+    <p style="text-align:center"; font-weight:bold;><b><?php echo "{$row['nm_pegawai']}";?></b></p>
+    <p style="text-align:center"; font-weight:bold;><?php echo "{$row['id_pegawai']}";?></p>
+  </div>
+  <?php } ?>
 
-<?php function guru(){
+  <?php function guru(){
 
    $sql = "SELECT * FROM user, guru WHERE guru.id_user=user.id_user AND nip={$_SESSION['usernameguru']}";
-                        $result = mysql_query($sql);
-                        $row=mysql_fetch_array($result); 
+   $result = mysql_query($sql);
+   $row=mysql_fetch_array($result); 
 
-                        ?>
-              <div class="sia-profile">
-                <p style="text-align:center"; font-weight:bold;>Selamat Datang</p>
-                <img class="sia-profile-image" <?php echo "src='gallery/guru/logo.jpg'";?> </br> 
-                <p style="text-align:center"; font-weight:bold;><b><?php echo "{$row['nip']}";?></b></p>
-                <p style="text-align:center"; font-weight:bold;><b><?php echo "{$row['nm_guru']}";?></b></p>
-
-
-              </div>
-             <?php } ?>
-
- <?php function siswa(){
-               $sql = "SELECT * from siswa where nis = $_SESSION[usernamesiswa]";
-                        $result = mysql_query($sql);
-                        $row=mysql_fetch_array($result);?>
-              <div class="sia-profile">
-                <p style="text-align:left"; font-weight:bold;>Selamat Datang, <b><?php echo "{$row['nm_siswa']}";?></b></p>
-                <p style="text-align:left"; font-weight:bold;>NIS: <b><?php echo "{$row['nis']}";?></b></p>
-                <p style="text-align:left"; font-weight:bold;>Kelas: <b><?php echo "{$row['kd_kelas']}";?></b></p>
-              </div>
-        <?php } ?>
+   ?>
+   <div class="sia-profile">
+    <p style="text-align:center"; font-weight:bold;>Selamat Datang</p>
+    <img class="sia-profile-image" <?php echo "src='gallery/guru/logo.jpg'";?> </br> 
+    <p style="text-align:center"; font-weight:bold;><b><?php echo "{$row['nip']}";?></b></p>
+    <p style="text-align:center"; font-weight:bold;><b><?php echo "{$row['nm_guru']}";?></b></p>
 
 
+  </div>
+  <?php } ?>
 
-<?php function loadSidebar(){
-
-?>
-
-       <ul class="uk-nav uk-nav-side tm-menu-side">
-
-
-     <?php if(isset($_SESSION['usernameadmin'])) { admin(); }?>
-     <?php if(isset($_SESSION['usernamesiswa'])) { siswa(); }?>
-     <?php if(isset($_SESSION['usernameguru'])) { guru(); }?>
-     <?php if(isset($_SESSION['usernametu'])) { pegawai(); }?>
-
-
-  <hr class="uk-article-divider">
-  <li class="uk-nav-header"></li>
-          <?php generateNavElement(array(0,1,2,10), 'dashboard', './dashboard', 'Dashboard') ?>
-          <?php generateNavElement(array(), 'profil', './profil', 'Profil') ?>
-  <hr class="uk-article-divider">
-  <li class="uk-nav-header">Data Sekolah</li>
-    <?php generateNavElement(array(10), 'kelas', './kelas', 'Kelas') ?>
-    <?php generateNavElement(array(10), 'mapel', './mapel', 'Mata Pelajaran') ?>
-    <?php generateNavElement(array(), 'tahun-ajaran', './tahun-ajaran', 'Tahun Ajaran') ?>
-    <?php generateNavElement(array(10), 'pengumuman', './pengumuman', 'Pengumuman') ?>
-    <?php generateNavElement(array(0), 'siswa-profilsekolah', './siswa-profilsekolah', 'Profil Sekolah') ?>
-
-  <hr class="uk-article-divider">
-  <li class="uk-nav-header">Guru</li>
-    
-   <?php generateNavElement(array(10), 'guru', './guru', 'Data Guru') ?>
-   <?php generateNavElement(array(0), 'siswa-lihatguru', './siswa-lihatguru', 'Daftar Guru') ?>
-    <?php generateNavElement(array(10), 'mengajar', './mengajar', 'Data Mengajar') ?>
-    <?php generateNavElement(array(10), 'materi-guru', './materi-guru', 'Materi') ?>
-    <?php generateNavElement(array(10), 'tugas-guru', './tugas-guru', 'Tugas') ?>
-    <?php generateNavElement(array(1), 'guru-mengajar', './guru-mengajar', 'Kelas Mengajar') ?>
-    <?php generateNavElement(array(1), 'guru-materi', './guru-materi', 'Materi Ajar') ?>
-    <?php generateNavElement(array(1), 'guru-tugas', './guru-tugas', 'Tugas') ?>
-    <?php generateNavElement(array(1), 'guru-pengumuman', './guru-pengumuman', 'Pengumuman') ?>
-    <?php// generateNavElement(array(0,1,10), 'name', 'link', 'value') ?>
-
-  <li class="uk-nav-divider"></li>
-    <li class="uk-nav-header">Siswa</li>
-    <?php generateNavElement(array(10), 'siswa', './siswa', 'Data Siswa') ?>
-    <?php generateNavElement(array(0), 'siswa-mapel', './siswa-mapel', 'Materi Pelajaran') ?>
-    <?php generateNavElement(array(0,2), 'siswa-materi', './siswa-materi', 'Materi Siswa') ?>
-    <?php generateNavElement(array(0,2), 'siswa-tugas', './siswa-tugas', 'Tugas Siswa') ?>
+  <?php function siswa(){
+   $sql = "SELECT * from siswa where nis = $_SESSION[usernamesiswa]";
+   $result = mysql_query($sql);
+   $row=mysql_fetch_array($result);?>
+   <div class="sia-profile">
+    <p style="text-align:left"; font-weight:bold;>Selamat Datang, <b><?php echo "{$row['nm_siswa']}";?></b></p>
+    <p style="text-align:left"; font-weight:bold;>NIS: <b><?php echo "{$row['nis']}";?></b></p>
+    <p style="text-align:left"; font-weight:bold;>Kelas: <b><?php echo "{$row['kd_kelas']}";?></b></p>
+  </div>
+  <?php } ?>
 
 
-  <li><a href="./logout">Keluar</a></li>
-</ul>
-<?php
-}
+
+  <?php function loadSidebar(){
+
+    ?>
+
+    <ul class="uk-nav uk-nav-side tm-menu-side">
+
+
+      <?php// generateNavElement(array(0,1,10), 'name', 'link', 'value') ?>
+      <li class="uk-nav-divider"></li>
+      <?php if(isset($_SESSION['usernameadmin'])) { admin(); }?>
+      <?php if(isset($_SESSION['usernamesiswa'])) { siswa(); }?>
+      <?php if(isset($_SESSION['usernameguru'])) { guru(); }?>
+      <?php if(isset($_SESSION['usernametu'])) { pegawai(); }?>
+
+
+      <hr class="uk-article-divider">
+      <li class="uk-nav-header"></li>
+      <?php generateNavElement(array(0,1,2,10), 'dashboard', './dashboard', 'Dashboard') ?>
+      <?php generateNavElement(array(), 'profil', './profil', 'Profil') ?>
+      <hr class="uk-article-divider"> 
+      <li class="uk-nav-header">Data Pribadi Siswa</li>
+      <?php generateNavElement(array(10,2,10,1), 'isi-data-pribadi-siswa', './isi-data-pribadi-siswa', 'Isi Data Pribadi Siswa') ?>
+      <?php generateNavElement(array(10,2,10,1), 'isi-data-pribadi-orangtua', './isi-data-pribadi-orangtua', 'Isi Data Orangtua/ Wali Murid') ?>
+
+      <hr class="uk-article-divider">
+      <li class="uk-nav-header">Data Sekolah</li>
+       <?php generateNavElement(array(10), 'siswa-profilsekolah', './siswa-profilsekolah', 'Profil Sekolah') ?>
+       <?php generateNavElement(array(10), 'kepala-sekolah', './kepala-sekolah', 'Kepala Sekolah') ?>
+       <?php generateNavElement(array(10), 'siswa', './siswa', 'Data Siswa') ?>
+       <?php generateNavElement(array(10), 'guru', './guru', 'Data Guru') ?>
+       <?php generateNavElement(array(10), 'wali-murid', './wali-murid', 'Data Orangtua/Wali') ?>
+       
+      <hr class="uk-article-divider">
+      <li class="uk-nav-header">Akademik</li>
+      <?php generateNavElement(array(10), 'siswa-mapel', './siswa-mapel', 'Materi Pelajaran') ?>
+      <?php generateNavElement(array(10,0,2), 'siswa-materi', './siswa-materi', 'Materi Siswa') ?>
+      <?php generateNavElement(array(10,0,2), 'siswa-tugas', './siswa-tugas', 'Tugas Siswa') ?>
+      <?php generateNavElement(array(10), 'kelas', './kelas', 'Kelas') ?>
+      <?php generateNavElement(array(10), 'mapel', './mapel', 'Mata Pelajaran') ?>
+      <?php generateNavElement(array(10), 'tahun-ajaran', './tahun-ajaran', 'Tahun Ajaran') ?>
+     
+      
+     
+      <?php generateNavElement(array(10), 'siswa-lihatguru', './siswa-lihatguru', 'Daftar Guru') ?>
+      <?php generateNavElement(array(10), 'mengajar', './mengajar', 'Data Mengajar') ?>
+      <?php generateNavElement(array(10), 'materi-guru', './materi-guru', 'Materi') ?>
+      <?php generateNavElement(array(10), 'tugas-guru', './tugas-guru', 'Tugas') ?>
+      <?php generateNavElement(array(10), 'guru-mengajar', './guru-mengajar', 'Kelas Mengajar') ?>
+      <?php generateNavElement(array(10), 'guru-materi', './guru-materi', 'Materi Ajar') ?>
+      <?php generateNavElement(array(10), 'guru-tugas', './guru-tugas', 'Tugas') ?>
+      <?php generateNavElement(array(10), 'guru-pengumuman', './guru-pengumuman', 'Pengumuman') ?>
+      <?php// generateNavElement(array(0,1,10), 'name', 'link', 'value') ?>
+
+      <hr class="uk-article-divider">  
+      <li class="uk-nav-header">Pembayaran</li>   
+      <?php generateNavElement(array(10,2,10,1), 'riwayat-pembayaran', './riwayat-pembayaran', 'Riwayat Pembayaran') ?>
+      <?php generateNavElement(array(10), 'tagihan-pembayaran', './tagihan-pembayaran', 'Tagihan Pembayaran') ?>
+
+      <hr class="uk-article-divider">  
+      <li class="uk-nav-header">Ekstrakulikuler</li>   
+      <?php generateNavElement(array(10,2,10,1), 'riwayat-pembayaran', './riwayat-pembayaran', 'Riwayat Pembayaran') ?>
+      <?php generateNavElement(array(10), 'tagihan-pembayaran', './tagihan-pembayaran', 'Tagihan Pembayaran') ?>
+      <li class="uk-nav-divider"></li>
+
+
+
+      <li><a href="./logout">Keluar</a></li>
+    </ul>
+    <?php
+  }
