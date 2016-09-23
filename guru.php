@@ -38,11 +38,11 @@ loadAssetsHead('Master Data Guru');
 		  
 		  <hr class="uk-article-divider">
           <h1 class="uk-article-title">Guru <span class="uk-text-large">
-          <?php  if (isset($_SESSION['pengguna'])) {?>
+          <?php  if (isset($_SESSION['administrator'])) {?>
 		  { Master Data }</span></h1>
           <?php  }?>
           <br>
-          <?php if (isset($_SESSION['pengguna'])) { ?>
+          <?php if (isset($_SESSION['administrator'])) { ?>
           <a href="./guru.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Guru"><i class="uk-icon-plus"></i> Guru</a>
 		  <?php } ?>
 		   <br><br>
@@ -69,7 +69,7 @@ loadAssetsHead('Master Data Guru');
 								<th><h3 class="uk-text-center">Alamat</h3></th>
 								<th><h3 class="uk-text-center">No. HP</h3></th>
 								<th><h3 class="uk-text-center">Email</h3></th>
-								<?php if (isset($_SESSION['pengguna'])) { ?>
+								<?php if (isset($_SESSION['administrator'])) { ?>
 								<th><h3 class="uk-text-center">Aksi</h3></th>
 								<?php }?>
 							</tr>
@@ -90,7 +90,7 @@ loadAssetsHead('Master Data Guru');
 								<td><?php echo $row[8]?></td>
 								<td><?php echo $row[9]?></td>
 								<td><?php echo $row[10]?></td>
-								<?php if (isset($_SESSION['pengguna'])) { ?>
+								<?php if (isset($_SESSION['administrator'])) { ?>
 								<td><div class="uk-text-center">
 								  <a href="guru.update?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
 								  <a href="guru.hapus?id=<?php echo $row[0]?>" onclick="return confirm('Apakah anda yakin akan menghapus data guru: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a></div>
