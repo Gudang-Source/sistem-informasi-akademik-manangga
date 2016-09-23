@@ -16,18 +16,18 @@ if (isset ($_POST["kelas_simpan"])) {
 
     // baca variabel
     
-    $kd_kelas     = $_POST['kd_kelas'];
-    $kd_kelas     = str_replace("", "&acute;", $kd_kelas);
+
+ 
 
     $nm_kelas     = $_POST['nm_kelas'];
     $nm_kelas     = str_replace("", "&acute;", $nm_kelas);
-    $nm_kelas     = ucwords(strtolower($nm_kelas));
+    $nm_kelas     = strtoupper($nm_kelas);
+
+   $kd_kelas     = strtoupper(str_replace("  ", "-", $nm_kelas));
+    $kd_kelas     = strtoupper(str_replace(" ", "-", $nm_kelas));
 
     // validation form kosong
    $pesanError= array();
-  if (trim($kd_kelas)=="") {
-    $pesanError[]="Data <b>Kode Kelas</b> Masih Kosong.";
-  }
   if (trim($nm_kelas)=="") {
     $pesanError[]="Data <b>Nama Kelas</b> Masih Kosong.";
   }
@@ -95,13 +95,8 @@ if (isset ($_POST["kelas_simpan"])) {
             <div class="uk-width-medium-1-1">
              <form id="formkelas" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
         
-        <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kd_kelas">Kode Kelas<span class="required">*</span>
-           </label>
-           <div class="col-md-6 col-sm-6 col-xs-12">
-            <input type="text" id="kd_kelas" name="kd_kelas" value="<?php echo $datakodekelas; ?>" required="required" class="form-control col-md-7 col-xs-12">
-          </div>
-        </div>
+        
+          
 
 
         <div class="item form-group">
@@ -117,6 +112,9 @@ if (isset ($_POST["kelas_simpan"])) {
        </div>
      </form>    
 </div>
+</div>
+</div>
+</article>
 </div>
 </div>
 
@@ -137,18 +135,7 @@ if (isset ($_POST["kelas_simpan"])) {
   }, 
   excluded: [':disabled'],
   fields : {
-    kd_kelas : {
-     validators: {
-      notEmpty: {
-       message: 'Harus Pilih Kelas'
-     },
-     remote: {
-      type: 'POST',
-      url: 'remote/remote_kelas.php',
-      message: 'Nama Kelas Telah Tersedia'
-    },
-   }
- }, 
+    
 nm_kelas: {
   message: 'Nama Kelas Tidak Benar',
   validators: {
