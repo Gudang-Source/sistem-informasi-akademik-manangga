@@ -1,7 +1,7 @@
 <?php
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(0));
+checkUserRole(array(0,1, 10));
 
 // TEMPLATE CONTROL
 $ui_register_page = 'siswa-profilsekolah';
@@ -33,12 +33,12 @@ loadAssetsHead('Profil Sekolah');
         <article class="uk-article">		
 		
 		  <div class="uk-vertical-align uk-text-right uk-height-1-1">
-			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="E-Learning SMK 4 Klaten" title="E-Learning SMK 4 Klaten">
+			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SD N II Manangga" title="Sistem Informasi Akademik SD N II Manangga">
 		  </div>
 		  
 		  <hr class="uk-article-divider">
           <h1 class="uk-article-title">Profil Sekolah <span class="uk-text-large">
-		  { SMK Negeri 4 Klaten }</span></h1>
+		  { SD Negeri II Manangga }</span></h1>
           <br>
 		   <br><br>
 		  
@@ -49,7 +49,7 @@ loadAssetsHead('Profil Sekolah');
 					<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-4"><strong>NPSN</strong></div>
 					<div class="col-md-7 col-sm-7 col-xs-7">
-					<div class="npsn">: 20309532</div></div>
+					<div class="npsn">: 0</div></div>
 					</div>
 
 					<div class="row">
@@ -61,58 +61,54 @@ loadAssetsHead('Profil Sekolah');
 					<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-4"><strong>Bentuk Pendidikan</strong></div>
 					<div class="col-md-7 col-sm-7 col-xs-7">
-					<div class="bentuk-pendidikan">: Sekolah Menengah Kejuruan (SMK)</div></div></div>
+					<div class="bentuk-pendidikan">: Sekolah Dasar (SD))</div></div></div>
 
 					<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-4">
 					<strong>Alamat</strong></div>
 					<div class="col-md-7 col-sm-7 col-xs-7">
-					<div>: JL. MATARAM NO.5</div></div></div>
-
-					<div class="row"><div class="col-md-4 col-sm-4 col-xs-4">
-					<strong>RT / RW</strong></div>
-					<div class="col-md-7 col-sm-7 col-xs-7"><div><span class="rt">: 2</span> / <span class="rw">14</span></div></div></div>
+					<div>: Rancageneng</div></div></div>
 
 					<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-4">
 					<strong>Dusun</strong></div>
 					<div class="col-md-7 col-sm-7 col-xs-7">
-					<div class="dusun">: BELANGWETAN</div></div></div>
+					<div class="dusun">: Rancageneng</div></div></div>
 
 					<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-4"><strong>Desa / Kelurahan</strong></div>
 					<div class="col-md-7 col-sm-7 col-xs-7">
-					<div class="desa">: BELANG WETAN</div></div></div>
+					<div class="desa">: Sukajaya</div></div></div>
 
 					<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-4"><strong>Kecamatan</strong></div>
 					<div class="col-md-7 col-sm-7 col-xs-7">
-					<div class="kecamatan">: Kec. Klaten Utara</div></div></div>
+					<div class="kecamatan">: Bungursari </div></div></div>
 
 					<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-4"><strong>Kabupaten</strong></div>
 					<div class="col-md-7 col-sm-7 col-xs-7">
-					<div class="kabupaten">: Kab. Klaten</div></div></div>
+					<div class="kabupaten">: Kota Tasikmalaya</div></div></div>
 
 					<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-4"><strong>Propinsi</strong></div>
 					<div class="col-md-7 col-sm-7 col-xs-7">
-					<div class="propinsi">: Prop. Jawa Tengah</div></div></div>
+					<div class="propinsi">: Prop. Jawa Barat</div></div></div>
 
 					<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-4"><strong>Kode Pos</strong></div>
 					<div class="col-md-7 col-sm-7 col-xs-7">
-					<div class="kode-pos">: 57436</div></div></div>
+					<div class="kode-pos">: -</div></div></div>
 
 					<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-4"><strong>Email</strong></div>
 					<div class="col-md-7 col-sm-7 col-xs-6">
-					<div class="email">: smkn4klaten@ymail.com</div></div></div>
+					<div class="email">: sdnmanangga2@yahoo.co.id</div></div></div>
 
 					<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-4"><strong>Website</strong></div>
 					<div class="col-md-7 col-sm-7 col-xs-6">
-					<div class="website"><a href="http://smkn4klaten.sch.id" target="_blank">: http://smkn4klaten.sch.id</a></div></div></div></div></div>
+					<div class="website"><a href="http://smkn4klaten.sch.id" target="_blank">: -</a></div></div></div></div></div>
 				  
               		<div class="panel panel-info">
 					<div class="panel-heading">Dokumen dan Perijinan</div>
@@ -121,13 +117,13 @@ loadAssetsHead('Profil Sekolah');
 					<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-4"><strong>SK Pendirian Sekolah</strong></div>
 					<div class="col-md-7 col-sm-7 col-xs-7">
-					<div>: 0426/O/1991</div></div>
+					<div>: -</div></div>
 					</div>
 
 					<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-4"><strong>Tanggal SK Pendirian</strong></div>
 					<div class="col-md-7 col-sm-7 col-xs-7">
-					<div>: 1991-07-15</div></div>
+					<div>: -</div></div>
 					</div>
 
 					<div class="row">
@@ -139,20 +135,20 @@ loadAssetsHead('Profil Sekolah');
 					<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-4"><strong>SK Izin Operasional</strong></div>
 					<div class="col-md-7 col-sm-7 col-xs-7">
-					<div>: 0426/O/1991</div></div>
+					<div>: -</div></div>
 					</div>
 
 					<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-4"><strong>Tanggal SK Izin Operasional</strong></div>
 					<div class="col-md-7 col-sm-7 col-xs-7">
-					<div>: 1991-07-15</div></div>
+					<div>: -</div></div>
 					</div>
 
 					</div></div>	
 					<div class="panel panel-info">
 					<div class="panel-heading">Lokasi Sekolah</div>
 					<div class="panel-body">
-					<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15815.97264898783!2d110.633606!3d-7.683881!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x3ae1b3a575bf0b3f!2sSMK+N+4+Klaten!5e0!3m2!1sen!2sus!4v1466153121777" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d63318.19109432808!2d108.13944394226712!3d-7.310353614222741!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e4!4m3!3m2!1d-7.3115!2d108.1725!4m0!5e0!3m2!1sen!2sid!4v1474775852963" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
 					</div></div>	
         </article>
 		<br><br><br>
