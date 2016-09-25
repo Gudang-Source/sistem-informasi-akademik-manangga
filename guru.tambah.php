@@ -249,7 +249,7 @@ if (isset ($_POST["guru_simpan"])) {
       						<img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="E-Learning" title="E-Learning">
       					</div>
       					<hr class="uk-article-divider">
-      					<h1 class="uk-article-title">Guru<span class="uk-text-large">{ Tambah Naster Data Guru }</span></h1>
+      					<h1 class="uk-article-title">Guru<span class="uk-text-large">{ Tambah Master Data Guru }</span></h1>
       					<br>
       					<a href="./guru" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Guru"><i class="uk-icon-angle-left"></i> Kembali</a>
       					<!-- <hr class="uk-article-divider"> -->
@@ -278,7 +278,7 @@ if (isset ($_POST["guru_simpan"])) {
       									</label>
       									<div class="col-md-6 col-sm-6 col-xs-12">
       										<input type="text" id="nip" name="nip" value="<?php echo $datanip; ?>" required="required" class="form-control col-md-7 col-xs-12">
-      										<div class="reg-info">Contoh: 126500182411. Jumlah minimal 18 angka. Wajib Diisi (Digunakan sebagai username untuk login)</div>
+      										<div class="reg-info">Contoh: 126500182411. Jumlah minimal 18 angka. Wajib diisi (Digunakan sebagai username untuk login sistem)</div>
       									</div>
       								</div>
 
@@ -287,7 +287,7 @@ if (isset ($_POST["guru_simpan"])) {
       									</label>
       									<div class="col-md-6 col-sm-6 col-xs-12">
       										<input type="text" id="nm_guru" name="nm_guru" value="<?php echo $datanamaguru; ?>" required="required" class="form-control col-md-7 col-xs-12">
-      										<div class="reg-info">Contoh: Fajar Nurrohamt. Jumlah minimal 1 huruf. Wajib Diisi (Tuliskan Nama Saja, tidak dengan title)</div>
+      										<div class="reg-info">Contoh: Fajar Nurrohamt. Jumlah minimal 1 huruf. Wajib diisi (Tuliskan nama saja, tidak dengan gelar akademik)</div>
       									</div>
       								</div>
 
@@ -296,7 +296,7 @@ if (isset ($_POST["guru_simpan"])) {
       									</label>
       									<div class="col-md-6 col-sm-6 col-xs-12">
       										<input type="text" id="password" name="password" value="<?php echo $datapassword; ?>" required="required" class="form-control col-md-7 col-xs-12">
-      										<div class="reg-info">Contoh: 126500182411. Jumlah minimal 6 karakter. Wajib Diisi (Digunakan untuk login)</div>
+      										<div class="reg-info">Contoh: 126500182411. Jumlah minimal 6 karakter. Wajib diisi (Digunakan untuk login)</div>
       									</div>
       								</div>
       								<div class="item form-group">
@@ -304,7 +304,7 @@ if (isset ($_POST["guru_simpan"])) {
       									</label>
       									<div class="col-md-6 col-sm-6 col-xs-12">
       										<input type="text" id="password1" name="password1" value="<?php echo $datapassword; ?>" required="required" class="form-control col-md-7 col-xs-12">
-      										<div class="reg-info">Contoh: 126500182411. Jumlah minimal 6 karakter. Harus Sama dengan Password. Wajib Diisi (Digunakan untuk login)</div>
+      										<div class="reg-info">Contoh: 126500182411. Jumlah minimal 6 karakter. Harus Sama dengan Password. Wajib diisi (Digunakan untuk login)</div>
       									</div>
       								</div>
 
@@ -323,7 +323,7 @@ if (isset ($_POST["guru_simpan"])) {
       									</label>
       									<div class="col-md-6 col-sm-6 col-xs-12">
       										<input type="text" id="tmpt_lahir" name="tmpt_lahir" value="<?php echo $datatempatlahir; ?>" required="required" class="form-control col-md-7 col-xs-12">
-      										<div class="reg-info">contoh: Gunungkidul, Tempat Lahir berupa nama kabupaten</div>
+      										<div class="reg-info">Contoh: Gunungkidul, Tempat Lahir berupa nama kabupaten</div>
       									</div>
       								</div>
 
@@ -336,7 +336,7 @@ if (isset ($_POST["guru_simpan"])) {
       											<option value="Laki-Laki">Laki-Laki</option>
       											<option value="Perempuan">Perempuan</option>
       										</select>
-      										<div class="reg-info">Jenis Kelamin Hanya Laki-Laki dan Perempuan , Pilih Salah Satu!</div>
+      										<div class="reg-info">Jenis Kelamin hanya Laki-Laki dan Perempuan, Pilih Salah Satu!</div>
       									</div>
       								</div>
 
@@ -353,7 +353,7 @@ if (isset ($_POST["guru_simpan"])) {
       											<option value="Buddha">Buddha</option>
       											<option value="Konghuchu">Konghuchu</option>
       										</select>
-      										<div class="reg-info">Pilihan Agama yang ada hanya terdapat di pilihan, apabila tidak ada dalam menu pilihan agama ,harap menghubungi di bagian kesiswaan</div>
+      										<div class="reg-info">Pilihan Agama yang ada hanya terdapat di pilihan, apabila tidak ada dalam menu pilihan agama, harap menghubungi di bagian kesiswaan.</div>
       									</div>
       								</div>
       								<div class="item form-group">
@@ -365,7 +365,7 @@ if (isset ($_POST["guru_simpan"])) {
       											<option value="wiyatabhakti">Wiyata Bhakti</option>
       											<option value="Pns">Pegawai Negri Sipil</option>
       										</select>
-      										<div class="reg-info">Status Guru Hanya Wiyata Bhakti dan Pegawai Negri Sipil(PNS) , Pilih Salah Satu!</div>
+      										<div class="reg-info">Status Guru hanya Wiyata Bhakti dan Pegawai Negri Sipil(PNS), Pilih Salah Satu!</div>
       									</div>
       								</div>
 
@@ -382,7 +382,7 @@ if (isset ($_POST["guru_simpan"])) {
       									</label>
       									<div class="col-md-6 col-sm-6 col-xs-12">
       										<input type="text" id="gelar_depan_akademik" name="gelar_depan_akademik" value="<?php echo $datagelardepanakademik; ?>"  class="form-control col-md-7 col-xs-12">
-      										<div class="reg-info">Kosongkan Jika Tidak Ada Gelar Depan Akademik </div>
+      										<div class="reg-info">Kosongkan Jika Tidak Ada Gelar Depan Akademik</div>
       									</div>
       								</div>
       								<div class="item form-group">
@@ -390,7 +390,7 @@ if (isset ($_POST["guru_simpan"])) {
       									</label>
       									<div class="col-md-6 col-sm-6 col-xs-12">
       										<input type="text" id="gelar_belakang" name="gelar_belakang" value="<?php echo $datagelarbelakang; ?>"  class="form-control col-md-7 col-xs-12">
-      										<div class="reg-info">Kosongkan Jika Tidak Ada Gelar Belakang  </div>
+      										<div class="reg-info">Kosongkan Jika Tidak Ada Gelar Belakang</div>
       									</div>
       								</div>
       								<div class="item form-group">
@@ -470,7 +470,7 @@ if (isset ($_POST["guru_simpan"])) {
       								</div>
 
       								<div class="uk-form-row">
-      									<div class="uk-alert">Pastikan semua isian sudah terisi dengan benar !</div>
+      									<div class="uk-alert">Pastikan semua isian sudah terisi dengan benar!</div>
       								</div>
       								<div style="text-align:center" class="form-actions no-margin-bottom">
       									<button type="submit" id="guru_simpan" name="guru_simpan" class="btn btn-success">Submit</button>

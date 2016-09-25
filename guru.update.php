@@ -17,48 +17,107 @@ if (isset($_POST['guru_simpan'])) {
   #baca variabel
   $nip  = $_POST['nip'];
   $password  = $_POST['password'];
+  $password1 = $_POST['password1'];
   $nm_guru  = $_POST['nm_guru'];
   $tmpt_lahir  = $_POST['tmpt_lahir'];
-  $date_tgl_lahir  = $_POST['date_tgl_lahir'];
+  $date_tgl_lahir0  = $_POST['date_tgl_lahir'];
+  $date_tgl_lahir=ubahformatTgl($date_tgl_lahir0);
   $jns_kelamin  = $_POST['jns_kelamin'];
   $agama  = $_POST['agama'];
+  $status_guru = $_POST['status_guru'];
+  $gelar_depan = $_POST['gelar_depan'];
+  $gelar_depan_akademik = $_POST['gelar_depan_akademik'];
+  $gelar_belakang = $_POST['gelar_belakang'];
+  $id_kec = $_POST['id_kec'];
+  $id_kec = str_replace("'","&acute;",$id_kec);
+
+  $kota = $_POST['kota'];
+  $kota  = str_replace("'","&acute;",$kota);
+
+  $prov  = $_POST['prov'];
+  $prov  = str_replace("'","&acute;",$prov);
+
+  $id_kel  = $_POST['id_kel'];
+  $id_kel  = str_replace("'","&acute;",$id_kel);
   $almt_sekarang = $_POST['almt_sekarang'];
   $no_hp  = $_POST['no_hp'];
   $email  = $_POST['email'];
   $id_user =2;
 
   #validasi form kosong
- $pesanError= array();
-  if (trim($nip)=="") {
-    $pesanError[]="Data <b>NIP</b> masih kosong.";
-  }
-   if (trim($password)=="") {
-    $pesanError[]="Data <b>Password</b> masih kosong.";
-  }
-  if (trim($nm_guru)=="") {
-    $pesanError[]="Data <b>Nama Gru</b> masih kosong.";
-  }
-   if (trim($tmpt_lahir)=="") {
-    $pesanError[]="Data <b>Tempat Lahir</b> masih kosong.";
-  }
-    if (trim($date_tgl_lahir)=="") {
-    $pesanError[]="Data <b>Tanggal Lahir</b> masih kosong.";
-  }
-    if (trim($jns_kelamin)=="") {
-    $pesanError[]="Data <b>Jenis Kelamin</b> masih kosong.";
-  }
-    if (trim($agama)=="") {
-    $pesanError[]="Data <b>Agama</b> masih kosong.";
-  }
-   if (trim($almt_sekarang)=="") {
-    $pesanError[]="Data <b>Alamat Sekarang</b> masih kosong.";
-  }
+  function compress_image($source_url, $destination_url, $quality) 
+  { 
+    $info = getimagesize($source_url); 
+    if ($info['mime'] == 'image/jpeg') 
+      $image = imagecreatefromjpeg($source_url); 
+    elseif ($info['mime'] == 'image/gif') 
+      $image = imagecreatefromgif($source_url); 
+    elseif ($info['mime'] == 'image/png') 
+      $image = imagecreatefrompng($source_url); 
+    imagejpeg($image, $destination_url, $quality); 
+    return $destination_url; 
+  } 
+
+  $nama_foto = $_FILES["file"]["name"];
+      $file_sik_dipilih = substr($nama_foto, 0, strripos($nama_foto, '.')); // strip extention
+      $bagian_extensine = substr($nama_foto, strripos($nama_foto, '.')); // strip name
+      $ukurane = $_FILES["file"]["size"];
+
+      $pesanError= array();
+      if (trim($nip)=="") {
+        $pesanError[]="Data <b>NIP</b> masih kosong.";
+      }
+      if (trim($password)=="") {
+        $pesanError[]="Data <b>Password</b> masih kosong.";
+      }
+      if (trim($password1)=="") {
+        $pesanError[]="Data Konfirmasi<b>Password</b> masih kosong.";
+      }
+      if (trim($nm_guru)=="") {
+        $pesanError[]="Data <b>Nama Gru</b> masih kosong.";
+      }
+      if (trim($tmpt_lahir)=="") {
+        $pesanError[]="Data <b>Tempat Lahir</b> masih kosong.";
+      }
+      if (trim($date_tgl_lahir)=="") {
+        $pesanError[]="Data <b>Tanggal Lahir</b> masih kosong.";
+      }
+      if (trim($jns_kelamin)=="") {
+        $pesanError[]="Data <b>Jenis Kelamin</b> masih kosong.";
+      }
+      if (trim($agama)=="") {
+        $pesanError[]="Data <b>Agama</b> masih kosong.";
+      }
+      if (trim($status_guru)=="") {
+        $pesanError[]="Data <b>Status Guru</b> masih kosong.";
+      }
+      if (trim($prov)=="") {
+        $pesanError[] = "Data <b>Provinsi</b> tidak boleh kosong !";    
+      }
+      if (trim($kota)=="") {
+        $pesanError[] = "Data <b>Kabupaten</b> tidak boleh kosong !";    
+      }
+      if (trim($id_kec)=="") {
+        $pesanError[]="Data <b>Kecamatan</b> Masih kosong !!";
+      }
+      if (trim($id_kel)=="") {
+        $pesanError[]="Data <b>Kelurahan</b> Masih kosong !!";
+      }
+      if (trim($almt_sekarang)=="") {
+        $pesanError[]="Data <b>Alamat Sekarang</b> masih kosong.";
+      }
       if (trim($no_hp)=="") {
-    $pesanError[]="Data <b>Nomor HP</b> masih kosong.";
-  }
+        $pesanError[]="Data <b>Nomor HP</b> masih kosong.";
+      }
       if (trim($email)=="") {
-    $pesanError[]="Data <b>Email</b> masih kosong.";
-  }
+        $pesanError[]="Data <b>Email</b> masih kosong.";
+      }
+      if (trim($id_user)=="") {
+        $pesanError[] = "Data <b>id_user</b> tidak boleh kosong !";    
+      }
+      if (empty($file_sik_dipilih)){
+        $pesanError[] = "Anda Belum Memilih Foto !";    
+      }
    
   #jika ada pesan error validasi form
   if (count($pesanError)>=1) {
@@ -73,9 +132,16 @@ if (isset($_POST['guru_simpan'])) {
   }
   
   else{
+  if(($_FILES["file"]["type"] == "image/gif") || ($_FILES["file"]["type"] == "image/jpeg") || ($_FILES["file"]["type"] == "image/png") || ($_FILES["file"]["type"] == "image/pjpeg")){
+            $lokasi = 'gallery/news/';
 
+            $file = md5(rand(1000,1000000000))."-".$nama_foto;
+            $newfilename = $file . $bagian_extensine;
+            $jeneng=str_replace(' ','-',$file);
+            $url = $lokasi . $jeneng;
+            $filename = compress_image($_FILES["file"]["tmp_name"], $url, 80); 
   #update data ke database
-    $query = mysql_query("UPDATE guru SET nip='$nip', nm_guru='$nm_guru', password='$password', date_tgl_lahir='$date_tgl_lahir', jns_kelamin='$jns_kelamin', tmpt_lahir='$tmpt_lahir', agama='$agama', almt_sekarang='$almt_sekarang', no_hp='$no_hp', email='$email' WHERE nip='$_GET[id]'") or die(mysql_error());
+    $query = mysql_query("UPDATE guru SET id_user = '$id_user', nip='$nip', password='$password', nm_guru='$nm_guru', tmpt_lahir='$tmpt_lahir', date_tgl_lahir='$date_tgl_lahir', jns_kelamin='$jns_kelamin', agama='$agama', status_guru='$status_guru', gelar_depan='$gelar_depan', gelar_depan_akademik='$gelar_depan_akademik', gelar_belakang='$gelar_belakang', almt_sekarang='$almt_sekarang', no_hp='$no_hp', email='$email', foto='$jeneng', id_kel='$id_kel' WHERE nip='$_GET[id]'") or die(mysql_error());
 
    if ($query){
     header('location: ./guru');

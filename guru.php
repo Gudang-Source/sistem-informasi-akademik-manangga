@@ -58,7 +58,7 @@ loadAssetsHead('Master Data Guru');
 							<div><a href="javascript:sorter.reset()">(atur ulang)</a></div>
 						</span>
 					</div>
-					<table cellpadding="0" cellspacing="0" border="0" id="table" class="tinytable" width="100%" width="100%">
+					<table id="table" class="uk-table uk-table-hover uk-table-striped uk-table-condensed" width="100%" width="100%">
 						<thead>
 							<tr>
 								<th><h3 class="uk-text-center">No</h3></th>
