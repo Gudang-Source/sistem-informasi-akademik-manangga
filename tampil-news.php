@@ -31,11 +31,11 @@ loadAssetsHead('Dashboard');
         <article class="uk-article">
 		
     		  <div class="uk-vertical-align uk-text-right uk-height-1-1">
-    			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SMAN 2 Playen" title="Sistem Informasi Akademik SMAN 2 Playen">
+    			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SDN II Manangga" title="Sistem Informasi Akademik SDN II Manangga">
     		  </div>
 
             <hr class="uk-article-divider">
-            <h1 class="uk-article-title">Dashboard</h1> 
+            <h1 class="uk-article-title">Berita Hari Ini</h1> 
             <br>
             <?php
             include "config.php";
@@ -44,11 +44,14 @@ loadAssetsHead('Dashboard');
           $result=mysql_query($sql);
           $row=mysql_fetch_array($result); ?>
               <div class="uk-form-row">
-                <div class="uk-alert">
-                <h2><code><?php echo"{$row['judul_berita']}";?></code></h2>
-                  <span class="uk-text-success">Jum'at, 12 September 2014 18:51:45 WIB</span><br><br><img style="width:500px; float:left; margin:0px; margin-right: 8px;" src="<?php echo"gallery/news/{$row['gambar']}";?>" alt=""><?php echo "{$row['keterangan']}";?>
+                <article class="uk-article">
+                <h1 class="uk-article-title"><?php echo"{$row['judul_berita']}";?></h1>
+                  <span class="uk-text-success">Jum'at, 12 September 2014 18:51:45 WIB</span>
+                  </br></br>
+                  <img style="width:500px; float:left; margin:0px; margin-right: 8px;" src="<?php echo"gallery/news/{$row['gambar']}";?>" alt="">
+                  <?php echo "{$row['keterangan']}";?>
                    <a class="uk-button uk-button-primary"  href="./dashboard" style="margin: 2; float: right; color: #FFF;">Kembali</a>            
-                </div>
+                </article>
               </div>
 		    </article>
       </div>
