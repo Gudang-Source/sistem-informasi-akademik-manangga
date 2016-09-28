@@ -70,8 +70,8 @@ loadAssetsHead('Dashboard - Sistem Informasi Akademik SDN II Manangga');
                 if($num>0){     // jika ditemukan record akan ditampilkan
                 while($row = mysql_fetch_array($result)){   // perintah mysql_fetch_array untuk
                                 $berapa=500;
-                                $artikel=substr($row['keterangan'], 0, $berapa);
-                                $jumlah=strlen($row['keterangan']);?>
+                                $artikel=substr($row['content'], 0, $berapa);
+                                $jumlah=strlen($row['content']);?>
                 <?php echo"
               <div class='uk-form-row'>
                 <article class='uk-article'>

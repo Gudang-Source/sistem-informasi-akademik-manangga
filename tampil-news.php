@@ -49,10 +49,10 @@ loadAssetsHead('Dashboard');
                   <span class="uk-text-success">Jum'at, 12 September 2014 18:51:45 WIB</span>
                   </br></br>
                   <img style="width:500px; float:left; margin:0px; margin-right: 8px;" src="<?php echo"gallery/news/{$row['gambar']}";?>" alt="">
-                  <?php echo "{$row['keterangan']}";?>
+                  <?php echo "{$row['content']}";?>
                    <a class="uk-button uk-button-primary"  href="./dashboard" style="margin: 2; float: right; color: #FFF;">Kembali</a>            
                 </article>
-              </div>
+            </div>
 		    </article>
       </div>
     </div>
