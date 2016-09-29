@@ -76,8 +76,10 @@ loadAssetsHead('Tambah Data Berita');
              $jeneng=str_replace(' ','-',$file);
              $url = $lokasi . $jeneng;
              $filename = compress_image($_FILES["file"]["tmp_name"], $url, 80); 
-            
-             $query = mysql_query("INSERT INTO berita SET judul_berita ='$judul_berita', content='$content', gambar='$jeneng' ") or die(mysql_error());
+             $tgl=date("Y/m/d");
+             $hari = $array_hari[date(“N”)];
+             $pukul=date("h:m:s");
+             $query = mysql_query("INSERT INTO berita SET judul_berita ='$judul_berita', content='$content', gambar='$jeneng', tgl='$tgl', pukul='$pukul' ") or die(mysql_error());
                 
 
              }

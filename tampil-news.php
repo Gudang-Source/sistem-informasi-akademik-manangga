@@ -39,14 +39,21 @@ loadAssetsHead('Dashboard');
             <br>
             <?php
             include "config.php";
+            include "./inc/tanggal.php";
           $id=$_GET['id'];
           $sql="select * from berita where id_berita={$id}";
           $result=mysql_query($sql);
-          $row=mysql_fetch_array($result); ?>
+          $row=mysql_fetch_array($result); 
+$tgl=$row['tgl'];
+$pukul=$row['pukul'];
+          ?>
+
               <div class="uk-form-row">
                 <article class="uk-article">
                 <h1 class="uk-article-title"><?php echo"{$row['judul_berita']}";?></h1>
-                  <span class="uk-text-success">Jum'at, 12 September 2014 18:51:45 WIB</span>
+                  <span class="uk-text-success">Dirilis Pada Tanggal <?php 
+echo TanggalIndo($tgl).' || Pukul ';
+                  echo $pukul ?></span>
                   </br></br>
                   <img style="width:500px; float:left; margin:0px; margin-right: 8px;" src="<?php echo"gallery/news/{$row['gambar']}";?>" alt="">
                   <?php echo "{$row['content']}";?>
