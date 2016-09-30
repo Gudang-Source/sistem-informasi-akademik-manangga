@@ -248,13 +248,13 @@ $rowks  = mysql_fetch_array($edit);
           <a href="./guru" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Guru"><i class="uk-icon-angle-left"></i> Kembali</a>
 
            <form id="formguru" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
-                      <div class="item form-group">
+                    <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="foto">Image <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div class="col-lg-8">
                             <div class="fileupload fileupload-new" data-provides="fileupload">
-                              <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;" value="<?php echo $rowks['foto'];?>"></div>
+                              <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="gallery/news/<?=$rowks['foto'];?>"></div>
                               <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                               <div>
                                 <span class="btn btn-file btn-primary btn-xs"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" accept="image/*" name="file" id="file" placeholder="file" /></span>
