@@ -243,7 +243,7 @@ $rowks  = mysql_fetch_array($edit);
             <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SD N II Manangga" title="Sistem Informasi Akademik SD N II Manangga">
           </div>
           <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Guru <span class="uk-text-large">{ Edit Guru }</span></h1>
+          <h1 class="uk-article-title">Guru <span class="uk-text-large">{ Tampil Profil Guru }</span></h1>
           <br>
           <a href="./guru" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Guru"><i class="uk-icon-angle-left"></i> Kembali</a>
 <!-- <hr class="uk-article-divider"> -->
@@ -253,7 +253,7 @@ $rowks  = mysql_fetch_array($edit);
 
                       <div class="uk-grid">
                         <div class="uk-width-3-10"><div class="uk-panel uk-panel-box"><div class="sia-profile">
-                          <p style="text-align:center" ;="" font-weight:bold;="">Selamat Datang</p>
+
                           <img src="gallery/news/<?=$rowks['foto'];?>">
                           <p style="text-align:center" ;="" font-weight:bold;=""><b><?php echo $rowks['nm_guru'];?></b></p>
                           <p style="text-align:center" ;="" font-weight:bold;=""></p>
