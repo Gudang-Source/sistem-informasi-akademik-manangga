@@ -246,7 +246,7 @@ if (isset ($_POST["guru_simpan"])) {
       			<div class="uk-width-medium-5-6 tm-article-side">
       				<article class="uk-article">
       					<div class="uk-vertical-align uk-text-right uk-height-1-1">
-      						<img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="E-Learning" title="E-Learning">
+      						<img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="SD Negeri II Manangga" title="SD Negeri II Manangga">
       					</div>
       					<hr class="uk-article-divider">
       					<h1 class="uk-article-title">Guru<span class="uk-text-large">{ Tambah Master Data Guru }</span></h1>
@@ -273,6 +273,7 @@ if (isset ($_POST["guru_simpan"])) {
       										</div>
       									</div>
       								</div>
+
       								<div class="item form-group">
       									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nip">NIP<span class="required">*</span>
       									</label>
@@ -287,7 +288,7 @@ if (isset ($_POST["guru_simpan"])) {
       									</label>
       									<div class="col-md-6 col-sm-6 col-xs-12">
       										<input type="text" id="nm_guru" name="nm_guru" value="<?php echo $datanamaguru; ?>" required="required" class="form-control col-md-7 col-xs-12">
-      										<div class="reg-info">Contoh: Fajar Nurrohamt. Jumlah minimal 1 huruf. Wajib diisi (Tuliskan nama saja, tidak dengan gelar akademik)</div>
+      										<div class="reg-info">Contoh: Fajar Nurrohmat. Jumlah minimal 1 huruf. Wajib diisi (Tuliskan nama saja, tidak dengan gelar akademik)</div>
       									</div>
       								</div>
 
@@ -356,14 +357,15 @@ if (isset ($_POST["guru_simpan"])) {
       										<div class="reg-info">Pilihan Agama yang ada hanya terdapat di pilihan, apabila tidak ada dalam menu pilihan agama, harap menghubungi di bagian kesiswaan.</div>
       									</div>
       								</div>
+
       								<div class="item form-group">
       									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="jns_kelamin">Status Guru<span class="required">*</span>
       									</label>
       									<div class="col-md-6 col-sm-6 col-xs-12">
       										<select name="status_guru" id="status_guru" value="<?php echo $datastatusguru; ?>" class="form-control col-md-7 col-xs-12">
       											<option value="">--- Pilih Status Guru --</option>
-      											<option value="wiyatabhakti">Wiyata Bhakti</option>
-      											<option value="Pns">Pegawai Negri Sipil</option>
+      											<option value="WiyataBhakti">Wiyata Bhakti</option>
+      											<option value="PNS">Pegawai Negri Sipil</option>
       										</select>
       										<div class="reg-info">Status Guru hanya Wiyata Bhakti dan Pegawai Negri Sipil(PNS), Pilih Salah Satu!</div>
       									</div>
@@ -443,10 +445,10 @@ if (isset ($_POST["guru_simpan"])) {
       								<div class="item form-group">
       									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="almt_sekarang">Alamat Rumah Sekarang<span class="required">*</span>
       									</label>
-      									<div class="reg-info">Wajib diisi data alamat rumah sekarang , isi data alamat rumah sekarang dengan lengkap</div>
+      									
       									<div class="col-md-6 col-sm-6 col-xs-12">
       										<textarea rows="9" id="almt_sekarang" required="required" name="almt_sekarang" class="form-control col-md-7 col-xs-12"><?php echo $dataalamat; ?></textarea>
-
+<div class="reg-info">Wajib diisi data alamat rumah sekarang, isi data alamat rumah sekarang dengan lengkap</div>
       									</div>
       								</div>
 
@@ -455,7 +457,7 @@ if (isset ($_POST["guru_simpan"])) {
       									</label>
       									<div class="col-md-6 col-sm-6 col-xs-12">
       										<input type="text" id="no_hp" name="no_hp" value="<?php echo $datanohp; ?>" required="required" class="form-control col-md-7 col-xs-12">
-      										<div class="reg-info">Wajib Isi  Data No Hp  </div>
+      										<div class="reg-info">Wajib Isi Data No Hp</div>
       									</div>
       								</div>
 
