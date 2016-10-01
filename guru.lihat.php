@@ -330,59 +330,6 @@ $rowks  = mysql_fetch_array($edit);
                                     </tbody>
 
                       </table></div></div>
-                      </div>
-                      <div class="tm-grid-truncate uk-grid uk-grid-divider uk-text-center" data-uk-grid-margin="">
-                                <div class="uk-width-medium-1-3 uk-row-first"><div class="uk-panel uk-panel-box"><div class="sia-profile">
-  <p style="text-align:center" ;="" font-weight:bold;="">Selamat Datang</p>
-  <img class="sia-profile-image" src="gallery/admin/admin.jpg" alt="">
-  <p style="text-align:center" ;="" font-weight:bold;=""><b>admin</b></p>
-  <p style="text-align:center" ;="" font-weight:bold;=""></p>
-
-</div></div></div>
-                                <div class="uk-width-medium-1-3"><div class="uk-panel uk-panel-box"><code>.uk-width-medium-1-3</code></div></div>
-                                <div class="uk-width-medium-1-3"><div class="uk-panel uk-panel-box"><code>.uk-width-medium-1-3</code></div></div>
-                            </div>
-
-                      <div class="uk-grid" data-uk-grid-margin="">
-                        <div class="uk-width-medium-1-3 uk-row-first">
-                          <div class="uk-panel uk-panel-box">
-                            <h3 class="uk-panel-title"><i class="uk-icon-user"></i> Panel</h3>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                          </div>
-                        </div>
-                        <div class="uk-width-medium-1-3">
-                          <div class="uk-panel uk-panel-box">
-                            <h3 class="uk-panel-title"><i class="uk-icon-home"></i> Panel</h3>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                          </div>
-                        </div>
-                        <div class="uk-width-medium-1-3">
-                          <div class="uk-panel uk-panel-box">
-                            <h3 class="uk-panel-title"><i class="uk-icon-bookmark"></i> Panel</h3>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                          </div>
-                        </div>
-                      </div>
-                      <div class="uk-grid">
-                        <div class="uk-width-1-2">...</div>
-                        <div class="uk-width-1-2">
-                          <div class="uk-grid">
-                            <div class="uk-width-1-2">...</div>
-                            <div class="uk-width-1-2">...</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="uk-panel">
-                        <h3 class="uk-panel-title"><i class="uk-icon-*"></i>.asdasdasdasd</h3>
-                      </div>
-
-                      <table border="0" width="500" cellpadding="0" cellspacing="0" class="table">
-                        <tbody><tr><th>Nama Produk</th><th>Jumlah</th><th>Harga Satuan</th><th>Sub Total</th></tr><tr><td>4 wheel packing case</td><td>1</td><td>Rp. 200.000</td><td>Rp. 200.000</td></tr><tr><td>Classic Leg Jeans</td><td>1</td><td>Rp. 120.000</td><td>Rp. 120.000</td></tr><tr><td colspan="3" align="right">Total : </td><td>Rp. <b>320.000</b></td></tr>
-                          <tr><td colspan="3" align="right">Ongkos Kirim Tujuan Kota Pembeli :</td><td>Rp. <b>0 /Kg</b></td></tr>
-                          <tr><td colspan="3" align="right">Total Berat Barang: </td><td><b>1 Kg</b></td></tr>
-                          <tr><td colspan="3" align="right">Ongkos Kirim : </td><td>Rp. <b>0</b></td></tr>      
-                          <tr><td colspan="3" align="right">Grand Total : </td><td>Rp. <b>320.000</b></td></tr>
-                        </tbody></table>
          
 </div>
 </div>
