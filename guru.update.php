@@ -20,8 +20,9 @@ if (isset($_POST['guru_simpan'])) {
   $password1  = $_POST['password1'];
   $nm_guru  = $_POST['nm_guru'];
   $tmpt_lahir  = $_POST['tmpt_lahir'];
-  $date_tgl_lahir0  = $_POST['date_tgl_lahir'];
-  $date_tgl_lahir=ubahformatTgl($date_tgl_lahir0);
+  $date_tgl_lahir  = $_POST['date_tgl_lahir'];
+ //  $date_tgl_lahir=ubahformatTgl($date_tgl_lahir0);
+ // break;
   $jns_kelamin  = $_POST['jns_kelamin'];
   $agama  = $_POST['agama'];
   $status_guru  = $_POST['status_guru'];
@@ -116,7 +117,27 @@ if (isset($_POST['guru_simpan'])) {
         $pesanError[] = "Data <b>id_user</b> tidak boleh kosong !";    
       }
       if (empty($file_sik_dipilih)){
-        $pesanError[] = "Anda Belum Memilih Foto !";    
+            $query = mysql_query("UPDATE guru 
+              SET id_user ='$id_user', 
+                nip='$nip', 
+                password='$password',
+                nm_guru='$nm_guru',
+                tmpt_lahir='$tmpt_lahir',
+                date_tgl_lahir='$date_tgl_lahir',
+                jns_kelamin='$jns_kelamin',
+                agama='$agama',
+                status_guru='$status_guru',
+                gelar_depan='$gelar_depan',
+                gelar_depan_akademik='$gelar_depan_akademik',
+                gelar_belakang='$gelar_belakang',
+                almt_sekarang='$almt_sekarang',
+                no_hp='$no_hp',
+                email='$email',
+                 id_kel='$id_kel' WHERE id_guru='$_GET[id]'
+                ") or die(mysql_error());
+
+
+              
       }
    
   #jika ada pesan error validasi form
@@ -412,54 +433,110 @@ $rowks  = mysql_fetch_array($edit);
                           <div class="reg-info">Kosongkan Jika Tidak Ada Gelar Belakang</div>
                         </div>
                       </div>
+                        <?php               
+                        $jeng =mysql_query("SELECT *
+                                                        FROM
+                                                        provinsi
+                                                        INNER JOIN kabupaten ON kabupaten.id_prov = provinsi.id_prov
+                                                        INNER JOIN kecamatan ON kecamatan.id_kab = kabupaten.id_kab
+                                                        INNER JOIN kelurahan ON kelurahan.id_kec = kecamatan.id_kec
+                                                        where kelurahan.id_kel='$rowks[id_kel]'
+                                                        ");
+                        $datajeng=mysql_fetch_array($jeng);
 
+
+                        ?>
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="prov">Provinsi <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="prov" name="prov" required>
-                            <option value="">-Pilih Provinsi-</option>
-                            <?php
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="prov">Provinsi <?php echo "provnsi ="; echo $datajeng['id_prov']; ?> <span class="required">*</span>
+               </label>
+               <div class="col-md-6 col-sm-6 col-xs-12">
+                <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="prov" name="prov" value="" required>
+                  <option value="">-Pilih Provinsi-</option>
+                  <?php
                     //MENGAMBIL NAMA PROVINSI YANG DI DATABASE
-                            $provinsi =mysql_query("SELECT * FROM provinsi ORDER BY nama_prov");
-                            while ($dataprovinsi=mysql_fetch_array($provinsi)) {
-                              echo "<option value=\"$dataprovinsi[id_prov]\">$dataprovinsi[nama_prov]</option>\n";
-                            }
-                            ?>
-                          </select>
-                          <div class="reg-info">Wajib Pilih  Provinsi  </div>
-                        </div>
-                      </div>
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kota">Kabupaten <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="kota" name="kota" required>
-                            <option value="">-Pilih Kabupaten-</option>
-                          </select>
-                          <div class="reg-info">Wajib Pilih  Kabupaten  </div>
-                        </div>
-                      </div>
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_kec">Kecamatan <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="id_kec" name="id_kec" required>
-                            <option value="">-Pilih Kecamatan-</option>
-                          </select>
-                          <div class="reg-info">Wajib Pilih  Kecamatan  </div>
-                        </div>
-                      </div>
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_kel">Kelurahan <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="id_kel" name="id_kel" required>
-                            <option value="">-Pilih Kelurahan-</option>
-                          </select>
-                          <div class="reg-info">Wajib Pilih  Kelurahan  </div>
-                        </div>
-                      </div>
+                  $provinsi =mysql_query("SELECT * FROM provinsi ORDER BY nama_prov");
+                  while ($dataprovinsi=mysql_fetch_array($provinsi)) {
+                   if ($dataprovinsi['id_prov']==$datajeng['id_prov']) {
+                     $cek ="selected";
+                   }
+                   else{
+                    $cek= "";
+                  }
+                  echo "<option value=\"$dataprovinsi[id_prov]\" $cek>$dataprovinsi[nama_prov]</option>\n";
+                }
+                ?>
+              </select>
+            </div>
+          </div>
+          <div class="item form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kota">Kabupaten <span class="required">*</span>
+           </label>
+           <div class="col-md-6 col-sm-6 col-xs-12">
+            <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="kota" name="kota" value="" required>
+              <option value="">-Pilih Kabupaten-</option>
+              <?php
+                    //MENGAMBIL NAMA kabupaten YANG DI DATABASE
+              $kabupaten =mysql_query("SELECT * FROM kabupaten WHERE id_prov=$datajeng[id_prov] ORDER BY nama_kab");
+              while ($datakabupaten=mysql_fetch_array($kabupaten)) {
+               if ($datakabupaten['id_kab']==$datajeng['id_kab']) {
+                 $cek ="selected";
+               }
+               else{
+                $cek= "";
+              }
+              echo "<option value=\"$datakabupaten[id_kab]\" $cek>$datakabupaten[nama_kab]</option>\n";
+            }
+            ?>
+          </select>
+        </div>
+      </div>
+      <div class="item form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_kec">Kecamatan <span class="required">*</span>
+           </label>
+           <div class="col-md-6 col-sm-6 col-xs-12">
+            <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="id_kec" name="id_kec" value="" required>
+              <option value="">-Pilih Kecamatan-</option>
+              <?php
+              
+
+                    //MENGAMBIL NAMA kecamatan YANG DI DATABASE
+              $kecamatan =mysql_query("SELECT * FROM kecamatan WHERE id_kab=$datajeng[id_kab] ORDER BY nama_kec");
+              while ($datakecamatan=mysql_fetch_array($kecamatan)) {
+               if ($datakecamatan['id_kec']==$datajeng['id_kec']) {
+                 $cek ="selected";
+               }
+               else{
+                $cek= "";
+              }
+              echo "<option value=\"$datakecamatan[id_kec]\" $cek>$datakecamatan[nama_kec]</option>\n";
+            }
+            ?>
+          </select>
+        </div>
+      </div>
+ <div class="item form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_kel">Kelurahan <span class="required">*</span>
+           </label>
+           <div class="col-md-6 col-sm-6 col-xs-12">
+            <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="id_kel" name="id_kel" value="" required>
+              <option value="">-Pilih Kelurahan-</option>
+              <?php
+
+                    //MENGAMBIL NAMA kecamatan YANG DI DATABASE
+              $kelurahan =mysql_query("SELECT * FROM kelurahan WHERE id_kec=$datajeng[id_kec] ORDER BY nama_kel");
+              while ($datakelurahan=mysql_fetch_array($kelurahan)) {
+               if ($datakelurahan['id_kel']==$rowks['id_kel']) {
+                 $cek ="selected";
+               }
+               else{
+                $cek= "";
+              }
+              echo "<option value=\"$datakelurahan[id_kel]\" $cek>$datakelurahan[nama_kel]</option>\n";
+            }
+            ?>
+          </select>
+        </div>
+      </div>
        <div class="item form-group">
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="almt_sekarang">Alamat Rumah<span class="required">*</span>
            </label>
@@ -495,45 +572,208 @@ $rowks  = mysql_fetch_array($edit);
    </div>
  </form>
 </div>
-
+</article>
+</div>
+</div>
 <script src="assets/validator/js/bootstrapValidator.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/vendor/formvalidation/css/formValidation.min.css">
 <link rel="stylesheet" href="/asset/css/demo.css">
 <script src="/vendor/formvalidation/js/formValidation.min.js"></script>
 <script src="/vendor/formvalidation/js/framework/uikit.min.js"></script>
 
-<script type="text/javascript">
- var formguru = $("#formguru").serialize();
- var validator = $("#formguru").bootstrapValidator({
-  framework: 'bootstrap',
-  feedbackIcons: {
-    valid: "glyphicon glyphicon-ok",
-    invalid: "glyphicon glyphicon-remove", 
-    validating: "glyphicon glyphicon-refresh"
-  }, 
-  excluded: [':disabled'],
-  fields : {
-    nip : {
-     validators: {
+              <script type="text/javascript">
+
+                var formguru = $("#formguru").serialize();
+                var validator = $("#formguru").bootstrapValidator({
+                  framework: 'bootstrap',
+                  feedbackIcons: {
+                    valid: "glyphicon glyphicon-ok",
+                    invalid: "glyphicon glyphicon-remove", 
+                    validating: "glyphicon glyphicon-refresh"
+                  }, 
+                  excluded: [':disabled'],
+                  fields : {
+     
+  nip : {
+    validators: {
       notEmpty: {
-       message: 'Harus Isi NIP'
-     },
-     stringLength: {
-      min: 1,
-      max: 18,
-      message: 'NIP harus 18 angka.'
-    },
-     remote: {
-      type: 'POST',
-      url: 'remote/remote_guru.php',
-      message: 'NIP Guru Telah Tersedia'
-    },
-   }
- }, 
+        message: 'Harus Isi NIP'
+      },
+      stringLength: {
+        min: 1,
+        max: 18,
+        message: 'NIP minimal 18 angka.'
+      },
+     
+    }
+  },
+  nm_guru: {
+    message: 'Nama Tidak Benar',
+    validators: {
+      notEmpty: {
+        message: 'Nama Harus Diisi'
+      },
+      stringLength: {
+        min: 1,
+        max: 50,
+        message: 'Nama Harus Lebih dari 1 Huruf dan Maksimal 50 Huruf'
+      },
+      regexp: {
+        regexp: /^[a-zA-Z ]+$/,
+        message: 'Karakter Yang Boleh Digunakan hanya huruf'
+      },
+    }
+  },
+  password: {
+    message: 'Data Password Tidak Benar',
+    validators: {
+      notEmpty: {
+        message: 'Password Harus Diisi'
+      },
+      stringLength: {
+        min: 1,
+        max: 30,
+        message: 'Nama kelurahan Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+      },
+      different: {
+        field: 'email',
+        message:'Password Harus Beda dengan Email'
+      },          
+    }
+  },
+  password1: {
+    message: 'Data Password Tidak Benar',
+    validators: {
+      identical:{
+        field:'password',
+        message: 'Konfirmasi Password Harus Sama Dengan Password'
+      },
+      notEmpty: {
+        message: 'Password Harus Diisi'
+      },
+      stringLength: {
+        min: 1,
+        max: 30,
+        message: 'Nama kelurahan Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+      },
+      different: {
+        field: 'email',
+        message:'Password Harus Beda dengan Email'
+      },
+    }
+  },
+
+
+  tmpt_lahir : {
+    validators: {
+      notEmpty: {
+        message: 'Harus diisi tempat lahir'
+      }
+    }
+  },    
+  jns_kelamin : {
+    validators: {
+      notEmpty: {
+        message: 'Harus Pilih Jenis Kelamin'
+      }
+    }
+  }, 
+  agama : {
+    validators: {
+      notEmpty: {
+        message: 'Harus Pilih Agama'
+      }
+    }
+  },    
+  status_guru : {
+    validators: {
+      notEmpty: {
+        message: 'Harus Pilih Status Guru'
+      }
+    }
+  },       
+
+
+  prov : {
+    validators: {
+      notEmpty: {
+        message: 'Harus Pilih Provinsi'
+      }
+    }
+  },    
+  kota : {
+    validators: {
+      notEmpty: {
+        message: 'Harus Pilih Kabupaten'
+      }
+    }
+  }, 
+  id_kec : {
+    validators: {
+      notEmpty: {
+        message: 'Harus Pilih Kecamatan'
+      }
+    }
+  }, 
+  id_kel : {
+    validators: {
+      notEmpty: {
+        message: 'Harus Pilih Kelurahan'
+      }
+    }
+  }, 
+  almt_sekarang : {
+    message: 'Alamat Tidak Benar',
+    validators: {
+      notEmpty: {
+        message: 'Alamat Harus Diisi'
+      },
+      stringLength: {
+        min: 10,
+        max: 100,
+        message: 'Alamat Harus Lebih dari 10 Huruf dan Maksimal 100 Huruf'
+      },
+
+
+    }
+  }, 
+  no_hp: {
+    message: 'No HP Tidak Benar',
+    validators: {
+      notEmpty: {
+        message: 'No HP Harus Diisi'
+      },
+      stringLength: {
+        min: 10,
+        max: 30,
+        message: 'No Hp Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+      },
+      regexp: {
+        regexp: /^[0-9+]+$/,
+        message: 'Format Tidak Benar'
+      },
+
+    }
+  },
+  email: {
+    validators:{
+      notEmpty: {
+        message: 'Email Harus Diisi'
+      },
+      emailAddress:{
+        message: 'Email Tidal valid'
+      },
+
+    }
+  },
+
+
+
 
 }
 });
 </script>
+
 
 </body>
 
