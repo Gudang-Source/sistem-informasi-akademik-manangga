@@ -75,7 +75,7 @@ loadAssetsHead('Master Data Guru');
 							<tbody>
 						  <?php 
 						
-						  $query="SELECT * from guru, kelurahan, kecamatan, kabupaten, provinsi where kelurahan.id_kel=guru.id_kel and kelurahan.id_kec=kecamatan.id_kec and kabupaten.id_kab=kecamatan.id_kab and kabupaten.id_prov=provinsi.id_prov ";
+						  $query="SELECT * from guru, kelurahan, kecamatan, kabupaten, provinsi where kelurahan.id_kel=guru.id_kel and kelurahan.id_kec=kecamatan.id_kec and kabupaten.id_kab=kecamatan.id_kab and kabupaten.id_prov=provinsi.id_prov and guru.id_user='2' ";
 						  $exe=mysql_query($query);
 
 						  
