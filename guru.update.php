@@ -264,9 +264,9 @@ $rowks  = mysql_fetch_array($edit);
             <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SD N II Manangga" title="Sistem Informasi Akademik SD N II Manangga">
           </div>
           <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Kepala Sekolah <span class="uk-text-large">{ Tampil Profil Kepala Sekolah  }</span></h1>
+          <h1 class="uk-article-title">Manajemen Guru <span class="uk-text-large">{ Edit Guru }</span></h1>
           <br>
-          <a href="./kepala-sekolah" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Guru"><i class="uk-icon-angle-left"></i> Kembali</a>
+          <a href="./guru" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Guru"><i class="uk-icon-angle-left"></i> Kembali</a>
           <!-- <hr class="uk-article-divider"> -->
           <form id="formguru" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
           <div class="uk-grid" data-uk-grid-margin>

@@ -37,7 +37,7 @@ loadAssetsHead('Master Data Guru');
 		  </div>
 		  
 		  <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Guru <span class="uk-text-large">
+          <h1 class="uk-article-title">Manajemen Guru <span class="uk-text-large">
           <?php  if (isset($_SESSION['administrator'])) {?>
 		  { Master Data }</span></h1>
           <?php  }?>
