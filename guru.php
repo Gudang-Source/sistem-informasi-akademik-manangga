@@ -33,7 +33,7 @@ loadAssetsHead('Master Data Guru');
         <article class="uk-article">		
 		
 		  <div class="uk-vertical-align uk-text-right uk-height-1-1">
-			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="E-Learning SMK 4 Klaten" title="E-Learning SMK 4 Klaten">
+			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SD Negeri II Manangga" title="Sistem Informasi Akademik SD Negeri II Manangga">
 		  </div>
 		  
 		  <hr class="uk-article-divider">

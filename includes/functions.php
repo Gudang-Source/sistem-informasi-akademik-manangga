@@ -387,5 +387,6 @@ function admin(){
 
       <li><a href="./logout">Keluar</a></li>
     </ul>
+    
     <?php
   }

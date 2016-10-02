@@ -263,6 +263,28 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
           <div class="uk-vertical-align uk-text-right uk-height-1-1">
             <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SD N II Manangga" title="Sistem Informasi Akademik SD N II Manangga">
           </div>
+          <div class="uk-panel uk-panel-box">
+          <table class="table table-nama" style="border: none; margin-bottom:2%;">
+  <tbody>
+  <tr><td class="table-nama-id">NIM.</td>
+  <?php
+  $sql = "SELECT * from admin";
+  $result = mysql_query($sql);
+  $row=mysql_fetch_array($result);?> 
+  <td>: <?php echo "{$row['username']}";?></td></tr>
+  
+  <tr><td class="table-nama-id">Nama Mahasiswa</td>
+  <td>: <?php echo $rowks['nm_guru'];?></td></tr>
+  
+  <tr><td class="table-nama-id">Guru Kelas</td>
+  <td>: </td></tr>
+  </tr>
+ 
+  
+  </tbody>
+  </table>
+
+  </div>
           <hr class="uk-article-divider">
           <h1 class="uk-article-title">Manajemen Kepala Sekolah <span class="uk-text-large">{ Tampil Profil Kepala Sekolah  }</span></h1>
           <br>
