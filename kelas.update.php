@@ -15,22 +15,27 @@ loadAssetsHead('Update Data Kelas');
 if (isset($_POST['kelas_simpan'])) {
 
   #baca variabel
-  $kd_kelas  = $_POST['kd_kelas'];
-  $kd_kelas  = str_replace("'","&acute;",$kd_kelas);
-  $kd_kelas  = ucwords(strtolower($kd_kelas));
 
-  $nm_kelas  = $_POST['nm_kelas'];
-  $nm_kelas  = str_replace("'","&acute;",$nm_kelas);
+    $nm_kelas     = $_POST['nm_kelas'];
+    $nm_kelas     = str_replace("", "&acute;", $nm_kelas);
+    $nm_kelas     = strtoupper($nm_kelas);
+
+    $kd_kelas     = strtoupper(str_replace("  ", "-", $nm_kelas));
+    $kd_kelas     = strtoupper(str_replace(" ", "-", $nm_kelas));
+
+    $id_guru     = $_POST['id_guru'];
+    $id_guru      = str_replace("", "&acute;", $id_guru);
+    $id_guru      = strtoupper($id_guru);
+
 
   #validasi form kosong
-  $pesanError= array();
-  if (trim($kd_kelas)=="") {
-    $pesanError[] = "Data <b>Kode Kelas</b> tidak boleh kosong.";    
+$pesanError= array();
+if (trim($nm_kelas)=="") {
+    $pesanError[]="Data <b>Nama Kelas</b> Masih Kosong.";
   }
-  if (trim($nm_kelas)=="") {
-    $pesanError[]="Data <b>Nama Kelas</b> Masih kosong.";
+if (trim($id_guru)=="") {
+    $pesanError[]="Data <b>Wali Kelas</b> Masih Kosong.";
   }
-   
   #jika ada pesan error validasi form
   if (count($pesanError)>=1) {
     echo "<div class='mssgBox'>";
@@ -46,7 +51,7 @@ if (isset($_POST['kelas_simpan'])) {
   else{
 
   #update data ke database
-    $query = mysql_query("UPDATE kelas SET kd_kelas='$kd_kelas', nm_kelas='$nm_kelas' WHERE kd_kelas='$_GET[id]'") or die(mysql_error());
+    $query = mysql_query("UPDATE kelas SET kd_kelas='$kd_kelas', nm_kelas='$nm_kelas', id_guru='$id_guru' WHERE kd_kelas='$_GET[id]'") or die(mysql_error());
 
    if ($query){
     header('location: ./kelas');
@@ -101,6 +106,32 @@ $rowks  = mysql_fetch_array($edit);
         <input type="text" id="nm_kelas" name="nm_kelas" value="<?php echo $rowks['nm_kelas'];?>" required="required" class="form-control col-md-7 col-xs-12">
       </div>
     </div>
+
+         <tr>
+            <div class="item form-group">
+             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_guru">Wali Kelas<span class="required">*</span>
+             </label>
+             <div class="col-md-6 col-sm-6 col-xs-12">
+               <select  type="text" class="form-control chzn-select col-md-7 col-xs-12" id="id_guru" name="id_guru" value="" required>
+                <option value="">-Pilih Wali Kelas-</option> 
+                <?php
+                $id_guru =mysql_query("SELECT * FROM kelas ORDER BY id_guru");
+                while ($dataidguru=mysql_fetch_array($id_guru)) {
+                 if ($dataidguru['id_guru']==$rowks['id_guru']) {
+                   $cek ="selected";
+                 }
+                 else{
+                  $cek= "";
+                }
+                echo "<option value=\"$dataidguru[id_guru]\" $cek>$dataidguru[id_guru]</option>\n";
+              }
+              ?>
+            </select>
+          </div>
+        </div>
+      </tr>
+
+
     <div style="text-align:center" class="form-actions no-margin-bottom">
      <button type="submit" id="kelas_simpan" name="kelas_simpan" class="btn btn-success">Submit</button>
    </div>

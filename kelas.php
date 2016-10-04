@@ -47,7 +47,7 @@ loadAssetsHead('Master Data Kelas');
 		  <?php } ?>
 		   <br><br>
 		  
-				<div id="tablewrapper">
+		 <div id="tablewrapper">
 					<div id="tableheader">
 						<div class="search">
 							<select id="columns" onchange="sorter.search('query')"></select>
@@ -58,12 +58,12 @@ loadAssetsHead('Master Data Kelas');
 							<div><a href="javascript:sorter.reset()">(atur ulang)</a></div>
 						</span>
 					</div>
-					<table cellpadding="0" cellspacing="0" border="0" id="table" class="tinytable">
+					<table id="table" class="uk-table uk-table-hover uk-table-striped uk-table-condensed" width="100%" width="100%">
 						<thead>
 							<tr>
 								<th><h3 class="uk-text-center">No</h3></th>
-								<th><h3 class="uk-text-center">Nama Kelas</h3></th>
-								<th><h3 class="uk-text-center">Wali Kelas</h3></th>
+								<th><h3 class="uk-text-center" >Nama Kelas</h3></th>
+								<th><h3 class="uk-text-center" >Wali Kelas</h3></th>
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<th><h3 class="uk-text-center">Aksi</h3></th>
 								<?php }?>
@@ -71,28 +71,28 @@ loadAssetsHead('Master Data Kelas');
 						</thead>
 							<tbody>
 						  <?php
-						  $query="SELECT kd_kelas, nm_kelas	FROM kelas";
+						  $query="SELECT kd_kelas, nm_kelas, id_guru FROM kelas";
 						  
 						  $exe=mysql_query($query);
 						  $no=0;
 						  while ($row=mysql_fetch_array($exe)) { $no++; ?>
 
 							  <tr>
-								<td><div class="uk-text-center"><?php echo $no?></div></td>
-								<td><div class="uk-text-center"><?php echo $row[1]?></div></td>
-								<td><div class="uk-text-center"><?php echo $row[nm_guru]?></div></td>
-						          <?php if (isset($_SESSION['administrator'])) { ?>
-								<td><div class="uk-text-center">
+								<td ><div class="uk-text-center"><?php echo $no?></div></td>
+								<td ><div class="uk-text-center"><?php echo $row[1]?></div></td>
+								<td ><div class="uk-text-center"><?php echo $row[id_guru]?></div></td>
+								<?php if (isset($_SESSION['administrator'])) { ?>
+								<td width="15%"><div class="uk-text-center">
+								  <a href="?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-search"></i></a>
 								  <a href="kelas.update?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
-								  <a href="kelas.hapus?id=<?php echo $row[0]?>" onclick="return confirm('Apakah anda yakin akan menghapus data Kelas: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a>
-								</div>
+								  <a href="kelas.hapus?id=<?php echo $row[0]?>" onclick="return confirm('Apakah anda yakin akan menghapus data guru: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a></div>
 								</td>
 								<?php } ?>						
 							  </tr>
 							  <?php  } ?>
 							</tbody>
 					</table>
-					
+
 				  
                 <!-- PAGINATION -->
                   <div id="tablefooter">

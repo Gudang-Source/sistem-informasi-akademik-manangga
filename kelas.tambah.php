@@ -15,21 +15,25 @@ loadAssetsHead('Tambah Data Kelas');
 if (isset ($_POST["kelas_simpan"])) { 
 
     // baca variabel
-    
-
- 
 
     $nm_kelas     = $_POST['nm_kelas'];
     $nm_kelas     = str_replace("", "&acute;", $nm_kelas);
     $nm_kelas     = strtoupper($nm_kelas);
 
-   $kd_kelas     = strtoupper(str_replace("  ", "-", $nm_kelas));
+    $kd_kelas     = strtoupper(str_replace("  ", "-", $nm_kelas));
     $kd_kelas     = strtoupper(str_replace(" ", "-", $nm_kelas));
 
+    $id_guru     = $_POST['id_guru'];
+    $id_guru      = str_replace("", "&acute;", $id_guru);
+    $id_guru      = strtoupper($id_guru);
+
     // validation form kosong
-   $pesanError= array();
-  if (trim($nm_kelas)=="") {
+$pesanError= array();
+if (trim($nm_kelas)=="") {
     $pesanError[]="Data <b>Nama Kelas</b> Masih Kosong.";
+  }
+if (trim($id_guru)=="") {
+    $pesanError[]="Data <b>Wali Kelas</b> Masih Kosong.";
   }
 
     // validasi kode kelas pada database
@@ -54,8 +58,8 @@ if (isset ($_POST["kelas_simpan"])) {
     else{
 
     // simpan ke database
-  $querytambahkelas = mysql_query("INSERT INTO kelas (kd_kelas, nm_kelas) 
-    VALUES ( '$kd_kelas' , '$nm_kelas' )") or die(mysql_error());
+  $querytambahkelas = mysql_query("INSERT INTO kelas (kd_kelas, nm_kelas, id_guru) 
+    VALUES ( '$kd_kelas' , '$nm_kelas' , '$id_guru' )") or die(mysql_error());
 
   if ($querytambahkelas){
     header('location: ./kelas');
@@ -66,7 +70,7 @@ if (isset ($_POST["kelas_simpan"])) {
     // simpan pada form, dan jika form belum terisi
   $datakodekelas  = isset($_POST['kd_kelas']) ? $_POST['kd_kelas'] : '';
   $datanamakelas  = isset($_POST['nm_kelas']) ? $_POST['nm_kelas'] : '';
-
+  $dataidguru     = isset($_POST['id_guru']) ? $_POST['id_guru'] : '';
 ?>
 
 <body>
@@ -95,15 +99,29 @@ if (isset ($_POST["kelas_simpan"])) {
             <div class="uk-width-medium-1-1">
              <form id="formkelas" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
         
-        
-          
-
-
         <div class="item form-group">
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nm_kelas">Nama Kelas<span class="required">*</span>
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="nm_kelas" name="nm_kelas" value="<?php echo $datanamakelas; ?>" required="required" class="form-control col-md-7 col-xs-12">
+          </div>
+        </div>
+
+        <div class="item form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_guru">Pilih Wali Kelas<span class="required">*</span>
+           </label>
+           <div class="col-md-6 col-sm-6 col-xs-12">
+            <select name="id_guru" id="id_guru" value="<?php echo $dataidguru; ?>" class="form-control col-md-7 col-xs-12">
+              <option value="">--- Guru --</option>
+              <?php
+              $query = "SELECT * from guru";
+              $hasil = mysql_query($query);
+              while ($data = mysql_fetch_array($hasil))
+              {
+                echo "<option value=".$data['id_guru'].">".$data['nm_guru']."</option>";
+              }
+              ?>
+            </select>
           </div>
         </div>
 
