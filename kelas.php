@@ -43,7 +43,7 @@ loadAssetsHead('Master Data Kelas');
           <?php  }?>
           <br>
           <?php if (isset($_SESSION['administrator'])) { ?>
-          <a href="./kelas.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Kelas"><i class="uk-icon-plus"></i> Kelas</a>
+          <a href="./kelas.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Kelas"><i class="uk-icon-plus"></i> Data Kelas</a>
 		  <?php } ?>
 		   <br><br>
 		  
