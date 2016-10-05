@@ -43,7 +43,7 @@ loadAssetsHead('Master Data Guru');
           <?php  }?>
           <br>
           <?php if (isset($_SESSION['administrator'])) { ?>
-          <a href="./guru.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Guru"><i class="uk-icon-plus"></i> Guru</a>
+          <a href="./guru.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Guru"><i class="uk-icon-plus"></i> Data Guru</a>
 		  <?php } ?>
 		   <br><br>
 		  

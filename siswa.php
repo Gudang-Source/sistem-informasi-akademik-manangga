@@ -43,7 +43,7 @@ loadAssetsHead('Master Data Siswa');
           <?php  }?>
           <br>
           <?php if (isset($_SESSION['administrator'])) { ?>
-          <a href="./siswa.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Siswa"><i class="uk-icon-plus"></i> Siswa</a>
+          <a href="./siswa.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Siswa"><i class="uk-icon-plus"></i> Data Siswa</a>
 		  <?php } ?>
 		   <br><br>
 		  
@@ -62,21 +62,17 @@ loadAssetsHead('Master Data Siswa');
           <table id="table" class="uk-table uk-table-hover uk-table-striped uk-table-condensed" width="100%" width="100%">
             <thead>
               <tr>
-                <th><h3 class="uk-text-center">No</h3></th>
-                <th><h3 class="uk-text-center" >NIP</h3></th>
-                <th><h3 class="uk-text-center" >Nama Guru</h3></th>
-                
-                <th><h3 class="uk-text-center" >Alamat</h3></th>
-                
+                <th><h3 class="uk-text-center">Kode Kelas</h3></th>
+                <th><h3 class="uk-text-center" >Nama Kelas</h3></th>
+                <th><h3 class="uk-text-center" >Jumlah Siswa</h3></th>
                 <?php if (isset($_SESSION['administrator'])) { ?>
                 <th><h3 class="uk-text-center">Aksi</h3></th>
                 <?php }?>
               </tr>
             </thead>
               <tbody>
-              <?php 
-            
-              $query="SELECT * from guru, kelurahan, kecamatan, kabupaten, provinsi where kelurahan.id_kel=guru.id_kel and kelurahan.id_kec=kecamatan.id_kec and kabupaten.id_kab=kecamatan.id_kab and kabupaten.id_prov=provinsi.id_prov and guru.id_user='2' ";
+              <?php
+              $query="SELECT * from kelas ";
               $exe=mysql_query($query);
 
               
@@ -84,16 +80,13 @@ loadAssetsHead('Master Data Siswa');
               while ($row=mysql_fetch_array($exe)) { $no++;?>
 
                 <tr>
-                <td ><div class="uk-text-center"><?php echo $no?></div></td>
-                <td ><?php echo $row[nip]?></td>
-                <td ><?php echo $row[nm_guru]?></td>
-                <td ><?php echo ucwords(strtolower('provinsi '.$row[nama_prov].', kabupaten '.$row[nama_kab].', kecamatan '.$row[nama_kec].', kelurahan '.$row[nama_kel].', '.$row[almt_sekarang]))?></td>
+                <td ><div class="uk-text-center"><?php echo $row[kd_kelas]?></div></td>
+                <td ><div class="uk-text-center"><?php echo $row[nm_kelas]?></div></td>
+                <td ><div class="uk-text-center">Jumlah Siswa</div></td>
                 
                 <?php if (isset($_SESSION['administrator'])) { ?>
                 <td width="15%"><div class="uk-text-center">
-                  <a href="guru.lihat?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-search"></i></a>
-                  <a href="guru.update?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
-                  <a href="guru.hapus?id=<?php echo $row[0]?>" onclick="return confirm('Apakah anda yakin akan menghapus data guru: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a></div>
+                  <a href="lihatsiswa?kd_kelas=$kd_kelas" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small">Lihat Siswa</i></a>
                 </td>
                 <?php } ?>            
                 </tr>
@@ -101,44 +94,7 @@ loadAssetsHead('Master Data Siswa');
               </tbody>
           </table>
           
-		  <?php
-    $sql_select="select * from kelas";
-    $query_select=mysql_query($sql_select); 
 
-   echo "<table cellpadding='0' cellspacing='0' border='0' id='table' class='tinytable'>";
-	 echo "<thead>
-			<tr>
-								<th><h3 class='uk-text-center'>Kode Kelas</h3></th>
-								<th><h3 class='uk-text-center'>Nama Kelas</h3></th>
-								<th><h3 class='uk-text-center'>Jumlah Siswa</h3></th>
-								<th><h3 class='uk-text-center'>Aksi</h3></th>
-							</tr>
-						</thead>";
-        
-      while($data=mysql_fetch_array($query_select)){
-          $kd_kelas = $data['kd_kelas'];
-          $nm_kelas = $data['nm_kelas'];
-          $jumlah_siswa = mysql_num_rows(mysql_query("select * from siswa where kd_kelas = '$kd_kelas'"));
-          echo "<tr>";
-          echo "<td><div class='uk-text-center'>$kd_kelas</td>"; 
-          echo "<td><div class='uk-text-center'>$nm_kelas</td>";
-          echo "<td><div class='uk-text-center'>$jumlah_siswa</td>";
-          echo "<form method='POST' action='lihatsiswa' name='action'>
-                <input type='hidden' value='$kd_kelas' name='kd_kelas'>
-              
-          <td align='center'>
-            <a href='lihatsiswa?kd_kelas=$kd_kelas' class='uk-button uk-button-small'>Lihat Siswa</a>
-           </form>";
-           echo "</td>";
-           echo "</tr>";
-            }
-            echo "</tbody><br>";       
-            echo "</table><br>";
-
-    $total_siswa = mysql_num_rows(mysql_query("select * from 	siswa"));
-    echo "<center><br><b>Total Seluruh Siswa: $total_siswa</b><br>";
-
-?>
                 <!-- PAGINATION -->
                   <div id="tablefooter">
                     <div id="tablenav">
