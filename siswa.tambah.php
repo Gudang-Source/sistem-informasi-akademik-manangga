@@ -9,7 +9,7 @@ $ui_register_page     = 'siswa';
 $ui_register_assets   = array('datepicker');
 
 /*load header*/
-loadAssetsHead('Tambah Data Siswa');
+loadAssetsHead('Tambah Master Data Siswa');
 
 /*form processing*/
 if (isset ($_POST["siswa_simpan"])) { 
@@ -18,24 +18,53 @@ if (isset ($_POST["siswa_simpan"])) {
     
     $nis     = $_POST['nis'];
     $nis     = str_replace("", "&acute;", $nis);
-
     $password     = $_POST['password'];
-
+    $password1  = $_POST['password1'];
     $nm_siswa     = $_POST['nm_siswa'];
     $nm_siswa     = str_replace("", "&acute;", $nm_siswa);
     $nm_siswa     = ucwords(strtolower($nm_siswa));
-
     $tmpt_lahir     = $_POST['tmpt_lahir'];
-    $date_tgl_lahir = $_POST['date_tgl_lahir'];
+    $date_tgl_lahir0  = $_POST['date_tgl_lahir'];
+   $date_tgl_lahir=ubahformatTgl($date_tgl_lahir0);
     $jns_kelamin     = $_POST['jns_kelamin'];
     $agama     = $_POST['agama'];
-    $alamat     = $_POST['alamat'];
-    $email     = $_POST['email'];
+      $id_kec  = $_POST['id_kec'];
+  $id_kec  = str_replace("'","&acute;",$id_kec);
+
+  $kota  = $_POST['kota'];
+  $kota  = str_replace("'","&acute;",$kota);
+
+  $prov  = $_POST['prov'];
+  $prov  = str_replace("'","&acute;",$prov);
+
+  $id_kel  = $_POST['id_kel'];
+  $id_kel  = str_replace("'","&acute;",$id_kel);
+  $almt_sekarang = $_POST['almt_sekarang'];
+    $no_hp  = $_POST['no_hp'];
     $telp     = $_POST['telp'];
     $kd_kelas    = $_POST['kd_kelas'];
     $id_user =3;
 
     // validation form kosong
+  
+  function compress_image($source_url, $destination_url, $quality) 
+  { 
+    $info = getimagesize($source_url); 
+    if ($info['mime'] == 'image/jpeg') 
+      $image = imagecreatefromjpeg($source_url); 
+    elseif ($info['mime'] == 'image/gif') 
+      $image = imagecreatefromgif($source_url); 
+    elseif ($info['mime'] == 'image/png') 
+      $image = imagecreatefrompng($source_url); 
+    imagejpeg($image, $destination_url, $quality); 
+    return $destination_url; 
+  } 
+
+  $nama_foto = $_FILES["file"]["name"];
+      $file_sik_dipilih = substr($nama_foto, 0, strripos($nama_foto, '.')); // strip extention
+      $bagian_extensine = substr($nama_foto, strripos($nama_foto, '.')); // strip name
+      $ukurane = $_FILES["file"]["size"];
+
    $pesanError= array();
   if (trim($nis)=="nis") {
     $pesanError[]="Data <b>NIS</b> Masih Kosong.";
@@ -43,6 +72,9 @@ if (isset ($_POST["siswa_simpan"])) {
   if (trim($password)=="password") {
     $pesanError[]="Data <b>Password</b> Masih Kosong.";
   }
+        if (trim($password1)=="") {
+        $pesanError[]="Data Konfirmasi<b>Password</b> masih kosong.";
+      }
   if (trim($nm_siswa)=="nm_siswa") {
     $pesanError[]="Data <b>Nama Siswa</b> Masih Kosong.";
   }
@@ -58,15 +90,33 @@ if (isset ($_POST["siswa_simpan"])) {
     if (trim($agama)=="agama") {
     $pesanError[]="Data <b>Agama</b> Masih Kosong.";
   }
+        if (trim($prov)=="") {
+        $pesanError[] = "Data <b>Provinsi</b> tidak boleh kosong !";    
+      }
+      if (trim($kota)=="") {
+        $pesanError[] = "Data <b>Kabupaten</b> tidak boleh kosong !";    
+      }
+      if (trim($id_kec)=="") {
+        $pesanError[]="Data <b>Kecamatan</b> Masih kosong !!";
+      }
+      if (trim($id_kel)=="") {
+        $pesanError[]="Data <b>Kelurahan</b> Masih kosong !!";
+      }
     if (trim($alamat)=="alamat") {
     $pesanError[]="Data <b>Alamat</b> Masih Kosong.";
   }
     if (trim($email)=="email") {
     $pesanError[]="Data <b>Email</b> Masih Kosong.";
   }
-    if (trim($telp)=="telp") {
+    if (trim($no_hp)=="telp") {
     $pesanError[]="Data <b>Nomor Telepon</b> Masih Kosong.";
   }
+   if (trim($id_user)=="") {
+        $pesanError[] = "Data <b>id_user</b> tidak boleh kosong !";    
+      }
+      if (empty($file_sik_dipilih)){
+        $pesanError[] = "Anda Belum Memilih Foto !";    
+      }
     if (trim($kd_kelas)=="kd_kelas") {
     $pesanError[]="Data <b>Kode Kelas</b> Masih Kosong.";
   }
@@ -84,28 +134,59 @@ $hasil=mysql_query($sql_var);
 $data=mysql_fetch_array($hasil);
 
     // jika ada error dari validasi form
-     if (count($pesanError)>=1) {
-    echo "<div class='mssgBox'>";
-    echo "<img src ='../images/attention.png'><br><hr>";
-    $noPesan= 0;
-    foreach ($pesanError as $indeks => $pesan_tampil) {
-      $noPesan++;
-      echo "&nbsp;&nbsp; $noPesan. $pesan_tampil<br>";
-     }
-    echo "</div><br />";
-    }
+      if (count($pesanError)>=1) {
+        echo "
+        <div class='alert alert-danger alert-dismissable'>
+          <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+          $noPesan= 0;
+          foreach ($pesanError as $indeks => $pesan_tampil) {
+            $noPesan++;
+            echo "&nbsp;&nbsp; $noPesan. $pesan_tampil<br>";
+          }
+          echo "</div><br />";
+        }
+        else{
 
-    else{
+          if(($_FILES["file"]["type"] == "image/gif") || ($_FILES["file"]["type"] == "image/jpeg") || ($_FILES["file"]["type"] == "image/png") || ($_FILES["file"]["type"] == "image/pjpeg")){
+            $lokasi = 'gallery/news/';
 
-    // simpan ke database
-  $querytambahsiswa = mysql_query("INSERT INTO siswa (nis, id_user, password, nm_siswa, tmpt_lahir, date_tgl_lahir, jns_kelamin, agama, alamat, email, telp, kd_kelas) 
-    VALUES ( '$nis' , '$id_user' , '$password' , '$nm_siswa' , '$tmpt_lahir' , '$date_tgl_lahir' , '$jns_kelamin' , '$agama' , '$alamat' , '$email' , '$telp' , '$kd_kelas')") or die(mysql_error());
+             //$jeneng = $id_pegawai.'.jpg';
 
-  if ($querytambahsiswa){
-    header('location: ./siswa');
-  }
- }
-}
+            $file = md5(rand(1000,1000000000))."-".$nama_foto;
+            $newfilename = $file . $bagian_extensine;
+            $jeneng=str_replace(' ','-',$file);
+            $url = $lokasi . $jeneng;
+            $filename = compress_image($_FILES["file"]["tmp_name"], $url, 80); 
+
+  $query = mysql_query("INSERT INTO guru 
+              SET id_user ='$id_user', 
+                nip='$nip', 
+                password='$password',
+                nm_guru='$nm_guru',
+                tmpt_lahir='$tmpt_lahir',
+                date_tgl_lahir='$date_tgl_lahir',
+                jns_kelamin='$jns_kelamin',
+                agama='$agama',
+                status_guru='$status_guru',
+                gelar_depan='$gelar_depan',
+                gelar_depan_akademik='$gelar_depan_akademik',
+                gelar_belakang='$gelar_belakang',
+                almt_sekarang='$almt_sekarang',
+                no_hp='$no_hp',
+                email='$email',
+                foto='$jeneng',
+                id_kel='$id_kel'
+                ") or die(mysql_error());
+
+
+          }
+          if ($query){
+            header('location: ./guru');
+          }
+          else { $error = "Uploaded image should be jpg or gif or png"; } 
+
+        }
+      }
 
 
 
@@ -122,7 +203,48 @@ $data=mysql_fetch_array($hasil);
   $datatelp  = isset($_POST['telp']) ? $_POST['telp'] : '';
   $datakodekelas  = isset($_POST['kd_kelas']) ? $_POST['kd_kelas'] : '';
 ?>
+      <script type="text/javascript">
+        var htmlobjek;
+        $(document).ready(function(){
+  //apabila terjadi event onchange terhadap object <select id=prov>
+  $("#prov").change(function(){
+    var prov = $("#prov").val();
+    $.ajax({
+      url: "inc/jikuk_kabupaten.php",
+      data: "prov="+prov,
+      cache: false,
+      success: function(msg){
+            //jika data sukses diambil dari server kita tampilkan
+            //di <select id=kota>
+            $("#kota").html(msg);
+        }
+    });
+  });
+  $("#kota").change(function(){
+    var kota = $("#kota").val();
+    $.ajax({
+      url: "inc/jikuk_kecamatan.php",
+      data: "kota="+kota,
+      cache: false,
+      success: function(msg){
+        $("#id_kec").html(msg);
+      }
+    });
+  });
+  $("#id_kec").change(function(){
+    var id_kec = $("#id_kec").val();
+    $.ajax({
+      url: "inc/jikuk_kelurahan.php",
+      data: "id_kec="+id_kec,
+      cache: false,
+      success: function(msg){
+        $("#id_kel").html(msg);
+      }
+    });
+  });
+});
 
+      </script>
 <body>
 
   <?php
@@ -138,7 +260,7 @@ $data=mysql_fetch_array($hasil);
       <div class="uk-width-medium-5-6 tm-article-side">
         <article class="uk-article">
           <div class="uk-vertical-align uk-text-right uk-height-1-1">
-            <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="E-Learning" title="E-Learning">
+            <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SD N II Manangga" title="Sistem Informasi Akademik SD N II Manangga">
           </div>
           <hr class="uk-article-divider">
           <h1 class="uk-article-title">Siswa <span class="uk-text-large">{ Tambah Master Data Siswa }</span></h1>
@@ -151,19 +273,28 @@ $data=mysql_fetch_array($hasil);
              <form id="formsiswa" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
          
          <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="foto">Image <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <div class="col-lg-8">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                              <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="./assets/fileupload/images/nopict.jpg" alt="" /></div>
+                              <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                              <div>
+                                <span class="btn btn-file btn-primary btn-xs"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" accept="image/*" name="file" id="file" placeholder="file" /></span>
+                                <a href="#" class="btn btn-danger btn-xs fileupload-exists" data-dismiss="fileupload">Remove</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+         <div class="item form-group">
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nis">NIS<span class="required">*</span>
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="nis" name="nis" value="<?php echo $datanis; ?>" required="required" class="form-control col-md-7 col-xs-12">
             <div class="reg-info">Contoh: 55550. Wajib Diisi (Digunakan sebagai username untuk login)</div>
-          </div>
-          </div>
-
-         <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nip">Password<span class="required">*</span>
-           </label>
-           <div class="col-md-6 col-sm-6 col-xs-12">
-            <input type="text" id="password" name="password" value="<?php echo $datapassword; ?>" required="required" class="form-control col-md-7 col-xs-12">
           </div>
           </div>
 
@@ -175,13 +306,21 @@ $data=mysql_fetch_array($hasil);
           </div>
         </div>
 
-        <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tmpt_lahir">Tempat Lahir<span class="required">*</span>
+         <div class="item form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nip">Password<span class="required">*</span>
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
-            <input type="text" id="tmpt_lahir" name="tmpt_lahir" value="<?php echo $datatempatlahir; ?>" required="required" class="form-control col-md-7 col-xs-12">
+            <input type="text" id="password" name="password" value="<?php echo $datapassword; ?>" required="required" class="form-control col-md-7 col-xs-12">
           </div>
-        </div>
+          </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password1">Konfirmasi Password<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="password1" name="password1" value="<?php echo $datapassword; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                          <div class="reg-info">Contoh: 126500182411. Jumlah minimal 6 karakter. Harus Sama dengan Password. Wajib diisi (Digunakan untuk login)</div>
+                        </div>
+                      </div>
 
        <div class="item form-group">
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date_tgl_lahir">Tanggal Lahir<span class="required">*</span>
@@ -192,6 +331,16 @@ $data=mysql_fetch_array($hasil);
             <div class="reg-info">Contoh: 1995/31/12</div>
           </div>
        </div>
+
+
+        <div class="item form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tmpt_lahir">Tempat Lahir<span class="required">*</span>
+           </label>
+           <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" id="tmpt_lahir" name="tmpt_lahir" value="<?php echo $datatempatlahir; ?>" required="required" class="form-control col-md-7 col-xs-12">
+          </div>
+        </div>
+
 
       <div class="item form-group">
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="jns_kelamin">Jenis Kelamin<span class="required">*</span>
@@ -221,7 +370,53 @@ $data=mysql_fetch_array($hasil);
           </div>
         </div>
 
-       
+          <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="prov">Provinsi <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="prov" name="prov" required>
+                            <option value="">-Pilih Provinsi-</option>
+                            <?php
+                    //MENGAMBIL NAMA PROVINSI YANG DI DATABASE
+                            $provinsi =mysql_query("SELECT * FROM provinsi ORDER BY nama_prov");
+                            while ($dataprovinsi=mysql_fetch_array($provinsi)) {
+                              echo "<option value=\"$dataprovinsi[id_prov]\">$dataprovinsi[nama_prov]</option>\n";
+                            }
+                            ?>
+                          </select>
+                          <div class="reg-info">Wajib Pilih  Provinsi  </div>
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kota">Kabupaten <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="kota" name="kota" required>
+                            <option value="">-Pilih Kabupaten-</option>
+                          </select>
+                          <div class="reg-info">Wajib Pilih  Kabupaten  </div>
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_kec">Kecamatan <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="id_kec" name="id_kec" required>
+                            <option value="">-Pilih Kecamatan-</option>
+                          </select>
+                          <div class="reg-info">Wajib Pilih  Kecamatan  </div>
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_kel">Kelurahan <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="id_kel" name="id_kel" required>
+                            <option value="">-Pilih Kelurahan-</option>
+                          </select>
+                          <div class="reg-info">Wajib Pilih  Kelurahan  </div>
+                        </div>
+                      </div>
 
         <div class="item form-group">
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="alamat">Alamat Rumah<span class="required">*</span>
@@ -239,13 +434,14 @@ $data=mysql_fetch_array($hasil);
           </div>
        </div>
 
-        <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telp">Nomor Telepon<span class="required">*</span>
-           </label>
-           <div class="col-md-6 col-sm-6 col-xs-12">
-            <input type="text" id="telp" name="telp" value="<?php echo $datatelp; ?>" required="required" class="form-control col-md-7 col-xs-12">
-          </div>
-       </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="no_hp">No. HP<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="no_hp" name="no_hp" value="<?php echo $datanohp; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                          <div class="reg-info">Wajib Isi Data No Hp</div>
+                        </div>
+                      </div>
 
      <div class="item form-group">
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kd_kelas">Kelas<span class="required">*</span>

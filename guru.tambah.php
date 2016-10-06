@@ -74,7 +74,7 @@ if (isset ($_POST["guru_simpan"])) {
       	$pesanError[]="Data Konfirmasi<b>Password</b> masih kosong.";
       }
       if (trim($nm_guru)=="") {
-      	$pesanError[]="Data <b>Nama Gru</b> masih kosong.";
+      	$pesanError[]="Data <b>Nama Guru</b> masih kosong.";
       }
       if (trim($tmpt_lahir)=="") {
       	$pesanError[]="Data <b>Tempat Lahir</b> masih kosong.";
