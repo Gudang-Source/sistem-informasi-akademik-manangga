@@ -17,18 +17,15 @@ if (isset ($_POST["siswa_simpan"])) {
     // baca variabel
     
     $nis     = $_POST['nis'];
-    $nis     = str_replace("", "&acute;", $nis);
     $password     = $_POST['password'];
     $password1  = $_POST['password1'];
     $nm_siswa     = $_POST['nm_siswa'];
-    $nm_siswa     = str_replace("", "&acute;", $nm_siswa);
-    $nm_siswa     = ucwords(strtolower($nm_siswa));
     $tmpt_lahir     = $_POST['tmpt_lahir'];
     $date_tgl_lahir0  = $_POST['date_tgl_lahir'];
-   $date_tgl_lahir=ubahformatTgl($date_tgl_lahir0);
+    $date_tgl_lahir=ubahformatTgl($date_tgl_lahir0);
     $jns_kelamin     = $_POST['jns_kelamin'];
     $agama     = $_POST['agama'];
-      $id_kec  = $_POST['id_kec'];
+    $id_kec  = $_POST['id_kec'];
   $id_kec  = str_replace("'","&acute;",$id_kec);
 
   $kota  = $_POST['kota'];
@@ -66,28 +63,28 @@ if (isset ($_POST["siswa_simpan"])) {
       $ukurane = $_FILES["file"]["size"];
 
    $pesanError= array();
-  if (trim($nis)=="nis") {
+  if (trim($nis)=="") {
     $pesanError[]="Data <b>NIS</b> Masih Kosong.";
   }
-  if (trim($password)=="password") {
+  if (trim($password)=="") {
     $pesanError[]="Data <b>Password</b> Masih Kosong.";
   }
         if (trim($password1)=="") {
         $pesanError[]="Data Konfirmasi<b>Password</b> masih kosong.";
       }
-  if (trim($nm_siswa)=="nm_siswa") {
+  if (trim($nm_siswa)=="") {
     $pesanError[]="Data <b>Nama Siswa</b> Masih Kosong.";
   }
-  if (trim($tmpt_lahir)=="tmpt_lahir") {
+  if (trim($tmpt_lahir)=="") {
     $pesanError[]="Data <b>Tempat Lahir</b> Masih Kosong.";
   }
-  if (trim($date_tgl_lahir)=="date_tgl_lahir") {
+  if (trim($date_tgl_lahir)=="") {
     $pesanError[]="Data <b>Tanggal Lahir</b> Masih Kosong.";
   }
-    if (trim($jns_kelamin)=="jns_kelamin") {
+    if (trim($jns_kelamin)=="") {
     $pesanError[]="Data <b>Jenis Kelamin</b> Masih Kosong.";
   }
-    if (trim($agama)=="agama") {
+    if (trim($agama)=="") {
     $pesanError[]="Data <b>Agama</b> Masih Kosong.";
   }
         if (trim($prov)=="") {
@@ -102,13 +99,13 @@ if (isset ($_POST["siswa_simpan"])) {
       if (trim($id_kel)=="") {
         $pesanError[]="Data <b>Kelurahan</b> Masih kosong !!";
       }
-    if (trim($alamat)=="alamat") {
+    if (trim($alamat)=="") {
     $pesanError[]="Data <b>Alamat</b> Masih Kosong.";
   }
-    if (trim($email)=="email") {
+    if (trim($email)=="") {
     $pesanError[]="Data <b>Email</b> Masih Kosong.";
   }
-    if (trim($no_hp)=="telp") {
+    if (trim($no_hp)=="") {
     $pesanError[]="Data <b>Nomor Telepon</b> Masih Kosong.";
   }
    if (trim($id_user)=="") {
@@ -158,22 +155,18 @@ $data=mysql_fetch_array($hasil);
             $url = $lokasi . $jeneng;
             $filename = compress_image($_FILES["file"]["tmp_name"], $url, 80); 
 
-  $query = mysql_query("INSERT INTO guru 
+  $query = mysql_query("INSERT INTO siswa 
               SET id_user ='$id_user', 
-                nip='$nip', 
+                nis='$nis', 
                 password='$password',
-                nm_guru='$nm_guru',
-                tmpt_lahir='$tmpt_lahir',
+                nm_siswa='$nm_siswa',
+                tempat_lahir='$tempat_lahir',
                 date_tgl_lahir='$date_tgl_lahir',
                 jns_kelamin='$jns_kelamin',
                 agama='$agama',
-                status_guru='$status_guru',
-                gelar_depan='$gelar_depan',
-                gelar_depan_akademik='$gelar_depan_akademik',
-                gelar_belakang='$gelar_belakang',
-                almt_sekarang='$almt_sekarang',
-                no_hp='$no_hp',
+                alamat='$alamat',
                 email='$email',
+                no_hp='$no_hp',
                 foto='$jeneng',
                 id_kel='$id_kel'
                 ") or die(mysql_error());
@@ -181,7 +174,7 @@ $data=mysql_fetch_array($hasil);
 
           }
           if ($query){
-            header('location: ./guru');
+            header('location: ./siswa');
           }
           else { $error = "Uploaded image should be jpg or gif or png"; } 
 
@@ -194,13 +187,13 @@ $data=mysql_fetch_array($hasil);
   $datanis  = isset($_POST['nis']) ? $_POST['nis'] : '';
   $datapassword  = isset($_POST['password']) ? $_POST['password'] : '';
   $datanamasiswa  = isset($_POST['nm_siswa']) ? $_POST['nm_siswa'] : '';
-  $datatempatlahir  = isset($_POST['tmpt_lahir']) ? $_POST['tmpt_lahir'] : '';
+  $datatempatlahir  = isset($_POST['tempat_lahir']) ? $_POST['tempat_lahir'] : '';
   $datatanggallahir  = isset($_POST['date_tgl_lahir']) ? $_POST['date_tgl_lahir'] : '';
   $datajeniskelamin  = isset($_POST['jns_kelamin']) ? $_POST['jns_kelamin'] : '';
   $dataagama  = isset($_POST['agama']) ? $_POST['agama'] : '';
   $dataalamat  = isset($_POST['alamat']) ? $_POST['alamat'] : '';
   $dataemail  = isset($_POST['email']) ? $_POST['email'] : '';
-  $datatelp  = isset($_POST['telp']) ? $_POST['telp'] : '';
+  $datanohp  = isset($_POST['no_hp']) ? $_POST['no_hp'] : '';
   $datakodekelas  = isset($_POST['kd_kelas']) ? $_POST['kd_kelas'] : '';
 ?>
       <script type="text/javascript">
@@ -488,19 +481,186 @@ $data=mysql_fetch_array($hasil);
   }, 
   excluded: [':disabled'],
   fields : {
+                    file : {
+                      validators : {
+                        notEmpty: {
+                          message: 'Belum Memilih Gambar'
+                        },
+                        file : {
+                          extention : 'jpeg,jpg,png',
+                          type : 'image/jpeg,image/png',
+              //maxSize : 2097152, //2048*1024
+              message : 'file tidak benar'
+          }
+      }
+  } ,
     nis : {
      validators: {
       notEmpty: {
        message: 'Harus Isi NIS'
      },
+      stringLength: {
+        min: 1,
+        max: 5,
+        message: 'NIP maksimal 5 angka.'
+      },
      remote: {
       type: 'POST',
       url: 'remote/remote_siswa.php',
-      message: 'Nama Kelas Telah Tersedia'
+      message: 'Nama Siswa Telah Tersedia'
     },
    }
  }, 
+nm_siswa: {
+    message: 'Nama Tidak Benar',
+    validators: {
+      notEmpty: {
+        message: 'Nama Harus Diisi'
+      },
+      stringLength: {
+        min: 1,
+        max: 50,
+        message: 'Nama Harus Lebih dari 1 Huruf dan Maksimal 50 Huruf'
+      },
+      regexp: {
+        regexp: /^[a-zA-Z ]+$/,
+        message: 'Karakter Yang Boleh Digunakan hanya huruf'
+      },
+    }
+  },
+  password: {
+    message: 'Data Password Tidak Benar',
+    validators: {
+      notEmpty: {
+        message: 'Password Harus Diisi'
+      },
+      stringLength: {
+        min: 1,
+        max: 30,
+        message: 'Nama kelurahan Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+      },
+      different: {
+        field: 'email',
+        message:'Password Harus Beda dengan Email'
+      },          
+    }
+  },
+  password1: {
+    message: 'Data Password Tidak Benar',
+    validators: {
+      identical:{
+        field:'password',
+        message: 'Konfirmasi Password Harus Sama Dengan Password'
+      },
+      notEmpty: {
+        message: 'Password Harus Diisi'
+      },
+      stringLength: {
+        min: 1,
+        max: 30,
+        message: 'Nama kelurahan Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+      },
+      different: {
+        field: 'email',
+        message:'Password Harus Beda dengan Email'
+      },
+    }
+  },
+  tmpt_lahir : {
+    validators: {
+      notEmpty: {
+        message: 'Harus diisi tempat lahir'
+      }
+    }
+  },    
+  jns_kelamin : {
+    validators: {
+      notEmpty: {
+        message: 'Harus Pilih Jenis Kelamin'
+      }
+    }
+  }, 
+  agama : {
+    validators: {
+      notEmpty: {
+        message: 'Harus Pilih Agama'
+      }
+    }
+  },    
+  prov : {
+    validators: {
+      notEmpty: {
+        message: 'Harus Pilih Provinsi'
+      }
+    }
+  },    
+  kota : {
+    validators: {
+      notEmpty: {
+        message: 'Harus Pilih Kabupaten'
+      }
+    }
+  }, 
+  id_kec : {
+    validators: {
+      notEmpty: {
+        message: 'Harus Pilih Kecamatan'
+      }
+    }
+  }, 
+  id_kel : {
+    validators: {
+      notEmpty: {
+        message: 'Harus Pilih Kelurahan'
+      }
+    }
+  }, 
+  alamat : {
+    message: 'Alamat Tidak Benar',
+    validators: {
+      notEmpty: {
+        message: 'Alamat Harus Diisi'
+      },
+      stringLength: {
+        min: 10,
+        max: 100,
+        message: 'Alamat Harus Lebih dari 10 Huruf dan Maksimal 100 Huruf'
+      },
+    }
+  }, 
+  no_hp: {
+    message: 'No HP Tidak Benar',
+    validators: {
+      notEmpty: {
+        message: 'No HP Harus Diisi'
+      },
+      stringLength: {
+        min: 10,
+        max: 30,
+        message: 'No Hp Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+      },
+      regexp: {
+        regexp: /^[0-9+]+$/,
+        message: 'Format Tidak Benar'
+      },
 
+    }
+  },
+  email: {
+    validators:{
+      notEmpty: {
+        message: 'Email Harus Diisi'
+      },
+      emailAddress:{
+        message: 'Email Tidal valid'
+      },
+      remote: {
+        type: 'POST',
+        url: './remote/remote_email_guru.php',
+        message: 'Email Sudah Tersedia'
+      },
+    }
+  },
 
 }
 });
