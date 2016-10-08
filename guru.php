@@ -90,7 +90,7 @@ loadAssetsHead('Master Data Guru');
 								
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<td width="15%"><div class="uk-text-center">
-								  <a href="guru.lihat?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-search"></i></a>
+								  <a href="guru.lihat?id=<?php echo $row[0]?>" title="Lihat" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-search"></i></a>
 								  <a href="guru.update?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
 								  <a href="guru.hapus?id=<?php echo $row[0]?>" onclick="return confirm('Apakah anda yakin akan menghapus data guru: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a></div>
 								</td>

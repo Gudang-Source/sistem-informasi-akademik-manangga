@@ -43,7 +43,7 @@ loadAssetsHead('Master Data Wali Murid');
           <?php  }?>
           <br>
           <?php if (isset($_SESSION['administrator'])) { ?>
-          <a href="./guru.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Wali Murid"><i class="uk-icon-plus"></i> Wali Murid / Orangtua</a>
+          <a href="./wali.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Wali Murid"><i class="uk-icon-plus"></i> Wali Murid / Orangtua</a>
 		  <?php } ?>
 		   <br><br>
 		  
@@ -62,11 +62,10 @@ loadAssetsHead('Master Data Wali Murid');
 						<thead>
 							<tr>
 								<th><h3 class="uk-text-center">No</h3></th>
-								<th><h3 class="uk-text-center" >NIP</h3></th>
-								<th><h3 class="uk-text-center" >Nama Guru</h3></th>
-								
-								<th><h3 class="uk-text-center" >Alamat</h3></th>
-								
+								<th><h3 class="uk-text-center" >NIS</h3></th>
+								<th><h3 class="uk-text-center" >Nama Siswa</h3></th>
+								<th><h3 class="uk-text-center" >Nama Orangtua/Wali</h3></th>
+								<th><h3 class="uk-text-center" >Alamat</h3></th>d
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<th><h3 class="uk-text-center">Aksi</h3></th>
 								<?php }?>
@@ -84,15 +83,16 @@ loadAssetsHead('Master Data Wali Murid');
 
 							  <tr>
 								<td ><div class="uk-text-center"><?php echo $no?></div></td>
-								<td ><?php echo $row[nip]?></td>
-								<td ><?php echo $row[nm_guru]?></td>
+								<td ><?php echo $row[nis]?></td>
+								<td ><?php echo $row[nm_siswa]?></td>
+								<td ><?php echo $row[nm_ortu]?></td>
 								<td ><?php echo ucwords(strtolower('provinsi '.$row[nama_prov].', kabupaten '.$row[nama_kab].', kecamatan '.$row[nama_kec].', kelurahan '.$row[nama_kel].', '.$row[almt_sekarang]))?></td>
 								
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<td width="15%"><div class="uk-text-center">
-								  <a href="guru.lihat?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-search"></i></a>
-								  <a href="guru.update?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
-								  <a href="guru.hapus?id=<?php echo $row[0]?>" onclick="return confirm('Apakah anda yakin akan menghapus data guru: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a></div>
+								  <a href="wali.lihat?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-search"></i></a>
+								  <a href="wali.update?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
+								  <a href="wali.hapus?id=<?php echo $row[0]?>" onclick="return confirm('Apakah anda yakin akan menghapus data wali: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a></div>
 								</td>
 								<?php } ?>						
 							  </tr>
