@@ -21,8 +21,8 @@ if (isset ($_POST["siswa_simpan"])) {
     $password1  = $_POST['password1'];
     $nm_siswa     = $_POST['nm_siswa'];
     $tmpt_lahir     = $_POST['tmpt_lahir'];
-    $date_tgl_lahir0  = $_POST['date_tgl_lahir'];
-    $date_tgl_lahir=ubahformatTgl($date_tgl_lahir0);
+ $date_tgl_lahir0  = $_POST['date_tgl_lahir'];
+  $date_tgl_lahir=ubahformatTgl($date_tgl_lahir0);
     $jns_kelamin     = $_POST['jns_kelamin'];
     $agama     = $_POST['agama'];
     $id_kec  = $_POST['id_kec'];
@@ -99,12 +99,7 @@ if (isset ($_POST["siswa_simpan"])) {
       if (trim($id_kel)=="") {
         $pesanError[]="Data <b>Kelurahan</b> Masih kosong !!";
       }
-    if (trim($alamat)=="") {
-    $pesanError[]="Data <b>Alamat</b> Masih Kosong.";
-  }
-    if (trim($email)=="") {
-    $pesanError[]="Data <b>Email</b> Masih Kosong.";
-  }
+
     if (trim($no_hp)=="") {
     $pesanError[]="Data <b>Nomor Telepon</b> Masih Kosong.";
   }
@@ -315,15 +310,15 @@ $data=mysql_fetch_array($hasil);
                         </div>
                       </div>
 
-       <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date_tgl_lahir">Tanggal Lahir<span class="required">*</span>
-           </label>
-           <div class="col-md-6 col-sm-6 col-xs-12">
-            <input type="text" id="date_tgl_lahir" name="date_tgl_lahir" value="<?php echo $datatanggallahir; ?>" required="required" class="form-control col-md-7 col-xs-12" data-uk-datepicker="{format:'YYYY/DD/MM'}" >
-            <div class="reg-info">Format: <code>TTTT/HH/BB</code></div>
-            <div class="reg-info">Contoh: 1995/31/12</div>
-          </div>
-       </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date_tgl_lahir">Tanggal Lahir<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="date_tgl_lahir" name="date_tgl_lahir" value="<?php echo $datatanggallahir; ?>" required="required" class="form-control col-md-7 col-xs-12" data-uk-datepicker="{format:'DD/MM/YYYY'}" >
+                          <div class="reg-info">Format: <code>TTTT/HH/BB</code></div>
+                          <div class="reg-info">Contoh: 1995/31/12</div>
+                        </div>
+                      </div>
 
 
         <div class="item form-group">
