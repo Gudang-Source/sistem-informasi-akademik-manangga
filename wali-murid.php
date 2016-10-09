@@ -73,21 +73,16 @@ loadAssetsHead('Master Data Wali Murid');
 						</thead>
 							<tbody>
 						  <?php 
-						
-						  $query="SELECT * from guru, kelurahan, kecamatan, kabupaten, provinsi where kelurahan.id_kel=guru.id_kel and kelurahan.id_kec=kecamatan.id_kec and kabupaten.id_kab=kecamatan.id_kab and kabupaten.id_prov=provinsi.id_prov and guru.id_user='2' ";
+						  $query="SELECT * from wali";
 						  $exe=mysql_query($query);
-
-						  
 						  $no=0;
 						  while ($row=mysql_fetch_array($exe)) { $no++;?>
 
 							  <tr>
 								<td ><div class="uk-text-center"><?php echo $no?></div></td>
-								<td ><?php echo $row[nis]?></td>
-								<td ><?php echo $row[nm_siswa]?></td>
-								<td ><?php echo $row[nm_ortu]?></td>
-								<td ><?php echo ucwords(strtolower('provinsi '.$row[nama_prov].', kabupaten '.$row[nama_kab].', kecamatan '.$row[nama_kec].', kelurahan '.$row[nama_kel].', '.$row[almt_sekarang]))?></td>
-								
+								<td ><?php echo $row[0]?></td>
+								<td ><?php echo $row[1]?></td>
+								<td ><?php echo $row[2]?></td>
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<td width="15%"><div class="uk-text-center">
 								  <a href="wali.lihat?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-search"></i></a>

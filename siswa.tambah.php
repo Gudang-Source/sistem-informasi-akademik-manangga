@@ -291,6 +291,7 @@ $data=mysql_fetch_array($hasil);
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="nm_siswa" name="nm_siswa" value="<?php echo $datanamasiswa; ?>" required="required" class="form-control col-md-7 col-xs-12">
+          <div class="reg-info">Contoh: Ripa Gemah Nuripah</div>
           </div>
         </div>
 
@@ -299,6 +300,7 @@ $data=mysql_fetch_array($hasil);
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="password" name="password" value="<?php echo $datapassword; ?>" required="required" class="form-control col-md-7 col-xs-12">
+            <div class="reg-info">Contoh: 55550.</div>
           </div>
           </div>
                       <div class="item form-group">
@@ -306,7 +308,7 @@ $data=mysql_fetch_array($hasil);
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="password1" name="password1" value="<?php echo $datapassword; ?>" required="required" class="form-control col-md-7 col-xs-12">
-                          <div class="reg-info">Contoh: 126500182411. Jumlah minimal 6 karakter. Harus Sama dengan Password. Wajib diisi (Digunakan untuk login)</div>
+                         <div class="reg-info">Contoh: 55550.</div>
                         </div>
                       </div>
 
@@ -326,6 +328,7 @@ $data=mysql_fetch_array($hasil);
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="tmpt_lahir" name="tmpt_lahir" value="<?php echo $datatempatlahir; ?>" required="required" class="form-control col-md-7 col-xs-12">
+            <div class="reg-info">Contoh: Tasikmalaya.</div>
           </div>
         </div>
 
@@ -411,6 +414,7 @@ $data=mysql_fetch_array($hasil);
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="alamat" name="alamat" value="<?php echo $dataalamat; ?>" required="required" class="form-control col-md-7 col-xs-12">
+            <div class="reg-info">Contoh: Jalan Kenangan, Kota Barat, Depok, Yogyakarta.</div>
           </div>
         </div>
 
@@ -419,6 +423,7 @@ $data=mysql_fetch_array($hasil);
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="email" name="email" value="<?php echo $dataemail; ?>" required="required" class="form-control col-md-7 col-xs-12">
+            <div class="reg-info">Contoh: ripagemah@mail.com</div>
           </div>
        </div>
 
@@ -427,7 +432,7 @@ $data=mysql_fetch_array($hasil);
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="no_hp" name="no_hp" value="<?php echo $datanohp; ?>" required="required" class="form-control col-md-7 col-xs-12">
-                          <div class="reg-info">Wajib Isi Data No Hp</div>
+                          <div class="reg-info">Contoh: 08123456789. Wajib Isi Data Nomor Handphone yang Dapat Dihubungi.</div>
                         </div>
                       </div>
 
@@ -448,9 +453,9 @@ $data=mysql_fetch_array($hasil);
             </select>
           </div>
         </div>
-
-        
-
+        <div class="uk-form-row">
+        <div class="uk-alert">Pastikan semua isian sudah terisi dengan benar!</div>
+        </div>
          <div style="text-align:center" class="form-actions no-margin-bottom">
          <button type="submit" id="siswa_simpan" name="siswa_simpan" class="btn btn-success">Submit</button>
        </div>

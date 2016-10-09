@@ -169,6 +169,7 @@ if ($query){
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="nm_bapak" name="nm_bapak" value="<?php echo $datanamabapak; ?>" required="required" class="form-control col-md-7 col-xs-12">
+            <div class="reg-info">Contoh: Sule Sunata</div>
           </div>
         </div>
 
@@ -177,6 +178,7 @@ if ($query){
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="pekerjaan_bapak" name="pekerjaan_bapak" value="<?php echo $datapekerjaanbapak; ?>" required="required" class="form-control col-md-7 col-xs-12">
+            <div class="reg-info">Contoh: Komedian</div>
           </div>
         </div>
 
@@ -185,6 +187,7 @@ if ($query){
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="gaji_bapak" name="gaji_bapak" value="<?php echo $datagajibapak; ?>" required="required" class="form-control col-md-7 col-xs-12">
+            <div class="reg-info">Contoh: 3500000</div>
           </div>
         </div>
 
@@ -193,6 +196,7 @@ if ($query){
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="nohp_bapak" name="nohp_bapak" value="<?php echo $datanohpbapak; ?>" required="required" class="form-control col-md-7 col-xs-12">
+            <div class="reg-info">Contoh: 08123456789</div>
           </div>
         </div>
 
@@ -201,6 +205,7 @@ if ($query){
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="nm_ibu" name="nm_ibu" value="<?php echo $datanamaibu; ?>" required="required" class="form-control col-md-7 col-xs-12">
+            <div class="reg-info">Contoh: Awkarin Nurhidayah</div>
           </div>
         </div>
 
@@ -210,6 +215,7 @@ if ($query){
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="pekerjaan_ibu" name="pekerjaan_ibu" value="<?php echo $datapekerjaanibu; ?>" required="required" class="form-control col-md-7 col-xs-12">
+            <div class="reg-info">Contoh: Youtuber</div>
           </div>
         </div>
 
@@ -218,6 +224,7 @@ if ($query){
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="gaji_ibu" name="gaji_ibu" value="<?php echo $datagajiibu; ?>" required="required" class="form-control col-md-7 col-xs-12">
+            <div class="reg-info">Contoh: 6500000</div>
           </div>
         </div>
 
@@ -226,6 +233,7 @@ if ($query){
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="nohp_ibu" name="nohp_ibu" value="<?php echo $datanohpibu; ?>" required="required" class="form-control col-md-7 col-xs-12">
+            <div class="reg-info">Contoh: 08123456789</div>
           </div>
         </div>
 
@@ -234,9 +242,13 @@ if ($query){
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="alamat" name="alamat" value="<?php echo $dataalamat; ?>" required="required" class="form-control col-md-7 col-xs-12">
+            <div class="reg-info">Contoh: Jalan Kenanga, Depok, Sleman, Yogyakarta</div>
           </div>
         </div>
 
+        <div class="uk-form-row">
+        <div class="uk-alert">Pastikan semua isian sudah terisi dengan benar!</div>
+        </div>
          <div style="text-align:center" class="form-actions no-margin-bottom">
          <button type="submit" id="wali_simpan" name="wali_simpan" class="btn btn-success">Submit</button>
        </div>
@@ -262,37 +274,7 @@ if ($query){
   }, 
   excluded: [':disabled'],
   fields : {
-                    file : {
-                      validators : {
-                        notEmpty: {
-                          message: 'Belum Memilih Gambar'
-                        },
-                        file : {
-                          extention : 'jpeg,jpg,png',
-                          type : 'image/jpeg,image/png',
-              //maxSize : 2097152, //2048*1024
-              message : 'file tidak benar'
-          }
-      }
-  } ,
-    nis : {
-     validators: {
-      notEmpty: {
-       message: 'Harus Isi NIS'
-     },
-      stringLength: {
-        min: 1,
-        max: 5,
-        message: 'NIP maksimal 5 angka.'
-      },
-     remote: {
-      type: 'POST',
-      url: 'remote/remote_siswa.php',
-      message: 'Nama Siswa Telah Tersedia'
-    },
-   }
- }, 
-nm_siswa: {
+nm_bapak: {
     message: 'Nama Tidak Benar',
     validators: {
       notEmpty: {
@@ -309,107 +291,41 @@ nm_siswa: {
       },
     }
   },
-  password: {
-    message: 'Data Password Tidak Benar',
+pekerjaan_bapak: {
+    message: 'Pekerjaan Tidak Benar',
     validators: {
       notEmpty: {
-        message: 'Password Harus Diisi'
+        message: 'Pekerjaan Harus Diisi'
       },
       stringLength: {
         min: 1,
-        max: 30,
-        message: 'Nama kelurahan Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+        max: 50,
+        message: 'Pekerjaan Harus Lebih dari 1 Huruf dan Maksimal 50 Huruf'
       },
-      different: {
-        field: 'email',
-        message:'Password Harus Beda dengan Email'
-      },          
-    }
-  },
-  password1: {
-    message: 'Data Password Tidak Benar',
-    validators: {
-      identical:{
-        field:'password',
-        message: 'Konfirmasi Password Harus Sama Dengan Password'
-      },
-      notEmpty: {
-        message: 'Password Harus Diisi'
-      },
-      stringLength: {
-        min: 1,
-        max: 30,
-        message: 'Nama kelurahan Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
-      },
-      different: {
-        field: 'email',
-        message:'Password Harus Beda dengan Email'
+      regexp: {
+        regexp: /^[a-zA-Z ]+$/,
+        message: 'Karakter Yang Boleh Digunakan hanya huruf'
       },
     }
   },
-  tmpt_lahir : {
+  gaji_bapak: {
+    message: 'Gaji Tidak Benar',
     validators: {
       notEmpty: {
-        message: 'Harus diisi tempat lahir'
-      }
-    }
-  },    
-  jns_kelamin : {
-    validators: {
-      notEmpty: {
-        message: 'Harus Pilih Jenis Kelamin'
-      }
-    }
-  }, 
-  agama : {
-    validators: {
-      notEmpty: {
-        message: 'Harus Pilih Agama'
-      }
-    }
-  },    
-  prov : {
-    validators: {
-      notEmpty: {
-        message: 'Harus Pilih Provinsi'
-      }
-    }
-  },    
-  kota : {
-    validators: {
-      notEmpty: {
-        message: 'Harus Pilih Kabupaten'
-      }
-    }
-  }, 
-  id_kec : {
-    validators: {
-      notEmpty: {
-        message: 'Harus Pilih Kecamatan'
-      }
-    }
-  }, 
-  id_kel : {
-    validators: {
-      notEmpty: {
-        message: 'Harus Pilih Kelurahan'
-      }
-    }
-  }, 
-  alamat : {
-    message: 'Alamat Tidak Benar',
-    validators: {
-      notEmpty: {
-        message: 'Alamat Harus Diisi'
+        message: 'Gaji Harus Diisi'
       },
       stringLength: {
-        min: 10,
-        max: 100,
-        message: 'Alamat Harus Lebih dari 10 Huruf dan Maksimal 100 Huruf'
+        min: 0,
+        max: 30,
+        message: 'Gaji Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+      },
+      regexp: {
+        regexp: /^[0-9+]+$/,
+        message: 'Format Tidak Benar'
       },
     }
-  }, 
-  no_hp: {
+  },
+    nohp_bapak: {
     message: 'No HP Tidak Benar',
     validators: {
       notEmpty: {
@@ -424,25 +340,89 @@ nm_siswa: {
         regexp: /^[0-9+]+$/,
         message: 'Format Tidak Benar'
       },
-
     }
   },
-  email: {
-    validators:{
+nm_ibu: {
+    message: 'Nama Tidak Benar',
+    validators: {
       notEmpty: {
-        message: 'Email Harus Diisi'
+        message: 'Nama Harus Diisi'
       },
-      emailAddress:{
-        message: 'Email Tidal valid'
+      stringLength: {
+        min: 1,
+        max: 50,
+        message: 'Nama Harus Lebih dari 1 Huruf dan Maksimal 50 Huruf'
       },
-      remote: {
-        type: 'POST',
-        url: './remote/remote_email_guru.php',
-        message: 'Email Sudah Tersedia'
+      regexp: {
+        regexp: /^[a-zA-Z ]+$/,
+        message: 'Karakter Yang Boleh Digunakan hanya huruf'
       },
     }
   },
-
+pekerjaan_ibu: {
+    message: 'Pekerjaan Tidak Benar',
+    validators: {
+      notEmpty: {
+        message: 'Pekerjaan Harus Diisi'
+      },
+      stringLength: {
+        min: 1,
+        max: 50,
+        message: 'Pekerjaan Harus Lebih dari 1 Huruf dan Maksimal 50 Huruf'
+      },
+      regexp: {
+        regexp: /^[a-zA-Z ]+$/,
+        message: 'Karakter Yang Boleh Digunakan hanya huruf'
+      },
+    }
+  },
+gaji_ibu: {
+    message: 'Gaji Tidak Benar',
+    validators: {
+      notEmpty: {
+        message: 'Gaji Harus Diisi'
+      },
+      stringLength: {
+        min: 0,
+        max: 30,
+        message: 'Gaji Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+      },
+      regexp: {
+        regexp: /^[0-9+]+$/,
+        message: 'Format Tidak Benar'
+      },
+    }
+  },
+nohp_ibu: {
+    message: 'No HP Tidak Benar',
+    validators: {
+      notEmpty: {
+        message: 'No HP Harus Diisi'
+      },
+      stringLength: {
+        min: 10,
+        max: 30,
+        message: 'No Hp Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+      },
+      regexp: {
+        regexp: /^[0-9+]+$/,
+        message: 'Format Tidak Benar'
+      },
+    }
+  },
+  alamat : {
+    message: 'Alamat Tidak Benar',
+    validators: {
+      notEmpty: {
+        message: 'Alamat Harus Diisi'
+      },
+      stringLength: {
+        min: 10,
+        max: 100,
+        message: 'Alamat Harus Lebih dari 10 Huruf dan Maksimal 100 Huruf'
+      },
+    }
+  }, 
 }
 });
 </script>
