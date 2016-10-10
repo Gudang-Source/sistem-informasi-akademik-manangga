@@ -5,7 +5,7 @@ checkUserAuth();
 checkUserRole(array(1, 10));
 
 /*template control*/
-$ui_register_page     = 'wali';
+$ui_register_page     = 'wali-murid';
 $ui_register_assets   = array('datepicker');
 
 /*load header*/

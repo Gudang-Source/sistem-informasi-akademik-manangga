@@ -9,7 +9,7 @@ $ui_register_page     = 'guru';
 $ui_register_assets   = array('datepicker');
 
 // LOAD HEADER
-loadAssetsHead('Update Data Guru');
+loadAssetsHead('Lihat Data Guru');
 
 //LOAD DATA
 

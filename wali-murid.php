@@ -64,8 +64,8 @@ loadAssetsHead('Master Data Wali Murid');
 								<th><h3 class="uk-text-center">No</h3></th>
 								<th><h3 class="uk-text-center" >NIS</h3></th>
 								<th><h3 class="uk-text-center" >Nama Siswa</h3></th>
-								<th><h3 class="uk-text-center" >Nama Orangtua/Wali</h3></th>
-								<th><h3 class="uk-text-center" >Alamat</h3></th>d
+								<th><h3 class="uk-text-center" >ID Orangtua/Wali</h3></th>
+								<th><h3 class="uk-text-center" >Nama Orangtua/Wali</h3></th>d
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<th><h3 class="uk-text-center">Aksi</h3></th>
 								<?php }?>
@@ -80,9 +80,10 @@ loadAssetsHead('Master Data Wali Murid');
 
 							  <tr>
 								<td ><div class="uk-text-center"><?php echo $no?></div></td>
-								<td ><?php echo $row[0]?></td>
-								<td ><?php echo $row[1]?></td>
-								<td ><?php echo $row[2]?></td>
+								<td ><div class="uk-text-center"><?php echo $nis?></div></td>
+								<td ><div class="uk-text-center"><?php echo $nm_siswa?></div></td>
+								<td ><div class="uk-text-center"><?php echo $row[0]?></div></td>
+								<td ><div class="uk-text-center"><?php echo $row[1]?></div></td>
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<td width="15%"><div class="uk-text-center">
 								  <a href="wali.lihat?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-search"></i></a>
