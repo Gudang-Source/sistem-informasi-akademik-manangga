@@ -15,6 +15,6 @@ define( 'UIKIT_VERSION', '2.12.0' );
 
 // TEMPLATE ASSETS
 define( 'JQUERY', '/js/jquery.js' );
-define( 'LOGO', '/images/logo.png' );
+define( 'LOGO', '/images/silang.png' );
 define( 'STYLESHEET', '/css/style.css' );
 ?>

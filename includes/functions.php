@@ -87,8 +87,8 @@ function loadAssetsHead($title = 'index'){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo $title ?></title>
-    <link rel="shortcut icon" href="./" type="image/x-icon">
-    <link rel="apple-touch-icon-precomposed" href="<?php echo ASSETS . LOGO ?>">
+    <link rel="shortcut icon" href="assets/images/logo.png"" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" href="assets/images/logo.png">
     <link rel="stylesheet" href="<?php echo ASSETS . UIKIT_CORE_CSS ?>">
     <link rel="stylesheet" href="<?php echo ASSETS . STYLESHEET ?>">
     <link rel="stylesheet" href="">
@@ -353,34 +353,33 @@ function admin(){
        
       <hr class="uk-article-divider">
       <li class="uk-nav-header">Akademik</li>
-      <?php generateNavElement(array(10), 'siswa-mapel', './siswa-mapel', 'Materi Pelajaran') ?>
-      <?php generateNavElement(array(10,0,2), 'siswa-materi', './siswa-materi', 'Materi Siswa') ?>
-      <?php generateNavElement(array(10,0,2), 'siswa-tugas', './siswa-tugas', 'Tugas Siswa') ?>
+    <!--<?php generateNavElement(array(10), 'siswa-mapel', './siswa-mapel', 'Materi Pelajaran') ?>-->
+     <!-- <?php generateNavElement(array(10,0,2), 'siswa-materi', './siswa-materi', 'Materi Siswa') ?>-->
+      <!--<?php generateNavElement(array(10,0,2), 'siswa-tugas', './siswa-tugas', 'Tugas Siswa') ?>-->
       <?php generateNavElement(array(10), 'kelas', './kelas', 'Kelas') ?>
       <?php generateNavElement(array(10), 'mapel', './mapel', 'Mata Pelajaran') ?>
       <?php generateNavElement(array(10), 'tahun-ajaran', './tahun-ajaran', 'Tahun Ajaran') ?>
      
-      
-     
-      <?php generateNavElement(array(10), 'siswa-lihatguru', './siswa-lihatguru', 'Daftar Guru') ?>
-      <?php generateNavElement(array(10), 'mengajar', './mengajar', 'Data Mengajar') ?>
-      <?php generateNavElement(array(10), 'materi-guru', './materi-guru', 'Materi') ?>
-      <?php generateNavElement(array(10), 'tugas-guru', './tugas-guru', 'Tugas') ?>
-      <?php generateNavElement(array(10), 'guru-mengajar', './guru-mengajar', 'Kelas Mengajar') ?>
-      <?php generateNavElement(array(10), 'guru-materi', './guru-materi', 'Materi Ajar') ?>
-      <?php generateNavElement(array(10), 'guru-tugas', './guru-tugas', 'Tugas') ?>
-      <?php generateNavElement(array(10), 'guru-pengumuman', './guru-pengumuman', 'Pengumuman') ?>
+
+     <!-- <?php generateNavElement(array(10), 'siswa-lihatguru', './siswa-lihatguru', 'Daftar Guru') ?>-->
+   <!--   <?php generateNavElement(array(10), 'mengajar', './mengajar', 'Data Mengajar') ?>-->
+    <!--  <?php generateNavElement(array(10), 'materi-guru', './materi-guru', 'Materi') ?>-->
+    <!--  <?php generateNavElement(array(10), 'tugas-guru', './tugas-guru', 'Tugas') ?>-->
+    <!--  <?php generateNavElement(array(10), 'guru-mengajar', './guru-mengajar', 'Kelas Mengajar') ?>-->
+    <!--  <?php generateNavElement(array(10), 'guru-materi', './guru-materi', 'Materi Ajar') ?>-->
+    <!--  <?php generateNavElement(array(10), 'guru-tugas', './guru-tugas', 'Tugas') ?>-->
+    <!--  <?php generateNavElement(array(10), 'guru-pengumuman', './guru-pengumuman', 'Pengumuman') ?>-->
       <?php// generateNavElement(array(0,1,10), 'name', 'link', 'value') ?>
 
       <hr class="uk-article-divider">  
       <li class="uk-nav-header">Pembayaran</li>   
-      <?php generateNavElement(array(10,2,10,1), 'riwayat-pembayaran', './riwayat-pembayaran', 'Riwayat Pembayaran') ?>
-      <?php generateNavElement(array(10), 'tagihan-pembayaran', './tagihan-pembayaran', 'Tagihan Pembayaran') ?>
+     <!--  <?php generateNavElement(array(10,2,10,1), 'riwayat-pembayaran', './riwayat-pembayaran', 'Riwayat Pembayaran') ?>-->
+     <!--  <?php generateNavElement(array(10), 'tagihan-pembayaran', './tagihan-pembayaran', 'Tagihan Pembayaran') ?>-->
 
       <hr class="uk-article-divider">  
       <li class="uk-nav-header">Ekstrakulikuler</li>   
-      <?php generateNavElement(array(10,2,10,1), 'riwayat-pembayaran', './riwayat-pembayaran', 'Riwayat Pembayaran') ?>
-      <?php generateNavElement(array(10), 'tagihan-pembayaran', './tagihan-pembayaran', 'Tagihan Pembayaran') ?>
+     <!--  <?php generateNavElement(array(10,2,10,1), 'riwayat-pembayaran', './riwayat-pembayaran', 'Riwayat Pembayaran') ?>-->
+      <!-- <?php generateNavElement(array(10), 'tagihan-pembayaran', './tagihan-pembayaran', 'Tagihan Pembayaran') ?>-->
       <li class="uk-nav-divider"></li>
 
 
