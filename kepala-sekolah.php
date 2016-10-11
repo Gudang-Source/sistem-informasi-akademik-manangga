@@ -276,7 +276,7 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
   <tr><td class="table-nama-id">Nama Mahasiswa</td>
   <td>: <?php echo $rowks['nm_guru'];?></td></tr>
   
-  <tr><td class="table-nama-id">Guru Kelas</td>
+  <tr><td class="table-nama-id">Wali Kelas</td>
   <td>: </td></tr>
   </tr>
  

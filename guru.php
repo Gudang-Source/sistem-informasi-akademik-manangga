@@ -35,7 +35,24 @@ loadAssetsHead('Master Data Guru');
 		  <div class="uk-vertical-align uk-text-right uk-height-1-1">
 			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SD Negeri II Manangga" title="Sistem Informasi Akademik SD Negeri II Manangga">
 		  </div>
-		  
+          <table class="table table-nama" style="border: none; margin-bottom:2%;">
+  <tbody>
+  <tr><td class="table-nama-id">NIM.</td>
+  <?php
+  $sql = "SELECT * from admin";
+  $result = mysql_query($sql);
+  $row=mysql_fetch_array($result);?> 
+  <td>: <?php echo "{$row['username']}";?></td></tr>
+  <tr><td class="table-nama-id">Nama Mahasiswa</td>
+  <td>: <?php echo $rowks['nm_guru'];?></td></tr>
+  <tr><td class="table-nama-id">Wali Kelas</td>
+  <td>: </td></tr>
+  </tr>
+ 
+  
+  </tbody>
+  </table>
+ 
 		  <hr class="uk-article-divider">
           <h1 class="uk-article-title">Manajemen Guru <span class="uk-text-large">
           <?php  if (isset($_SESSION['administrator'])) {?>
