@@ -1,7 +1,7 @@
 <?php
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(10));
+checkUserRole(array(1, 2, 10));
 
 // TEMPLATE CONTROL
 $ui_register_page = 'guru';
@@ -39,11 +39,12 @@ loadAssetsHead('Master Data Guru');
   <tbody>
   <tr><td class="table-nama-id">NIM.</td>
   <?php
-  $sql = "SELECT * from admin";
-  $result = mysql_query($sql);
-  $row=mysql_fetch_array($result);?> 
-  <td>: <?php echo "{$row['username']}";?></td></tr>
-  <tr><td class="table-nama-id">Nama Mahasiswa</td>
+   $sql = "SELECT * FROM user, guru WHERE guru.id_user=user.id_user AND nip={$_SESSION['usernameguru']}";
+   $result = mysql_query($sql);
+   $row=mysql_fetch_array($result); 
+  ?> 
+  <td>: <?php echo "{$row['nm_guru']}";?></td></tr>
+  <tr><td class="table-nama-id">Nama Guru</td>
   <td>: <?php echo $rowks['nm_guru'];?></td></tr>
   <tr><td class="table-nama-id">Wali Kelas</td>
   <td>: </td></tr>

@@ -348,7 +348,7 @@ function admin(){
        <?php generateNavElement(array(10), 'siswa-profilsekolah', './siswa-profilsekolah', 'Profil Sekolah') ?>
        <?php generateNavElement(array(10), 'kepala-sekolah', './kepala-sekolah', 'Kepala Sekolah') ?>
        <?php generateNavElement(array(10), 'siswa', './siswa', 'Data Siswa') ?>
-       <?php generateNavElement(array(10), 'guru', './guru', 'Data Guru') ?>
+       <?php generateNavElement(array(2, 10), 'guru', './guru', 'Data Guru') ?>
        <?php generateNavElement(array(10), 'wali-murid', './wali-murid', 'Data Orangtua/Wali') ?>
        
       <hr class="uk-article-divider">

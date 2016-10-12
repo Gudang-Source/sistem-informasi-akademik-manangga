@@ -151,7 +151,7 @@ if( isset($_POST['login']) ){
   <div class="uk-container uk-container-center uk-margin-top uk-margin-bottom uk-margin-top">
 
 	  <div class="uk-vertical-align uk-text-right uk-height-1-1">
-		<img class="uk-margin-bottom" width="500px" height="70px" src="assets/images/banner.png" alt="SI Inventaris" title="SI Inventaris">
+		<img class="uk-margin-bottom" width="500px" height="70px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SDN II Manangga" title="Sistem Informasi Akademik SDN II Manangga">
 	  </div>
 
     <hr class="uk-article-divider">
