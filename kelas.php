@@ -71,7 +71,7 @@ loadAssetsHead('Master Data Kelas');
 						</thead>
 							<tbody>
 						  <?php
-						  $query="SELECT kd_kelas, nm_kelas, id_guru FROM kelas";
+						  $query="SELECT * FROM kelas inner join guru on guru.id_guru=kelas.id_guru";
 						  
 						  $exe=mysql_query($query);
 						  $no=0;
@@ -79,8 +79,8 @@ loadAssetsHead('Master Data Kelas');
 
 							  <tr>
 								<td ><div class="uk-text-center"><?php echo $no?></div></td>
-								<td ><div class="uk-text-center"><?php echo $row[1]?></div></td>
-								<td ><div class="uk-text-center"><?php echo $row[id_guru]?></div></td>
+								<td ><div class="uk-text-center"><?php echo $row[nm_kelas]?></div></td>
+								<td ><div class="uk-text-center"><?php echo $row[nm_guru]?></div></td>
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<td width="15%"><div class="uk-text-center">
 								  <a href="?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-search"></i></a>

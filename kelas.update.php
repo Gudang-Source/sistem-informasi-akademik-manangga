@@ -61,7 +61,7 @@ if (trim($id_guru)=="") {
 }
 # MEMBUAT NILAI DATA PADA FORM
 # SIMPAN DATA PADA FORM, Jika saat Sumbit ada yang kosong (lupa belum diisi)
-$edit = mysql_query("SELECT * FROM kelas WHERE kd_kelas='$_GET[id]'");
+$edit = mysql_query("SELECT * FROM kelas inner join guru on guru.id_guru=kelas.id_guru WHERE kd_kelas='$_GET[id]'");
 $rowks  = mysql_fetch_array($edit);
 
 ?>
@@ -123,7 +123,7 @@ $rowks  = mysql_fetch_array($edit);
                  else{
                   $cek= "";
                 }
-                echo "<option value=\"$dataidguru[id_guru]\" $cek>$dataidguru[id_guru]</option>\n";
+                echo "<option value=\"$dataidguru[id_guru]\" $cek>$rowks[nm_guru]</option>\n";
               }
               ?>
             </select>
