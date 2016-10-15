@@ -2,7 +2,7 @@
 // user login
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(1, 10));
+checkUserRole(array(1,10,3,0));
 
 /*template control*/
 $ui_register_page     = 'wali-murid';

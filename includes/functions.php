@@ -144,7 +144,7 @@ function loadAssetsFoot($scripts = ''){
      <div class="uk-vertical-align uk-text-center ">
       <div class="uk-vertical-align-middle uk-text-center">
        <label class="uk-text-success">
-        Develop on progress with <i class="fa fa-headphones"></i>  &   <i class="fa fa-coffee"></i> 
+        Develop on progress with <i class="fa fa-headphones"></i>  &  <i class="fa fa-coffee"></i> 
       </label>
     </div>
   </div>
@@ -199,8 +199,8 @@ if( isset($_SESSION['tingkat_user']) ) :
         <?php generateNavElement(array(0,1,2,10), 'dashboard', './dashboard', 'Dashboard') ?>
         <?php generateNavElement(array(), 'profil', './profil', 'Profil') ?>
         <li class="uk-nav-header">Data Pribadi Siswa</li>
-        <?php generateNavElement(array(10,2,10,1), 'isi-data-pribadi-siswa', './isi-data-pribadi-siswa', 'Isi Data Pribadi Siswa') ?>
-        <?php generateNavElement(array(10,2,10,1), 'isi-data-pribadi-orangtua', './isi-data-pribadi-orangtua', 'Isi Data Orangtua/ Wali Murid') ?>
+        <?php generateNavElement(array(10,2,1,0), 'isi-data-pribadi-siswa', './isi-data-pribadi-siswa', 'Isi Data Pribadi Siswa') ?>
+        <?php generateNavElement(array(10,2,1,0), 'isi-data-pribadi-orangtua', './isi-data-pribadi-orangtua', 'Isi Data Orangtua/ Wali Murid') ?>
         <?php generateNavElement(array(10), 'tagihan-pembayaran', './tagihan-pembayaran', 'Tagihan Pembayaran') ?>
 
         <li class="uk-nav-header">Data Sekolah</li>
@@ -312,6 +312,7 @@ function admin(){
    $row=mysql_fetch_array($result);?>
    <div class="sia-profile">
     <p style="text-align:left"; font-weight:bold;>Selamat Datang, <b><?php echo "{$row['nm_siswa']}";?></b></p>
+    <img class="sia-profile-image" src="gallery/news/<?=$rowks['foto'];?>"> </br> 
     <p style="text-align:left"; font-weight:bold;>NIS: <b><?php echo "{$row['nis']}";?></b></p>
     <p style="text-align:left"; font-weight:bold;>Kelas: <b><?php echo "{$row['kd_kelas']}";?></b></p>
   </div>
@@ -340,8 +341,8 @@ function admin(){
       <?php generateNavElement(array(), 'profil', './profil', 'Profil') ?>
       <hr class="uk-article-divider"> 
       <li class="uk-nav-header">Data Pribadi Siswa</li>
-      <?php generateNavElement(array(10,2,10,1), 'isi-data-pribadi-siswa', './isi-data-pribadi-siswa', 'Isi Data Pribadi Siswa') ?>
-      <?php generateNavElement(array(10,2,10,1), 'isi-data-pribadi-orangtua', './isi-data-pribadi-orangtua', 'Isi Data Orangtua/ Wali Murid') ?>
+      <?php generateNavElement(array(10,2,1,3,0), 'isi-data-pribadi-siswa', './isi-data-pribadi-siswa', 'Isi Data Pribadi Siswa') ?>
+      <?php generateNavElement(array(10,2,1,3,0), 'isi-data-pribadi-orangtua', './isi-data-pribadi-orangtua', 'Isi Data Orangtua/ Wali Murid') ?>
 
       <hr class="uk-article-divider">
       <li class="uk-nav-header">Data Sekolah</li>
@@ -359,8 +360,7 @@ function admin(){
       <?php generateNavElement(array(10), 'kelas', './kelas', 'Kelas') ?>
       <?php generateNavElement(array(10), 'mapel', './mapel', 'Mata Pelajaran') ?>
       <?php generateNavElement(array(10), 'tahun-ajaran', './tahun-ajaran', 'Tahun Ajaran') ?>
-     
-
+  
      <!-- <?php generateNavElement(array(10), 'siswa-lihatguru', './siswa-lihatguru', 'Daftar Guru') ?>-->
    <!--   <?php generateNavElement(array(10), 'mengajar', './mengajar', 'Data Mengajar') ?>-->
     <!--  <?php generateNavElement(array(10), 'materi-guru', './materi-guru', 'Materi') ?>-->

@@ -49,7 +49,7 @@ if( isset($_POST['login']) ){
 
 //>>>>>>>>>>>>>>>SISWA<<<<<<<<<<<<<<<<<
 	if($op=="in") {
-			if(strlen($username)==8){
+			if(strlen($username)==5){
 				$cek = mysql_query("SELECT * FROM user, siswa WHERE user.id_user=siswa.id_user AND nis='$username' AND password='$password'");
 				if(mysql_num_rows($cek)==1){//jika berhasil akan bernilai 1
 					$c = mysql_fetch_array($cek);

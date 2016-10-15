@@ -2,7 +2,7 @@
 // user login
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(10,1));
+checkUserRole(array(10,1,3));
 
 // TEMPLATE CONTROL
 $ui_register_page = 'siswa';
@@ -35,7 +35,22 @@ loadAssetsHead('Master Data Siswa');
 		  <div class="uk-vertical-align uk-text-right uk-height-1-1">
 			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SD Negeri II Manangga" title="Sistem Informasi Akademik SD Negeri II Manangga">
 		  </div>
-		  
+  <tbody>
+  <tr><td class="table-nama-id">NIM.</td>
+  <?php
+   $sqll = "SELECT * FROM user, siswa, kelas WHERE siswa.id_user=user.id_user AND siswa.id_guru=kelas.id_siswa AND  siswa.nip={$_SESSION['usernamesiswa']}";
+   $resultl = mysql_query($sqll);
+   $rowl=mysql_fetch_array($resultl); 
+  ?> 
+  <td>: 
+  <?php echo $rowl['nip'];?></td></tr>
+  <tr><td class="table-nama-id">Nama Siswa</td>
+  <td>: <?php echo $rowl['nm_siswa'];?></td></tr>
+  <tr><td class="table-nama-id">Wali Kelas</td>
+  <td>: <?php echo $rowl['nm_kelas'];?> </td></tr>
+  </tr>
+  </tbody>
+  </table>		  
 		  <hr class="uk-article-divider">
           <h1 class="uk-article-title">Manajemen Siswa <span class="uk-text-large">
           <?php  if (isset($_SESSION['administrator'])) {?>

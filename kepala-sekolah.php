@@ -264,23 +264,21 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
             <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SD N II Manangga" title="Sistem Informasi Akademik SD N II Manangga">
           </div>
           <div class="uk-panel uk-panel-box">
-          <table class="table table-nama" style="border: none; margin-bottom:2%;">
+         <table class="table table-nama" style="border: none; margin-bottom:2%;">
   <tbody>
   <tr><td class="table-nama-id">NIM.</td>
   <?php
-  $sql = "SELECT * from admin";
-  $result = mysql_query($sql);
-  $row=mysql_fetch_array($result);?> 
-  <td>: <?php echo "{$row['username']}";?></td></tr>
-  
-  <tr><td class="table-nama-id">Nama Mahasiswa</td>
-  <td>: <?php echo $rowks['nm_guru'];?></td></tr>
-  
+   $sqll = "SELECT * FROM user, guru, kelas WHERE guru.id_user=user.id_user AND guru.id_guru=kelas.id_guru AND  guru.nip={$_SESSION['usernameguru']}";
+   $resultl = mysql_query($sqll);
+   $rowl=mysql_fetch_array($resultl); 
+  ?> 
+  <td>: 
+  <?php echo $rowl['nip'];?></td></tr>
+  <tr><td class="table-nama-id">Nama Guru</td>
+  <td>: <?php echo $rowl['nm_guru'];?></td></tr>
   <tr><td class="table-nama-id">Wali Kelas</td>
-  <td>: </td></tr>
+  <td>: <?php echo $rowl['nm_kelas'];?> </td></tr>
   </tr>
- 
-  
   </tbody>
   </table>
 
