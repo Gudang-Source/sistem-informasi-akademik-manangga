@@ -2,7 +2,7 @@
 session_start();
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(0, 1, 2, 10));
+checkUserRole(array(0,1,2,10));
 
 // TEMPLATE CONTROL
 $ui_register_page = 'dashboard';
