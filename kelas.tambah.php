@@ -15,13 +15,14 @@ loadAssetsHead('Tambah Data Kelas');
 if (isset ($_POST["kelas_simpan"])) { 
 
     // baca variabel
+    $id_kelas     = $_POST['id_kelas'];
+    $id_kelas     = str_replace("", "&acute;", $id_kelas);
 
     $nm_kelas     = $_POST['nm_kelas'];
     $nm_kelas     = str_replace("", "&acute;", $nm_kelas);
     $nm_kelas     = strtoupper($nm_kelas);
 
-    $kd_kelas     = strtoupper(str_replace("  ", "-", $nm_kelas));
-    $kd_kelas     = strtoupper(str_replace(" ", "-", $nm_kelas));
+
 
     $id_guru     = $_POST['id_guru'];
     $id_guru      = str_replace("", "&acute;", $id_guru);
@@ -58,17 +59,17 @@ if (trim($id_guru)=="") {
     else{
 
     // simpan ke database
-  $querytambahkelas = mysql_query("INSERT INTO kelas (kd_kelas, nm_kelas, id_guru) 
-    VALUES ( '$kd_kelas' , '$nm_kelas' , '$id_guru' )") or die(mysql_error());
+  $querytambahkelas = mysql_query("INSERT INTO kelas (id_kelas, nm_kelas, id_guru) 
+    VALUES ( '$id_kelas' , '$nm_kelas' , '$id_guru' )") or die(mysql_error());
 
-  if ($querytambahkelas){
+  if ($querytambahkelas){ 
     header('location: ./kelas');
   }
  }
 }
 
     // simpan pada form, dan jika form belum terisi
-  $datakodekelas  = isset($_POST['kd_kelas']) ? $_POST['kd_kelas'] : '';
+  $dataidkelas  = isset($_POST['id_kelas']) ? $_POST['id_kelas'] : '';
   $datanamakelas  = isset($_POST['nm_kelas']) ? $_POST['nm_kelas'] : '';
   $dataidguru     = isset($_POST['id_guru']) ? $_POST['id_guru'] : '';
 ?>
@@ -99,6 +100,14 @@ if (trim($id_guru)=="") {
             <div class="uk-width-medium-1-1">
              <form id="formkelas" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
         
+                <div class="item form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nm_kelas">ID Kelas<span class="required">*</span>
+           </label>
+           <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" id="id_kelas" name="id_kelas" value="<?php echo $dataidkelas; ?>" required="required" class="form-control col-md-7 col-xs-12">
+          </div>
+        </div>
+
         <div class="item form-group">
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nm_kelas">Nama Kelas<span class="required">*</span>
            </label>

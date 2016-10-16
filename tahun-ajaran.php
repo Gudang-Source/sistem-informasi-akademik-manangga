@@ -38,15 +38,16 @@ loadAssetsHead('Master Data Tahun Pelajaran');
 		  
 		  <hr class="uk-article-divider">
           <h1 class="uk-article-title">Tahun Pelajaran <span class="uk-text-large">
-          <?php  if (isset($_SESSION['pengguna'])) {?>
+          <?php  if (isset($_SESSION['administrator'])) {?>
 		  { Master Data }</span></h1>
           <?php  }?>
           <br>
-          <?php if (isset($_SESSION['pengguna'])) { ?>
+          <?php if (isset($_SESSION['administrator'])) { ?>
           <a href="./tahun-ajaran.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Tahun Pelajaran"><i class="uk-icon-plus"></i> Tahun Pelajaran</a>
 		  <?php } ?>
 		   <br><br>
 		  
+						  
 				<div id="tablewrapper">
 					<div id="tableheader">
 						<div class="search">
@@ -58,40 +59,41 @@ loadAssetsHead('Master Data Tahun Pelajaran');
 							<div><a href="javascript:sorter.reset()">(atur ulang)</a></div>
 						</span>
 					</div>
-					<table cellpadding="0" cellspacing="0" border="0" id="table" class="tinytable">
+					<table id="table" class="uk-table uk-table-hover uk-table-striped uk-table-condensed" width="100%" width="100%">
 						<thead>
 							<tr>
 								<th><h3 class="uk-text-center">Kode Tahun Pelajaran</h3></th>
 								<th><h3 class="uk-text-center">Tahun Pelajaran</h3></th>
 								<th><h3 class="uk-text-center">Semester</h3></th>
-								<?php if (isset($_SESSION['pengguna'])) { ?>
+								<?php if (isset($_SESSION['administrator'])) { ?>
 								<th><h3 class="uk-text-center">Aksi</h3></th>
 								<?php }?>
 							</tr>
 						</thead>
 							<tbody>
-						  <?php
-						  $query="SELECT kd_tahun_ajaran, nm_tahun_ajaran, semester FROM tahun_ajaran";
-						  
+						  <?php 
+						
+						  $query="SELECT id_tahun, thn_ajaran FROM thn_ajaran";
 						  $exe=mysql_query($query);
 						  $no=0;
-						  while ($row=mysql_fetch_array($exe)) { $no++; ?>
+						  while ($row=mysql_fetch_array($exe)) { $no++;?>
 
 							  <tr>
+								<td><div class="uk-text-center"><?php echo $no?></div></td>
 								<td><div class="uk-text-center"><?php echo $row[0]?></div></td>
 								<td><div class="uk-text-center"><?php echo $row[1]?></div></td>
-								<td><div class="uk-text-center"><?php echo $row[2]?></div></td>
-						          <?php if (isset($_SESSION['pengguna'])) { ?>
-								<td><div class="uk-text-center">
-								  <a href="tahun-ajaran.update?id=<?php echo $row[1]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
-								  <a href="tahun-ajaran.hapus?id=<?php echo $row[1]?>" onclick="return confirm('Apakah anda yakin akan menghapus data Kelas: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a>
-								</div>
+								<?php if (isset($_SESSION['administrator'])) { ?>
+								<td width="15%"><div class="uk-text-center">
+								   <a href="tahun-ajaran.update?id=<?php echo $row[1]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
+								  <a href="tahun-ajaran.hapus?id=<?php echo $row[1]?>" onclick="return confirm('Apakah anda yakin akan menghapus data Kelas: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a></div>
 								</td>
 								<?php } ?>						
 							  </tr>
 							  <?php  } ?>
 							</tbody>
 					</table>
+					
+				
 					
 				  
                 <!-- PAGINATION -->
