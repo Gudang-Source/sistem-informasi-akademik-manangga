@@ -16,15 +16,15 @@ if (isset ($_POST["tahun_simpan"])) {
 
     // baca variabel
 
-    $nm_tahun_ajaran     = $_POST['nm_tahun_ajaran'];
-    $nm_tahun_ajaran     = str_replace("", "&acute;", $nm_tahun_ajaran);
-    $nm_tahun_ajaran     = ucwords(strtolower($nm_tahun_ajaran));
+    $thn_ajaran     = $_POST['thn_ajaran'];
+    $thn_ajaran     = str_replace("", "&acute;", $thn_ajaran);
+    $thn_ajaran     = ucwords(strtolower($thn_ajaran));
 
     $semester     = $_POST['semester'];
 
     // validation form kosong
    $pesanError= array();
-  if (trim($nm_tahun_ajaran)=="") {
+  if (trim($thn_ajaran)=="") {
     $pesanError[]="Data <b>Nama Tahun Pelajaran</b> Masih Kosong.";
   }
   if (trim($semester)=="") {
@@ -32,10 +32,10 @@ if (isset ($_POST["tahun_simpan"])) {
   }
 
     // validasi kode kelas pada database
-  $cekSql ="SELECT * FROM tahun_ajaran WHERE nm_tahun_ajaran='$nm_tahun_ajaran'";
+  $cekSql ="SELECT * FROM tahun_ajaran WHERE thn_ajaran='$thn_ajaran'";
   $cekQry = mysql_query($cekSql) or die("Error Query:".mysql_error());
   if (mysql_num_rows($cekQry)>=1) {
-    $pesanError[]= "Maaf, tahun pelajaran <b>$nm_tahun_ajaran</b> Sudah Ada, ganti dengan nama lain";
+    $pesanError[]= "Maaf, tahun pelajaran <b>$thn_ajaran</b> Sudah Ada, ganti dengan nama lain";
   }
 
     // jika ada error dari validasi form
@@ -53,8 +53,8 @@ if (isset ($_POST["tahun_simpan"])) {
     else{
 
     // simpan ke database
-  $querytambahtahun = mysql_query("INSERT INTO tahun_ajaran (nm_tahun_ajaran, semester) 
-    VALUES ( '$nm_tahun_ajaran' , '$semester' )") or die(mysql_error());
+  $querytambahtahun = mysql_query("INSERT INTO tahun_ajaran (id_tahun, thn_ajaran, semester) 
+    VALUES ( '' , '$thn_ajaran' , '$semester' )") or die(mysql_error());
 
   if ($querytambahtahun){
     header('location: ./tahun-ajaran');
@@ -63,7 +63,7 @@ if (isset ($_POST["tahun_simpan"])) {
 }
 
     // simpan pada form, dan jika form belum terisi
-  $datanamatahunajaran = isset($_POST['nm_tahun_ajaran']) ? $_POST['nm_tahun_ajaran'] : '';
+  $datanamatahunajaran = isset($_POST['thn_ajaran']) ? $_POST['thn_ajaran'] : '';
   $datasemester  = isset($_POST['semester']) ? $_POST['semester'] : '';
 
 ?>
@@ -95,10 +95,10 @@ if (isset ($_POST["tahun_simpan"])) {
              <form id="formtahun" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
         
         <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nm_tahun_ajaran">Tahun Pelajaran<span class="required">*</span>
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="thn_ajaran">Tahun Pelajaran<span class="required">*</span>
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
-            <input type="text" id="nm_tahun_ajaran" name="nm_tahun_ajaran" value="<?php echo $datanamatahunajaran; ?>" required="required" class="form-control col-md-7 col-xs-12">
+            <input type="text" id="thn_ajaran" name="thn_ajaran" value="<?php echo $datanamatahunajaran; ?>" required="required" class="form-control col-md-7 col-xs-12">
           </div>
         </div>
 
@@ -139,7 +139,7 @@ if (isset ($_POST["tahun_simpan"])) {
   }, 
   excluded: [':disabled'],
   fields : {
-    nm_tahun_ajaran : {
+    thn_ajaran : {
      validators: {
       notEmpty: {
        message: 'Harus Isi Tahun Pelajaran'

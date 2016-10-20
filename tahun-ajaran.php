@@ -64,7 +64,6 @@ loadAssetsHead('Master Data Tahun Pelajaran');
 							<tr>
 								<th><h3 class="uk-text-center">Kode Tahun Pelajaran</h3></th>
 								<th><h3 class="uk-text-center">Tahun Pelajaran</h3></th>
-								<th><h3 class="uk-text-center">Semester</h3></th>
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<th><h3 class="uk-text-center">Aksi</h3></th>
 								<?php }?>
@@ -79,7 +78,6 @@ loadAssetsHead('Master Data Tahun Pelajaran');
 						  while ($row=mysql_fetch_array($exe)) { $no++;?>
 
 							  <tr>
-								<td><div class="uk-text-center"><?php echo $no?></div></td>
 								<td><div class="uk-text-center"><?php echo $row[0]?></div></td>
 								<td><div class="uk-text-center"><?php echo $row[1]?></div></td>
 								<?php if (isset($_SESSION['administrator'])) { ?>
