@@ -31,12 +31,6 @@ if (isset ($_POST["tahun_simpan"])) {
     $pesanError[]="Data <b>Semester</b> Masih Kosong.";
   }
 
-    // validasi kode kelas pada database
-  $cekSql ="SELECT * FROM tahun_ajaran WHERE thn_ajaran='$thn_ajaran'";
-  $cekQry = mysql_query($cekSql) or die("Error Query:".mysql_error());
-  if (mysql_num_rows($cekQry)>=1) {
-    $pesanError[]= "Maaf, tahun pelajaran <b>$thn_ajaran</b> Sudah Ada, ganti dengan nama lain";
-  }
 
     // jika ada error dari validasi form
      if (count($pesanError)>=1) {
@@ -53,8 +47,8 @@ if (isset ($_POST["tahun_simpan"])) {
     else{
 
     // simpan ke database
-  $querytambahtahun = mysql_query("INSERT INTO tahun_ajaran (id_tahun, thn_ajaran, semester) 
-    VALUES ( '' , '$thn_ajaran' , '$semester' )") or die(mysql_error());
+  $querytambahtahun = mysql_query("INSERT INTO tahun_ajaran (thn_ajaran, semester) 
+    VALUES ('$thn_ajaran' , '$semester' )") or die(mysql_error());
 
   if ($querytambahtahun){
     header('location: ./tahun-ajaran');

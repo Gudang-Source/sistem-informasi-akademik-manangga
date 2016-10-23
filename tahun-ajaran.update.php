@@ -15,21 +15,9 @@ loadAssetsHead('Update Data Tahun Ajaran');
 if (isset($_POST['tahun_simpan'])) {
 
   #baca variabel
-    $nm_tahun_ajaran     = $_POST['nm_tahun_ajaran'];
-    $nm_tahun_ajaran     = str_replace("", "&acute;", $nm_tahun_ajaran);
-    $nm_tahun_ajaran     = ucwords(strtolower($nm_tahun_ajaran));
-
+    $thn_ajaran     = $_POST['thn_ajaran'];
     $semester     = $_POST['semester'];
 
-  #validasi form kosong
-   $pesanError= array();
-  if (trim($nm_tahun_ajaran)=="") {
-    $pesanError[]="Data <b>Nama Tahun Pelajaran</b> Masih Kosong.";
-  }
-  if (trim($semester)=="") {
-    $pesanError[]="Data <b>Semester</b> Masih Kosong.";
-  }
-   
   #jika ada pesan error validasi form
   if (count($pesanError)>=1) {
     echo "<div class='mssgBox'>";
@@ -45,20 +33,20 @@ if (isset($_POST['tahun_simpan'])) {
   else{
 
   #update data ke database
-    $query = mysql_query("UPDATE tahun_ajaran SET nm_tahun_ajaran='$nm_tahun_ajaran', semester='$semester' WHERE nm_tahun_ajaran='$_GET[id]'") or die(mysql_error());
+    $query = mysql_query("UPDATE tahun_ajaran SET thn_ajaran='$thn_ajaran', semester='$semester' WHERE thn_ajaran='$_GET[id]'") or die(mysql_error());
 
    if ($query){
-    header('location: ./tahun_ajaran');
+    header('location: ./tahun-ajaran');
   }
 } 
 
 }
-  $datatahunpelajaran  = isset($_POST['nm_tahun_ajaran']) ? $_POST['nm_tahun_ajaran'] : '';
+  $datatahunpelajaran  = isset($_POST['thn_ajaran']) ? $_POST['thn_ajaran'] : '';
   $datasemester  = isset($_POST['semester']) ? $_POST['semester'] : '';
 
 # MEMBUAT NILAI DATA PADA FORM
 # SIMPAN DATA PADA FORM, Jika saat Sumbit ada yang kosong (lupa belum diisi)
-$edit = mysql_query("SELECT * FROM tahun_ajaran WHERE nm_tahun_ajaran='$_GET[id]'");
+$edit = mysql_query("SELECT * FROM tahun_ajaran WHERE thn_ajaran='$_GET[id]'");
 $rowks  = mysql_fetch_array($edit);
 
 ?>
@@ -89,10 +77,10 @@ $rowks  = mysql_fetch_array($edit);
             <form id="formtahunajaran" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
 
         <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nm_tahun_ajaran">Tahun Pelajaran<span class="required">*</span>
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="thn_ajaran">Tahun Pelajaran<span class="required">*</span>
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
-            <input type="text" id="nm_tahun_ajaran" name="nm_tahun_ajaran" value="<?php echo $rowks['nm_tahun_ajaran'];?>" required="required" class="form-control col-md-7 col-xs-12">
+            <input type="text" id="thn_ajaran" name="thn_ajaran" value="<?php echo $rowks['thn_ajaran'];?>" required="required" class="form-control col-md-7 col-xs-12">
           </div>
         </div>
 
@@ -121,7 +109,7 @@ $rowks  = mysql_fetch_array($edit);
 
 
     <div style="text-align:center" class="form-actions no-margin-bottom">
-     <button type="submit" id="kelas_simpan" name="kelas_simpan" class="btn btn-success">Submit</button>
+     <button type="submit" id="tahun_simpan" name="tahun_simpan" class="btn btn-success">Submit</button>
    </div>
  </form>
 </div>

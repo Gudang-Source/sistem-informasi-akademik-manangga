@@ -64,6 +64,7 @@ loadAssetsHead('Master Data Tahun Pelajaran');
 							<tr>
 								<th><h3 class="uk-text-center">Kode Tahun Pelajaran</h3></th>
 								<th><h3 class="uk-text-center">Tahun Pelajaran</h3></th>
+								<th><h3 class="uk-text-center">Semester</h3></th>
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<th><h3 class="uk-text-center">Aksi</h3></th>
 								<?php }?>
@@ -72,7 +73,7 @@ loadAssetsHead('Master Data Tahun Pelajaran');
 							<tbody>
 						  <?php 
 						
-						  $query="SELECT id_tahun, thn_ajaran FROM thn_ajaran";
+						  $query="SELECT id_tahun, thn_ajaran, semester FROM tahun_ajaran";
 						  $exe=mysql_query($query);
 						  $no=0;
 						  while ($row=mysql_fetch_array($exe)) { $no++;?>
@@ -80,6 +81,7 @@ loadAssetsHead('Master Data Tahun Pelajaran');
 							  <tr>
 								<td><div class="uk-text-center"><?php echo $row[0]?></div></td>
 								<td><div class="uk-text-center"><?php echo $row[1]?></div></td>
+								<td><div class="uk-text-center"><?php echo $row[2]?></div></td>
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<td width="15%"><div class="uk-text-center">
 								   <a href="tahun-ajaran.update?id=<?php echo $row[1]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
