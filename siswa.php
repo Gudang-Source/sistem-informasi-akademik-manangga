@@ -95,13 +95,13 @@ loadAssetsHead('Master Data Siswa');
               while ($row=mysql_fetch_array($exe)) { $no++;?>
 
                 <tr>
-                <td ><div class="uk-text-center"><?php echo $row[kd_kelas]?></div></td>
+                <td ><div class="uk-text-center"><?php echo $row[id_kelas]?></div></td>
                 <td ><div class="uk-text-center"><?php echo $row[nm_kelas]?></div></td>
                 <td ><div class="uk-text-center">Jumlah Siswa</div></td>
                 
                 <?php if (isset($_SESSION['administrator'])) { ?>
                 <td width="15%"><div class="uk-text-center">
-                  <a href="lihatsiswa?kd_kelas=$kd_kelas" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small">Lihat Siswa</i></a>
+                  <a href="lihatsiswa?id_kelas=<?php echo $row[id_kelas]?>" title="Lihat Siswa" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small">Lihat Siswa</a>
                 </td>
                 <?php } ?>            
                 </tr>

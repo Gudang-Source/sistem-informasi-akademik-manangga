@@ -40,11 +40,11 @@ loadAssetsHead('Lihat Data Siswa');
       
       <hr class="uk-article-divider">
           <h1 class="uk-article-title">Lihat Siswa <span class="uk-text-large">
-          <?php  if (isset($_SESSION['pengguna'])) {?>
+          <?php  if (isset($_SESSION['administrator'])) {?>
       { Master Data }</span></h1>
           <?php  }?>
           <br>
-          <?php if (isset($_SESSION['pengguna'])) { ?>
+          <?php if (isset($_SESSION['administrator'])) { ?>
           <a href="./siswa.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Siswa"><i class="uk-icon-plus"></i> Siswa</a>
       <?php } ?>
        <br><br>
@@ -63,9 +63,9 @@ loadAssetsHead('Lihat Data Siswa');
           <?PHP
             
 
-            $kd_kelas = $_REQUEST ['kd_kelas'];
+            $id_kelas = $_REQUEST ['id_kelas'];
             
-            $sql_select="select * from siswa where kd_kelas= '$kd_kelas'";
+            $sql_select="select * from siswa where id_kelas= '$id_kelas'";
             $query_select=mysql_query($sql_select); 
              
             echo "<table cellpadding='0' cellspacing='0' border='0' id='table' class='tinytable'>";
@@ -88,7 +88,7 @@ loadAssetsHead('Lihat Data Siswa');
                 $jns_kelamin = $row['jns_kelamin'];
                 $agama = $row['agama'];
                 $password = $row['password'];
-                $kd_kelas = $row['kd_kelas'];
+                $id_kel = $row['id_kel'];
                 $email = $row['email'];
 
                
@@ -97,11 +97,11 @@ loadAssetsHead('Lihat Data Siswa');
                 echo "<td align='center'>$jns_kelamin</td>";
                 echo "<td align='center'>$agama</td>";
                 echo "<td align='center'>$password</td>";
-                echo "<td align='center'>$kd_kelas</td>";
+                echo "<td align='center'>$id_kel</td>";
                 echo "<td align='center'>$email</td>";
                 echo "<form method='POST' action='action_hapus_siswa.php' name='action'>
                 <input type='hidden' value='$nis' name='nis'>
-                <input type='hidden' value='$id_kelas' name='id_kelas'>
+                <input type='hidden' value='$id_kel' name='id_kelas'>
 
                 <td align='center'>
 
