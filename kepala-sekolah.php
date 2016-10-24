@@ -369,7 +369,7 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
              </label>
              <div class="col-md-6 col-sm-6 col-xs-12">
                <select disabled type="text" class="form-control chzn-select col-md-7 col-xs-12" id="jns_kelamin" name="jns_kelamin" value="" required>
-                <option value="">-Pilih Jenis Kelaimn-</option> 
+                <option value="">-Pilih Jenis Kelamin-</option> 
                 <?php
                 $jns_kelamin =mysql_query("SELECT * FROM guru ORDER BY jns_kelamin");
                 while ($datajeniskelamin=mysql_fetch_array($jns_kelamin)) {

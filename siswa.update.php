@@ -174,8 +174,8 @@
        </label>
        <div class="col-md-6 col-sm-6 col-xs-12">
         <input type="text" id="date_tgl_lahir" name="date_tgl_lahir" value="<?php echo $rowks['date_tgl_lahir'];?>" required="required" class="form-control col-md-7 col-xs-12" data-uk-datepicker="{format:'YYYY/DD/MM'}" >
-        <div class="reg-info">Format: <code>TTTT/HH/BB</code></div>
-        <div class="reg-info">Contoh: 1995/31/12</div>
+                          <div class="reg-info">Format: <code>DD/MM/YYYY</code></div>
+                          <div class="reg-info">Contoh: 31/12/1994</div>
       </div>
     </div>
 
