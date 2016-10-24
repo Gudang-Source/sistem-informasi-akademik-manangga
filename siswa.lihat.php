@@ -114,7 +114,7 @@ $rowks  = mysql_fetch_array($edit);
                           <p style="text-align:center" ;="" font-weight:bold;=""></p>
 
                         </div></div></div>
-                        <div class="uk-width-7-10">  <div class="uk-panel uk-panel-box">                    <table class="uk-table uk-table-hover  uk-table-condensed">
+                        <div class="uk-width-7-10">  <div class="uk-panel uk-panel-box"><table class="uk-table uk-table-hover  uk-table-condensed">
                         <tbody>
                                         <tr>
                                             <td>NIS</td>
@@ -174,7 +174,7 @@ $rowks  = mysql_fetch_array($edit);
                                         </tr>
                                           <tr>
                                             <td>Alamat</td>
-                                            <td><?php echo $datajeng['nama_kel'];?></td>
+                                            <td><?php echo $rowks['alamat'];?></td>
                                             
                                         </tr>
                                         <tr>
