@@ -84,6 +84,7 @@ loadAssetsHead('Lihat Data Siswa');
             $w=0;
             while($row=mysql_fetch_array($query_select)){
                 $nis = $row['nis'];
+                $id_siswa = $row['id_siswa'];
                 $nm_siswa = $row['nm_siswa'];
                 $jns_kelamin = $row['jns_kelamin'];
                 $agama = $row['agama'];
@@ -105,7 +106,7 @@ loadAssetsHead('Lihat Data Siswa');
 
                 <td align='center'>
 
-                 <a href='siswa.lihat?id=$nis' title='Lihat' data-uk-tooltip='{pos:'top-left'}'' class='uk-button uk-button-small'><i class='uk-icon-search'></i></a>
+                 <a href='siswa.lihat?id=$id_siswa' title='Lihat' data-uk-tooltip='{pos:'top-left'}'' class='uk-button uk-button-small'><i class='uk-icon-search'></i></a>
                  <a href='siswa.update?id=$nis' title='Sunting' data-uk-tooltip='{pos:'top-left'}'' class='uk-button uk-button-small'><i class='uk-icon-pencil'></i></a>
                  <a href='siswa.hapus?id=$nis' onclick='return confirm('Apakah anda yakin akan menghapus data ini?')' title='Hapus' data-uk-tooltip='{pos:'top-left'}'' class='uk-button uk-button-small uk-button-danger'><i class='uk-icon-remove'></i></a>
 

@@ -18,7 +18,7 @@ loadAssetsHead('Lihat Data Siswa');
 
 # MEMBUAT NILAI DATA PADA FORM
 # SIMPAN DATA PADA FORM, Jika saat Sumbit ada yang kosong (lupa belum diisi)
-$edit = mysql_query("SELECT * FROM siswa WHERE nis='$_GET[nis]'");
+$edit = mysql_query("SELECT * FROM siswa WHERE id_siswa='$_GET[id]'");
 $rowks  = mysql_fetch_array($edit);
 
 
@@ -98,7 +98,7 @@ $rowks  = mysql_fetch_array($edit);
             <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SD N II Manangga" title="Sistem Informasi Akademik SD N II Manangga">
           </div>
           <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Siswa <span class="uk-text-large">{ Tampil Profil Siswa }</span></h1>
+          <h1 class="uk-article-title">Guru <span class="uk-text-large">{ Tampil Profil Guru }</span></h1>
           <br>
           <a href="./siswa" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Guru"><i class="uk-icon-angle-left"></i> Kembali</a>
 <!-- <hr class="uk-article-divider"> -->
@@ -110,19 +110,19 @@ $rowks  = mysql_fetch_array($edit);
                         <div class="uk-width-3-10"><div class="uk-panel uk-panel-box"><div class="sia-profile">
 
                           <img src="gallery/news/<?=$rowks['foto'];?>">
-                          <p style="text-align:center" ;="" font-weight:bold;=""><b><?php echo $rowks['nm_siswa'];?></b></p>
+                          <p style="text-align:center" ;="" font-weight:bold;=""><b><?php echo $rowks['nm_guru'];?></b></p>
                           <p style="text-align:center" ;="" font-weight:bold;=""></p>
 
                         </div></div></div>
-                        <div class="uk-width-7-10">  <div class="uk-panel uk-panel-box"><table class="uk-table uk-table-hover  uk-table-condensed">
+                        <div class="uk-width-7-10">  <div class="uk-panel uk-panel-box">                    <table class="uk-table uk-table-hover  uk-table-condensed">
                         <tbody>
                                         <tr>
-                                            <td>NIS</td>
+                                            <td>NIP</td>
                                             <td><?php echo $rowks['nis'];?></td>
                                             
                                         </tr>
                                         <tr>
-                                            <td>Nama Siswa</td>
+                                            <td>Nama Guru</td>
                                             <td><?php echo $rowks['nm_siswa'];?></td>
                                             
                                         </tr>
@@ -133,7 +133,7 @@ $rowks  = mysql_fetch_array($edit);
                                         </tr>
                                         <tr>
                                             <td>Tempat Lahir</td>
-                                            <td><?php echo $rowks['tempat_lahir'];?></td>
+                                            <td><?php echo $rowks['tmpt_lahir'];?></td>
                                             
                                         </tr>
                                         <tr>
@@ -147,11 +147,25 @@ $rowks  = mysql_fetch_array($edit);
                                             
                                         </tr>
                                         <tr>
-                                            <td>Agama</td>
-                                            <td><?php echo $rowks['agama'];?></td>
+                                            <td>Status Guru</td>
+                                            <td><?php echo $rowks['status_guru'];?></td>
                                             
                                         </tr>
-                                        
+                                        <tr>
+                                            <td>Gelar Depan Non Akademik</td>
+                                            <td><?php echo $rowks['gelar_depan'];?></td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>Gelar Depan Akademik</td>
+                                            <td><?php echo $rowks['gelar_depan_akademik'];?></td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>Gelar Belakang</td>
+                                            <td><?php echo $rowks['gelar_belakang'];?></td>
+                                            
+                                        </tr>
                                         <tr>
                                             <td>Provinsi</td>
                                             <td><?php echo $datajeng['nama_prov'];?></td>
@@ -170,11 +184,6 @@ $rowks  = mysql_fetch_array($edit);
                                         <tr>
                                             <td>Kelurahan</td>
                                             <td><?php echo $datajeng['nama_kel'];?></td>
-                                            
-                                        </tr>
-                                          <tr>
-                                            <td>Alamat</td>
-                                            <td><?php echo $rowks['alamat'];?></td>
                                             
                                         </tr>
                                         <tr>
