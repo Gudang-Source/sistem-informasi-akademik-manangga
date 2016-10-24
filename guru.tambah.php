@@ -670,30 +670,15 @@ if (isset ($_POST["guru_simpan"])) {
   			message: 'No HP Harus Diisi'
   		},
   		stringLength: {
-  			min: 10,
+  			min: 0,
   			max: 30,
-  			message: 'No Hp Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+  			message: 'No Hp Harus Lebih dari 0 Huruf dan Maksimal 30 Huruf'
   		},
   		regexp: {
   			regexp: /^[0-9+]+$/,
   			message: 'Format Tidak Benar'
   		},
 
-  	}
-  },
-  email: {
-  	validators:{
-  		notEmpty: {
-  			message: 'Email Harus Diisi'
-  		},
-  		emailAddress:{
-  			message: 'Email Tidal valid'
-  		},
-  		remote: {
-  			type: 'POST',
-  			url: './remote/remote_email_guru.php',
-  			message: 'Email Sudah Tersedia'
-  		},
   	}
   },
 
