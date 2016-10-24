@@ -68,7 +68,7 @@ loadAssetsHead('Lihat Data Siswa');
             $sql_select="select * from siswa where id_kelas= '$id_kelas'";
             $query_select=mysql_query($sql_select); 
              
-            echo "<table cellpadding='0' cellspacing='0' border='0' id='table' class='tinytable'>";
+            echo "<table class='table table-nama' style='border: none; margin-bottom:2%'>";
             echo "<thead><tr>
             <th><h3 class='uk-text-center'>NIS</th>
             <th><h3 class='uk-text-center'>Nama Siswa</th>
@@ -88,7 +88,7 @@ loadAssetsHead('Lihat Data Siswa');
                 $jns_kelamin = $row['jns_kelamin'];
                 $agama = $row['agama'];
                 $password = $row['password'];
-                $id_kel = $row['id_kel'];
+                $id_kelas = $row['id_kelas'];
                 $email = $row['email'];
 
                
@@ -101,13 +101,16 @@ loadAssetsHead('Lihat Data Siswa');
                 echo "<td align='center'>$email</td>";
                 echo "<form method='POST' action='action_hapus_siswa.php' name='action'>
                 <input type='hidden' value='$nis' name='nis'>
-                <input type='hidden' value='$id_kel' name='id_kelas'>
+                <input type='hidden' value='$id_kelas' name='id_kelas'>
 
                 <td align='center'>
 
-                
-                <a href='siswa.update?id=$nis' title='Sunting' data-uk-tooltip='{pos:'top-left'}'' class='uk-button uk-button-small'><i class='uk-icon-pencil'></i></a>
+                 <a href='siswa.lihat?id=$nis' title='Lihat' data-uk-tooltip='{pos:'top-left'}'' class='uk-button uk-button-small'><i class='uk-icon-search'></i></a>
+                 <a href='siswa.update?id=$nis' title='Sunting' data-uk-tooltip='{pos:'top-left'}'' class='uk-button uk-button-small'><i class='uk-icon-pencil'></i></a>
                  <a href='siswa.hapus?id=$nis' onclick='return confirm('Apakah anda yakin akan menghapus data ini?')' title='Hapus' data-uk-tooltip='{pos:'top-left'}'' class='uk-button uk-button-small uk-button-danger'><i class='uk-icon-remove'></i></a>
+
+
+                </td>
                 </form>";
                 echo "</form>";
                 echo "</td>";

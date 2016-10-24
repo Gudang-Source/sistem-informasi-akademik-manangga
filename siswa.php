@@ -97,7 +97,8 @@ loadAssetsHead('Master Data Siswa');
                 <tr>
                 <td ><div class="uk-text-center"><?php echo $row[id_kelas]?></div></td>
                 <td ><div class="uk-text-center"><?php echo $row[nm_kelas]?></div></td>
-                <td ><div class="uk-text-center">Jumlah Siswa</div></td>
+                <?php $jumlah_siswa = mysql_num_rows(mysql_query("select * from siswa where id_kelas = '$id_kelas'"));?>
+                <td ><div class="uk-text-center"><?php echo $jumlah_siswa?></div></td>
                 
                 <?php if (isset($_SESSION['administrator'])) { ?>
                 <td width="15%"><div class="uk-text-center">
