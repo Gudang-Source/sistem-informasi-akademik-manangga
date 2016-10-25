@@ -71,7 +71,7 @@ loadAssetsHead('Master Data Kelas');
 						</thead>
 							<tbody>
 						  <?php
-						  $query="SELECT * FROM kelas inner join guru on guru.id_guru=kelas.id_guru";
+						  $query="SELECT * FROM kelas ";
 						  
 						  $exe=mysql_query($query);
 						  $no=0;
