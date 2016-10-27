@@ -365,7 +365,7 @@ function admin(){
    <?php generateNavElement(array(10), 'mengajar', './mengajar', 'Data Mengajar') ?>
     <!--  <?php generateNavElement(array(10), 'materi-guru', './materi-guru', 'Materi') ?>-->
     <!--  <?php generateNavElement(array(10), 'tugas-guru', './tugas-guru', 'Tugas') ?>-->
-     <?php generateNavElement(array(10), 'guru-mengajar', './guru-mengajar', 'Kelas Mengajar') ?>
+      <!--<?php generateNavElement(array(10), 'guru-mengajar', './guru-mengajar', 'Kelas Mengajar') ?>-->
     <!--  <?php generateNavElement(array(10), 'guru-materi', './guru-materi', 'Materi Ajar') ?>-->
     <!--  <?php generateNavElement(array(10), 'guru-tugas', './guru-tugas', 'Tugas') ?>-->
     <!--  <?php generateNavElement(array(10), 'guru-pengumuman', './guru-pengumuman', 'Pengumuman') ?>-->
