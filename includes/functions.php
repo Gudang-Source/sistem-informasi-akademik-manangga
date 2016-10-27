@@ -362,13 +362,14 @@ function admin(){
       <?php generateNavElement(array(10), 'tahun-ajaran', './tahun-ajaran', 'Tahun Ajaran') ?>
   
      <!-- <?php generateNavElement(array(10), 'siswa-lihatguru', './siswa-lihatguru', 'Daftar Guru') ?>-->
-   <!--   <?php generateNavElement(array(10), 'mengajar', './mengajar', 'Data Mengajar') ?>-->
+   <?php generateNavElement(array(10), 'mengajar', './mengajar', 'Data Mengajar') ?>
     <!--  <?php generateNavElement(array(10), 'materi-guru', './materi-guru', 'Materi') ?>-->
     <!--  <?php generateNavElement(array(10), 'tugas-guru', './tugas-guru', 'Tugas') ?>-->
-    <!--  <?php generateNavElement(array(10), 'guru-mengajar', './guru-mengajar', 'Kelas Mengajar') ?>-->
+     <?php generateNavElement(array(10), 'guru-mengajar', './guru-mengajar', 'Kelas Mengajar') ?>
     <!--  <?php generateNavElement(array(10), 'guru-materi', './guru-materi', 'Materi Ajar') ?>-->
     <!--  <?php generateNavElement(array(10), 'guru-tugas', './guru-tugas', 'Tugas') ?>-->
     <!--  <?php generateNavElement(array(10), 'guru-pengumuman', './guru-pengumuman', 'Pengumuman') ?>-->
+     <?php generateNavElement(array(10), 'nilai', './nilai', 'Nilai') ?>
       <?php// generateNavElement(array(0,1,10), 'name', 'link', 'value') ?>
 
       <hr class="uk-article-divider">  
