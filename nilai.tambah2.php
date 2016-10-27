@@ -12,7 +12,7 @@ $ui_register_assets   = array('datepicker');
 loadAssetsHead('Tambah Data Nilai');
 
 /*form processing*/
-
+$kelas = $_GET['kelas'];
 
     // simpan pada form, dan jika form belum terisi
   $datanis  = isset($_POST['nis']) ? $_POST['nis'] : '';

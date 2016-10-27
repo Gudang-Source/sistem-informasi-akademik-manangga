@@ -89,7 +89,7 @@ if (trim($id_guru)=="") {
       <div class="uk-width-medium-5-6 tm-article-side">
         <article class="uk-article">
           <div class="uk-vertical-align uk-text-right uk-height-1-1">
-            <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="E-Learning" title="E-Learning">
+                        <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SDN II Manangga" title="Sistem Informasi Akademik SDN II Manangga">
           </div>
           <hr class="uk-article-divider">
           <h1 class="uk-article-title">Kelas <span class="uk-text-large">{ Tambah Data Kelas }</span></h1>
