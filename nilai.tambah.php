@@ -14,23 +14,7 @@ loadAssetsHead('Tambah Data Nilai');
 /*form processing*/
 
 
-    // simpan pada form, dan jika form belum terisi
-  $datanis  = isset($_POST['nis']) ? $_POST['nis'] : '';
-  $datakodemapel  = isset($_POST['kd_mapel']) ? $_POST['kd_mapel'] : '';
-  $datasemester  = isset($_POST['semester']) ? $_POST['semester'] : '';
-  $dataidtahun  = isset($_POST['id_tahun']) ? $_POST['id_tahun'] : '';
-  $datakodekelas  = isset($_POST['id_kelas']) ? $_POST['id_kelas'] : '';
-  $datanip  = isset($_POST['nip']) ? $_POST['nip'] : '';
-  $dataharian1  = isset($_POST['harian1']) ? $_POST['harian1'] : '';
-  $dataharian2  = isset($_POST['harian2']) ? $_POST['harian2'] : '';
-  $dataharian3  = isset($_POST['harian3']) ? $_POST['harian3'] : '';
-  $datatugas1  = isset($_POST['tugas1']) ? $_POST['tugas1'] : '';
-  $datatugas2  = isset($_POST['tugas2']) ? $_POST['tugas2'] : '';
-  $datatugas3  = isset($_POST['tugas3']) ? $_POST['tugas3'] : '';
-  $datauts  = isset($_POST['uts']) ? $_POST['uts'] : '';
-  $datauas  = isset($_POST['uas']) ? $_POST['uas'] : '';
-  $datanrataraport  = isset($_POST['nrataraport']) ? $_POST['nrataraport'] : '';
-  $datarangking  = isset($_POST['rangking']) ? $_POST['rangking'] : '';
+
 ?>
 
 <body>
@@ -61,10 +45,10 @@ loadAssetsHead('Tambah Data Nilai');
         <form id="formnilai" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data" action="nilai.tambah2.php" onKeyUp="highlight(event)" onClick="highlight(event)" onsubmit="return validate(this)" method="get">
 
       <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_guru">Pilih Siswa<span class="required">*</span>
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kelas">Pilih Kelas<span class="required">*</span>
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
-            <select name="nis" id="nis" value="<?php echo $datakodekelas; ?>" class="form-control col-md-7 col-xs-12">
+            <select name="kelas" id="kelas" class="form-control col-md-7 col-xs-12">
               <option value="">--- Pilih Kelas --</option>
               <?php
               $query = "SELECT * from kelas";
