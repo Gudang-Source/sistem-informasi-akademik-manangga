@@ -37,13 +37,13 @@ loadAssetsHead('Input Nilai');
 		  </div>
 		  
 		  <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Kelas <span class="uk-text-large">
+          <h1 class="uk-article-title">Input Nilai <span class="uk-text-large">
           <?php  if (isset($_SESSION['administrator'])) {?>
 		  { Master Data }</span></h1>
           <?php  }?>
           <br>
           <?php if (isset($_SESSION['administrator'])) { ?>
-          <a href="./kelas.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Kelas"><i class="uk-icon-plus"></i> Data Kelas</a>
+          <a href="./nilai.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Nilai"><i class="uk-icon-plus"></i> Data Nilai</a>
 		  <?php } ?>
 		   <br><br>
 		  
