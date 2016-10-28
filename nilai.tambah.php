@@ -42,7 +42,7 @@ loadAssetsHead('Tambah Data Nilai');
           <div class="uk-grid" data-uk-grid-margin>
             <div class="uk-width-medium-1-1">
              
-        <form id="formnilai" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data" action="nilai.tambah2.php" onKeyUp="highlight(event)" onClick="highlight(event)" onsubmit="return validate(this)" method="get">
+          <form id="form" method="GET" class="form-horizontal form-label-left" enctype="multipart/form-data" action="nilai.tambah2.php" onKeyUp="highlight(event)" onClick="highlight(event)" onsubmit="return validate(this)">
 
       <div class="item form-group">
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kelas">Pilih Kelas<span class="required">*</span>

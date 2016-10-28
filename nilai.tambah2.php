@@ -22,7 +22,7 @@ $kelas = $_GET['kelas'];
   // LOAD MAIN MENU
   loadMainMenu();
   ?>
-   
+
   <div class="uk-container uk-container-center uk-margin-large-top">
     <div class="uk-grid" data-uk-grid-margin data-uk-grid-match>
       <div class="uk-width-medium-1-6 uk-hidden-small">
@@ -34,10 +34,8 @@ $kelas = $_GET['kelas'];
             <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SDN II Manangga" title="Sistem Informasi Akademik SDN II Manangga">
           </div>
           <hr class="uk-article-divider">
-                 <?php $kls = mysql_fetch_array(mysql_query("SELECT nm_kelas FROM kelas WHERE id_kelas = $kelas"));?>
-                 <?php echo $kls; ?>   
           <h1 class="uk-article-title">Input Nilai <span class="uk-text-large">{ Tambah Data Nilai 
- 
+          <?php $kls = mysql_fetch_array(mysql_query("SELECT nm_kelas FROM kelas WHERE id_kelas = $kelas")); echo $kls['nm_kelas']; ?>    
           }</span></h1>
           <br>
           <a href="./nilai" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Nilai"><i class="uk-icon-angle-left"></i> Kembali</a>
