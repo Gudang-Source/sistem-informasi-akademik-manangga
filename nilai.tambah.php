@@ -16,7 +16,47 @@ loadAssetsHead('Tambah Data Nilai');
 
 
 ?>
-
+     <script type="text/javascript">
+        var htmlobjek;
+        $(document).ready(function(){
+  //apabila terjadi event onchange terhadap object <select id=prov>
+  $("#prov").change(function(){
+    var prov = $("#prov").val();
+    $.ajax({
+      url: "inc/jikuk_kabupaten.php",
+      data: "prov="+prov,
+      cache: false,
+      success: function(msg){
+            //jika data sukses diambil dari server kita tampilkan
+            //di <select id=kota>
+            $("#kota").html(msg);
+        }
+    });
+  });
+  $("#kota").change(function(){
+    var kota = $("#kota").val();
+    $.ajax({
+      url: "inc/jikuk_kecamatan.php",
+      data: "kota="+kota,
+      cache: false,
+      success: function(msg){
+        $("#id_kec").html(msg);
+      }
+    });
+  });
+  $("#id_kec").change(function(){
+    var id_kec = $("#id_kec").val();
+    $.ajax({
+      url: "inc/jikuk_kelurahan.php",
+      data: "id_kec="+id_kec,
+      cache: false,
+      success: function(msg){
+        $("#id_kel").html(msg);
+      }
+    });
+  });
+});
+      </script>
 <body>
 
   <?php
@@ -42,7 +82,7 @@ loadAssetsHead('Tambah Data Nilai');
           <div class="uk-grid" data-uk-grid-margin>
             <div class="uk-width-medium-1-1">
              
-          <form id="form" method="GET" class="form-horizontal form-label-left" enctype="multipart/form-data" action="nilai.tambah2.php" onKeyUp="highlight(event)" onClick="highlight(event)" onsubmit="return validate(this)">
+          <form id="formnilai" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
 
       <div class="item form-group">
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kelas">Pilih Kelas<span class="required">*</span>
@@ -51,12 +91,10 @@ loadAssetsHead('Tambah Data Nilai');
             <select name="kelas" id="kelas" class="form-control col-md-7 col-xs-12">
               <option value="">--- Pilih Kelas --</option>
               <?php
-              $query = "SELECT * from kelas";
-              $hasil = mysql_query($query);
-              while ($data = mysql_fetch_array($hasil))
-              {
-                echo "<option value=".$data['id_kelas'].">".$data['nm_kelas']."</option>";
-              }
+                $kelas =mysql_query("SELECT * FROM kelas ORDER BY nm_kelas");
+                  while ($datakelas=mysql_fetch_array($kelas)) {
+                     echo "<option value=\"$datakelas[id_kelas]\">$datakelas[nm_kelas]</option>\n";
+                  }
               ?>
             </select>
           </div>
@@ -64,7 +102,7 @@ loadAssetsHead('Tambah Data Nilai');
 
         <div style="text-align:center" class="form-actions no-margin-bottom">
             <td colspan="3"><div align="center">
-      <input type="submit" name="Submit" value="Input Nilai >>" />
+    <input type="submit" name="Submit" value="Input Nilai >>" />
     <input type="reset" name="reset" value="Reset" />
     </div></td>
        </div>

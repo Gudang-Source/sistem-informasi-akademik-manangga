@@ -43,16 +43,16 @@ $kelas = $_GET['kelas'];
           <div class="uk-grid" data-uk-grid-margin>
             <div class="uk-width-medium-1-1">
              
-        <form id="formnilai" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data" action="nilai.tambah2.php" onKeyUp="highlight(event)" onClick="highlight(event)" onsubmit="return validate(this)" method="get">
-
+        <form id="form" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data" action="isi.nilai.php" onKeyUp="highlight(event)" onClick="highlight(event)" onsubmit="return validate(this)">
+<input type="hidden" name="kelas" value="<?php echo $kelas; ?>" />
       <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_guru">Pilih Siswa<span class="required">*</span>
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="siswa">Pilih Siswa<span class="required">*</span>
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <select name="siswa" id="siswa" class="form-control col-md-7 col-xs-12">
               <option value="">--- Pilih Siswa --</option>
   <?php 
-  $baris = mysql_query("SELECT id_siswa, nm_siswa FROM siswa WHERE kelas = '$kls'");
+  $baris = mysql_query("SELECT id_siswa, nm_siswa, nm_kelas FROM siswa, kelas WHERE kelas = '$kls[nm_kelas]'");
     while ($siswa = mysql_fetch_array($baris)){
     echo "<option value=\"$siswa[id_siswa]\">$siswa[nm_siswa]</option>";
   }
