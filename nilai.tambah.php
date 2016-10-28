@@ -20,16 +20,16 @@ loadAssetsHead('Tambah Data Nilai');
         var htmlobjek;
         $(document).ready(function(){
   //apabila terjadi event onchange terhadap object <select id=prov>
-  $("#prov").change(function(){
-    var prov = $("#prov").val();
+  $("#kel").change(function(){
+    var kel = $("#kel").val();
     $.ajax({
-      url: "inc/jikuk_kabupaten.php",
-      data: "prov="+prov,
+      url: "inc/ambil_siswa.php",
+      data: "kel="+kel,
       cache: false,
       success: function(msg){
             //jika data sukses diambil dari server kita tampilkan
             //di <select id=kota>
-            $("#kota").html(msg);
+            $("#siswa").html(msg);
         }
     });
   });
@@ -85,10 +85,10 @@ loadAssetsHead('Tambah Data Nilai');
           <form id="formnilai" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
 
       <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kelas">Pilih Kelas<span class="required">*</span>
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kel">Pilih Kelas<span class="required">*</span>
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
-            <select name="kelas" id="kelas" class="form-control col-md-7 col-xs-12">
+            <select name="kel" id="kel" class="form-control col-md-7 col-xs-12">
               <option value="">--- Pilih Kelas --</option>
               <?php
                 $kelas =mysql_query("SELECT * FROM kelas ORDER BY nm_kelas");
@@ -99,6 +99,17 @@ loadAssetsHead('Tambah Data Nilai');
             </select>
           </div>
         </div>
+
+         <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="siswa">Siswa <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="siswa" name="siswa" required>
+                            <option value="">-Pilih Siswa-</option>
+                          </select>
+                          <div class="reg-info">Daftar Siswa </div>
+                        </div>
+                      </div>
 
         <div style="text-align:center" class="form-actions no-margin-bottom">
             <td colspan="3"><div align="center">
