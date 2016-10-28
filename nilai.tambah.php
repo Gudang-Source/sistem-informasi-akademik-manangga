@@ -64,7 +64,7 @@ loadAssetsHead('Tambah Data Nilai');
 
         <div style="text-align:center" class="form-actions no-margin-bottom">
             <td colspan="3"><div align="center">
-      <input type="submit" name="Submit" value="Input Nilai" />
+      <input type="submit" name="Submit" value="Input Nilai >>" />
     <input type="reset" name="reset" value="Reset" />
     </div></td>
        </div>

@@ -49,16 +49,14 @@ $kelas = $_GET['kelas'];
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_guru">Pilih Siswa<span class="required">*</span>
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
-            <select name="nis" id="nis" value="<?php echo $datanis; ?>" class="form-control col-md-7 col-xs-12">
+            <select name="siswa" id="siswa" class="form-control col-md-7 col-xs-12">
               <option value="">--- Pilih Siswa --</option>
-              <?php
-              $query = "SELECT * from kelas";
-              $hasil = mysql_query($query);
-              while ($data = mysql_fetch_array($hasil))
-              {
-                echo "<option value=".$data['id_kelas'].">".$data['nm_kelas']."</option>";
-              }
-              ?>
+  <?php 
+  $baris = mysql_query("SELECT id_siswa, nm_siswa FROM siswa WHERE kelas = '$kls'");
+    while ($siswa = mysql_fetch_array($baris)){
+    echo "<option value=\"$siswa[id_siswa]\">$siswa[nm_siswa]</option>";
+  }
+  ?>
             </select>
           </div>
         </div>
