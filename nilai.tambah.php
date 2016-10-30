@@ -83,6 +83,23 @@ loadAssetsHead('Tambah Data Nilai');
             <div class="uk-width-medium-1-1">
              
           <form id="formnilai" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
+   
+      <div class="item form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kel">Pilih Tahun Ajaran<span class="required">*</span>
+           </label>
+           <div class="col-md-6 col-sm-6 col-xs-12">
+            <select name="ajaran" id="ajaran" class="form-control col-md-7 col-xs-12">
+              <option value="">--- Pilih Tahun Ajaran --</option>
+              <?php
+                $ajaran =mysql_query("SELECT * FROM kelas_siswa ORDER BY thn_ajaran");
+                  while ($datatahunajaran=mysql_fetch_array($ajaran)) {
+                     echo "<option value=\"$datatahunajaran[id_kelas_siswa]\">$datatahunajaran[thn_ajaran]</option>\n";
+                  }
+              ?>
+            </select>
+          </div>
+        </div>
+
 
       <div class="item form-group">
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kel">Pilih Kelas<span class="required">*</span>
