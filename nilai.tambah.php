@@ -101,16 +101,122 @@ loadAssetsHead('Tambah Data Nilai');
         </div>
 
          <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="siswa">Siswa <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="siswa" name="siswa" required>
-                            <option value="">-Pilih Siswa-</option>
-                          </select>
-                          <div class="reg-info">Daftar Siswa </div>
-                        </div>
-                      </div>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="siswa">Siswa <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="siswa" name="siswa" required>
+                    <option value="">-Pilih Siswa-</option>
+                </select>
+                </div>
+          </div>
 
+     <div class="item form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mapel">Mata Pelajaran<span class="required">*</span>
+           </label>
+           <div class="col-md-6 col-sm-6 col-xs-12">
+            <select name="mapel" id="mapel" value="<?php echo $datamapel; ?>" class="form-control col-md-7 col-xs-12">
+              <option value="">--- Pilih Mata Pelajaran --</option>
+              <?php
+              $query = "SELECT * from mapel";
+              $hasil = mysql_query($query);
+              while ($data = mysql_fetch_array($hasil))
+              {
+                echo "<option value=".$data['kd_mapel'].">".$data['nm_mapel']."</option>";
+              }
+              ?>
+            </select>
+          </div>
+        </div>
+
+        <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="harian1">Nilai Harian<span class="required">*</span>
+            </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" id="harian1" name="harian1" value="<?php echo $harian1; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                  <div class="reg-info">Isi nilai harian 1. Contoh: 1-100.</div>
+              </div>
+        </div>
+
+        <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="harian2"></span>
+            </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" id="harian2" name="harian2" value="<?php echo $harian2; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                  <div class="reg-info">Isi nilai harian 2. Contoh: 1-100.</div>
+              </div>
+        </div>
+
+        <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="harian3"></span>
+            </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" id="harian3" name="harian3" value="<?php echo $harian3; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                  <div class="reg-info">Isi nilai harian 3. Contoh: 1-100.</div>
+              </div>
+        </div>
+
+          <div class="item form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="harian1">Nilai Tugas<span class="required">*</span>
+              </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="tugas1" name="tugas1" value="<?php echo $tugas1; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                    <div class="reg-info">Isi nilai tugas 1. Contoh: 1-100.</div>
+                </div>
+          </div>
+
+        <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tugas2"></span>
+            </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" id="tugas2" name="tugas2" value="<?php echo $tugas2; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                  <div class="reg-info">Isi nilai tugas 2. Contoh: 1-100.</div>
+              </div>
+        </div>
+
+        <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tugas3"></span>
+            </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" id="tugas3" name="tugas3" value="<?php echo $tugas3; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                  <div class="reg-info">Isi nilai tugas 3. Contoh: 1-100.</div>
+              </div>
+        </div>
+
+        <div class="item form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="uts">Nilai UTS<span class="required">*</span>
+              </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="uts" name="uts" value="<?php echo $uts; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                    <div class="reg-info">Isi nilai UTS. Contoh: 1-100.</div>
+                </div>
+          </div>
+
+        <div class="item form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="uas">Nilai UAS<span class="required">*</span>
+              </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="uas" name="uas" value="<?php echo $uas; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                    <div class="reg-info">Isi nilai UAS. Contoh: 1-100.</div>
+                </div>
+          </div>
+
+        <div class="item form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nrataraport">Nilai Rata-rata<span class="required">*</span>
+              </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="nrataraport" name="nrataraport" value="<?php echo $nrataraport; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                    <div class="reg-info">Isi nilai rata-rata raport. Contoh: 1-100.</div>
+                </div>
+          </div>
+
+        <div class="item form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rangking">Rangking<span class="required">*</span>
+              </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="rangking" name="rangking" value="<?php echo $rangking; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                    <div class="reg-info">Isi rangking</div>
+                </div>
+          </div>
         <div style="text-align:center" class="form-actions no-margin-bottom">
             <td colspan="3"><div align="center">
     <input type="submit" name="Submit" value="Input Nilai >>" />

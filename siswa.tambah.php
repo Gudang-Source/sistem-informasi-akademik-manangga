@@ -427,14 +427,14 @@ $data=mysql_fetch_array($hasil);
           </div>
        </div>
 
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="no_hp">No. HP<span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="no_hp" name="no_hp" value="<?php echo $datanohp; ?>" required="required" class="form-control col-md-7 col-xs-12">
-                          <div class="reg-info">Contoh: 08123456789. Wajib Isi Data Nomor Handphone yang Dapat Dihubungi.</div>
-                        </div>
-                      </div>
+        <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="no_hp">No. HP<span class="required">*</span>
+            </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" id="no_hp" name="no_hp" value="<?php echo $datanohp; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                  <div class="reg-info">Contoh: 08123456789. Wajib Isi Data Nomor Handphone yang Dapat Dihubungi.</div>
+              </div>
+        </div>
 
      <div class="item form-group">
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kd_kelas">Kelas<span class="required">*</span>

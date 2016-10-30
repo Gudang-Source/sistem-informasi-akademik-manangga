@@ -106,7 +106,7 @@
   # MEMBUAT NILAI DATA PADA FORM
   # SIMPAN DATA PADA FORM, Jika saat Sumbit ada yang kosong (lupa belum diisi)
   
-  $edit = mysql_query("SELECT * FROM siswa, kelas WHERE siswa.kd_kelas=kelas.kd_kelas AND nis='$_GET[id]'");
+  $edit = mysql_query("SELECT * FROM siswa, kelas WHERE siswa.id_kelas=kelas.id_kelas AND nis='$_GET[id]'");
   $rowks  = mysql_fetch_array($edit);
 
   ?>
@@ -256,23 +256,23 @@
 </div>
 
 <div class="item form-group">
- <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kd_kelas">Kelas<span class="required">*</span>
+ <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_kelas">Kelas<span class="required">*</span>
  </label>
  <div class="col-md-6 col-sm-6 col-xs-12">
-  <select name="kd_kelas" id="kd_kelas" value="<?php echo $rowks['kd_kelas'];?>" class="form-control col-md-7 col-xs-12">
+  <select name="id_kelas" id="id_kelas" value="<?php echo $rowks['id_kelas'];?>" class="form-control col-md-7 col-xs-12">
     <option value="">--- Pilih Kelas Siswa --</option>
     <?php
     $query = "SELECT * from kelas";
     $hasil = mysql_query($query);
     while ($data = mysql_fetch_array($hasil))
     {
-      if ($data['kd_kelas']==$rowks['kd_kelas']) {
+      if ($data['id_kelas']==$rowks['id_kelas']) {
        $cek ="selected";
      }
      else{
       $cek= "";
     }
-    echo "<option value=\"$data[kd_kelas]\" $cek>$data[nm_kelas]</option>\n";           
+    echo "<option value=\"$data[id_kelas]\" $cek>$data[nm_kelas]</option>\n";           
   }
   
   ?>

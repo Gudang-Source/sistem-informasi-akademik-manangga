@@ -39,14 +39,14 @@ loadAssetsHead('Lihat Data Siswa');
       </div>
       
       <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Lihat Siswa <span class="uk-text-large">
+          <h1 class="uk-article-title">Lihat Siswa per Tahun Ajaran<span class="uk-text-large">
           <?php  if (isset($_SESSION['administrator'])) {?>
       { Master Data }</span></h1>
           <?php  }?>
           <br>
           <?php if (isset($_SESSION['administrator'])) { ?>
-          <a href="./siswa.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Siswa"><i class="uk-icon-plus"></i> Siswa</a>
-          <a href="./siswa" class="uk-button uk-button-small" type="button" title="Tambah Data Siswa">Kembali</a>
+          <a href="./siswakelas.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Siswa per Kelas"><i class="uk-icon-plus"></i> Siswa</a>
+          <a href="./siswa.kelas" class="uk-button uk-button-small" type="button" title="Tambah Data Siswa">Kembali</a>
       <?php } ?>
        <br><br>
       
@@ -61,23 +61,28 @@ loadAssetsHead('Lihat Data Siswa');
               <div><a href="javascript:sorter.reset()">(atur ulang)</a></div>
             </span>
           </div>
-          <?PHP
-            
-
-            $id_kelas = $_REQUEST ['id_kelas'];
-            
-            $sql_select="select * from siswa where id_kelas= '$id_kelas'";
+          <?php
+          
+            $sql_select="SELECT
+siswa.id_siswa,
+kelas_siswa.id_tahun,
+siswa.nis,
+siswa.nm_siswa,
+siswa.`password`
+FROM
+siswa ,
+kelas_siswa
+WHERE siswa.id_siswa=kelas_siswa.id_siswa
+";
             $query_select=mysql_query($sql_select); 
-             
+
             echo "<table class='table table-nama' style='border: none; margin-bottom:2%'>";
             echo "<thead><tr>
             <th><h3 class='uk-text-center'>NIS</th>
             <th><h3 class='uk-text-center'>Nama Siswa</th>
-            <th><h3 class='uk-text-center'>JK</th>
-            <th><h3 class='uk-text-center'>Agama</th>
             <th><h3 class='uk-text-center'>Password</th>
-            <th><h3 class='uk-text-center'>Kode Kelas</th>
-            <th><h3 class='uk-text-center'>Email</th>
+            <th><h3 class='uk-text-center'>Tahun Pelajaran</th>
+            <th><h3 class='uk-text-center'>Kelas</th>
             <th><h3 class='uk-text-center'>Aksi</th>
             </tr></thead>";
             echo "<tbody>";
@@ -87,30 +92,28 @@ loadAssetsHead('Lihat Data Siswa');
                 $nis = $row['nis'];
                 $id_siswa = $row['id_siswa'];
                 $nm_siswa = $row['nm_siswa'];
-                $jns_kelamin = $row['jns_kelamin'];
-                $agama = $row['agama'];
                 $password = $row['password'];
-                $id_kelas = $row['id_kelas'];
-                $email = $row['email'];
+                 $id_kelas = $row['id_kelas'];
 
                
                 echo "<td align='center'>$nis</td>"; 
                 echo "<td align='center'>$nm_siswa</td>";
-                echo "<td align='center'>$jns_kelamin</td>";
-                echo "<td align='center'>$agama</td>";
                 echo "<td align='center'>$password</td>";
+               
                 echo "<td align='center'>$id_kelas</td>";
-                echo "<td align='center'>$email</td>";
+                 $tahunajaran =mysql_query("SELECT * FROM tahun_ajaran ORDER BY thn_ajaran");
+                  while ($datatahunajaran=mysql_fetch_array($tahunajaran)) {
+                     echo "<td align='center'\"$datatahunajaran[id_tahun]\">$datatahunajaran[thn_ajaran]</option>\n";
+                  }
                 echo "<form method='POST' action='action_hapus_siswa.php' name='action'>
                 <input type='hidden' value='$nis' name='nis'>
                 <input type='hidden' value='$id_kelas' name='id_kelas'>
 
                 <td align='center'>
 
-                 <a href='siswa.lihat?id=$id_siswa' title='Lihat' data-uk-tooltip='{pos:'top-left'}'' class='uk-button uk-button-small'><i class='uk-icon-search'></i></a>
-                 <a href='siswa.update?id=$nis' title='Sunting' data-uk-tooltip='{pos:'top-left'}'' class='uk-button uk-button-small'><i class='uk-icon-pencil'></i></a>
-                 <a href='siswa.hapus?id=$nis' onclick='return confirm('Apakah anda yakin akan menghapus data ini?')' title='Hapus' data-uk-tooltip='{pos:'top-left'}'' class='uk-button uk-button-small uk-button-danger'><i class='uk-icon-remove'></i></a>
-
+                 <a href='siswakelas.lihat?id=$id_siswa' title='Lihat' data-uk-tooltip='{pos:'top-left'}'' class='uk-button uk-button-small'><i class='uk-icon-search'></i></a>
+                 <a href='siswakelas.update?id=$nis' title='Sunting' data-uk-tooltip='{pos:'top-left'}'' class='uk-button uk-button-small'><i class='uk-icon-pencil'></i></a>
+				<a href='siswakelas.hapus?id=$nis' onclick='return confirm('Apakah anda yakin akan menghapus data ini?')' title='Hapus' data-uk-tooltip='{pos:'top-left'}'' class='uk-button uk-button-small uk-button-danger'><i class='uk-icon-remove'></i></a>
 
                 </td>
                 </form>";
@@ -209,3 +212,4 @@ loadAssetsFoot();
 
 ob_end_flush();
 ?>
+
