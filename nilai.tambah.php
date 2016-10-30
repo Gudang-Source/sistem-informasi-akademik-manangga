@@ -20,11 +20,11 @@ loadAssetsHead('Tambah Data Nilai');
         var htmlobjek;
         $(document).ready(function(){
   //apabila terjadi event onchange terhadap object <select id=prov>
-  $("#kel").change(function(){
-    var kel = $("#kel").val();
+  $("#ajaran").change(function(){
+    var ajaran = $("#ajaran").val();
     $.ajax({
-      url: "inc/ambil_siswa.php",
-      data: "kel="+kel,
+      url: "inc/ambil_kelas.php",
+      data: "ajaran="+ajaran,
       cache: false,
       success: function(msg){
             //jika data sukses diambil dari server kita tampilkan
@@ -85,7 +85,7 @@ loadAssetsHead('Tambah Data Nilai');
           <form id="formnilai" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
    
       <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kel">Pilih Tahun Ajaran<span class="required">*</span>
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ajaran">Pilih Tahun Ajaran<span class="required">*</span>
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <select name="ajaran" id="ajaran" class="form-control col-md-7 col-xs-12">
@@ -106,13 +106,7 @@ loadAssetsHead('Tambah Data Nilai');
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <select name="kel" id="kel" class="form-control col-md-7 col-xs-12">
-              <option value="">--- Pilih Kelas --</option>
-              <?php
-                $kelas =mysql_query("SELECT * FROM kelas ORDER BY nm_kelas");
-                  while ($datakelas=mysql_fetch_array($kelas)) {
-                     echo "<option value=\"$datakelas[id_kelas]\">$datakelas[nm_kelas]</option>\n";
-                  }
-              ?>
+                    <option value="">-Pilih Kelas-</option>
             </select>
           </div>
         </div>
