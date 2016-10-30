@@ -5,7 +5,7 @@ checkUserAuth();
 checkUserRole(array(1, 10));
 
 /*template control*/
-$ui_register_page     = 'siswa';
+$ui_register_page     = 'siswa.pertahun';
 $ui_register_assets   = array('datepicker');
 
 /*load header*/
@@ -21,8 +21,8 @@ if (isset ($_POST["siswakelas_simpan"])) {
     $id_siswa     = $_POST['id_siswa'];
     $id_siswa     = str_replace("", "&acute;", $id_siswa);
 
-    $id_tahun     = $_POST['id_tahun'];
-    $id_tahun     = str_replace("", "&acute;", $id_tahun);
+    $thn_ajaran     = $_POST['thn_ajaran'];
+    $thn_ajaran     = str_replace("", "&acute;", $thn_ajaran);
 
     // validation form kosong
 $pesanError= array();
@@ -32,7 +32,7 @@ if (trim($id_kelas)=="") {
 if (trim($id_siswa)=="") {
     $pesanError[]="Data <b>Data Siswa</b> Masih Kosong.";
   }
-if (trim($id_tahun)=="") {
+if (trim($thn_ajaran)=="") {
     $pesanError[]="Data <b>Tahun Ajaran</b> Masih Kosong.";
   }
 
@@ -58,11 +58,11 @@ if (trim($id_tahun)=="") {
     else{
 
     // simpan ke database
-  $querytambahsiswakelas = mysql_query("INSERT INTO kelas_siswa (id_kelas, id_siswa, id_tahun) 
-    VALUES ( '$id_kelas' , '$id_siswa' , '$id_tahun' )") or die(mysql_error());
+  $querytambahsiswakelas = mysql_query("INSERT INTO kelas_siswa (id_kelas, id_siswa, thn_ajaran) 
+    VALUES ( '$id_kelas' , '$id_siswa' , '$thn_ajaran' )") or die(mysql_error());
 
   if ($querytambahsiswakelas){ 
-    header('location: ./siswa.kelas');
+    header('location: ./siswa.pertahun');
   }
  }
 }
@@ -70,7 +70,7 @@ if (trim($id_tahun)=="") {
     // simpan pada form, dan jika form belum terisi
   $dataidkelas  = isset($_POST['id_kelas']) ? $_POST['id_kelas'] : '';
   $dataidsiswa  = isset($_POST['id_siswa']) ? $_POST['id_siswa'] : '';
-  $dataidtahun  = isset($_POST['id_tahun']) ? $_POST['id_tahun'] : '';
+  $datatahunajaran  = isset($_POST['thn_ajaran']) ? $_POST['thn_ajaran'] : '';
 
   $edit = mysql_query("SELECT * FROM siswa, kelas WHERE siswa.id_kelas=kelas.id_kelas AND nis='$_GET[id]'");
   $rowks  = mysql_fetch_array($edit);
@@ -97,7 +97,7 @@ if (trim($id_tahun)=="") {
           <hr class="uk-article-divider">
           <h1 class="uk-article-title">Siswa <span class="uk-text-large">{ Tambah Data Siswa per Tahun Ajaran }</span></h1>
           <br>
-          <a href="./siswa.kelas" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Siswa"><i class="uk-icon-angle-left"></i> Kembali</a>
+          <a href="./siswa.pertahun" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Siswa"><i class="uk-icon-angle-left"></i> Kembali</a>
 
           <!-- <hr class="uk-article-divider"> -->
 
@@ -153,17 +153,21 @@ if (trim($id_tahun)=="") {
         </div>
 
         <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_tahun">Pilih Tahun Pelajaran<span class="required">*</span>
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="thn_ajaran">Pilih Tahun Pelajaran<span class="required">*</span>
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
-            <select name="id_tahun" id="id_tahun" value="<?php echo $datatahunpelajaran; ?>" class="form-control col-md-7 col-xs-12">
+            <select name="thn_ajaran" id="thn_ajaran" value="<?php echo $datatahunajaran; ?>" class="form-control col-md-7 col-xs-12">
               <option value="">--- Tahun Pelajaran --</option>
-              <?php
-              $query = "SELECT * from tahun_ajaran";
-              $hasil = mysql_query($query);
-              while ($data = mysql_fetch_array($hasil))
-              {
-                echo "<option value=".$data['id_tahun'].">".$data['thn_ajaran']."</option>";
+                <?php
+                $thn_ajaran =mysql_query("SELECT * FROM tahun_ajaran ORDER BY thn_ajaran");
+                while ($datatahunajaran=mysql_fetch_array($thn_ajaran)) {
+                 if ($datatahunajaran['thn_ajaran']==$rowks['thn_ajaran']) {
+                   $cek ="selected";
+                 }
+                 else{
+                  $cek= "";
+                }
+                echo "<option value=\"$datatahunajaran[thn_ajaran]\" $cek>$datatahunajaran[thn_ajaran]</option>\n";
               }
               ?>
             </select>

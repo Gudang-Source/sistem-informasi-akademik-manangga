@@ -5,11 +5,11 @@ checkUserAuth();
 checkUserRole(array(10,1));
 
 // TEMPLATE CONTROL
-$ui_register_page     = 'siswa';
+$ui_register_page     = 'siswa.pertahun';
 $ui_register_assets   = array('datepicker');
 
 // LOAD HEADER
-loadAssetsHead('Lihat Data Siswa');
+loadAssetsHead('Lihat Data Siswa per Tahun Ajaran');
 
 // FORM PROCESSING
 // ... code here ...
@@ -39,14 +39,14 @@ loadAssetsHead('Lihat Data Siswa');
       </div>
       
       <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Lihat Siswa per Tahun Ajaran<span class="uk-text-large">
+          <h1 class="uk-article-title">Lihat Siswa <span class="uk-text-large">
           <?php  if (isset($_SESSION['administrator'])) {?>
       { Master Data }</span></h1>
           <?php  }?>
           <br>
           <?php if (isset($_SESSION['administrator'])) { ?>
-          <a href="./siswakelas.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Siswa per Kelas"><i class="uk-icon-plus"></i> Siswa</a>
-          <a href="./siswa.kelas" class="uk-button uk-button-small" type="button" title="Tambah Data Siswa">Kembali</a>
+          <a href="./siswakelas.tambahtahun" class="uk-button uk-button-success" type="button" title="Tambah Data Siswa per Tahun Ajaran"><i class="uk-icon-plus"></i> Siswa per Tahun Ajaran</a>
+
       <?php } ?>
        <br><br>
       
@@ -63,17 +63,7 @@ loadAssetsHead('Lihat Data Siswa');
           </div>
           <?php
           
-            $sql_select="SELECT
-siswa.id_siswa,
-kelas_siswa.id_tahun,
-siswa.nis,
-siswa.nm_siswa,
-siswa.`password`
-FROM
-siswa ,
-kelas_siswa
-WHERE siswa.id_siswa=kelas_siswa.id_siswa
-";
+            $sql_select="SELECT * FROM siswa, kelas_siswa WHERE siswa.id_siswa=kelas_siswa.id_siswa";
             $query_select=mysql_query($sql_select); 
 
             echo "<table class='table table-nama' style='border: none; margin-bottom:2%'>";
@@ -93,18 +83,14 @@ WHERE siswa.id_siswa=kelas_siswa.id_siswa
                 $id_siswa = $row['id_siswa'];
                 $nm_siswa = $row['nm_siswa'];
                 $password = $row['password'];
-                 $id_kelas = $row['id_kelas'];
-
+                $thn_ajaran = $row['thn_ajaran'];
+                $id_kelas = $row['id_kelas'];
                
                 echo "<td align='center'>$nis</td>"; 
                 echo "<td align='center'>$nm_siswa</td>";
                 echo "<td align='center'>$password</td>";
-               
+                echo "<td align='center'>$thn_ajaran</td>";
                 echo "<td align='center'>$id_kelas</td>";
-                 $tahunajaran =mysql_query("SELECT * FROM tahun_ajaran ORDER BY thn_ajaran");
-                  while ($datatahunajaran=mysql_fetch_array($tahunajaran)) {
-                     echo "<td align='center'\"$datatahunajaran[id_tahun]\">$datatahunajaran[thn_ajaran]</option>\n";
-                  }
                 echo "<form method='POST' action='action_hapus_siswa.php' name='action'>
                 <input type='hidden' value='$nis' name='nis'>
                 <input type='hidden' value='$id_kelas' name='id_kelas'>
