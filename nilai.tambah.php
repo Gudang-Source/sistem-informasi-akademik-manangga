@@ -29,7 +29,7 @@ loadAssetsHead('Tambah Data Nilai');
       success: function(msg){
             //jika data sukses diambil dari server kita tampilkan
             //di <select id=kota>
-            $("#siswa").html(msg);
+            $("#kel").html(msg);
         }
     });
   });
