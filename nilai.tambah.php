@@ -33,14 +33,14 @@ loadAssetsHead('Tambah Data Nilai');
         }
     });
   });
-  $("#kota").change(function(){
-    var kota = $("#kota").val();
+  $("#kel").change(function(){
+    var kel = $("#kel").val();
     $.ajax({
-      url: "inc/jikuk_kecamatan.php",
-      data: "kota="+kota,
+      url: "inc/ambil_siswa.php",
+      data: "kel="+kel,
       cache: false,
       success: function(msg){
-        $("#id_kec").html(msg);
+        $("#sis").html(msg);
       }
     });
   });
@@ -91,9 +91,9 @@ loadAssetsHead('Tambah Data Nilai');
             <select name="ajaran" id="ajaran" class="form-control col-md-7 col-xs-12">
               <option value="">--- Pilih Tahun Ajaran --</option>
               <?php
-                $ajaran =mysql_query("SELECT * FROM kelas_siswa ORDER BY thn_ajaran");
+                $ajaran =mysql_query("SELECT DISTINCT thn_ajaran FROM tahun_ajaran");
                   while ($datatahunajaran=mysql_fetch_array($ajaran)) {
-                     echo "<option value=\"$datatahunajaran[id_kelas_siswa]\">$datatahunajaran[thn_ajaran]</option>\n";
+                     echo "<option value=\"$datatahunajaran[id_tahun]\">$datatahunajaran[thn_ajaran]</option>\n";
                   }
               ?>
             </select>
@@ -112,10 +112,10 @@ loadAssetsHead('Tambah Data Nilai');
         </div>
 
          <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="siswa">Siswa <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sis">Siswa <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="siswa" name="siswa" required>
+                <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="sis" name="sis" required>
                     <option value="">-Pilih Siswa-</option>
                 </select>
                 </div>
