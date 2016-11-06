@@ -21,6 +21,9 @@ if (isset ($_POST["siswakelas_simpan"])) {
     $id_siswa     = $_POST['id_siswa'];
     $id_siswa     = str_replace("", "&acute;", $id_siswa);
 
+    $nm_siswa     = $_POST['nm_siswa'];
+    $nm_siswa     = str_replace("", "&acute;", $nm_siswa);
+
     $thn_ajaran     = $_POST['thn_ajaran'];
     $thn_ajaran     = str_replace("", "&acute;", $thn_ajaran);
 
@@ -30,7 +33,10 @@ if (trim($id_kelas)=="") {
     $pesanError[]="Data <b>Kelas</b> Masih Kosong.";
   }
 if (trim($id_siswa)=="") {
-    $pesanError[]="Data <b>Data Siswa</b> Masih Kosong.";
+    $pesanError[]="Data <b>ID Siswa</b> Masih Kosong.";
+  }
+if (trim($nm_siswa)=="") {
+    $pesanError[]="Data <b>Nama Siswa</b> Masih Kosong.";
   }
 if (trim($thn_ajaran)=="") {
     $pesanError[]="Data <b>Tahun Ajaran</b> Masih Kosong.";
@@ -58,8 +64,8 @@ if (trim($thn_ajaran)=="") {
     else{
 
     // simpan ke database
-  $querytambahsiswakelas = mysql_query("INSERT INTO kelas_siswa (id_kelas, id_siswa, thn_ajaran) 
-    VALUES ( '$id_kelas' , '$id_siswa' , '$thn_ajaran' )") or die(mysql_error());
+  $querytambahsiswakelas = mysql_query("INSERT INTO kelas_siswa (id_kelas, id_siswa, nm_siswa, thn_ajaran) 
+    VALUES ( '$id_kelas' , '$id_siswa' , '$nm_siswa', '$thn_ajaran' )") or die(mysql_error());
 
   if ($querytambahsiswakelas){ 
     header('location: ./siswa.pertahun');
@@ -70,6 +76,7 @@ if (trim($thn_ajaran)=="") {
     // simpan pada form, dan jika form belum terisi
   $dataidkelas  = isset($_POST['id_kelas']) ? $_POST['id_kelas'] : '';
   $dataidsiswa  = isset($_POST['id_siswa']) ? $_POST['id_siswa'] : '';
+  $datanmsiswa = isset($_POST['nm_siswa']) ? $_POST['nm_siswa'] : '';
   $datatahunajaran  = isset($_POST['thn_ajaran']) ? $_POST['thn_ajaran'] : '';
 
   $edit = mysql_query("SELECT * FROM siswa, kelas WHERE siswa.id_kelas=kelas.id_kelas AND nis='$_GET[id]'");
@@ -123,7 +130,7 @@ if (trim($thn_ajaran)=="") {
          <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nm_siswa">Nama Siswa<span class="required">*</span></label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input readonly type="text" name="nm_siswa" value="<?php echo $rowks['nm_siswa'];?>" required="required" class="form-control col-md-7 col-xs-12">
+                <input readonly type="text" id="nm_siswa" name="nm_siswa" value="<?php echo $rowks['nm_siswa'];?>" required="required" class="form-control col-md-7 col-xs-12">
               </div>
          </div>
 
