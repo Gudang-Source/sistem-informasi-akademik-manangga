@@ -21,7 +21,7 @@ loadAssetsHead('Master Data Guru Mengajar');
   loadMainMenu();
   ?>
 
-  <div class="uk-container uk-container-center">
+ <div class="uk-container uk-container-center">
 
     <div class="uk-grid uk-margin-large-top" data-uk-grid-margin data-uk-grid-match>
 
@@ -30,22 +30,22 @@ loadAssetsHead('Master Data Guru Mengajar');
       </div>
 
       <div class="uk-width-medium-5-6 tm-article-side">
-        <article class="uk-article">		
-		
-		  <div class="uk-vertical-align uk-text-right uk-height-1-1">
-			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SDN II Manangga" title="Sistem Informasi Akademik SDN II Manangga">
-		  </div>
-		  
-		  <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Data Guru Mengajar <span class="uk-text-large">
+        <article class="uk-article">    
+    
+      <div class="uk-vertical-align uk-text-right uk-height-1-1">
+        <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="" title="">
+      </div>
+      
+      <hr class="uk-article-divider">
+          <h1 class="uk-article-title">Data Mengajar  <span class="uk-text-large">
           <?php  if (isset($_SESSION['administrator'])) {?>
-		  { Master Data }</span></h1>
+      { Master Data }</span></h1>
           <?php  }?>
           <br>
           <?php if (isset($_SESSION['administrator'])) { ?>
-          <a href="./mengajar.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Guru Mengajar"><i class="uk-icon-plus"></i> Tambah Guru Mengajar</a>
-		  <?php } ?>
-		   <br><br>
+          <a href="./mengajar.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Mengajar"><i class="uk-icon-plus"></i> Mengajar</a>
+      <?php } ?>
+       <br><br>
 		  
 				<div id="tablewrapper">
 					<div id="tableheader">
@@ -59,10 +59,10 @@ loadAssetsHead('Master Data Guru Mengajar');
 						</span>
 					</div>
 		  <?php
-    $sql_select="SELECT * from guru";
+    $sql_select="SELECT * from mengajar mg, guru g, kelas k, mapel m where mg.id_guru=g.id_guru and mg.id_kelas=k.id_kelas and mg.kd_mapel=m.kd_mapel order by mg.nip asc ";
     $query_select=mysql_query($sql_select); 
 
-   echo "<table id='table' class='uk-table uk-table-hover uk-table-striped uk-table-condensed' width='100%' width='100%'>";
+   echo "<table cellpadding='0' cellspacing='0' border='0' id='table' class='tinytable'>";
 	 echo "<thead>
 			<tr>
 								<th><h3 class='uk-text-center'>NIP</h3></th>
@@ -77,20 +77,20 @@ loadAssetsHead('Master Data Guru Mengajar');
           $nip = $data['nip'];
           $nm_guru = $data['nm_guru'];
           $data2 = "";
-          $jumlah = mysql_num_rows(mysql_query("SELECT * FROM mengajar WHERE id_mengajar = '$id_mengajar'"));
+          $jumlah = mysql_num_rows(mysql_query("SELECT * FROM mengajar WHERE kd_mengajar = '$kd_mengajar'"));
 
           while ($data1=mysql_fetch_array($jumlah)){
-          $data2=$data1['id_kelas']." ".$data2;
+          $data2=$data1['kd_kelas']." ".$data2;
         }
-        $jum_kelas=mysql_num_rows(mysql_query("SELECT id_kelas from mengajar where nip = '$nip'"));
+        $jum_kelas=mysql_num_rows(mysql_query("SELECT kd_kelas from mengajar where nip = '$nip'"));
 
         $jumlah2 = mysql_num_rows(mysql_query("SELECT DISTINCT kd_mapel from mengajar where nip = '$nip'"));
 
           echo "<tr>";
-          echo "<td><div class='uk-text-center'>$nip</td>"; 
-          echo "<td><div class='uk-text-center'>$nm_guru</td>";
-          echo "<td><div class='uk-text-center'>$jumlah2</td>";
-          echo "<td><div class='uk-text-center'>$jum_kelas</td>";
+          echo "<td><div class='uk-text-center'>$data[nip]</td>"; 
+          echo "<td><div class='uk-text-center'>$data[nm_guru]</td>";
+          echo "<td><div class='uk-text-center'>$data[nm_mapel]</td>";
+          echo "<td><div class='uk-text-center'>$data[nm_kelas]</td>";
           echo "<form method='POST' action='lihatsiswa' name='action'>
                 <input type='hidden' value='$nip' name='nip'>
         
