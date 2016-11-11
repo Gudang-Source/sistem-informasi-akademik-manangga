@@ -33,17 +33,17 @@ loadAssetsHead('Master Data Guru Mengajar');
         <article class="uk-article">		
 		
 		  <div class="uk-vertical-align uk-text-right uk-height-1-1">
-			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="E-Learning SMK N 4 Klaten" title="E-Learning SMK N 4 Klaten">
+			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SDN II Manangga" title="Sistem Informasi Akademik SDN II Manangga">
 		  </div>
 		  
 		  <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Data Mengajar <span class="uk-text-large">
-          <?php  if (isset($_SESSION['pengguna'])) {?>
+          <h1 class="uk-article-title">Data Guru Mengajar <span class="uk-text-large">
+          <?php  if (isset($_SESSION['administrator'])) {?>
 		  { Master Data }</span></h1>
           <?php  }?>
           <br>
-          <?php if (isset($_SESSION['pengguna'])) { ?>
-          <a href="./mengajar.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Mengajar"><i class="uk-icon-plus"></i> Mengajar</a>
+          <?php if (isset($_SESSION['administrator'])) { ?>
+          <a href="./mengajar.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Guru Mengajar"><i class="uk-icon-plus"></i> Tambah Guru Mengajar</a>
 		  <?php } ?>
 		   <br><br>
 		  
@@ -62,7 +62,7 @@ loadAssetsHead('Master Data Guru Mengajar');
     $sql_select="SELECT * from guru";
     $query_select=mysql_query($sql_select); 
 
-   echo "<table cellpadding='0' cellspacing='0' border='0' id='table' class='tinytable'>";
+   echo "<table id='table' class='uk-table uk-table-hover uk-table-striped uk-table-condensed' width='100%' width='100%'>";
 	 echo "<thead>
 			<tr>
 								<th><h3 class='uk-text-center'>NIP</h3></th>
@@ -77,12 +77,12 @@ loadAssetsHead('Master Data Guru Mengajar');
           $nip = $data['nip'];
           $nm_guru = $data['nm_guru'];
           $data2 = "";
-          $jumlah = mysql_num_rows(mysql_query("SELECT * FROM mengajar WHERE kd_mengajar = '$kd_mengajar'"));
+          $jumlah = mysql_num_rows(mysql_query("SELECT * FROM mengajar WHERE id_mengajar = '$id_mengajar'"));
 
           while ($data1=mysql_fetch_array($jumlah)){
-          $data2=$data1['kd_kelas']." ".$data2;
+          $data2=$data1['id_kelas']." ".$data2;
         }
-        $jum_kelas=mysql_num_rows(mysql_query("SELECT kd_kelas from mengajar where nip = '$nip'"));
+        $jum_kelas=mysql_num_rows(mysql_query("SELECT id_kelas from mengajar where nip = '$nip'"));
 
         $jumlah2 = mysql_num_rows(mysql_query("SELECT DISTINCT kd_mapel from mengajar where nip = '$nip'"));
 
