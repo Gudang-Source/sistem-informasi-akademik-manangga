@@ -46,32 +46,32 @@ loadAssetsHead('Master Data Guru Mengajar');
           <a href="./mengajar.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Mengajar"><i class="uk-icon-plus"></i> Mengajar</a>
       <?php } ?>
        <br><br>
-		  
-				<div id="tablewrapper">
-					<div id="tableheader">
-						<div class="search">
-							<select id="columns" onchange="sorter.search('query')"></select>
-							<input type="text" id="query" onkeyup="sorter.search('query')" />
-						</div>
-						<span class="details">
-							<div>Data <span id="startrecord"></span>-<span id="endrecord"></span> dari <span id="totalrecords"></span></div>
-							<div><a href="javascript:sorter.reset()">(atur ulang)</a></div>
-						</span>
-					</div>
-		  <?php
+      
+        <div id="tablewrapper">
+          <div id="tableheader">
+            <div class="search">
+              <select id="columns" onchange="sorter.search('query')"></select>
+              <input type="text" id="query" onkeyup="sorter.search('query')" />
+            </div>
+            <span class="details">
+              <div>Data <span id="startrecord"></span>-<span id="endrecord"></span> dari <span id="totalrecords"></span></div>
+              <div><a href="javascript:sorter.reset()">(atur ulang)</a></div>
+            </span>
+          </div>
+      <?php
     $sql_select="SELECT * from mengajar mg, guru g, kelas k, mapel m where mg.id_guru=g.id_guru and mg.id_kelas=k.id_kelas and mg.kd_mapel=m.kd_mapel order by mg.nip asc ";
     $query_select=mysql_query($sql_select); 
 
    echo "<table cellpadding='0' cellspacing='0' border='0' id='table' class='tinytable'>";
-	 echo "<thead>
-			<tr>
-								<th><h3 class='uk-text-center'>NIP</h3></th>
-								<th><h3 class='uk-text-center'>Nama Guru</h3></th>
+   echo "<thead>
+      <tr>
+                <th><h3 class='uk-text-center'>NIP</h3></th>
+                <th><h3 class='uk-text-center'>Nama Guru</h3></th>
                 <th><h3 class='uk-text-center'>Mata Pelajaran yang Diampu</h3></th>
                 <th><h3 class='uk-text-center'>Kelas yang Diampu</h3></th>
-								<th><h3 class='uk-text-center'>Aksi</h3></th>
-							</tr>
-						</thead>";
+                <th><h3 class='uk-text-center'>Aksi</h3></th>
+              </tr>
+            </thead>";
         
       while($data=mysql_fetch_array($query_select)){
           $nip = $data['nip'];
@@ -139,45 +139,45 @@ loadAssetsHead('Master Data Guru Mengajar');
                       </div>
                   </div>
                 <!-- END Pagination -->
-				</div>
-					
+        </div>
+          
         </article>
-		<br><br><br>
+    <br><br><br>
       </div>
 
     </div>
   </div>
   
-	<!-- Table Sorter Script -->
-	<script type="text/javascript" src="assets/tablesorter/script.js"></script>
-	<script type="text/javascript">
-		var sorter = new TINY.table.sorter('sorter','table',{
-			headclass:'head',
-			ascclass:'asc',
-			descclass:'desc',
-			evenclass:'evenrow',
-			oddclass:'oddrow',
-			evenselclass:'evenselected',
-			oddselclass:'oddselected',
-			paginate:true,
-			size:20,
-			colddid:'columns',
-			currentid:'currentpage',
-			totalid:'totalpages',
-			startingrecid:'startrecord',
-			endingrecid:'endrecord',
-			totalrecid:'totalrecords',
-			hoverid:'selectedrow',
-			pageddid:'pagedropdown',
-			navid:'tablenav',
-			sortcolumn:0,
-			sortdir:0,
-			columns:[{index:7, format:' buah', decimals:1}],
-			init:true
-		});
-	</script>
-	<!-- END Table Sorter Script -->
-	
+  <!-- Table Sorter Script -->
+  <script type="text/javascript" src="assets/tablesorter/script.js"></script>
+  <script type="text/javascript">
+    var sorter = new TINY.table.sorter('sorter','table',{
+      headclass:'head',
+      ascclass:'asc',
+      descclass:'desc',
+      evenclass:'evenrow',
+      oddclass:'oddrow',
+      evenselclass:'evenselected',
+      oddselclass:'oddselected',
+      paginate:true,
+      size:20,
+      colddid:'columns',
+      currentid:'currentpage',
+      totalid:'totalpages',
+      startingrecid:'startrecord',
+      endingrecid:'endrecord',
+      totalrecid:'totalrecords',
+      hoverid:'selectedrow',
+      pageddid:'pagedropdown',
+      navid:'tablenav',
+      sortcolumn:0,
+      sortdir:0,
+      columns:[{index:7, format:' buah', decimals:1}],
+      init:true
+    });
+  </script>
+  <!-- END Table Sorter Script -->
+  
 </body>
 
 <?php
