@@ -71,6 +71,7 @@ loadAssetsHead('Lihat Data Siswa');
             <th><h3 class='uk-text-center'>Nama Siswa</th>
             <th><h3 class='uk-text-center'>Password</th>
             <th><h3 class='uk-text-center'>Kelas</th>
+            <th><h3 class='uk-text-center'>Tahun Ajaran</th>
             <th><h3 class='uk-text-center'>Aksi</th>
             </tr></thead>";
             echo "<tbody>";
@@ -83,12 +84,13 @@ loadAssetsHead('Lihat Data Siswa');
                 $nm_siswa = $row['nm_siswa'];
                 $password = $row['password'];
                 $id_kelas = $row['id_kelas'];
-
+                $thn_ajaran = $row['thn_ajaran'];
                 echo "<td align='center'>$no</td>";        
                 echo "<td align='center'>$nis</td>"; 
                 echo "<td align='center'>$nm_siswa</td>";
                 echo "<td align='center'>$password</td>";
                 echo "<td align='center'>$id_kelas</td>";
+                echo "<td align='center'>$thn_ajaran</td>";
                 echo "<form method='POST' action='action_hapus_siswa.php' name='action'>
                 <input type='hidden' value='$nis' name='nis'>
                 <input type='hidden' value='$id_kelas' name='id_kelas'>
