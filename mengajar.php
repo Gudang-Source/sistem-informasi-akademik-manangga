@@ -59,7 +59,7 @@ loadAssetsHead('Master Data Guru Mengajar');
             </span>
           </div>
       <?php
-    $sql_select="SELECT * from mengajar mg, guru g, kelas k, mapel m where mg.id_guru=g.id_guru and mg.id_kelas=k.id_kelas and mg.kd_mapel=m.kd_mapel order by mg.nip asc ";
+    $sql_select="SELECT * from mengajar mg, guru g, kelas k, mapel m where mg.id_guru=g.id_guru and mg.id_kelas=k.id_kelas and mg.kd_mapel=m.kd_mapel order by mg.id_guru asc ";
     $query_select=mysql_query($sql_select); 
 
    echo "<table cellpadding='0' cellspacing='0' border='0' id='table' class='tinytable'>";
