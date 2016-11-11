@@ -44,12 +44,20 @@ if (isset ($_POST["mengajar_simpan"])) {
 
     else{
 
-    // simpan ke database
-  foreach ($kd_kelas as $c) {
-  $querytambahmengajar =  mysql_query("INSERT INTO mengajar (kd_mengajar, nip, kd_mapel, kd_kelas) 
-    VALUES ( '' , '$nip', '$kd_mapel',  '$c' )") or die(mysql_error());
+ $jumlah = count($_POST["kd_kelas"]);
 
-  }
+for($i=0; $i < $jumlah; $i++)
+{
+   $kelass=$_POST['kd_kelas'][$i];
+
+
+      $querytambahmengajar =  mysql_query("INSERT INTO mengajar (id_guru, kd_mapel, id_kelas) VALUES ( '$nip', '$kd_mapel',  '$kelass' )") or die(mysql_error());
+
+
+}
+
+    // simpan ke database
+
   header('location: ./mengajar');
 
 
@@ -101,7 +109,7 @@ if (isset ($_POST["mengajar_simpan"])) {
               $hasil = mysql_query($query);
               while ($data = mysql_fetch_array($hasil))
               {
-                echo "<option value=".$data['nip'].">".$data['nm_guru']."</option>";
+                echo "<option value=".$data['id_guru'].">".$data['nm_guru']."</option>";
               }
               ?>
             </select>
@@ -139,7 +147,7 @@ if (isset ($_POST["mengajar_simpan"])) {
                
                 while ($datas = mysql_fetch_array($hasils))
                 {
-                  echo "<p><br><input type='checkbox' class='flat-red' id='kd_kelas' value='".$datas['kd_kelas']."' name='kd_kelas[]'/>
+                  echo "<p><br><input type='checkbox' class='flat-red' id='kd_kelas' value='".$datas['id_kelas']."' name='kd_kelas[]'/>
                   <label for='kd_kelas'>".$datas['nm_kelas']."</label></p>";
                 }?>
       </div>
