@@ -84,7 +84,7 @@ if( isset($_POST['login']) ){
 				}
 			}
 //>>>>>>>>>>>>>>>>>GURU PIKET<<<<<<<<<<<<<<<<<
-			elseif(strlen($username)==12){
+			elseif(strlen($username)==18){
 				date_default_timezone_set("asia/jakarta");
 				$a_hari = array(1=>"Senin","Selasa","Rabu","Kamis","Jumat", "Sabtu");
 				$hari = $a_hari[date("N")];	
