@@ -1,21 +1,19 @@
-<!-- user login -->
 <?php
+// user login
 require ( __DIR__ . '/init.php');
 checkUserAuth();
 checkUserRole(array(10));
 
 // TEMPLATE CONTROL
-$ui_register_page     = 'mengajar';
-$ui_register_assets   = array('datepicker');
+$ui_register_page = 'ekstrakurikuler';
 
 // LOAD HEADER
-loadAssetsHead('Lihat Detail Data Mengajar');
+loadAssetsHead('Master Data Ekstrakurikuler');
 
-// FORM PROCESSING
-// ... code here ...
 ?>
 
 <link rel="stylesheet" href="assets/tablesorter/style.css" />
+
 <body>
 
   <?php
@@ -23,7 +21,7 @@ loadAssetsHead('Lihat Detail Data Mengajar');
   loadMainMenu();
   ?>
 
-  <div class="uk-container uk-container-center">
+ <div class="uk-container uk-container-center">
 
     <div class="uk-grid uk-margin-large-top" data-uk-grid-margin data-uk-grid-match>
 
@@ -35,18 +33,17 @@ loadAssetsHead('Lihat Detail Data Mengajar');
         <article class="uk-article">    
     
       <div class="uk-vertical-align uk-text-right uk-height-1-1">
-        <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SDN II Manangga" title="Sistem Informasi Akademik SDN II Manangga">
+        <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="" title="">
       </div>
       
       <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Lihat Detail Data Mengajar <span class="uk-text-large">
+          <h1 class="uk-article-title">Master Data Ekstrakurikuler <span class="uk-text-large">
           <?php  if (isset($_SESSION['administrator'])) {?>
       { Master Data }</span></h1>
           <?php  }?>
           <br>
           <?php if (isset($_SESSION['administrator'])) { ?>
-            <a href="./mengajar" class="uk-button" type="button" title="Kembali ke Data Guru Mengajar">Kembali</a>
-          <a href="./mengajar.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Guru Mengajar"><i class="uk-icon-plus"></i> Tambah Guru Mengajar</a>
+          <a href="./ekstrakurikuler.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Ekstrakurikuler"><i class="uk-icon-plus"></i> Master Data Ekstrakurikuler</a>
       <?php } ?>
        <br><br>
       
@@ -61,51 +58,54 @@ loadAssetsHead('Lihat Detail Data Mengajar');
               <div><a href="javascript:sorter.reset()">(atur ulang)</a></div>
             </span>
           </div>
-        <table cellpadding="0" cellspacing="0" border="0" id="table" class="tinytable">
-            <thead>
-              <tr>
-              
-                <th><h3 class="uk-text-center">Nama Guru</h3></th>
-                <th><h3 class="uk-text-center">Mata Pelajaran</h3></th>
-                <th><h3 class="uk-text-center">Kelas yang Diampu</h3></th>
-                <?php if (isset($_SESSION['administrator'])) { ?>
-                <th><h3 class="uk-text-center">Aksi</h3></th>
-                <?php }?>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              $query="SELECT * FROM mengajar
-              INNER JOIN guru ON guru.id_guru = mengajar.id_guru
-              INNER JOIN mapel ON mapel.kd_mapel = mengajar.kd_mapel
-              WHERE mengajar.id_guru = '$_GET[id_mengajar]'";
-              $query=mysql_query($query); 
-              $no=0;
-              while ($data=mysql_fetch_array($query)) { $no++; 
+      <?php
+    $sql_select="SELECT * from ekstrakurikuler where mg.id_guru=g.id_guru and mg.id_kelas=k.id_kelas and mg.kd_mapel=m.kd_mapel order by mg.id_guru asc ";
+    $query_select=mysql_query($sql_select); 
 
-              $nip = $data['nip'];
-              $nm_guru = $data['nm_guru'];   
-              $nm_mapel = $data['nm_mapel'];   
-              $kd_kelas = $data['kd_kelas'];   
-            ?>
-            <tr>
-                <td><div class="uk-text-center"><?php echo $nm_guru?></div></td>
-                <td><div class="uk-text-center"><?php echo $nm_mapel?></div></td>
-                <td><div class="uk-text-center"><?php echo $kd_kelas?></div></td>
-                      <?php if (isset($_SESSION['administrator'])) { ?>
-                <td><div class="uk-text-center">
-                  <a href="mengajar.update?id=<?php echo $data['kd_mengajar']?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
-                  <a href="mengajar.hapus?id=<?php echo $data['kd_mengajar']?>" onclick="return confirm('Apakah anda yakin akan menghapus data Kelas: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a>
-                
-                </div>
-                </td>
-                <?php } ?>            
-                </tr>
-                <?php  } ?>
-              </tbody>
-          </table>
-          
-          
+   echo "<table cellpadding='0' cellspacing='0' border='0' id='table' class='tinytable'>";
+   echo "<thead>
+      <tr>
+                <th><h3 class='uk-text-center'>No</h3></th>
+                <th><h3 class='uk-text-center'>Data Ekstrakurikuler</h3></th>
+                <th><h3 class='uk-text-center'>Pengampu</h3></th>
+                <th><h3 class='uk-text-center'>Aksi</h3></th>
+              </tr>
+            </thead>";
+        
+      while($data=mysql_fetch_array($query_select)){
+          $nip = $data['nip'];
+          $nm_guru = $data['nm_guru'];
+          $data2 = "";
+          $jumlah = mysql_num_rows(mysql_query("SELECT * FROM mengajar WHERE kd_mengajar = '$kd_mengajar'"));
+
+          while ($data1=mysql_fetch_array($jumlah)){
+          $data2=$data1['kd_kelas']." ".$data2;
+        }
+        $jum_kelas=mysql_num_rows(mysql_query("SELECT kd_kelas from mengajar where nip = '$nip'"));
+
+        $jumlah2 = mysql_num_rows(mysql_query("SELECT DISTINCT kd_mapel from mengajar where nip = '$nip'"));
+
+          echo "<tr>";
+          echo "<td><div class='uk-text-center'>$data[nip]</td>"; 
+          echo "<td><div class='uk-text-center'>$data[nm_guru]</td>";
+          echo "<td><div class='uk-text-center'>$data[nm_mapel]</td>";
+          echo "<td><div class='uk-text-center'>$data[nm_kelas]</td>";
+          echo "<form method='POST' action='lihatsiswa' name='action'>
+                <input type='hidden' value='$nip' name='nip'>
+        
+          <td align='center'>
+            <a href='lihatmengajar?mengajar=$id_mengajar' class='uk-button uk-button-small'>Lihat</a>
+           </form>";
+           echo "</td>";
+           echo "</tr>";
+            }
+            echo "</tbody><br>";       
+            echo "</table><br>";
+
+    $total_mengajar = mysql_num_rows(mysql_query("select * from mengajar"));
+    echo "<center><br><b>Total Seluruh mengajar: $total_mengajar</b><br>";
+
+?>
                 <!-- PAGINATION -->
                   <div id="tablefooter">
                     <div id="tablenav">
@@ -113,7 +113,7 @@ loadAssetsHead('Lihat Detail Data Mengajar');
                         <img src="assets/tablesorter/images/first.gif" width="16" height="16" alt="First Page" onclick="sorter.move(-1,true)" />
                         <img src="assets/tablesorter/images/previous.gif" width="16" height="16" alt="First Page" onclick="sorter.move(-1)" />
                         <img src="assets/tablesorter/images/next.gif" width="16" height="16" alt="First Page" onclick="sorter.move(1)" />
-                        <img src="assets/tablesorter/images/last.gif" width="16" height="16" alt="Last Page" onclick="sorter.move(1,true)" />
+                        <img src="loadAssetsFoot/tablesorter/images/last.gif" width="16" height="16" alt="Last Page" onclick="sorter.move(1,true)" />
                       </div>
                       <div>
                         <select id="pagedropdown"></select>

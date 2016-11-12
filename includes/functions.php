@@ -240,7 +240,7 @@ if( isset($_SESSION['tingkat_user']) ) :
 
       <hr class="uk-article-divider">  
       <li class="uk-nav-header">Ekstrakulikuler</li>   
-     <!--  <?php generateNavElement(array(10,2,10,1), 'riwayat-pembayaran', './riwayat-pembayaran', 'Riwayat Pembayaran') ?>-->
+      <?php generateNavElement(array(10,2,10,1), 'ekstrakurikuler', './ekstrakurikuler', 'ekstrakurikuler') ?>
       <!-- <?php generateNavElement(array(10,1), 'tagihan-pembayaran', './tagihan-pembayaran', 'Tagihan Pembayaran') ?>-->
       <li class="uk-nav-divider"></li>
 
@@ -396,7 +396,8 @@ function admin(){
      <!--  <?php generateNavElement(array(10,1), 'tagihan-pembayaran', './tagihan-pembayaran', 'Tagihan Pembayaran') ?>-->
 
       <hr class="uk-article-divider">  
-      <li class="uk-nav-header">Ekstrakulikuler</li>   
+      <li class="uk-nav-header">Ekstrakulikuler</li>  
+      <?php generateNavElement(array(10,2,10,1), 'ekstrakurikuler', './ekstrakurikuler', 'Ekstrakurikuler') ?> 
      <!--  <?php generateNavElement(array(10,2,10,1), 'riwayat-pembayaran', './riwayat-pembayaran', 'Riwayat Pembayaran') ?>-->
       <!-- <?php generateNavElement(array(10,1), 'tagihan-pembayaran', './tagihan-pembayaran', 'Tagihan Pembayaran') ?>-->
       <li class="uk-nav-divider"></li>

@@ -95,7 +95,7 @@ loadAssetsHead('Master Data Guru Mengajar');
                 <input type='hidden' value='$nip' name='nip'>
         
           <td align='center'>
-            <a href='lihatmengajar?nip=$nip' class='uk-button uk-button-small'>Lihat</a>
+            <a href='lihatmengajar?mengajar=$id_mengajar' class='uk-button uk-button-small'>Lihat</a>
            </form>";
            echo "</td>";
            echo "</tr>";
@@ -114,7 +114,7 @@ loadAssetsHead('Master Data Guru Mengajar');
                         <img src="assets/tablesorter/images/first.gif" width="16" height="16" alt="First Page" onclick="sorter.move(-1,true)" />
                         <img src="assets/tablesorter/images/previous.gif" width="16" height="16" alt="First Page" onclick="sorter.move(-1)" />
                         <img src="assets/tablesorter/images/next.gif" width="16" height="16" alt="First Page" onclick="sorter.move(1)" />
-                        <img src="assets/tablesorter/images/last.gif" width="16" height="16" alt="Last Page" onclick="sorter.move(1,true)" />
+                        <img src="loadAssetsFoot/tablesorter/images/last.gif" width="16" height="16" alt="Last Page" onclick="sorter.move(1,true)" />
                       </div>
                       <div>
                         <select id="pagedropdown"></select>
