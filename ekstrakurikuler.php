@@ -59,7 +59,7 @@ loadAssetsHead('Master Data Ekstrakurikuler');
             </span>
           </div>
       <?php
-    $sql_select="SELECT * from ekstrakurikuler where mg.id_guru=g.id_guru and mg.id_kelas=k.id_kelas and mg.kd_mapel=m.kd_mapel order by mg.id_guru asc ";
+    $sql_select="SELECT * from ekstrakurikuler";
     $query_select=mysql_query($sql_select); 
 
    echo "<table cellpadding='0' cellspacing='0' border='0' id='table' class='tinytable'>";
