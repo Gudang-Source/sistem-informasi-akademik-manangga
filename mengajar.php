@@ -59,7 +59,12 @@ loadAssetsHead('Master Data Guru Mengajar');
             </span>
           </div>
       <?php
-    $sql_select="SELECT * from mengajar mg, guru g, kelas k, mapel m where mg.id_guru=g.id_guru and mg.id_kelas=k.id_kelas and mg.kd_mapel=m.kd_mapel order by mg.id_guru asc ";
+     
+    $sql_select="SELECT id_guru, nip, nm_guru, 
+    ( SELECT count(id_kelas) from kelas where id_kelas in ( SELECT  mg.id_kelas from mengajar mg, guru g, kelas k, mapel m where mg.id_guru=g.id_guru and mg.id_kelas=k.id_kelas and mg.kd_mapel=m.kd_mapel order by mg.id_guru asc)) as juumlah_kelas,
+    ( SELECT count(kd_mapel) from mapel where kd_mapel in ( SELECT  mg.kd_mapel from mengajar mg, guru g, kelas k, mapel m where mg.id_guru=g.id_guru and mg.id_kelas=k.id_kelas and mg.kd_mapel=m.kd_mapel order by mg.id_guru asc)) as juumlah_mapel
+      FROM GURU WHERE id_guru IN (
+     SELECT mg.id_guru from mengajar mg, guru g, kelas k, mapel m where mg.id_guru=g.id_guru and mg.id_kelas=k.id_kelas and mg.kd_mapel=m.kd_mapel order by mg.id_guru asc) ";
     $query_select=mysql_query($sql_select); 
 
    echo "<table cellpadding='0' cellspacing='0' border='0' id='table' class='tinytable'>";
@@ -67,35 +72,38 @@ loadAssetsHead('Master Data Guru Mengajar');
       <tr>
                 <th><h3 class='uk-text-center'>NIP</h3></th>
                 <th><h3 class='uk-text-center'>Nama Guru</h3></th>
-                <th><h3 class='uk-text-center'>Mata Pelajaran yang Diampu</h3></th>
-                <th><h3 class='uk-text-center'>Kelas yang Diampu</h3></th>
+                <th><h3 class='uk-text-center'>Jumlah Mata Pelajaran yang Diampu</h3></th>
+                <th><h3 class='uk-text-center'>Jumlah Kelas yang Diampu</h3></th>
                 <th><h3 class='uk-text-center'>Aksi</h3></th>
               </tr>
             </thead>";
         
       while($data=mysql_fetch_array($query_select)){
-          $nip = $data['nip'];
+          $id_guru = $data['id_guru'];
+          $id_kelas = $data['id_kelas'];
           $nm_guru = $data['nm_guru'];
+
           $data2 = "";
-          $jumlah = mysql_num_rows(mysql_query("SELECT * FROM mengajar WHERE kd_mengajar = '$kd_mengajar'"));
+         
+          $jumlahmapel = mysql_num_rows(mysql_query("SELECT * FROM mengajar WHERE kd_mengajar = '$kd_mengajar'"));
 
           while ($data1=mysql_fetch_array($jumlah)){
           $data2=$data1['kd_kelas']." ".$data2;
         }
-        $jum_kelas=mysql_num_rows(mysql_query("SELECT kd_kelas from mengajar where nip = '$nip'"));
+        $jum_kelas=mysql_num_rows(mysql_query("SELECT DISTINCT id_kelas from mengajar where id_guru = '$id_guru'"));
 
-        $jumlah2 = mysql_num_rows(mysql_query("SELECT DISTINCT kd_mapel from mengajar where nip = '$nip'"));
+        $jumlah2 = mysql_num_rows(mysql_query("SELECT DISTINCT kd_mapel from mengajar where id_guru = '$id_guru'"));
 
           echo "<tr>";
           echo "<td><div class='uk-text-center'>$data[nip]</td>"; 
           echo "<td><div class='uk-text-center'>$data[nm_guru]</td>";
-          echo "<td><div class='uk-text-center'>$data[nm_mapel]</td>";
-          echo "<td><div class='uk-text-center'>$data[nm_kelas]</td>";
+          echo "<td><div class='uk-text-center'>$jumlah2</td>";
+          echo "<td><div class='uk-text-center'>$jum_kelas</td>";
           echo "<form method='POST' action='lihatsiswa' name='action'>
                 <input type='hidden' value='$nip' name='nip'>
         
           <td align='center'>
-            <a href='lihatmengajar?mengajar=$id_mengajar' class='uk-button uk-button-small'>Lihat</a>
+            <a href='mengajar.lihat?id=$id_guru' class='uk-button uk-button-small'>Lihat</a>
            </form>";
            echo "</td>";
            echo "</tr>";
@@ -114,7 +122,7 @@ loadAssetsHead('Master Data Guru Mengajar');
                         <img src="assets/tablesorter/images/first.gif" width="16" height="16" alt="First Page" onclick="sorter.move(-1,true)" />
                         <img src="assets/tablesorter/images/previous.gif" width="16" height="16" alt="First Page" onclick="sorter.move(-1)" />
                         <img src="assets/tablesorter/images/next.gif" width="16" height="16" alt="First Page" onclick="sorter.move(1)" />
-                        <img src="loadAssetsFoot/tablesorter/images/last.gif" width="16" height="16" alt="Last Page" onclick="sorter.move(1,true)" />
+                        <img src="assets/tablesorter/images/last.gif" width="16" height="16" alt="Last Page" onclick="sorter.move(1,true)" />
                       </div>
                       <div>
                         <select id="pagedropdown"></select>
