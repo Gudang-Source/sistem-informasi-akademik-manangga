@@ -5,7 +5,7 @@ checkUserAuth();
 checkUserRole(array(1, 10));
 
 /*template control*/
-$ui_register_page     = 'ekstrakurikuler.tambah';
+$ui_register_page     = 'ekstrakurikuler';
 $ui_register_assets   = array('datepicker');
 
 /*load header*/
@@ -17,21 +17,20 @@ if (isset ($_POST["ekstrakurikuler_simpan"])) {
     // baca variabel
     
     $nm_ekstrakurikuler     = $_POST['nm_ekstrakurikuler'];
-    $id_guru                = $_POST['id_guru'];
+    $nm_ekstrakurikuler     = str_replace("", "&acute;", $nm_ekstrakurikuler);
 
- //$kd_kelas     = str_replace("", "&acute;", $kd_kelas);
-  // validation form kosong
-  
+    $id_guru     = $_POST['id_guru'];
+    $id_guru     = str_replace("", "&acute;", $id_guru);
+
+    // validation form kosong
    $pesanError= array();
-  if (trim($id_ekstrakurikuler)=="") {
-    $pesanError[]="Data <b>ID Ekstrakurikuler</b> Masih Kosong.";
-  }
   if (trim($nm_ekstrakurikuler)=="") {
     $pesanError[]="Data <b>Nama Ekstrakurikuler</b> Masih Kosong.";
   }
   if (trim($id_guru)=="") {
     $pesanError[]="Data <b>ID Guru</b> Masih Kosong.";
-  }  
+  }
+
 
     // jika ada error dari validasi form
      if (count($pesanError)>=1) {
@@ -46,16 +45,20 @@ if (isset ($_POST["ekstrakurikuler_simpan"])) {
     }
 
     else{
-      $querytambahekstrakurikuler =  mysql_query("INSERT INTO ekstrakurikuler (nm_ekstrakurikuler, id_guru) VALUES ( '$nm_ekstrakurikuler', '$id_guru' )") or die(mysql_error());
-}
 
     // simpan ke database
+  $querytambahekstrakurikuler = mysql_query("INSERT INTO ekstrakurikuler (nm_ekstrakurikuler, id_guru) 
+    VALUES ( '$nm_ekstrakurikuler' , '$id_guru' )") or die(mysql_error());
+
+  if ($querytambahekstrakurikuler){
     header('location: ./ekstrakurikuler');
+  }
  }
+}
 
     // simpan pada form, dan jika form belum terisi
- $datanamaekstrakurikuler  = isset($_POST['nm_ekstrakurikuler']) ? $_POST['nm_ekstrakurikuler'] : '';
- $dataidguru  = isset($_POST['id_guru']) ? $_POST['id_guru'] : '';
+  $datanamaekstrakurikuler  = isset($_POST['nm_ekstrakurikuler']) ? $_POST['nm_ekstrakurikuler'] : '';
+  $dataidguru  = isset($_POST['id_guru']) ? $_POST['id_guru'] : '';
 ?>
 
 <body>
@@ -73,29 +76,29 @@ if (isset ($_POST["ekstrakurikuler_simpan"])) {
       <div class="uk-width-medium-5-6 tm-article-side">
         <article class="uk-article">
           <div class="uk-vertical-align uk-text-right uk-height-1-1">
-            <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SDN II Manangga" title="Sistem Informasi Akademik SDN II Manangga">
+            <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik" title="Sistem Informasi Akademik">
           </div>
           <hr class="uk-article-divider">
-          <h1 class="uk-article-title">ekstrakurikuler <span class="uk-text-large">{ Tambah Master Data ekstrakurikuler }</span></h1>
+          <h1 class="uk-article-title">Master Data Ekstrakurikuler <span class="uk-text-large">{ Tambah Master Data Ekstrakurikuler }</span></h1>
           <br>
-          <a href="./ekstrakurikuler" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Master ekstrakurikuler"><i class="uk-icon-angle-left"></i> Kembali</a>
+          <a href="./ekstrakurikuler" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Master Data Ekstrakurikuler"><i class="uk-icon-angle-left"></i> Kembali</a>
           <!-- <hr class="uk-article-divider"> -->
           <div class="uk-grid" data-uk-grid-margin>
             <div class="uk-width-medium-1-1">
              <form id="formekstrakurikuler" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
         
-
         <div class="item form-group">
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nm_ekstrakurikuler">Nama Ekstrakurikuler<span class="required">*</span>
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="nm_ekstrakurikuler" name="nm_ekstrakurikuler" value="<?php echo $datanamaekstrakurikuler; ?>" required="required" class="form-control col-md-7 col-xs-12">
-          <div class="reg-info">Contoh: Pramuka</div>
+            <div class="reg-info">Contoh: Pramuka.</div>
           </div>
         </div>
 
+
         <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_guru">Pengampu<span class="required">*</span>
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_guru">Pilih Pengampu<span class="required">*</span>
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <select name="id_guru" id="id_guru" value="<?php echo $dataidguru; ?>" class="form-control col-md-7 col-xs-12">
@@ -111,8 +114,6 @@ if (isset ($_POST["ekstrakurikuler_simpan"])) {
             </select>
           </div>
         </div>
-        
-     
 
         <div style="text-align:center" class="form-actions no-margin-bottom">
          <button type="submit" id="ekstrakurikuler_simpan" name="ekstrakurikuler_simpan" class="btn btn-success">Submit</button>
@@ -129,8 +130,8 @@ if (isset ($_POST["ekstrakurikuler_simpan"])) {
 <script src="/vendor/formvalidation/js/framework/uikit.min.js"></script>
 
 <script type="text/javascript">
- var formmapel = $("#formmapel").serialize();
- var validator = $("#formmapel").bootstrapValidator({
+ var formekstrakurikuler = $("#formekstrakurikuler").serialize();
+ var validator = $("#formekstrakurikuler").bootstrapValidator({
   framework: 'bootstrap',
   feedbackIcons: {
     valid: "glyphicon glyphicon-ok",
@@ -139,30 +140,26 @@ if (isset ($_POST["ekstrakurikuler_simpan"])) {
   }, 
   excluded: [':disabled'],
   fields : {
-    kd_mapel : {
-     validators: {
-      notEmpty: {
-       message: 'Harus Pilih ekstrakurikuler'
-     },
-     
-   }
- }, 
-nm_mapel: {
-  message: 'Nama ekstrakurikuler Tidak Benar',
+nm_ekstrakurikuler: {
+  message: 'Nama Ekstrakurikuler Tidak Benar',
   validators: {
     notEmpty: {
-      message: 'Nama ekstrakurikuler Harus Diisi'
+      message: 'Nama Ekstrakurikuler Harus Diisi'
     },
     stringLength: {
       min: 1,
       max: 30,
-      message: 'Nama ekstrakurikuler Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+      message: 'Nama Ekstrakurikuler Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
     },
     regexp: {
       regexp: /^[a-zA-Z0-9_ \. ]+$/,
       message: 'Karakter Boleh Digunakan (Angka, Huruf, Titik, Underscore)'
     },
-   
+    remote: {
+      type: 'POST',
+      url: 'remote/remote_namaekstrakurikuler.php',
+      message: 'Nama Ekstrakurikuler Telah Tersedia'
+    },
 
   }
 }
