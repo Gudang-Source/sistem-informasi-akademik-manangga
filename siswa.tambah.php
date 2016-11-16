@@ -16,31 +16,30 @@ if (isset ($_POST["siswa_simpan"])) {
 
     // baca variabel
     
-    $nis     = $_POST['nis'];
-    $password     = $_POST['password'];
-    $password1  = $_POST['password1'];
-    $nm_siswa     = $_POST['nm_siswa'];
-    $tmpt_lahir     = $_POST['tmpt_lahir'];
- $date_tgl_lahir0  = $_POST['date_tgl_lahir'];
-  $date_tgl_lahir=ubahformatTgl($date_tgl_lahir0);
-    $jns_kelamin     = $_POST['jns_kelamin'];
-    $agama     = $_POST['agama'];
-    $id_kec  = $_POST['id_kec'];
-  $id_kec  = str_replace("'","&acute;",$id_kec);
-
-  $kota  = $_POST['kota'];
-  $kota  = str_replace("'","&acute;",$kota);
-
-  $prov  = $_POST['prov'];
-  $prov  = str_replace("'","&acute;",$prov);
-
-  $id_kel  = $_POST['id_kel'];
-  $id_kel  = str_replace("'","&acute;",$id_kel);
-  $almt_sekarang = $_POST['almt_sekarang'];
-    $no_hp  = $_POST['no_hp'];
-    $telp     = $_POST['telp'];
-    $kd_kelas    = $_POST['kd_kelas'];
-    $id_user =3;
+$nis     = $_POST['nis'];
+$password     = $_POST['password'];
+$password1  = $_POST['password1'];
+$nm_siswa     = $_POST['nm_siswa'];
+$tmpt_lahir     = $_POST['tmpt_lahir'];
+$date_tgl_lahir0  = $_POST['date_tgl_lahir'];
+$date_tgl_lahir=ubahformatTgl($date_tgl_lahir0);
+$jns_kelamin     = $_POST['jns_kelamin'];
+$agama     = $_POST['agama'];
+$id_kec  = $_POST['id_kec'];
+$id_kec  = str_replace("'","&acute;",$id_kec);
+$kota  = $_POST['kota'];
+$kota  = str_replace("'","&acute;",$kota);
+$prov  = $_POST['prov'];
+$prov  = str_replace("'","&acute;",$prov);
+$id_kel  = $_POST['id_kel'];
+$id_kel  = str_replace("'","&acute;",$id_kel);
+$almt_sekarang = $_POST['almt_sekarang'];
+$no_hp  = $_POST['no_hp'];
+$telp     = $_POST['telp'];
+$kd_kelas    = $_POST['kd_kelas'];
+$tahun_masuk = $_POST['tahun_masuk'];
+$tahun_keluar = $_POST['tahun_keluar'];
+$id_user =3;
 
     // validation form kosong
   
@@ -112,6 +111,12 @@ if (isset ($_POST["siswa_simpan"])) {
     if (trim($kd_kelas)=="kd_kelas") {
     $pesanError[]="Data <b>Kode Kelas</b> Masih Kosong.";
   }
+      if (trim($tahun_masuk)=="tahun_masuk") {
+    $pesanError[]="Data <b>Tahun Masuk</b> Masih Kosong.";
+  }
+      if (trim($tahun_keluar)=="tahun_keluar") {
+    $pesanError[]="Data <b>Kode Kelas</b> Masih Kosong.";
+  }
 
     // validasi kode kelas pada database
   $cekSql ="SELECT * FROM siswa WHERE nis='$nis'";
@@ -163,6 +168,8 @@ $data=mysql_fetch_array($hasil);
                 email='$email',
                 no_hp='$no_hp',
                 foto='$jeneng',
+                tahun_masuk='$tahun_masuk',
+                tahun_keluar='$tahun_keluar',
                 id_kel='$id_kel'
                 ") or die(mysql_error());
 
@@ -189,8 +196,11 @@ $data=mysql_fetch_array($hasil);
   $dataalamat  = isset($_POST['alamat']) ? $_POST['alamat'] : '';
   $dataemail  = isset($_POST['email']) ? $_POST['email'] : '';
   $datanohp  = isset($_POST['no_hp']) ? $_POST['no_hp'] : '';
+  $datatahunmasuk = isset($_POST['tahun_masuk']) ? $_POST['tahun_masuk'] : '';
+  $datatahunkeluar = isset($_POST['tahun_keluar']) ? $_POST['tahun_keluar'] : '';
   $datakodekelas  = isset($_POST['kd_kelas']) ? $_POST['kd_kelas'] : '';
 ?>
+
       <script type="text/javascript">
         var htmlobjek;
         $(document).ready(function(){
@@ -436,6 +446,24 @@ $data=mysql_fetch_array($hasil);
               </div>
         </div>
 
+        <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tahun_masuk">Tahun Masuk<span class="required">*</span>
+            </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" id="tahun_masuk" name="tahun_masuk" value="<?php echo $datatahunmasuk; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                  <div class="reg-info">Contoh: 2012.</div>
+              </div>
+        </div>
+
+        <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tahun_keluar">Tahun Keluar<span class="required">*</span>
+            </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" id="tahun_keluar" name="tahun_keluar" value="<?php echo $datatahunkeluar; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                  <div class="reg-info">Contoh: 2018.</div>
+              </div>
+        </div>
+
      <div class="item form-group">
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kd_kelas">Kelas<span class="required">*</span>
            </label>
@@ -463,7 +491,8 @@ $data=mysql_fetch_array($hasil);
 </div>
 </div>
 </div>
-
+</div>
+</div>
 <script src="assets/validator/js/bootstrapValidator.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/vendor/formvalidation/css/formValidation.min.css">
 <link rel="stylesheet" href="/asset/css/demo.css">

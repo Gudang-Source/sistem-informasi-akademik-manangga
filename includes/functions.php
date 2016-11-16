@@ -377,7 +377,7 @@ function admin(){
       <?php generateNavElement(array(10,1), 'kelas', './kelas', 'Kelas') ?>
       <?php generateNavElement(array(10,1), 'mapel', './mapel', 'Mata Pelajaran') ?>
       <?php generateNavElement(array(10,1), 'tahun-ajaran', './tahun-ajaran', 'Tahun Ajaran') ?>
-  
+      <?php generateNavElement(array(10,1), 'semester', './semester', 'Semester') ?>  
      <!-- <?php generateNavElement(array(10,1), 'siswa-lihatguru', './siswa-lihatguru', 'Daftar Guru') ?>-->
 
     <!--  <?php generateNavElement(array(10,1), 'materi-guru', './materi-guru', 'Materi') ?>-->

@@ -5,10 +5,10 @@ checkUserAuth();
 checkUserRole(array(10));
 
 // TEMPLATE CONTROL
-$ui_register_page = 'tahun-ajaran';
+$ui_register_page = 'semester';
 
 // LOAD HEADER
-loadAssetsHead('Master Data Tahun Pelajaran');
+loadAssetsHead('Master Data Semester');
 
 ?>
 
@@ -37,13 +37,13 @@ loadAssetsHead('Master Data Tahun Pelajaran');
 		  </div>
 		  
 		  <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Tahun Pelajaran <span class="uk-text-large">
+          <h1 class="uk-article-title">Semester <span class="uk-text-large">
           <?php  if (isset($_SESSION['administrator'])) {?>
 		  { Master Data }</span></h1>
           <?php  }?>
           <br>
           <?php if (isset($_SESSION['administrator'])) { ?>
-          <a href="./tahun-ajaran.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Tahun Pelajaran"><i class="uk-icon-plus"></i> Tahun Pelajaran</a>
+          <a href="./semester.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Semester"><i class="uk-icon-plus"></i> Semester</a>
 		  <?php } ?>
 		   <br><br>
 		  
@@ -62,9 +62,8 @@ loadAssetsHead('Master Data Tahun Pelajaran');
 					<table id="table" class="uk-table uk-table-hover uk-table-striped uk-table-condensed" width="100%" width="100%">
 						<thead>
 							<tr>
-								<th><h3 class="uk-text-center">Kode Tahun Pelajaran</h3></th>
-								<th><h3 class="uk-text-center">Tahun Pelajaran</h3></th>
-								<th><h3 class="uk-text-center">Semester</h3></th>
+								<th><h3 class="uk-text-center">Kode Semester</h3></th>
+								<th><h3 class="uk-text-center">Nama Semester</h3></th>
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<th><h3 class="uk-text-center">Aksi</h3></th>
 								<?php }?>
@@ -84,18 +83,15 @@ loadAssetsHead('Master Data Tahun Pelajaran');
 								<td><div class="uk-text-center"><?php echo $row[2]?></div></td>
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<td width="15%"><div class="uk-text-center">
-								   <a href="tahun-ajaran.update?id=<?php echo $row[1]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
-								  <a href="tahun-ajaran.hapus?id=<?php echo $row[1]?>" onclick="return confirm('Apakah anda yakin akan menghapus data tahun ajaran: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a></div>
+								   <a href="semester.update?id=<?php echo $row[1]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
+								  <a href="semester.hapus?id=<?php echo $row[1]?>" onclick="return confirm('Apakah anda yakin akan menghapus data semester: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a></div>
 								</td>
 								<?php } ?>						
 							  </tr>
 							  <?php  } ?>
 							</tbody>
 					</table>
-					
-				
-					
-				  
+
                 <!-- PAGINATION -->
                   <div id="tablefooter">
                     <div id="tablenav">
