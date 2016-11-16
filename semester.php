@@ -72,19 +72,18 @@ loadAssetsHead('Master Data Semester');
 							<tbody>
 						  <?php 
 						
-						  $query="SELECT id_tahun, thn_ajaran, semester FROM tahun_ajaran";
+						  $query="SELECT id_semester, nm_semester FROM semester";
 						  $exe=mysql_query($query);
 						  $no=0;
 						  while ($row=mysql_fetch_array($exe)) { $no++;?>
 
 							  <tr>
-								<td><div class="uk-text-center"><?php echo $row[0]?></div></td>
-								<td><div class="uk-text-center"><?php echo $row[1]?></div></td>
-								<td><div class="uk-text-center"><?php echo $row[2]?></div></td>
+								<td><div class="uk-text-center"><?php echo $row[id_semester]?></div></td>
+								<td><div class="uk-text-center"><?php echo $row[nm_semester]?></div></td>
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<td width="15%"><div class="uk-text-center">
-								   <a href="semester.update?id=<?php echo $row[1]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
-								  <a href="semester.hapus?id=<?php echo $row[1]?>" onclick="return confirm('Apakah anda yakin akan menghapus data semester: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a></div>
+								   <a href="semester.update?id=<?php echo $row[id_semester]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
+								  <a href="semester.hapus?id=<?php echo $row[id_semester]?>" onclick="return confirm('Apakah anda yakin akan menghapus data semester: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a></div>
 								</td>
 								<?php } ?>						
 							  </tr>
