@@ -62,7 +62,6 @@ loadAssetsHead('Lihat Data Siswa');
             </span>
           </div>
           <?PHP
-            
 
             $id_kelas = $_REQUEST ['id_kelas'];
             
@@ -73,11 +72,7 @@ loadAssetsHead('Lihat Data Siswa');
             echo "<thead><tr>
             <th><h3 class='uk-text-center'>NIS</th>
             <th><h3 class='uk-text-center'>Nama Siswa</th>
-            <th><h3 class='uk-text-center'>JK</th>
-            <th><h3 class='uk-text-center'>Agama</th>
-            <th><h3 class='uk-text-center'>Password</th>
-            <th><h3 class='uk-text-center'>Kode Kelas</th>
-            <th><h3 class='uk-text-center'>Email</th>
+            <th><h3 class='uk-text-center'>Kelas</th>
             <th><h3 class='uk-text-center'>Aksi</th>
             </tr></thead>";
             echo "<tbody>";
@@ -87,8 +82,6 @@ loadAssetsHead('Lihat Data Siswa');
                 $nis = $row['nis'];
                 $id_siswa = $row['id_siswa'];
                 $nm_siswa = $row['nm_siswa'];
-                $jns_kelamin = $row['jns_kelamin'];
-                $agama = $row['agama'];
                 $password = $row['password'];
                 $id_kelas = $row['id_kelas'];
                 $email = $row['email'];
@@ -96,11 +89,7 @@ loadAssetsHead('Lihat Data Siswa');
                
                 echo "<td align='center'>$nis</td>"; 
                 echo "<td align='center'>$nm_siswa</td>";
-                echo "<td align='center'>$jns_kelamin</td>";
-                echo "<td align='center'>$agama</td>";
-                echo "<td align='center'>$password</td>";
                 echo "<td align='center'>$id_kelas</td>";
-                echo "<td align='center'>$email</td>";
                 echo "<form method='POST' action='action_hapus_siswa.php' name='action'>
                 <input type='hidden' value='$nis' name='nis'>
                 <input type='hidden' value='$id_kelas' name='id_kelas'>

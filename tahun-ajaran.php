@@ -8,7 +8,7 @@ checkUserRole(array(10));
 $ui_register_page = 'tahun-ajaran';
 
 // LOAD HEADER
-loadAssetsHead('Master Data Tahun Pelajaran');
+loadAssetsHead('Master Data Tahun Ajaran');
 
 ?>
 
@@ -37,13 +37,13 @@ loadAssetsHead('Master Data Tahun Pelajaran');
 		  </div>
 		  
 		  <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Tahun Pelajaran <span class="uk-text-large">
+          <h1 class="uk-article-title">Tahun Ajaran <span class="uk-text-large">
           <?php  if (isset($_SESSION['administrator'])) {?>
 		  { Master Data }</span></h1>
           <?php  }?>
           <br>
           <?php if (isset($_SESSION['administrator'])) { ?>
-          <a href="./tahun-ajaran.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Tahun Pelajaran"><i class="uk-icon-plus"></i> Tahun Pelajaran</a>
+          <a href="./tahun-ajaran.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Tahun Ajaran"><i class="uk-icon-plus"></i> Tahun Ajaran</a>
 		  <?php } ?>
 		   <br><br>
 		  
@@ -59,12 +59,14 @@ loadAssetsHead('Master Data Tahun Pelajaran');
 							<div><a href="javascript:sorter.reset()">(atur ulang)</a></div>
 						</span>
 					</div>
-					<table id="table" class="uk-table uk-table-hover uk-table-striped uk-table-condensed" width="100%" width="100%">
+					<table id="table" class="uk-table uk-table-hover  uk-table-condensed" width="100%" width="100%">
 						<thead>
 							<tr>
-								<th><h3 class="uk-text-center">Kode Tahun Pelajaran</h3></th>
-								<th><h3 class="uk-text-center">Tahun Pelajaran</h3></th>
+								<th><h3 class="uk-text-center">No</h3></th>
+								<th><h3 class="uk-text-center">Tahun Ajaran</h3></th>
 								<th><h3 class="uk-text-center">Semester</h3></th>
+								<th><h3 class="uk-text-center">Status</h3></th>
+								<th><h3 class="uk-text-center">Aktivasi</h3></th>
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<th><h3 class="uk-text-center">Aksi</h3></th>
 								<?php }?>
@@ -73,18 +75,25 @@ loadAssetsHead('Master Data Tahun Pelajaran');
 							<tbody>
 						  <?php 
 						
-						  $query="SELECT id_tahun, thn_ajaran, semester FROM tahun_ajaran";
+						  $query="SELECT id_tahun, thn_ajaran, semester, status FROM tahun_ajaran";
 						  $exe=mysql_query($query);
 						  $no=0;
 						  while ($row=mysql_fetch_array($exe)) { $no++;?>
-
-							  <tr>
-								<td><div class="uk-text-center"><?php echo $row[0]?></div></td>
+						  	<?php if($row[status]=="1"){ ?>
+							  <tr bgcolor="#99ddff" >
+								<?php  } else { ?><tr> <?php }?>
+								<td><div class="uk-text-center"><?php echo $no?></div></td>
 								<td><div class="uk-text-center"><?php echo $row[1]?></div></td>
 								<td><div class="uk-text-center"><?php echo $row[2]?></div></td>
+								<?php if($row[status]=="1"){ ?>
+								<td bgcolor="#99ddff"><div class="uk-text-center"><i class="uk-icon-check-square"></i> </div></td>
+								<?php }else {?>
+								<td><div class="uk-text-center"></div></td>
+								<?php } ?>
+								<td><div class="uk-text-center"><?php if ($row[status]=='0'){ ?><a href="tahun-ajaran.action?id=<?php echo $row[id_tahun]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-success uk-button-small"><i class="">Aktifkan</i></a><?php } else { }?></div></td>
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<td width="15%"><div class="uk-text-center">
-								   <a href="tahun-ajaran.update?id=<?php echo $row[1]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
+								   <a href="tahun-ajaran.update?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
 								  <a href="tahun-ajaran.hapus?id=<?php echo $row[1]?>" onclick="return confirm('Apakah anda yakin akan menghapus data tahun ajaran: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a></div>
 								</td>
 								<?php } ?>						

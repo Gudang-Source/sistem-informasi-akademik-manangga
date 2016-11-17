@@ -46,7 +46,7 @@ if (isset($_POST['tahun_simpan'])) {
 
 # MEMBUAT NILAI DATA PADA FORM
 # SIMPAN DATA PADA FORM, Jika saat Sumbit ada yang kosong (lupa belum diisi)
-$edit = mysql_query("SELECT * FROM tahun_ajaran WHERE thn_ajaran='$_GET[id]'");
+$edit = mysql_query("SELECT * FROM tahun_ajaran WHERE id_tahun='$_GET[id]'");
 $rowks  = mysql_fetch_array($edit);
 
 ?>
@@ -70,14 +70,14 @@ $rowks  = mysql_fetch_array($edit);
             <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="E-Learning" title="E-Learning">
           </div>
           <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Tahun Pelajaran <span class="uk-text-large">{ Edit Tahun Pelajaran }</span></h1>
+          <h1 class="uk-article-title">Tahun Ajaran <span class="uk-text-large">{ Edit Tahun Ajaran }</span></h1>
           <br>
-          <a href="./tahun-ajaran" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Tahun Pelajaran"><i class="uk-icon-angle-left"></i> Kembali</a>
+          <a href="./tahun-ajaran" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Tahun Ajaran"><i class="uk-icon-angle-left"></i> Kembali</a>
 
             <form id="formtahunajaran" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
 
         <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="thn_ajaran">Tahun Pelajaran<span class="required">*</span>
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="thn_ajaran">Tahun Ajaran<span class="required">*</span>
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="thn_ajaran" name="thn_ajaran" value="<?php echo $rowks['thn_ajaran'];?>" required="required" class="form-control col-md-7 col-xs-12">
@@ -89,19 +89,21 @@ $rowks  = mysql_fetch_array($edit);
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
                  <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="semester" name="semester" value="" required>
-        <option value="">-Pilih Semester-</option>
         <?php
                       //MENGAMBIL NAMA PROVINSI YANG DI DATABASE
-        $semester =mysql_query("SELECT * FROM tahun_ajaran ORDER BY semester");
-        while ($datasemester=mysql_fetch_array($semester)) {
-         if ($datasemester['semester']==$rowks['semester']) {
-           $cek ="selected";
+
+         if ($rowks['semester']=="Ganjil") {
+        ?>
+              <option value="Ganjil" selected>Ganjil</option>
+              <option value="Genap">Genap</option>
+        <?php
          }
-         else{
-          $cek= "";
-        }
-        echo "<option value=\"$datasemester[semester]\" $cek>$datasemester[semester]</option>\n";
-      }
+         else{ ?>
+                      <option value="Genap" selected>Genap</option>
+                       <option value="Ganjil" >Ganjil</option>
+                      
+  <?php     }
+        
       ?>
     </select>
           </div>

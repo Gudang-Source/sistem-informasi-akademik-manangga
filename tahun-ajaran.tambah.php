@@ -9,7 +9,7 @@ $ui_register_page     = 'tahun-ajaran';
 $ui_register_assets   = array('datepicker');
 
 /*load header*/
-loadAssetsHead('Tambah Master Data Tahun Pelajaran');
+loadAssetsHead('Tambah Master Data Tahun Ajaran');
 
 /*form processing*/
 if (isset ($_POST["tahun_simpan"])) { 
@@ -25,7 +25,7 @@ if (isset ($_POST["tahun_simpan"])) {
     // validation form kosong
    $pesanError= array();
   if (trim($thn_ajaran)=="") {
-    $pesanError[]="Data <b>Nama Tahun Pelajaran</b> Masih Kosong.";
+    $pesanError[]="Data <b>Nama Tahun Ajaran</b> Masih Kosong.";
   }
   if (trim($semester)=="") {
     $pesanError[]="Data <b>Semester</b> Masih Kosong.";
@@ -80,20 +80,22 @@ if (isset ($_POST["tahun_simpan"])) {
             <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SDN II Manangga" title="Sistem Informasi Akademik SDN II Manangga">
           </div>
           <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Tahun Pelajaran <span class="uk-text-large">{ Tambah Data Tahun Pelajaran }</span></h1>
+          <h1 class="uk-article-title">Tahun Ajaran <span class="uk-text-large">{ Tambah Data Tahun Ajaran }</span></h1>
           <br>
-          <a href="./tahun-ajaran" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Tahun Pelajaran"><i class="uk-icon-angle-left"></i> Kembali</a>
+          <a href="./tahun-ajaran" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Tahun Ajaran"><i class="uk-icon-angle-left"></i> Kembali</a>
           <!-- <hr class="uk-article-divider"> -->
           <div class="uk-grid" data-uk-grid-margin>
             <div class="uk-width-medium-1-1">
              <form id="formtahun" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
         
         <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="thn_ajaran">Tahun Pelajaran<span class="required">*</span>
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="thn_ajaran">Tahun Ajaran<span class="required">*</span>
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="thn_ajaran" name="thn_ajaran" value="<?php echo $datanamatahunajaran; ?>" required="required" class="form-control col-md-7 col-xs-12">
+            <div class="reg-info">Contoh: 2012/2013</div>
           </div>
+
         </div>
 
       <div class="item form-group">
@@ -136,7 +138,7 @@ if (isset ($_POST["tahun_simpan"])) {
     thn_ajaran : {
      validators: {
       notEmpty: {
-       message: 'Harus Isi Tahun Pelajaran'
+       message: 'Harus Isi Tahun Ajaran'
      },
     
    }

@@ -87,7 +87,7 @@ loadAssetsHead('Master Data Siswa');
             </thead>
               <tbody>
               <?php
-              $query="SELECT * from kelas ";
+              $query="SELECT * from kelas";
               $exe=mysql_query($query);
 
               
