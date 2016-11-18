@@ -53,9 +53,23 @@ if( isset($_POST['login']) ){
 				$cek = mysql_query("SELECT * FROM user, siswa WHERE user.id_user=siswa.id_user AND nis='$username' AND password='$password'");
 				if(mysql_num_rows($cek)==1){//jika berhasil akan bernilai 1
 					$c = mysql_fetch_array($cek);
+
 					$_SESSION['id_user'] = $c['id_user'];
 					$_SESSION['usernamesiswa'] = $c['nis'];
 					$_SESSION['tingkat_user'] = $c['tingkat_user'];
+
+					$cektahun = mysql_query("SELECT * FROM tahun_ajaran WHERE status='1'");
+					mysql_num_rows($cektahun);
+					$tahun_ajaransession = mysql_fetch_array($cektahun);					
+
+					// tahun ajaran session
+					$_SESSION['id_tahun'] = $tahun_ajaransession['id_tahun'];
+					$_SESSION['thn_ajaran'] = $tahun_ajaransession['thn_ajaran'];
+					$_SESSION['semester'] = $tahun_ajaransession['semester'];
+					$_SESSION['status'] = $tahun_ajaransession['status'];
+					// tahun ajaran end
+					
+
 					header("location:dashboard");
 				}
 			}
@@ -69,6 +83,18 @@ if( isset($_POST['login']) ){
 					$_SESSION['usernameadmin'] = $c['username'];
 					$_SESSION['tingkat_user'] = $c['tingkat_user'];
 					$_SESSION['administrator'] = $c['administrator'];
+					
+					$cektahun = mysql_query("SELECT * FROM tahun_ajaran WHERE status='1'");
+					mysql_num_rows($cektahun);
+					$tahun_ajaransession = mysql_fetch_array($cektahun);					
+
+					// tahun ajaran session
+					$_SESSION['id_tahun'] = $tahun_ajaransession['id_tahun'];
+					$_SESSION['thn_ajaran'] = $tahun_ajaransession['thn_ajaran'];
+					$_SESSION['semester'] = $tahun_ajaransession['semester'];
+					$_SESSION['status'] = $tahun_ajaransession['status'];
+					// tahun ajaran end
+
 					header("location:dashboard");
 				}
 			}
@@ -80,6 +106,17 @@ if( isset($_POST['login']) ){
 					$_SESSION['id_user'] = $c['id_user'];
 					$_SESSION['usernametu'] = $c['id_pegawai'];
 					$_SESSION['tingkat_user'] = $c['tingkat_user'];
+
+					$cektahun = mysql_query("SELECT * FROM tahun_ajaran WHERE status='1'");
+					mysql_num_rows($cektahun);
+					$tahun_ajaransession = mysql_fetch_array($cektahun);					
+
+					// tahun ajaran session
+					$_SESSION['id_tahun'] = $tahun_ajaransession['id_tahun'];
+					$_SESSION['thn_ajaran'] = $tahun_ajaransession['thn_ajaran'];
+					$_SESSION['semester'] = $tahun_ajaransession['semester'];
+					$_SESSION['status'] = $tahun_ajaransession['status'];
+					// tahun ajaran end
 					header("location:dashboard");
 				}
 			}
@@ -95,6 +132,17 @@ if( isset($_POST['login']) ){
 					$_SESSION['usernameguru'] = $c['nip'];
 					$_SESSION['tingkat_user'] = $c['tingkat_user'];
 					$_SESSION['hari'] = $c['hari'];
+
+					$cektahun = mysql_query("SELECT * FROM tahun_ajaran WHERE status='1'");
+					mysql_num_rows($cektahun);
+					$tahun_ajaransession = mysql_fetch_array($cektahun);					
+
+					// tahun ajaran session
+					$_SESSION['id_tahun'] = $tahun_ajaransession['id_tahun'];
+					$_SESSION['thn_ajaran'] = $tahun_ajaransession['thn_ajaran'];
+					$_SESSION['semester'] = $tahun_ajaransession['semester'];
+					$_SESSION['status'] = $tahun_ajaransession['status'];
+					// tahun ajaran end
 					header("location:dashboard");
 				}
 				else{
@@ -107,6 +155,17 @@ if( isset($_POST['login']) ){
 						$_SESSION['usernameguru'] = $c['nip'];
 						$_SESSION['tingkat_user'] = $c['tingkat_user'];
 						$_SESSION['jabatan'] = $c['jabatan'];
+
+						$cektahun = mysql_query("SELECT * FROM tahun_ajaran WHERE status='1'");
+					mysql_num_rows($cektahun);
+					$tahun_ajaransession = mysql_fetch_array($cektahun);					
+
+					// tahun ajaran session
+					$_SESSION['id_tahun'] = $tahun_ajaransession['id_tahun'];
+					$_SESSION['thn_ajaran'] = $tahun_ajaransession['thn_ajaran'];
+					$_SESSION['semester'] = $tahun_ajaransession['semester'];
+					$_SESSION['status'] = $tahun_ajaransession['status'];
+					// tahun ajaran end
 						header("location:dashboard");		
 					}
 					else{
@@ -117,6 +176,17 @@ if( isset($_POST['login']) ){
 							$_SESSION['id_user'] = $c['id_user'];
 							$_SESSION['usernameguru'] = $c['nip'];
 							$_SESSION['tingkat_user'] = $c['tingkat_user'];
+
+							$cektahun = mysql_query("SELECT * FROM tahun_ajaran WHERE status='1'");
+					mysql_num_rows($cektahun);
+					$tahun_ajaransession = mysql_fetch_array($cektahun);					
+
+					// tahun ajaran session
+					$_SESSION['id_tahun'] = $tahun_ajaransession['id_tahun'];
+					$_SESSION['thn_ajaran'] = $tahun_ajaransession['thn_ajaran'];
+					$_SESSION['semester'] = $tahun_ajaransession['semester'];
+					$_SESSION['status'] = $tahun_ajaransession['status'];
+					// tahun ajaran end
 							
 							header("location:dashboard");
 						}
