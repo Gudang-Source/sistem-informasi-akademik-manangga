@@ -9,7 +9,7 @@ $ui_register_page     = 'siswa';
 $ui_register_assets   = array('datepicker');
 
 // LOAD HEADER
-loadAssetsHead('Lihat Data Siswa');
+loadAssetsHead('Lihat Detail Data Siswa');
 
 //LOAD DATA
 
@@ -98,9 +98,9 @@ $rowks  = mysql_fetch_array($edit);
             <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SD N II Manangga" title="Sistem Informasi Akademik SD N II Manangga">
           </div>
           <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Guru <span class="uk-text-large">{ Tampil Profil Guru }</span></h1>
+          <h1 class="uk-article-title">Siswa <span class="uk-text-large">{ Tampil Profil Detail Siswa }</span></h1>
           <br>
-          <a href="./siswa" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Guru"><i class="uk-icon-angle-left"></i> Kembali</a>
+          <a href="./siswa" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Siswa"><i class="uk-icon-angle-left"></i> Kembali</a>
 <!-- <hr class="uk-article-divider"> -->
                 <div class="uk-grid" data-uk-grid-margin>
                   <div class="uk-width-medium-1-1">
@@ -110,19 +110,19 @@ $rowks  = mysql_fetch_array($edit);
                         <div class="uk-width-3-10"><div class="uk-panel uk-panel-box"><div class="sia-profile">
 
                           <img src="gallery/news/<?=$rowks['foto'];?>">
-                          <p style="text-align:center" ;="" font-weight:bold;=""><b><?php echo $rowks['nm_guru'];?></b></p>
+                          <p style="text-align:center" ;="" font-weight:bold;=""><b><?php echo $rowks['nm_siswa'];?></b></p>
                           <p style="text-align:center" ;="" font-weight:bold;=""></p>
 
                         </div></div></div>
                         <div class="uk-width-7-10">  <div class="uk-panel uk-panel-box">                    <table class="uk-table uk-table-hover  uk-table-condensed">
                         <tbody>
                                         <tr>
-                                            <td>NIP</td>
+                                            <td>NISN</td>
                                             <td><?php echo $rowks['nis'];?></td>
                                             
                                         </tr>
                                         <tr>
-                                            <td>Nama Guru</td>
+                                            <td>Nama Siswa</td>
                                             <td><?php echo $rowks['nm_siswa'];?></td>
                                             
                                         </tr>
@@ -144,26 +144,6 @@ $rowks  = mysql_fetch_array($edit);
                                         <tr>
                                             <td>Agama</td>
                                             <td><?php echo $rowks['agama'];?></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>Status Guru</td>
-                                            <td><?php echo $rowks['status_guru'];?></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>Gelar Depan Non Akademik</td>
-                                            <td><?php echo $rowks['gelar_depan'];?></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>Gelar Depan Akademik</td>
-                                            <td><?php echo $rowks['gelar_depan_akademik'];?></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>Gelar Belakang</td>
-                                            <td><?php echo $rowks['gelar_belakang'];?></td>
                                             
                                         </tr>
                                         <tr>
@@ -196,7 +176,18 @@ $rowks  = mysql_fetch_array($edit);
                                             <td><?php echo $rowks['email'];?></td>
                                             
                                         </tr>
+
+                                        <tr>
+                                            <td>Tahun Masuk</td>
+                                            <td><?php echo $rowks['tahun_masuk'];?></td>
+                                            
+                                        </tr>
                                        
+                                        <tr>
+                                            <td>Tahun Keluar</td>
+                                            <td><?php echo $rowks['tahun_keluar'];?></td>
+                                            
+                                        </tr>
                                     </tbody>
 
                       </table></div></div>
@@ -212,39 +203,6 @@ $rowks  = mysql_fetch_array($edit);
 <link rel="stylesheet" href="/asset/css/demo.css">
 <script src="/vendor/formvalidation/js/formValidation.min.js"></script>
 <script src="/vendor/formvalidation/js/framework/uikit.min.js"></script>
-
-<script type="text/javascript">
- var formguru = $("#formguru").serialize();
- var validator = $("#formguru").bootstrapValidator({
-  framework: 'bootstrap',
-  feedbackIcons: {
-    valid: "glyphicon glyphicon-ok",
-    invalid: "glyphicon glyphicon-remove", 
-    validating: "glyphicon glyphicon-refresh"
-  }, 
-  excluded: [':disabled'],
-  fields : {
-    nip : {
-     validators: {
-      notEmpty: {
-       message: 'Harus Isi NIP'
-     },
-     stringLength: {
-      min: 1,
-      max: 18,
-      message: 'NIP harus 18 angka.'
-    },
-     remote: {
-      type: 'POST',
-      url: 'remote/remote_guru.php',
-      message: 'NIP Guru Telah Tersedia'
-    },
-   }
- }, 
-
-}
-});
-</script>
 
 </body>
 
