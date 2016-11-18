@@ -285,8 +285,12 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
   </div>
           <hr class="uk-article-divider">
           <h1 class="uk-article-title">Manajemen Kepala Sekolah <span class="uk-text-large">{ Tampil Profil Kepala Sekolah  }</span></h1>
-          <br>
-          <a href="./guru" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Guru"><i class="uk-icon-angle-left"></i> Kembali</a>
+
+                    <?php if (isset($_SESSION['administrator'])) { ?>
+          <a href="./kepala-sekolah.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Kepala Sekolah"><i class="uk-icon-plus"></i> Data Kepala Sekolah</a>
+                    <br>
+ <br>
+      <?php } ?>
           <!-- <hr class="uk-article-divider"> -->
           <div class="uk-grid" data-uk-grid-margin>
             <div class="uk-width-medium-1-1">
@@ -486,7 +490,7 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
 
   ?>
   <div class="item form-group">
-   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="prov">Provinsi <?php echo "provnsi ="; echo $datajeng['id_prov']; ?> <span class="required">*</span>
+   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="prov">Provinsi <span class="required">*</span>
    </label>
    <div class="col-md-6 col-sm-6 col-xs-12">
     <select disabled type="text" class="form-control chzn-select col-md-7 col-xs-12" id="prov" name="prov" value="" required>

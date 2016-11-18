@@ -355,25 +355,25 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
               </div>
             </div>
           </tr>
-          <tr>
+           <tr>
             <div class="item form-group">
              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="jns_kelamin">Jenis Kelamin<span class="required">*</span>
              </label>
              <div class="col-md-6 col-sm-6 col-xs-12">
                <select  type="text" class="form-control chzn-select col-md-7 col-xs-12" id="jns_kelamin" name="jns_kelamin" value="" required>
                 <option value="">-Pilih Jenis Kelaimn-</option> 
-                <?php
-                $jns_kelamin =mysql_query("SELECT * FROM guru ORDER BY jns_kelamin");
-                while ($datajeniskelamin=mysql_fetch_array($jns_kelamin)) {
-                 if ($datajeniskelamin['jns_kelamin']==$rowks['jns_kelamin']) {
-                   $cek ="selected";
-                 }
-                 else{
-                  $cek= "";
-                }
-                echo "<option value=\"$datajeniskelamin[jns_kelamin]\" $cek>$datajeniskelamin[jns_kelamin]</option>\n";
-              }
-              ?>
+       <?php
+        if ($rowks['jns_kelamin']=="Laki-laki") {
+        ?>
+          <option value="Laki-laki" selected>Laki-laki</option>
+          <option value="Perempuan">Perempuan</option>
+        <?php
+        }
+         else{ ?>
+          <option value="Laki-laki" selected>Laki-laki</option>
+          <option value="Perempuan">Perempuan</option>     
+      <?php     } 
+      ?>
             </select>
 
           </div>
@@ -415,7 +415,7 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
         <select  name="status_guru" id="status_guru" value="" class="form-control col-md-7 col-xs-12">
           <option value="">--- Pilih Status Guru --</option>
           <?php
-          $status_guru=mysql_query("SELECT * FROM guru ORDER BY status_guru");
+          $status_guru=mysql_query("SELECT DISTINCT * FROM guru GROUP BY status_guru ORDER BY status_guru");
           while ($datastatusguru=mysql_fetch_array($status_guru)) {
            if ($datastatusguru['status_guru']==$rowks['status_guru']) {
              $cek ="selected";
@@ -478,7 +478,7 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
 
   ?>
   <div class="item form-group">
-   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="prov">Provinsi <?php echo "provnsi ="; echo $datajeng['id_prov']; ?> <span class="required">*</span>
+   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="prov">Provinsi <span class="required">*</span>
    </label>
    <div class="col-md-6 col-sm-6 col-xs-12">
     <select  type="text" class="form-control chzn-select col-md-7 col-xs-12" id="prov" name="prov" value="" required>
