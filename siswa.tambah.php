@@ -108,9 +108,7 @@ $id_user =3;
       if (empty($file_sik_dipilih)){
         $pesanError[] = "Anda Belum Memilih Foto !";    
       }
-    if (trim($kd_kelas)=="kd_kelas") {
-    $pesanError[]="Data <b>Kode Kelas</b> Masih Kosong.";
-  }
+    
       if (trim($tahun_masuk)=="tahun_masuk") {
     $pesanError[]="Data <b>Tahun Masuk</b> Masih Kosong.";
   }
@@ -163,14 +161,14 @@ $data=mysql_fetch_array($hasil);
                 tempat_lahir='$tempat_lahir',
                 date_tgl_lahir='$date_tgl_lahir',
                 jns_kelamin='$jns_kelamin',
-                agama='$agama',
+                id_agama='$agama',
                 alamat='$alamat',
                 email='$email',
                 no_hp='$no_hp',
                 foto='$jeneng',
                 tahun_masuk='$tahun_masuk',
                 tahun_keluar='$tahun_keluar',
-                id_kel='$id_kel'
+                
                 ") or die(mysql_error());
 
 
@@ -361,12 +359,13 @@ $data=mysql_fetch_array($hasil);
            <div class="col-md-6 col-sm-6 col-xs-12">
             <select name="agama" id="agama" value="<?php echo $dataagama; ?>" class="form-control col-md-7 col-xs-12">
               <option value="">--- Pilih agama yang dianut --</option>
-              <option value="Islam">Islam</option>
-              <option value="Kristen Protestan">Kristen Protestan</option>
-              <option value="Kristen Katholik">Kristen Katholik</option>
-              <option value="Hindu">Hindu</option>
-              <option value="Buddha">Buddha</option>
-              <option value="Konghuchu">Konghuchu</option>
+               <?php
+                    //MENGAMBIL NAMA PROVINSI YANG DI DATABASE
+                            $agama =mysql_query("SELECT * FROM agama ORDER BY nm_agama");
+                            while ($dataagama=mysql_fetch_array($agama)) {
+                              echo "<option value=\"$dataagama[id_agama]\">$dataagama[nm_agama]</option>\n";
+                            }
+                            ?>
             </select>
           </div>
         </div>
@@ -464,23 +463,7 @@ $data=mysql_fetch_array($hasil);
               </div>
         </div>
 
-     <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kd_kelas">Kelas<span class="required">*</span>
-           </label>
-           <div class="col-md-6 col-sm-6 col-xs-12">
-            <select name="kd_kelas" id="kd_kelas" value="<?php echo $datakodekelas; ?>" class="form-control col-md-7 col-xs-12">
-              <option value="">--- Pilih Kelas Siswa --</option>
-              <?php
-              $query = "SELECT * from kelas";
-              $hasil = mysql_query($query);
-              while ($data = mysql_fetch_array($hasil))
-              {
-                echo "<option value=".$data['kd_kelas'].">".$data['nm_kelas']."</option>";
-              }
-              ?>
-            </select>
-          </div>
-        </div>
+     
         <div class="uk-form-row">
         <div class="uk-alert">Pastikan semua isian sudah terisi dengan benar!</div>
         </div>
