@@ -366,7 +366,7 @@ function admin(){
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-child"></i> Siswa</li>
       <?php generateNavElement(array(10,1), 'siswa', './siswa', 'Data Siswa') ?>
-      <?php generateNavElement(array(10,1), 'siswa.pertahun', './siswa.pertahun', 'Data Siswa per Tahun Ajaran') ?>
+      <?php generateNavElement(array(10,1), 'siswa.pertahun', './siswa.pertahun', 'Data Siswa Aktif') ?>
       <?php generateNavElement(array(10,1), 'wali-murid', './wali-murid', 'Data Orangtua/Wali') ?>
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-user"></i> Pegawai</li>

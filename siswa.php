@@ -77,7 +77,6 @@ loadAssetsHead('Master Data Siswa');
           <table id="table" class="uk-table uk-table-hover uk-table-striped uk-table-condensed" width="100%" width="100%">
             <thead>
               <tr>
-                <th><h3 class="uk-text-center">Kode Kelas</h3></th>
                 <th><h3 class="uk-text-center" >Nama Kelas</h3></th>
                 <th><h3 class="uk-text-center" >Jumlah Siswa</h3></th>
                 <?php if (isset($_SESSION['administrator'])) { ?>
@@ -95,7 +94,6 @@ loadAssetsHead('Master Data Siswa');
               while ($row=mysql_fetch_array($exe)) { $no++;?>
 
                 <tr>
-                <td ><div class="uk-text-center"><?php echo $row[id_kelas]?></div></td>
                 <td ><div class="uk-text-center"><?php echo $row[nm_kelas]?></div></td>
                 <?php $jumlah_siswa = mysql_num_rows(mysql_query("select * from siswa where id_kelas = '$id_kelas'"));?>
                 <td ><div class="uk-text-center"><?php echo $jumlah_siswa?></div></td>

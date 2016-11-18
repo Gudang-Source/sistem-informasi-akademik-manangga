@@ -39,7 +39,7 @@ loadAssetsHead('Lihat Data Siswa per Tahun Ajaran');
       </div>
       
       <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Lihat Siswa <span class="uk-text-large">
+          <h1 class="uk-article-title">Data Siswa Aktif <span class="uk-text-large">
           <?php  if (isset($_SESSION['administrator'])) {?>
       { Master Data }</span></h1>
           <?php  }?>
