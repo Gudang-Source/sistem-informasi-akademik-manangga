@@ -62,8 +62,8 @@ loadAssetsHead('Master Data Kriteria Kelulusan Minimal');
 						<thead>
 							<tr>
 								<th><h3 class="uk-text-center">No</h3></th>
-								<th><h3 class="uk-text-center" >Nama Mata Pelajaran</h3></th>
-								<th><h3 class="uk-text-center" >Kriteria Kelulusan Minimal</h3></th>
+								<th><h3 class="uk-text-center">Nama Mata Pelajaran</h3></th>
+								<th><h3 class="uk-text-center">Kriteria Kelulusan Minimal</h3></th>
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<th><h3 class="uk-text-center">Aksi</h3></th>
 								<?php }?>
@@ -72,7 +72,7 @@ loadAssetsHead('Master Data Kriteria Kelulusan Minimal');
 							<tbody>
 						  <?php 
 						
-						  $query="SELECT * FROM kkm INNER JOIN mapel ON mapel.kd_mapel=kkm.id_kkm";
+						  $query="SELECT * FROM kkm, mapel WHERE mapel.kd_mapel=kkm.kd_mapel";
 						  $exe=mysql_query($query);
 						  $no=0;
 						  while ($row=mysql_fetch_array($exe)) { $no++;?>

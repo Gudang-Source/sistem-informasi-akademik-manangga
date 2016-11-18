@@ -415,7 +415,7 @@ $rowks  = mysql_fetch_array($edit);
         <select  name="status_guru" id="status_guru" value="" class="form-control col-md-7 col-xs-12">
           <option value="">--- Pilih Status Guru --</option>
           <?php
-          $status_guru=mysql_query("SELECT DISTINCT * FROM guru ORDER BY status_guru");
+          $status_guru=mysql_query("SELECT DISTINCT * FROM guru GROUP BY status_guru ORDER BY status_guru");
           while ($datastatusguru=mysql_fetch_array($status_guru)) {
            if ($datastatusguru['status_guru']==$rowks['status_guru']) {
              $cek ="selected";

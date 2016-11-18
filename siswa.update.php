@@ -463,14 +463,18 @@ $rowks  = mysql_fetch_array($edit);
            <div class="col-md-6 col-sm-6 col-xs-12">
             <select name="kd_kelas" id="kd_kelas" value="<?php echo $datakodekelas; ?>" class="form-control col-md-7 col-xs-12">
               <option value="">--- Pilih Kelas Siswa --</option>
-              <?php
-              $query = "SELECT * from kelas";
-              $hasil = mysql_query($query);
-              while ($data = mysql_fetch_array($hasil))
-              {
-                echo "<option value=".$data['kd_kelas'].">".$data['nm_kelas']."</option>";
-              }
-              ?>
+         <?php
+          $kelas=mysql_query("SELECT DISTINCT * FROM siswa GROUP BY id_kelas ORDER BY id_kelas");
+          while ($datakelas=mysql_fetch_array($kelas)) {
+           if ($datakelas['id_kelas']==$rowks['id_kelas']) {
+             $cek ="selected";
+           }
+           else{
+            $cek= "";
+          }
+          echo "<option value=\"$datakelas[id_kelas]\" $cek>$datakelas[id_kelas]</option>\n";
+        }
+        ?>
             </select>
           </div>
         </div>
