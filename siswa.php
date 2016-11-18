@@ -35,22 +35,7 @@ loadAssetsHead('Master Data Siswa');
 		  <div class="uk-vertical-align uk-text-right uk-height-1-1">
 			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SD Negeri II Manangga" title="Sistem Informasi Akademik SD Negeri II Manangga">
 		  </div>
-  <tbody>
-  <tr><td class="table-nama-id">NIM.</td>
-  <?php
-   $sqll = "SELECT * FROM user, siswa, kelas WHERE siswa.id_user=user.id_user AND siswa.id_guru=kelas.id_siswa AND  siswa.nip={$_SESSION['usernamesiswa']}";
-   $resultl = mysql_query($sqll);
-   $rowl=mysql_fetch_array($resultl); 
-  ?> 
-  <td>: 
-  <?php echo $rowl['nip'];?></td></tr>
-  <tr><td class="table-nama-id">Nama Siswa</td>
-  <td>: <?php echo $rowl['nm_siswa'];?></td></tr>
-  <tr><td class="table-nama-id">Wali Kelas</td>
-  <td>: <?php echo $rowl['nm_kelas'];?> </td></tr>
-  </tr>
-  </tbody>
-  </table>		  
+ 
 		  <hr class="uk-article-divider">
           <h1 class="uk-article-title">Manajemen Siswa <span class="uk-text-large">
           <?php  if (isset($_SESSION['administrator'])) {?>
@@ -62,31 +47,35 @@ loadAssetsHead('Master Data Siswa');
 		  <?php } ?>
 		   <br><br>
 		  
-				<div id="tablewrapper">
-					<div id="tableheader">
-						<div class="search">
-							<select id="columns" onchange="sorter.search('query')"></select>
-							<input type="text" id="query" onkeyup="sorter.search('query')" />
-						</div>
-						<span class="details">
-							<div>Data <span id="startrecord"></span>-<span id="endrecord"></span> dari <span id="totalrecords"></span></div>
-							<div><a href="javascript:sorter.reset()">(atur ulang)</a></div>
-						</span>
-					</div>
-
+	<div id="tablewrapper">
+          <div id="tableheader">
+            <div class="search">
+              <select id="columns" onchange="sorter.search('query')"></select>
+              <input type="text" id="query" onkeyup="sorter.search('query')" />
+            </div>
+            <span class="details">
+              <div>Data <span id="startrecord"></span>-<span id="endrecord"></span> dari <span id="totalrecords"></span></div>
+              <div><a href="javascript:sorter.reset()">(atur ulang)</a></div>
+            </span>
+          </div>
           <table id="table" class="uk-table uk-table-hover uk-table-striped uk-table-condensed" width="100%" width="100%">
             <thead>
               <tr>
-                <th><h3 class="uk-text-center" >Nama Kelas</h3></th>
-                <th><h3 class="uk-text-center" >Jumlah Siswa</h3></th>
+               
+                <th><h3 class="uk-text-center" >NIS</h3></th>
+                <th><h3 class="uk-text-center" >Nama Siswa</h3></th>
+                
+                <th><h3 class="uk-text-center" >Jenis Kelamin</h3></th>
+                
                 <?php if (isset($_SESSION['administrator'])) { ?>
                 <th><h3 class="uk-text-center">Aksi</h3></th>
                 <?php }?>
               </tr>
             </thead>
               <tbody>
-              <?php
-              $query="SELECT * from kelas";
+              <?php 
+            
+              $query="SELECT * from siswa order by nm_siswa asc";
               $exe=mysql_query($query);
 
               
@@ -94,13 +83,14 @@ loadAssetsHead('Master Data Siswa');
               while ($row=mysql_fetch_array($exe)) { $no++;?>
 
                 <tr>
-                <td ><div class="uk-text-center"><?php echo $row[nm_kelas]?></div></td>
-                <?php $jumlah_siswa = mysql_num_rows(mysql_query("select * from siswa where id_kelas = '$id_kelas'"));?>
-                <td ><div class="uk-text-center"><?php echo $jumlah_siswa?></div></td>
-                
+               
+                <td ><?php echo $row[nis]?></td>
+                <td ><?php echo $row[nm_siswa]?></td>
+                <td ><?php echo $row[jns_kelamin]?></td>
                 <?php if (isset($_SESSION['administrator'])) { ?>
                 <td width="15%"><div class="uk-text-center">
-                  <a href="lihatsiswa?id_kelas=<?php echo $row[id_kelas]?>" title="Lihat Siswa" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small">Lihat Siswa</a>
+                  <a href="siswa.lihat?id=<?php echo $row[id_siswa]?>" title="Lihat" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-search"></i></a>
+                  <a href="siswa.update?id=<?php echo $row[id_siswa]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
                 </td>
                 <?php } ?>            
                 </tr>
@@ -108,7 +98,7 @@ loadAssetsHead('Master Data Siswa');
               </tbody>
           </table>
           
-
+          
                 <!-- PAGINATION -->
                   <div id="tablefooter">
                     <div id="tablenav">
@@ -141,7 +131,7 @@ loadAssetsHead('Master Data Siswa');
                       </div>
                   </div>
                 <!-- END Pagination -->
-				</div>
+        </div>
 					
         </article>
 		<br><br><br>

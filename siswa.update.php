@@ -123,12 +123,12 @@ $id_user =3;
                 tempat_lahir='$tempat_lahir',
                 date_tgl_lahir='$date_tgl_lahir',
                 jns_kelamin='$jns_kelamin',
-                agama='$agama',
+                id_agama='$agama',
                 alamat='$alamat',
                 email='$email',
                 no_hp='$no_hp',
                 tahun_masuk='tahun_keluar',
-                id_kelas='$id_kelas' WHERE id_siswa='$_GET[id]'
+               WHERE id_siswa='$_GET[id]'
                 ") or die(mysql_error());
       }
    
@@ -165,12 +165,12 @@ $id_user =3;
                 tempat_lahir='$tempat_lahir',
                 date_tgl_lahir='$date_tgl_lahir',
                 jns_kelamin='$jns_kelamin',
-                agama='$agama',
+                id_agama='$agama',
                 alamat='$alamat',
                 email='$email',
                 no_hp='$no_hp',
                 tahun_masuk='tahun_keluar',
-                id_kelas='$id_kelas' WHERE id_siswa='$_GET[id]'
+                WHERE id_siswa='$_GET[id]'
                 ") or die(mysql_error());
 
           }
@@ -379,22 +379,19 @@ $rowks  = mysql_fetch_array($edit);
          <div class="col-md-6 col-sm-6 col-xs-12">
            <select  type="text" class="form-control chzn-select col-md-7 col-xs-12" id="agama" name="agama" value="" required>
             <option value="">-Pilih Agama-</option>
-            <?php
-            $endiagamamu  = array('Islam','Kristen Katolik','Kristen Protestan','Hindu','Budha','Konghucu','Lainnya');
-            ?>
-
-            <?php
-            $agama =mysql_query("SELECT * FROM siswa ORDER BY agama");
-            $dataagama=mysql_fetch_array($agama);
-
-            for ($d = 0; $d < sizeof($endiagamamu); $d++) {
-              if ($dataagama['agama'] == $endiagamamu[$d]) {
-               echo '<option value="'.$endiagamamu[$d].'" selected>'.$endiagamamu[$d].'</option>';
-             } else {
-               echo '<option value="'.$endiagamamu[$d].'">'.$endiagamamu[$d].'</option>';
-             }
-           }
-           ?>
+          <?php
+                    //MENGAMBIL NAMA PROVINSI YANG DI DATABASE
+      $agama =mysql_query("SELECT * FROM agama ORDER BY nm_agama asc");
+      while ($dataagama=mysql_fetch_array($agama)) {
+       if ($dataagama['id_agama']==$rowks['id_agama']) {
+         $cek ="selected";
+       }
+       else{
+        $cek= "";
+      }
+      echo "<option value=\"$dataagama[id_agama]\" $cek>$dataagama[nm_agama]</option>\n";
+    }
+    ?>
          </select>
 
        </div>
@@ -455,31 +452,7 @@ $rowks  = mysql_fetch_array($edit);
     <div class="reg-info">Wajib Isi Data Tahun Keluar</div>
   </div>
 </div>      
-</tr>
 
-     <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kd_kelas">Kelas<span class="required">*</span>
-           </label>
-           <div class="col-md-6 col-sm-6 col-xs-12">
-            <select name="kd_kelas" id="kd_kelas" value="<?php echo $datakodekelas; ?>" class="form-control col-md-7 col-xs-12">
-              <option value="">--- Pilih Kelas Siswa --</option>
-         <?php
-          $kelas=mysql_query("SELECT DISTINCT * FROM siswa GROUP BY id_kelas ORDER BY id_kelas");
-          while ($datakelas=mysql_fetch_array($kelas)) {
-           if ($datakelas['id_kelas']==$rowks['id_kelas']) {
-             $cek ="selected";
-           }
-           else{
-            $cek= "";
-          }
-          echo "<option value=\"$datakelas[id_kelas]\" $cek>$datakelas[id_kelas]</option>\n";
-        }
-        ?>
-            </select>
-          </div>
-        </div>
-
-<tr>
   <div class="uk-form-row">
     <div class="uk-alert">Pastikan semua isian sudah terisi dengan benar!</div>
   </div>
@@ -499,38 +472,57 @@ $rowks  = mysql_fetch_array($edit);
 </div>
 </div>
 </div>
+
 <script src="assets/validator/js/bootstrapValidator.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/vendor/formvalidation/css/formValidation.min.css">
 <link rel="stylesheet" href="/asset/css/demo.css">
 <script src="/vendor/formvalidation/js/formValidation.min.js"></script>
 <script src="/vendor/formvalidation/js/framework/uikit.min.js"></script>
-              <script type="text/javascript">
 
-                var formguru = $("#formguru").serialize();
-                var validator = $("#formguru").bootstrapValidator({
-                  framework: 'bootstrap',
-                  feedbackIcons: {
-                    valid: "glyphicon glyphicon-ok",
-                    invalid: "glyphicon glyphicon-remove", 
-                    validating: "glyphicon glyphicon-refresh"
-                  }, 
-                  excluded: [':disabled'],
-                  fields : {
-     
-  nip : {
-    validators: {
+<script src="assets/validator/js/bootstrapValidator.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/vendor/formvalidation/css/formValidation.min.css">
+<link rel="stylesheet" href="/asset/css/demo.css">
+<script src="/vendor/formvalidation/js/formValidation.min.js"></script>
+<script src="/vendor/formvalidation/js/framework/uikit.min.js"></script>
+
+<script type="text/javascript">
+ var formsiswa = $("#formsiswa").serialize();
+ var validator = $("#formsiswa").bootstrapValidator({
+  framework: 'bootstrap',
+  feedbackIcons: {
+    valid: "glyphicon glyphicon-ok",
+    invalid: "glyphicon glyphicon-remove", 
+    validating: "glyphicon glyphicon-refresh"
+  }, 
+  excluded: [':disabled'],
+  fields : {
+                    file : {
+                      validators : {
+                        notEmpty: {
+                          message: 'Belum Memilih Gambar'
+                        },
+                        file : {
+                          extention : 'jpeg,jpg,png',
+                          type : 'image/jpeg,image/png',
+              //maxSize : 2097152, //2048*1024
+              message : 'file tidak benar'
+          }
+      }
+  } ,
+    nis : {
+     validators: {
       notEmpty: {
-        message: 'Harus Isi NIP'
-      },
+       message: 'Harus Isi NIS'
+     },
       stringLength: {
         min: 1,
-        max: 18,
-        message: 'NIP minimal 18 angka.'
+        max: 5,
+        message: 'NIP maksimal 5 angka.'
       },
      
-    }
-  },
-  nm_guru: {
+   }
+ }, 
+nm_siswa: {
     message: 'Nama Tidak Benar',
     validators: {
       notEmpty: {
@@ -585,9 +577,7 @@ $rowks  = mysql_fetch_array($edit);
       },
     }
   },
-
-
-  tempat_lahir : {
+  tmpt_lahir : {
     validators: {
       notEmpty: {
         message: 'Harus diisi tempat lahir'
@@ -608,15 +598,6 @@ $rowks  = mysql_fetch_array($edit);
       }
     }
   },    
-  status_guru : {
-    validators: {
-      notEmpty: {
-        message: 'Harus Pilih Status Guru'
-      }
-    }
-  },       
-
-
   prov : {
     validators: {
       notEmpty: {
@@ -645,7 +626,7 @@ $rowks  = mysql_fetch_array($edit);
       }
     }
   }, 
-  almt_sekarang : {
+  alamat : {
     message: 'Alamat Tidak Benar',
     validators: {
       notEmpty: {
@@ -656,8 +637,6 @@ $rowks  = mysql_fetch_array($edit);
         max: 100,
         message: 'Alamat Harus Lebih dari 10 Huruf dan Maksimal 100 Huruf'
       },
-
-
     }
   }, 
   no_hp: {
@@ -686,17 +665,50 @@ $rowks  = mysql_fetch_array($edit);
       emailAddress:{
         message: 'Email Tidal valid'
       },
+     
+    }
+  },
+
+  tahun_masuk: {
+    message: 'Tahun Masuk Tidak Benar',
+    validators: {
+      notEmpty: {
+        message: 'Tahun Masuk Harus Diisi'
+      },
+      stringLength: {
+        min: 4,
+        max: 4,
+        message: 'Tahun Masuk Harus 4 Digit'
+      },
+      regexp: {
+        regexp: /^[0-9+]+$/,
+        message: 'Format Tidak Benar'
+      },
+
+    }
+  },
+  tahun_keluar: {
+    message: 'Tahun Keluar Tidak Benar',
+    validators: {
+      notEmpty: {
+        message: 'Tahun Keluar Harus Diisi'
+      },
+      stringLength: {
+        min: 4,
+        max: 4,
+        message: 'Tahun Keluar Harus 4 Digit'
+      },
+      regexp: {
+        regexp: /^[0-9+]+$/,
+        message: 'Format Tidak Benar'
+      },
 
     }
   },
 
-
-
-
 }
 });
 </script>
-
 
 </body>
 
