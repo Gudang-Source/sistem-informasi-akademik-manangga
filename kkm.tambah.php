@@ -88,7 +88,7 @@ if (isset ($_POST["kkm_simpan"])) {
             <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SDN II Manangga" title="Sistem Informasi Akademik SDN II Manangga">
           </div>
           <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Mata Pelajaran <span class="uk-text-large">{ Tambah Master Data KKM }</span></h1>
+          <h1 class="uk-article-title">Data Kriteria Kelulusan Minimal <span class="uk-text-large">{ Tambah Master Data KKM }</span></h1>
           <br>
           <a href="./kkm" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Master KKM"><i class="uk-icon-angle-left"></i> Kembali</a>
           <!-- <hr class="uk-article-divider"> -->

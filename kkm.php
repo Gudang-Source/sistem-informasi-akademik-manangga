@@ -33,7 +33,7 @@ loadAssetsHead('Master Data Kriteria Kelulusan Minimal');
         <article class="uk-article">		
 		
 		  <div class="uk-vertical-align uk-text-right uk-height-1-1">
-			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="" title="">
+			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SDN II Manangga" title="Sistem Informasi Akademik SDN II Manangga">
 		  </div>
 		  
 		  <hr class="uk-article-divider">
@@ -43,7 +43,7 @@ loadAssetsHead('Master Data Kriteria Kelulusan Minimal');
           <?php  }?>
           <br>
           <?php if (isset($_SESSION['administrator'])) { ?>
-          <a href="./kkm.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Kriteria Kelulusan Minimal"><i class="uk-icon-plus"></i> Tambah KKM</a>
+          <a href="./kkm.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Kriteria Kelulusan Minimal"><i class="uk-icon-plus"></i> Tambah Data KKM</a>
 		  <?php } ?>
 		   <br><br>
 		  
@@ -63,7 +63,7 @@ loadAssetsHead('Master Data Kriteria Kelulusan Minimal');
 							<tr>
 								<th><h3 class="uk-text-center">No</h3></th>
 								<th><h3 class="uk-text-center" >Nama Mata Pelajaran</h3></th>
-								<th><h3 class="uk-text-center" >KKM</h3></th>
+								<th><h3 class="uk-text-center" >Kriteria Kelulusan Minimal</h3></th>
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<th><h3 class="uk-text-center">Aksi</h3></th>
 								<?php }?>
