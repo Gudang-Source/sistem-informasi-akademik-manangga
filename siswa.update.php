@@ -19,7 +19,7 @@ if (isset($_POST['siswa_simpan'])) {
 $password     = $_POST['password'];
 $password1  = $_POST['password1'];
 $nm_siswa     = $_POST['nm_siswa'];
-$tmpt_lahir     = $_POST['tmpt_lahir'];
+$tempat_lahir     = $_POST['tempat_lahir'];
 $date_tgl_lahir0  = $_POST['date_tgl_lahir'];
 $date_tgl_lahir=ubahformatTgl($date_tgl_lahir0);
 $jns_kelamin     = $_POST['jns_kelamin'];
@@ -72,7 +72,7 @@ $id_user =3;
       if (trim($nm_siswa)=="") {
         $pesanError[]="Data <b>Nama Siswa</b> masih kosong.";
       }
-      if (trim($tmpt_lahir)=="") {
+      if (trim($tempat_lahir)=="") {
         $pesanError[]="Data <b>Tempat Lahir</b> masih kosong.";
       }
       if (trim($date_tgl_lahir)=="") {
@@ -120,7 +120,7 @@ $id_user =3;
                 nis='$nis', 
                 password='$password',
                 nm_siswa='$nm_siswa',
-                tmpt_lahir='$tmpt_lahir',
+                tempat_lahir='$tempat_lahir',
                 date_tgl_lahir='$date_tgl_lahir',
                 jns_kelamin='$jns_kelamin',
                 agama='$agama',
@@ -128,7 +128,7 @@ $id_user =3;
                 email='$email',
                 no_hp='$no_hp',
                 tahun_masuk='tahun_keluar',
-                id_kel='$id_kel' WHERE id_siswa='$_GET[id]'
+                id_kelas='$id_kelas' WHERE id_siswa='$_GET[id]'
                 ") or die(mysql_error());
       }
    
@@ -162,7 +162,7 @@ $id_user =3;
                 nis='$nis', 
                 password='$password',
                 nm_siswa='$nm_siswa',
-                tmpt_lahir='$tmpt_lahir',
+                tempat_lahir='$tempat_lahir',
                 date_tgl_lahir='$date_tgl_lahir',
                 jns_kelamin='$jns_kelamin',
                 agama='$agama',
@@ -170,7 +170,7 @@ $id_user =3;
                 email='$email',
                 no_hp='$no_hp',
                 tahun_masuk='tahun_keluar',
-                id_kel='$id_kel' WHERE id_siswa='$_GET[id]'
+                id_kelas='$id_kelas' WHERE id_siswa='$_GET[id]'
                 ") or die(mysql_error());
 
           }
@@ -287,7 +287,7 @@ $rowks  = mysql_fetch_array($edit);
                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nis">NIS<span class="required">*</span>
                            </label>
                            <div class="col-md-6 col-sm-6 col-xs-12">
-                           <input  type="text" id="nis" name="nis" value="<?php echo $rowks['nip'];?>" required="required" class="form-control col-md-7 col-xs-12">
+                           <input  type="text" id="nis" name="nis" value="<?php echo $rowks['nis'];?>" required="required" class="form-control col-md-7 col-xs-12">
                            <div class="reg-info">Contoh: 55550. Wajib Diisi (Digunakan sebagai username untuk login)</div>
                           </div>
                         </div>
@@ -325,10 +325,10 @@ $rowks  = mysql_fetch_array($edit);
 
             <tr>
               <div class="item form-group">
-               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tmpt_lahir">Tempat Lahir<span class="required">*</span>
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tempat_lahir">Tempat Lahir<span class="required">*</span>
                </label>
                <div class="col-md-6 col-sm-6 col-xs-12">
-               <input  type="text" id="tmpt_lahir" name="tmpt_lahir" value="<?php echo $rowks['tmpt_lahir'];?>" required="required" class="form-control col-md-7 col-xs-12">
+               <input  type="text" id="tempat_lahir" name="tempat_lahir" value="<?php echo $rowks['tempat_lahir'];?>" required="required" class="form-control col-md-7 col-xs-12">
               </div>
             </div>
           </tr>
@@ -351,20 +351,23 @@ $rowks  = mysql_fetch_array($edit);
              </label>
              <div class="col-md-6 col-sm-6 col-xs-12">
                <select  type="text" class="form-control chzn-select col-md-7 col-xs-12" id="jns_kelamin" name="jns_kelamin" value="" required>
-                <option value="">-Pilih Jenis Kelaimn-</option> 
-                <?php
-                $jns_kelamin =mysql_query("SELECT * FROM guru ORDER BY jns_kelamin");
-                while ($datajeniskelamin=mysql_fetch_array($jns_kelamin)) {
-                 if ($datajeniskelamin['jns_kelamin']==$rowks['jns_kelamin']) {
-                   $cek ="selected";
-                 }
-                 else{
-                  $cek= "";
-                }
-                echo "<option value=\"$datajeniskelamin[jns_kelamin]\" $cek>$datajeniskelamin[jns_kelamin]</option>\n";
-              }
-              ?>
+                <option value="">-Pilih Jenis Kelamin-</option> 
+       <?php
+        if ($rowks['jns_kelamin']=="Laki-laki") {
+        ?>
+          <option value="Laki-laki" selected>Laki-laki</option>
+          <option value="Perempuan">Perempuan</option>
+        <?php
+        }
+         else{ ?>
+          <option value="Laki-laki" selected>Laki-laki</option>
+          <option value="Perempuan">Perempuan</option>     
+      <?php     } 
+      ?>
             </select>
+
+
+
 
           </div>
         </div>
@@ -397,118 +400,7 @@ $rowks  = mysql_fetch_array($edit);
        </div>
      </div>
    </tr>
-<tr>
-  <?php               
-  $jeng =mysql_query("SELECT *
-    FROM
-    provinsi
-    INNER JOIN kabupaten ON kabupaten.id_prov = provinsi.id_prov
-    INNER JOIN kecamatan ON kecamatan.id_kab = kabupaten.id_kab
-    INNER JOIN kelurahan ON kelurahan.id_kec = kecamatan.id_kec
-    where kelurahan.id_kel='$rowks[id_kel]'
-    ");
-  $datajeng=mysql_fetch_array($jeng);
 
-
-  ?>
-  <div class="item form-group">
-   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="prov">Provinsi <?php echo "provnsi ="; echo $datajeng['id_prov']; ?> <span class="required">*</span>
-   </label>
-   <div class="col-md-6 col-sm-6 col-xs-12">
-    <select  type="text" class="form-control chzn-select col-md-7 col-xs-12" id="prov" name="prov" value="" required>
-      <option value="">-Pilih Provinsi-</option>
-      <?php
-                    //MENGAMBIL NAMA PROVINSI YANG DI DATABASE
-      $provinsi =mysql_query("SELECT * FROM provinsi ORDER BY nama_prov");
-      while ($dataprovinsi=mysql_fetch_array($provinsi)) {
-       if ($dataprovinsi['id_prov']==$datajeng['id_prov']) {
-         $cek ="selected";
-       }
-       else{
-        $cek= "";
-      }
-      echo "<option value=\"$dataprovinsi[id_prov]\" $cek>$dataprovinsi[nama_prov]</option>\n";
-    }
-    ?>
-  </select>
-</div>
-</div>      
-</tr>
-<tr>
-  <div class="item form-group">
-   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kota">Kabupaten <span class="required">*</span>
-   </label>
-   <div class="col-md-6 col-sm-6 col-xs-12">
-    <select  type="text" class="form-control chzn-select col-md-7 col-xs-12" id="kota" name="kota" value="" required>
-      <option value="">-Pilih Kabupaten-</option>
-      <?php
-                    //MENGAMBIL NAMA kabupaten YANG DI DATABASE
-      $kabupaten =mysql_query("SELECT * FROM kabupaten WHERE id_prov=$datajeng[id_prov] ORDER BY nama_kab");
-      while ($datakabupaten=mysql_fetch_array($kabupaten)) {
-       if ($datakabupaten['id_kab']==$datajeng['id_kab']) {
-         $cek ="selected";
-       }
-       else{
-        $cek= "";
-      }
-      echo "<option value=\"$datakabupaten[id_kab]\" $cek>$datakabupaten[nama_kab]</option>\n";
-    }
-    ?>
-  </select>
-</div>
-</div>
-</tr>
-<tr>
-  <div class="item form-group">
-   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_kec">Kecamatan <span class="required">*</span>
-   </label>
-   <div class="col-md-6 col-sm-6 col-xs-12">
-    <select  type="text" class="form-control chzn-select col-md-7 col-xs-12" id="id_kec" name="id_kec" value="" required>
-      <option value="">-Pilih Kecamatan-</option>
-      <?php
-
-
-                    //MENGAMBIL NAMA kecamatan YANG DI DATABASE
-      $kecamatan =mysql_query("SELECT * FROM kecamatan WHERE id_kab=$datajeng[id_kab] ORDER BY nama_kec");
-      while ($datakecamatan=mysql_fetch_array($kecamatan)) {
-       if ($datakecamatan['id_kec']==$datajeng['id_kec']) {
-         $cek ="selected";
-       }
-       else{
-        $cek= "";
-      }
-      echo "<option value=\"$datakecamatan[id_kec]\" $cek>$datakecamatan[nama_kec]</option>\n";
-    }
-    ?>
-  </select>
-</div>
-</div>      
-</tr>
-<tr>
-  <div class="item form-group">
-   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_kel">Kelurahan <span class="required">*</span>
-   </label>
-   <div class="col-md-6 col-sm-6 col-xs-12">
-    <select  type="text" class="form-control chzn-select col-md-7 col-xs-12" id="id_kel" name="id_kel" value="" required>
-      <option value="">-Pilih Kelurahan-</option>
-      <?php
-
-                    //MENGAMBIL NAMA kecamatan YANG DI DATABASE
-      $kelurahan =mysql_query("SELECT * FROM kelurahan WHERE id_kec=$datajeng[id_kec] ORDER BY nama_kel");
-      while ($datakelurahan=mysql_fetch_array($kelurahan)) {
-       if ($datakelurahan['id_kel']==$rowks['id_kel']) {
-         $cek ="selected";
-       }
-       else{
-        $cek= "";
-      }
-      echo "<option value=\"$datakelurahan[id_kel]\" $cek>$datakelurahan[nama_kel]</option>\n";
-    }
-    ?>
-  </select>
-</div>
-</div>      
-</tr>
 <tr>
   <div class="item form-group">
    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="alamat">Alamat Rumah<span class="required">*</span>
@@ -526,7 +418,7 @@ $rowks  = mysql_fetch_array($edit);
    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email<span class="required">*</span>
    </label>
    <div class="col-md-6 col-sm-6 col-xs-12">
-   <input  type="text" id="email" name="email" value="<?php echo $rowks['email'];?>" required="required" class="form-control col-md-7 col-xs-12">
+   <input  type="text" id="email" name="email" value="<?php echo $rowks['email'];?>" class="form-control col-md-7 col-xs-12">
     <div class="reg-info">Email Wajib Diisi </div>
   </div>
 </div>      
@@ -537,7 +429,7 @@ $rowks  = mysql_fetch_array($edit);
    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="no_hp">No. HP<span class="required">*</span>
    </label>
    <div class="col-md-6 col-sm-6 col-xs-12">
-   <input  type="text" id="no_hp" name="no_hp" value="<?php echo $rowks['no_hp'];?>" required="required" class="form-control col-md-7 col-xs-12">
+   <input  type="text" id="no_hp" name="no_hp" value="<?php echo $rowks['no_hp'];?>" class="form-control col-md-7 col-xs-12">
     <div class="reg-info">Wajib Isi Data No Hp</div>
   </div>
 </div>      
@@ -564,6 +456,24 @@ $rowks  = mysql_fetch_array($edit);
   </div>
 </div>      
 </tr>
+
+     <div class="item form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kd_kelas">Kelas<span class="required">*</span>
+           </label>
+           <div class="col-md-6 col-sm-6 col-xs-12">
+            <select name="kd_kelas" id="kd_kelas" value="<?php echo $datakodekelas; ?>" class="form-control col-md-7 col-xs-12">
+              <option value="">--- Pilih Kelas Siswa --</option>
+              <?php
+              $query = "SELECT * from kelas";
+              $hasil = mysql_query($query);
+              while ($data = mysql_fetch_array($hasil))
+              {
+                echo "<option value=".$data['kd_kelas'].">".$data['nm_kelas']."</option>";
+              }
+              ?>
+            </select>
+          </div>
+        </div>
 
 <tr>
   <div class="uk-form-row">
@@ -673,7 +583,7 @@ $rowks  = mysql_fetch_array($edit);
   },
 
 
-  tmpt_lahir : {
+  tempat_lahir : {
     validators: {
       notEmpty: {
         message: 'Harus diisi tempat lahir'
