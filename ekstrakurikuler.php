@@ -62,7 +62,6 @@ loadAssetsHead('Master Data Ekstrakurikuler');
             <thead>
               <tr>
                 <th><h3 class="uk-text-center">No</h3></th>
-                <th><h3 class="uk-text-center">ID Ekstrakurikuler</h3></th>
                 <th><h3 class="uk-text-center" >Nama Ekstrakurikuler</h3></th>
                 <th><h3 class="uk-text-center" >Guru Pengampu</h3></th>
                 <?php if (isset($_SESSION['administrator'])) { ?>
@@ -81,7 +80,6 @@ loadAssetsHead('Master Data Ekstrakurikuler');
 
                 <tr>
                 <td><div class="uk-text-center"><?php echo $no?></div></td>
-                <td><div class="uk-text-center"><?php echo $row[id_ekstrakurikuler]?></div></td>
                 <td><div class="uk-text-center"><?php echo $row[nm_ekstrakurikuler]?></div></td>
                 <td><div class="uk-text-center"><?php echo $row[nm_guru]?></div></td>
                 <?php if (isset($_SESSION['administrator'])) { ?>

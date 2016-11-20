@@ -1,7 +1,7 @@
 <?php
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(1, 2, 10));
+checkUserRole(array(1, 2, 10, 0));
 
 // TEMPLATE CONTROL
 $ui_register_page = 'guru';
@@ -35,26 +35,7 @@ loadAssetsHead('Master Data Guru');
 		  <div class="uk-vertical-align uk-text-right uk-height-1-1">
 			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SD Negeri II Manangga" title="Sistem Informasi Akademik SD Negeri II Manangga">
 		  </div>
-          <table class="table table-nama" style="border: none; margin-bottom:2%;">
-  <tbody>
-  <tr><td class="table-nama-id">NIM.</td>
-  <?php
-   $sqll = "SELECT * FROM user, guru, kelas WHERE guru.id_user=user.id_user AND guru.id_guru=kelas.id_guru AND  guru.nip={$_SESSION['usernameguru']}";
-   $resultl = mysql_query($sqll);
-   $rowl=mysql_fetch_array($resultl); 
-  ?> 
-  <td>: 
-  <?php echo $rowl['nip'];?></td></tr>
-  <tr><td class="table-nama-id">Nama Guru</td>
-  <td>: <?php echo $rowl['nm_guru'];?></td></tr>
-  <tr><td class="table-nama-id">Wali Kelas</td>
-  <td>: <?php echo $rowl['nm_kelas'];?> </td></tr>
-  </tr>
- 
-  
-  </tbody>
-  </table>
- 
+
 		  <hr class="uk-article-divider">
           <h1 class="uk-article-title">Manajemen Guru <span class="uk-text-large">
           <?php  if (isset($_SESSION['administrator'])) {?>
@@ -83,7 +64,6 @@ loadAssetsHead('Master Data Guru');
 								<th><h3 class="uk-text-center">No</h3></th>
 								<th><h3 class="uk-text-center" >NIP</h3></th>
 								<th><h3 class="uk-text-center" >Nama Guru</h3></th>
-								
 								<th><h3 class="uk-text-center" >Alamat</h3></th>
 								
 								<?php if (isset($_SESSION['administrator'])) { ?>
