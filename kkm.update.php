@@ -57,7 +57,7 @@ if (isset($_POST['kkm_simpan'])) {
 
 # MEMBUAT NILAI DATA PADA FORM
 # SIMPAN DATA PADA FORM, Jika saat Sumbit ada yang kosong (lupa belum diisi)
-$edit = mysql_query("SELECT * FROM kkm INNER JOIN mapel ON mapel.kd_mapel=kkm.id_kkm WHERE id_kkm='$_GET[id]'");
+$edit = mysql_query("SELECT * FROM kkm INNER JOIN mapel ON mapel.kd_mapel=kkm.kd_mapel WHERE id_kkm='$_GET[id]'");
 $rowks  = mysql_fetch_array($edit);
 
 ?>
