@@ -381,10 +381,10 @@ $rowks  = mysql_fetch_array($edit);
       </tr>
       <tr>
         <div class="item form-group">
-         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="agama">Agama<span class="required">*</span>
+         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_agama">Agama<span class="required">*</span>
          </label>
          <div class="col-md-6 col-sm-6 col-xs-12">
-           <select  type="text" class="form-control chzn-select col-md-7 col-xs-12" id="agama" name="agama" value="" required>
+           <select  type="text" class="form-control chzn-select col-md-7 col-xs-12" id="id_agama" name="id_agama" value="" required>
             <option value="">-Pilih Agama-</option>
           <?php
                     //MENGAMBIL NAMA PROVINSI YANG DI DATABASE
@@ -598,7 +598,7 @@ $rowks  = mysql_fetch_array($edit);
    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email<span class="required">*</span>
    </label>
    <div class="col-md-6 col-sm-6 col-xs-12">
-   <input  type="text" id="email" name="email" value="<?php echo $rowks['email'];?>" required="required" class="form-control col-md-7 col-xs-12">
+   <input  type="text" id="email" name="email" value="<?php echo $rowks['email'];?>" class="form-control col-md-7 col-xs-12">
     <div class="reg-info">Email Wajib Diisi </div>
   </div>
 </div>      
@@ -647,7 +647,7 @@ $rowks  = mysql_fetch_array($edit);
         message: 'Harus Isi NIP'
       },
       stringLength: {
-        min: 1,
+        min: 18,
         max: 18,
         message: 'NIP minimal 18 angka.'
       },

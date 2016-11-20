@@ -109,9 +109,6 @@ if (isset ($_POST["guru_simpan"])) {
       if (trim($no_hp)=="") {
       	$pesanError[]="Data <b>Nomor HP</b> masih kosong.";
       }
-      if (trim($email)=="") {
-      	$pesanError[]="Data <b>Email</b> masih kosong.";
-      }
       if (trim($id_user)=="") {
       	$pesanError[] = "Data <b>id_user</b> tidak boleh kosong !";    
       }
@@ -465,9 +462,7 @@ if (isset ($_POST["guru_simpan"])) {
       									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email<span class="required">*</span>
       									</label>
       									<div class="col-md-6 col-sm-6 col-xs-12">
-      										<input type="text" id="email" name="email" value="<?php echo $dataemail; ?>" required="required" class="form-control col-md-7 col-xs-12">
-      										<div class="reg-info">Email Wajib Diisi </div>
-
+      										<input type="text" id="email" name="email" value="<?php echo $dataemail; ?>" class="form-control col-md-7 col-xs-12">
       									</div>
       								</div>
 
@@ -522,8 +517,8 @@ if (isset ($_POST["guru_simpan"])) {
   			message: 'Harus Isi NIP'
   		},
   		stringLength: {
-  			min: 1,
-  			max: 18,
+       min: 18,
+        max: 18,
   			message: 'NIP minimal 18 angka.'
   		},
   		remote: {
