@@ -388,7 +388,9 @@ function admin(){
 
       <hr class="uk-article-divider">  
       <li class="uk-nav-header"><i class="uk-icon-calendar"></i> Jadwal Mapel</li>  
-     <?php generateNavElement(array(10), 'jadwal-mapel-admin', './jadwal-mapel-admin', 'Data Jadwal') ?>
+     <?php generateNavElement(array(10), 'jadwal-mapel-admin', './jadwal-mapel-admin', 'Manajemen Jadwal') ?>
+      <?php generateNavElement(array(10), 'lihat-jadwal-guru', './lihat-jadwal-guru', 'Lihat Jadwal Guru') ?>
+      <?php generateNavElement(array(10), 'manajemen-sesi', './manajemen-sesi', 'Manajemen Sesi') ?>
      <?php generateNavElement(array(10, 0), 'jadwal-mapel-siswa', './jadwal-mapel-siswa', 'Jadwal Pelajaran') ?>
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-mortar-board"></i> Data Sekolah</li>

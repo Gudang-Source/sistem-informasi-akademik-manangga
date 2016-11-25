@@ -4,10 +4,10 @@ checkUserAuth();
 checkUserRole(array(10));
 
 // TEMPLATE CONTROL
-$ui_register_page = 'Set Jadwal Mapel';
+$ui_register_page = 'Manajemen Jadwal';
 
 // LOAD HEADER
-loadAssetsHead('Set Data Mapel');
+loadAssetsHead('Manajemen Jadwal');
 
 // FORM PROCESSING
 if (isset ($_POST["mapel_simpan"]) ){ 

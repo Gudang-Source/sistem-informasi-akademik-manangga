@@ -1,19 +1,19 @@
 <?php
-// user login
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(10,1,3));
+checkUserRole(array(0,1,2,10));
 
 // TEMPLATE CONTROL
-$ui_register_page = 'siswa';
+$ui_register_page = 'manajemen-sesi';
 
 // LOAD HEADER
-loadAssetsHead('Master Data Siswa');
+loadAssetsHead('Master Manajemen Sesi');
 
+// FORM PROCESSING
+// ... code here ...
 ?>
 
 <link rel="stylesheet" href="assets/tablesorter/style.css" />
-
 <body>
 
   <?php
@@ -33,72 +33,66 @@ loadAssetsHead('Master Data Siswa');
         <article class="uk-article">		
 		
 		  <div class="uk-vertical-align uk-text-right uk-height-1-1">
-			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SD Negeri II Manangga" title="Sistem Informasi Akademik SD Negeri II Manangga">
+			  <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="" title="">
 		  </div>
- 
+		  
 		  <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Manajemen Siswa <span class="uk-text-large">
+          <h1 class="uk-article-title">Manajemen Sesi <span class="uk-text-large">
           <?php  if (isset($_SESSION['administrator'])) {?>
 		  { Master Data }</span></h1>
           <?php  }?>
           <br>
           <?php if (isset($_SESSION['administrator'])) { ?>
-          <a href="./siswa.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Siswa"><i class="uk-icon-plus"></i> Data Siswa</a>
+          <a href="./manajemen-sesi.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Manajemen Sesi"><i class="uk-icon-plus"></i> Manajemen Sesi</a>
 		  <?php } ?>
 		   <br><br>
-	   <?php echo $_SESSION[thn_ajaran]; ?>
-	<div id="tablewrapper">
-          <div id="tableheader">
-            <div class="search">
-              <select id="columns" onchange="sorter.search('query')"></select>
-              <input type="text" id="query" onkeyup="sorter.search('query')" />
-            </div>
-            <span class="details">
-              <div>Data <span id="startrecord"></span>-<span id="endrecord"></span> dari <span id="totalrecords"></span></div>
-              <div><a href="javascript:sorter.reset()">(atur ulang)</a></div>
-            </span>
-          </div>
-          <table id="table" class="uk-table uk-table-hover uk-table-striped uk-table-condensed" width="100%" width="100%">
-            <thead>
-              <tr>
-               
-                <th><h3 class="uk-text-center" >NIS</h3></th>
-                <th><h3 class="uk-text-center" >Nama Siswa</h3></th>
-                
-                <th><h3 class="uk-text-center" >Jenis Kelamin</h3></th>
-                
-                <?php if (isset($_SESSION['administrator'])) { ?>
-                <th><h3 class="uk-text-center">Aksi</h3></th>
-                <?php }?>
-              </tr>
-            </thead>
-              <tbody>
-              <?php 
-            
-              $query="SELECT * from siswa order by nm_siswa asc";
-              $exe=mysql_query($query);
+		  
+				<div id="tablewrapper">
+					<div id="tableheader">
+						<div class="search">
+							<select id="columns" onchange="sorter.search('query')"></select>
+							<input type="text" id="query" onkeyup="sorter.search('query')" />
+						</div>
+						<span class="details">
+							<div>Data <span id="startrecord"></span>-<span id="endrecord"></span> dari <span id="totalrecords"></span></div>
+							<div><a href="javascript:sorter.reset()">(atur ulang)</a></div>
+						</span>
+					</div>
+					<table id="table" class="uk-table uk-table-hover uk-table-striped uk-table-condensed" width="100%" width="100%">
+						<thead>
+							<tr>
+								<th><h3 class="uk-text-center">No</h3></th>
+								<th><h3 class="uk-text-center" >Kelas</h3></th>
+								<th><h3 class="uk-text-center" >Jam</h3></th>
+								<?php if (isset($_SESSION['administrator'])) { ?>
+								<th><h3 class="uk-text-center">Aksi</h3></th>
+								<?php }?>
+							</tr>
+						</thead>
+							<tbody>
+						  <?php 
+						
+						  $query="SELECT sesi.id_sesi, sesi.id_kelas, sesi.jam FROM sesi ORDER BY id_kelas ASC";
+						  $exe=mysql_query($query);
+						  $no=0;
+						  while ($row=mysql_fetch_array($exe)) { $no++;?>
 
-              
-              $no=0;
-              while ($row=mysql_fetch_array($exe)) { $no++;?>
-
-                <tr>
-               
-                <td ><?php echo $row[nis]?></td>
-                <td ><?php echo $row[nm_siswa]?></td>
-                <td ><?php echo $row[jns_kelamin]?></td>
-                <?php if (isset($_SESSION['administrator'])) { ?>
-                <td width="15%"><div class="uk-text-center">
-                  <a href="siswa.lihat?id=<?php echo $row[id_siswa]?>" title="Lihat" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-search"></i></a>
-                  <a href="siswa.update?id=<?php echo $row[id_siswa]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
-                </td>
-                <?php } ?>            
-                </tr>
-                <?php  } ?>
-              </tbody>
-          </table>
-          
-          
+							  <tr>
+								<td><div class="uk-text-center"><?php echo $no?></div></td>
+								<td><div class="uk-text-center"><?php echo $row[id_kelas]?></div></td>
+								<td><div class="uk-text-center"><?php echo $row[jam]?></div></td>
+								<?php if (isset($_SESSION['administrator'])) { ?>
+								<td width="15%"><div class="uk-text-center">
+								  <a href="manajemen-sesi.update?id=<?php echo $row[id_sesi]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
+								  <a href="manajemen-sesi.hapus?id=<?php echo $row[id_sesi]?>" onclick="return confirm('Apakah anda yakin akan menghapus data manajemen sesi: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a></div>
+								</td>
+								<?php } ?>						
+							  </tr>
+							  <?php  } ?>
+							</tbody>
+					</table>
+					
+				
                 <!-- PAGINATION -->
                   <div id="tablefooter">
                     <div id="tablenav">
@@ -131,7 +125,7 @@ loadAssetsHead('Master Data Siswa');
                       </div>
                   </div>
                 <!-- END Pagination -->
-        </div>
+				</div>
 					
         </article>
 		<br><br><br>
