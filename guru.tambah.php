@@ -228,7 +228,7 @@ if (isset ($_POST["guru_simpan"])) {
 });
 
       </script>
-            <script type="text/javascript">
+  <script type="text/javascript">
   function convertAngkaNIP(objek) {
     
     a = objek.value;

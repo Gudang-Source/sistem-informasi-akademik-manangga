@@ -70,7 +70,16 @@ if (isset ($_POST["tahun_simpan"])) {
   $datasemester  = isset($_POST['semester']) ? $_POST['semester'] : '';
 
 ?>
+  <script type="text/javascript">
+  function convertAngka(objek) {
+    
+    a = objek.value;
+    b = a.replace(/[^\d]/g,"");
+    
+    objek.value = b;
 
+  }            
+</script>
 <body>
 
   <?php
@@ -149,7 +158,15 @@ if (isset ($_POST["tahun_simpan"])) {
       notEmpty: {
        message: 'Harus Isi Tahun Ajaran'
      },
-    
+            stringLength: {
+          min: 9,
+          max: 9,
+          message: 'Tahun Ajaran Tidak Lebih dari 9 Karakter'
+        },
+                regexp: {
+          regexp: /[0-9+]+$/,
+          message: 'Format Tidak Benar'
+        },
    }
  }, 
 semester: {
