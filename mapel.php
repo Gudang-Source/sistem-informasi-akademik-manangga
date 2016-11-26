@@ -247,6 +247,79 @@ loadAssetsHead('Master Data Mata Pelajaran');
 		</div>
 
 		<!-- Table Sorter Script -->
+<script src="assets/validator/js/bootstrapValidator.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/vendor/formvalidation/css/formValidation.min.css">
+<link rel="stylesheet" href="/asset/css/demo.css">
+<script src="/vendor/formvalidation/js/formValidation.min.js"></script>
+<script src="/vendor/formvalidation/js/framework/uikit.min.js"></script>
+		<script type="text/javascript">
+ var modaltambah = $("#modaltambah").serialize();
+ var validator = $("#modaltambah").bootstrapValidator({
+  framework: 'bootstrap',
+  feedbackIcons: {
+    valid: "glyphicon glyphicon-ok",
+    invalid: "glyphicon glyphicon-remove", 
+    validating: "glyphicon glyphicon-refresh"
+  }, 
+  excluded: [':disabled'],
+  fields : {
+    kd_mapel : {
+     validators: {
+      notEmpty: {
+       message: 'Harus Pilih Mata Pelajaran'
+     },
+     remote: {
+      type: 'POST',
+      url: 'remote/remote_mapel.php',
+      message: 'Nama Mata Pelajaran Telah Tersedia'
+    },
+   }
+ }, 
+nm_mapel: {
+  message: 'Nama Mata Pelajaran Tidak Benar',
+  validators: {
+    notEmpty: {
+      message: 'Nama Mata Pelajaran Harus Diisi'
+    },
+    stringLength: {
+      min: 1,
+      max: 30,
+      message: 'Nama Mata Pelajaran Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+    },
+    regexp: {
+      regexp: /^[a-zA-Z0-9_ \. ]+$/,
+      message: 'Karakter Boleh Digunakan (Angka, Huruf, Titik, Underscore)'
+    },
+    remote: {
+      type: 'POST',
+      url: 'remote/remote_namamapel.php',
+      message: 'Nama Mata Pelajaran Telah Tersedia'
+    },
+kkm: {
+  message: 'Isian KKM Tidak Benar',
+  validators: {
+    notEmpty: {
+      message: 'Isian KKM Harus Diisi'
+    },
+    stringLength: {
+      min: 1,
+      max: 30,
+      message: 'Isian KKM Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+    },
+    regexp: {
+      regexp: /^[a-zA-Z0-9_ \. ]+$/,
+      message: 'Karakter Boleh Digunakan (Angka, Huruf, Titik, Underscore)'
+    },
+
+  }
+}
+
+  }
+}
+
+}
+});
+</script>
 		<script type="text/javascript" src="assets/tablesorter/script.js"></script>
 		<script type="text/javascript">
 			var sorter = new TINY.table.sorter('sorter','table',{
