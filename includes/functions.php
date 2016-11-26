@@ -79,6 +79,16 @@ function generateAdditionalAssets($type){
  * @return none
  */
 function loadAssetsHead($title = 'index'){
+$cektahun = mysql_query("SELECT * FROM tahun_ajaran WHERE status='1'");
+          mysql_num_rows($cektahun);
+          $tahun_ajaransession = mysql_fetch_array($cektahun);          
+
+          // tahun ajaran session
+          $_SESSION['id_tahun'] = $tahun_ajaransession['id_tahun'];
+          $_SESSION['thn_ajaran'] = $tahun_ajaransession['thn_ajaran'];
+          $_SESSION['semester'] = $tahun_ajaransession['semester'];
+          $_SESSION['status'] = $tahun_ajaransession['status'];
+  
   ?>
   <!DOCTYPE html>
   <?php global $ui_register_bg; echo ($ui_register_bg === 'secondary' ) ? '<html lang="en-us" dir="ltr" class="tm-bg-secondary">' : '<html lang="en-us" dir="ltr" class="tm-bg-primary">' ?>
@@ -218,7 +228,7 @@ if( isset($_SESSION['tingkat_user']) ) :
         <?php generateNavElement(array(10,1), 'siswa', './siswa', 'Data Siswa') ?>
         <hr class="uk-article-divider">
         <li class="uk-nav-header"><i class="uk-icon-child"></i>Kelas Siswa</li>
-        <?php generateNavElement(array(10,1), 'kelas-siswa', './kelas.siswa', 'Data Kelas Siswa') ?>
+        <?php generateNavElement(array(10,1), 'kelas.siswa', './kelas.siswa', 'Data Kelas Siswa') ?>
         <?php generateNavElement(array(10,1), 'kenaikan-kelas', './kenaikan-kelas', 'Data kenaikan Kelas') ?>
         <hr class="uk-article-divider">
         <li class="uk-nav-header"><i class="uk-icon-user"></i> Pegawai</li>
@@ -405,7 +415,7 @@ function admin(){
 
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-child"></i> Kelas Siswa</li>
-      <?php generateNavElement(array(10,1), 'kelas-siswa', './kelas.siswa', 'Data Kelas Siswa') ?>
+      <?php generateNavElement(array(10,1), 'kelas.siswa', './kelas.siswa', 'Data Kelas Siswa') ?>
       <?php generateNavElement(array(10,1), 'kenaikan-kelas', './kenaikan-kelas', 'Data kenaikan Kelas') ?>
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-user"></i> Pegawai</li>
