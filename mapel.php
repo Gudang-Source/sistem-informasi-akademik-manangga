@@ -64,6 +64,7 @@ loadAssetsHead('Master Data Mata Pelajaran');
 								<th><h3 class="uk-text-center">No</h3></th>
 								<th><h3 class="uk-text-center" >Kode Mata Pelajaran</h3></th>
 								<th><h3 class="uk-text-center" >Nama Mata Pelajaran</h3></th>
+								<th><h3 class="uk-text-center" >Kriteria Kelulusan Minimal</h3></th>
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<th><h3 class="uk-text-center">Aksi</h3></th>
 								<?php }?>
@@ -79,12 +80,13 @@ loadAssetsHead('Master Data Mata Pelajaran');
 
 							  <tr>
 								<td><div class="uk-text-center"><?php echo $no?></div></td>
-								<td><div class="uk-text-center"><?php echo $row[0]?></div></td>
-								<td><div class="uk-text-center"><?php echo $row[1]?></div></td>
+								<td><div class="uk-text-center"><?php echo $row[kd_mapel]?></div></td>
+								<td><div class="uk-text-center"><?php echo $row[nm_mapel]?></div></td>
+								<td><div class="uk-text-center"><?php echo $row[kkm]?></div></td>
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<td width="15%"><div class="uk-text-center">
-								  <a href="mapel.update?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
-								  <a href="mapel.hapus?id=<?php echo $row[0]?>" onclick="return confirm('Apakah anda yakin akan menghapus data mapel: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a></div>
+								  <a href="mapel.update?id=<?php echo $row[kd_mapel]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
+								  <a href="mapel.hapus?id=<?php echo $row[kd_mapel]?>" onclick="return confirm('Apakah anda yakin akan menghapus data mapel: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a></div>
 								</td>
 								<?php } ?>						
 							  </tr>

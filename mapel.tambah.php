@@ -23,6 +23,8 @@ if (isset ($_POST["mapel_simpan"])) {
     $nm_mapel     = str_replace("", "&acute;", $nm_mapel);
     $nm_mapel     = ucwords(strtolower($nm_mapel));
 
+    $kkm     = $_POST['kkm'];
+    $kkm     = str_replace("", "&acute;", $kkm);
 
     // validation form kosong
    $pesanError= array();
@@ -32,7 +34,9 @@ if (isset ($_POST["mapel_simpan"])) {
   if (trim($nm_mapel)=="") {
     $pesanError[]="Data <b>Nama Mata Pelajaran</b> Masih Kosong.";
   }
-
+  if (trim($kkm)=="") {
+    $pesanError[]="Data <b>KKM</b> Masih Kosong.";
+  }
 
     // validasi kode mapel pada database
   $cekSql ="SELECT * FROM mapel WHERE kd_mapel='$kd_mapel'";
@@ -56,8 +60,8 @@ if (isset ($_POST["mapel_simpan"])) {
     else{
 
     // simpan ke database
-  $querytambahmapel = mysql_query("INSERT INTO mapel (kd_mapel, nm_mapel) 
-    VALUES ( '$kd_mapel' , '$nm_mapel' )") or die(mysql_error());
+  $querytambahmapel = mysql_query("INSERT INTO mapel (kd_mapel, nm_mapel, kkm) 
+    VALUES ( '$kd_mapel' , '$nm_mapel' , '$kkm')") or die(mysql_error());
 
   if ($querytambahmapel){
     header('location: ./mapel');
@@ -68,6 +72,7 @@ if (isset ($_POST["mapel_simpan"])) {
     // simpan pada form, dan jika form belum terisi
   $datakodemapel  = isset($_POST['kd_mapel']) ? $_POST['kd_mapel'] : '';
   $datanamamapel  = isset($_POST['nm_mapel']) ? $_POST['nm_mapel'] : '';
+  $datakkm  = isset($_POST['kkm']) ? $_POST['kkm'] : '';
 ?>
 
 <body>
@@ -112,6 +117,15 @@ if (isset ($_POST["mapel_simpan"])) {
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="nm_mapel" name="nm_mapel" value="<?php echo $datanamamapel; ?>" required="required" class="form-control col-md-7 col-xs-12">
              <div class="reg-info">Contoh: Bahasa Sunda</div>
+          </div>
+        </div>
+
+        <div class="item form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kkm">Kriteria Kelulusan Minimal (KKM)<span class="required">*</span>
+           </label>
+           <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" id="kkm" name="kkm" value="<?php echo $datakkm; ?>" required="required" class="form-control col-md-7 col-xs-12">
+            <div class="reg-info">Contoh: 65</div>
           </div>
         </div>
 
@@ -172,6 +186,24 @@ nm_mapel: {
       url: 'remote/remote_namamapel.php',
       message: 'Nama Mata Pelajaran Telah Tersedia'
     },
+kkm: {
+  message: 'Isian KKM Tidak Benar',
+  validators: {
+    notEmpty: {
+      message: 'Isian KKM Harus Diisi'
+    },
+    stringLength: {
+      min: 1,
+      max: 30,
+      message: 'Isian KKM Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+    },
+    regexp: {
+      regexp: /^[a-zA-Z0-9_ \. ]+$/,
+      message: 'Karakter Boleh Digunakan (Angka, Huruf, Titik, Underscore)'
+    },
+
+  }
+}
 
   }
 }
