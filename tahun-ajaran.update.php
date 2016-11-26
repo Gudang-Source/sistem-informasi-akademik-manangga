@@ -83,13 +83,14 @@ $rowks  = mysql_fetch_array($edit);
           <br>
           <a href="./tahun-ajaran" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Tahun Ajaran"><i class="uk-icon-angle-left"></i> Kembali</a>
 
-            <form id="formtahunajaran" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
+            <form id="formtahun" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
 
         <div class="item form-group">
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="thn_ajaran">Tahun Ajaran<span class="required">*</span>
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="thn_ajaran" name="thn_ajaran" value="<?php echo $rowks['thn_ajaran'];?>" required="required" class="form-control col-md-7 col-xs-12">
+            <div class="reg-info">Contoh: 2012/2013</div>
           </div>
         </div>
 
@@ -132,8 +133,8 @@ $rowks  = mysql_fetch_array($edit);
 <script src="/vendor/formvalidation/js/framework/uikit.min.js"></script>
 
 <script type="text/javascript">
- var formkelas = $("#formkelas").serialize();
- var validator = $("#formkelas").bootstrapValidator({
+ var formtahun = $("#formtahun").serialize();
+ var validator = $("#formtahun").bootstrapValidator({
   framework: 'bootstrap',
   feedbackIcons: {
     valid: "glyphicon glyphicon-ok",
@@ -142,36 +143,35 @@ $rowks  = mysql_fetch_array($edit);
   }, 
   excluded: [':disabled'],
   fields : {
-    kd_kelas : {
+    thn_ajaran : {
      validators: {
       notEmpty: {
-       message: 'Harus Isi Kode Kelas'
+       message: 'Harus Isi Tahun Ajaran'
      },
-
+            stringLength: {
+          min: 9,
+          max: 9,
+          message: 'Tahun Ajaran Tidak Lebih dari 9 Karakter'
+        },
+                regexp: {
+          regexp: /[0-9+]+$/,
+          message: 'Format Tidak Benar'
+        },
    }
  }, 
-nm_kelas: {
-  message: 'Nama Kelas Tidak Benar',
+semester: {
+  message: 'Nama Semester Tidak Benar',
   validators: {
     notEmpty: {
-      message: 'Nama Kelas Harus Diisi'
+      message: 'Nama Semester Harus Diisi'
     },
-    stringLength: {
-      min: 1,
-      max: 30,
-      message: 'Nama Kelas Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
-    },
-    regexp: {
-      regexp: /^[a-zA-Z0-9_ \. ]+$/,
-      message: 'Karakter Boleh Digunakan (Angka, Huruf, Titik, Underscore)'
-    },
-   
+
 
   }
 }
 
 }
-}); 
+});
 </script>
 
 </body>
