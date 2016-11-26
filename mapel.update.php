@@ -91,6 +91,7 @@ $rowks  = mysql_fetch_array($edit);
        </label>
        <div class="col-md-6 col-sm-6 col-xs-12">
         <input type="text" id="kd_mapel" name="kd_mapel" value="<?php echo $rowks['kd_mapel'];?>" required="required" class="form-control col-md-7 col-xs-12">
+            <div class="reg-info">Contoh: BHS2</div>
       </div>
     </div>
 
@@ -99,6 +100,7 @@ $rowks  = mysql_fetch_array($edit);
        </label>
        <div class="col-md-6 col-sm-6 col-xs-12">
         <input type="text" id="nm_mapel" name="nm_mapel" value="<?php echo $rowks['nm_mapel'];?>" required="required" class="form-control col-md-7 col-xs-12">
+        <div class="reg-info">Contoh: Bahasa Sunda</div>
       </div>
     </div>
 

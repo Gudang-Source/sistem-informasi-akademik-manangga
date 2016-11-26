@@ -101,6 +101,7 @@ if (isset ($_POST["mapel_simpan"])) {
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="kd_mapel" name="kd_mapel" value="<?php echo $datakodemapel; ?>" required="required" class="form-control col-md-7 col-xs-12">
+            <div class="reg-info">Contoh: BHS2</div>
           </div>
         </div>
 
@@ -110,6 +111,7 @@ if (isset ($_POST["mapel_simpan"])) {
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="text" id="nm_mapel" name="nm_mapel" value="<?php echo $datanamamapel; ?>" required="required" class="form-control col-md-7 col-xs-12">
+             <div class="reg-info">Contoh: Bahasa Sunda</div>
           </div>
         </div>
 
