@@ -46,7 +46,6 @@ loadAssetsHead('Master Data Siswa');
           <a href="./siswa.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Siswa"><i class="uk-icon-plus"></i> Data Siswa</a>
 		  <?php } ?>
 		   <br><br>
-	   <?php echo $_SESSION[thn_ajaran]; ?>
 	<div id="tablewrapper">
           <div id="tableheader">
             <div class="search">
