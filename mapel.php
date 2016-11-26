@@ -88,11 +88,13 @@ loadAssetsHead('Master Data Mata Pelajaran');
 													<div class="form-group">
 														<label>Nama Mata Pelajaran</label>
 														<input class="form-control" name="nm_mapel" id="nm_mapel" value=""  required />
+      														<div class="reg-info">Contoh: Bahasa Sunda</div>
 													</div>
 
 													<div class="form-group">
 														<label>KKM Mata Pelajaran</label>
 														<input class="form-control" name="kkm"  id="kkm" value="" required  />
+    														<div class="reg-info">Contoh: 65</div>
 													</div>
 
 													<div class="uk-modal-footer uk-text-right">
@@ -165,11 +167,13 @@ loadAssetsHead('Master Data Mata Pelajaran');
 													<div class="form-group">
 														<label>Nama Mata Pelajaran</label>
 														<input class="form-control" name="nm_mapel" id="nm_mapel" value="<?php echo $row['nm_mapel']; ?>"  required />
+      														<div class="reg-info">Contoh: Bahasa Sunda</div>
 													</div>
 
 													<div class="form-group">
 														<label>KKM Mata Pelajaran</label>
 														<input class="form-control" name="kkm"  id="kkm" value="<?php echo $row['kkm']; ?>"  required  />
+    														<div class="reg-info">Contoh: 65</div>
 													</div>
 
 													<div class="uk-modal-footer uk-text-right">
@@ -246,15 +250,14 @@ loadAssetsHead('Master Data Mata Pelajaran');
 			</div>
 		</div>
 
-		<!-- Table Sorter Script -->
 <script src="assets/validator/js/bootstrapValidator.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/vendor/formvalidation/css/formValidation.min.css">
 <link rel="stylesheet" href="/asset/css/demo.css">
 <script src="/vendor/formvalidation/js/formValidation.min.js"></script>
 <script src="/vendor/formvalidation/js/framework/uikit.min.js"></script>
-		<script type="text/javascript">
- var modaltambah = $("#modaltambah").serialize();
- var validator = $("#modaltambah").bootstrapValidator({
+<script type="text/javascript">
+ var formmapel = $("#formmapel").serialize();
+ var validator = $("#formmapel").bootstrapValidator({
   framework: 'bootstrap',
   feedbackIcons: {
     valid: "glyphicon glyphicon-ok",
@@ -266,12 +269,17 @@ loadAssetsHead('Master Data Mata Pelajaran');
     kd_mapel : {
      validators: {
       notEmpty: {
-       message: 'Harus Pilih Mata Pelajaran'
+       message: 'Kode Mapel Harus Diisi'
      },
+    stringLength: {
+      min: 1,
+      max: 9,
+      message: 'Kode Mapel Harus Lebih dari 1 Huruf dan Maksimal 9 Huruf'
+    },
      remote: {
       type: 'POST',
-      url: 'remote/remote_mapel.php',
-      message: 'Nama Mata Pelajaran Telah Tersedia'
+      url: 'remote/remote_kodemapel.php',
+      message: 'Kode Mapel Telah Tersedia'
     },
    }
  }, 
@@ -295,24 +303,24 @@ nm_mapel: {
       url: 'remote/remote_namamapel.php',
       message: 'Nama Mata Pelajaran Telah Tersedia'
     },
-kkm: {
-  message: 'Isian KKM Tidak Benar',
-  validators: {
-    notEmpty: {
-      message: 'Isian KKM Harus Diisi'
-    },
-    stringLength: {
-      min: 1,
-      max: 30,
-      message: 'Isian KKM Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
-    },
-    regexp: {
-      regexp: /^[a-zA-Z0-9_ \. ]+$/,
-      message: 'Karakter Boleh Digunakan (Angka, Huruf, Titik, Underscore)'
-    },
+  kkm: {
+  	message: 'KKM Tidak Benar',
+  	validators: {
+  		notEmpty: {
+  			message: 'KKM Harus Diisi'
+  		},
+  		stringLength: {
+  			min: 1,
+  			max: 3,
+  			message: 'KKM Lebih dari 0 Huruf dan Maksimal 3 Huruf'
+  		},
+  		regexp: {
+  			regexp: /^[0-9+]+$/,
+  			message: 'Format Tidak Benar'
+  		},
 
-  }
-}
+  	}
+  },
 
   }
 }
@@ -320,6 +328,8 @@ kkm: {
 }
 });
 </script>
+
+		<!-- Table Sorter Script -->
 		<script type="text/javascript" src="assets/tablesorter/script.js"></script>
 		<script type="text/javascript">
 			var sorter = new TINY.table.sorter('sorter','table',{
