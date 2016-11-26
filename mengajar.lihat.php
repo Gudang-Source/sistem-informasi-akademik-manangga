@@ -187,7 +187,7 @@ loadAssetsHead('Lihat Data Mengajar');
                     $nip = $data['nip'];
                     $nm_guru = $data['nm_guru'];   
                     $nm_mapel = $data['nm_mapel'];   
-                    $kd_kelas = $data['nm_kelas'];   
+                    $id_kelas = $data['nm_kelas'];   
                     ?>
                     <tr>
 
@@ -262,7 +262,7 @@ loadAssetsHead('Lihat Data Mengajar');
                       </div>
 
                       <td><div class="uk-text-center"><?php echo $nm_mapel?></div></td>
-                      <td><div class="uk-text-center"><?php echo $kd_kelas?></div></td>
+                      <td><div class="uk-text-center"><?php echo $id_kelas?></div></td>
                       <?php if (isset($_SESSION['administrator'])) { ?>
                       <td><div class="uk-text-center">
                        <button class="uk-button" data-uk-modal="{target:'#modal<?php echo $id_mengajar ;?>'}"><i class="uk-icon-pencil"></i></button>

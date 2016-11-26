@@ -88,7 +88,7 @@ loadAssetsHead('Master Data Guru Mengajar');
           $jumlahmapel = mysql_num_rows(mysql_query("SELECT * FROM mengajar WHERE kd_mengajar = '$kd_mengajar'"));
 
           while ($data1=mysql_fetch_array($jumlah)){
-          $data2=$data1['kd_kelas']." ".$data2;
+          $data2=$data1['id_kelas']." ".$data2;
         }
         $jum_kelas=mysql_num_rows(mysql_query("SELECT DISTINCT id_kelas from mengajar where id_guru = '$id_guru'"));
 
