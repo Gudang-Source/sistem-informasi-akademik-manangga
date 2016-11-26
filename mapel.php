@@ -8,7 +8,7 @@ $ui_register_page = 'mapel';
 
 // LOAD HEADER
 loadAssetsHead('Master Data Mata Pelajaran');
-validator();
+
 // FORM PROCESSING
 // ... code here ...
 ?>
@@ -250,92 +250,81 @@ validator();
 			</div>
 		</div>
 
+<script src="assets/validator/js/bootstrapValidator.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/vendor/formvalidation/css/formValidation.min.css">
+<link rel="stylesheet" href="/asset/css/demo.css">
+<script src="/vendor/formvalidation/js/formValidation.min.js"></script>
+<script src="/vendor/formvalidation/js/framework/uikit.min.js"></script>
 
-<script>
-  $(document).ready(function() {
-    $('#formmapel').bootstrapValidator({
-      framework: 'bootstrap',
-      excluded: ':disabled',
-      icon: {
-        valid: 'glyphicon glyphicon-ok',
-        invalid: 'glyphicon glyphicon-remove',
-        validating: 'glyphicon glyphicon-refresh'
-      },
-      fields: {
-        kd_mapel: {
-          validators: {
-            notEmpty: {
-              message: 'Kode Pemesanan Belum Dipilih'
-            }
-          }
-        },
-        nm_mapel: {
-          validators: {
-            notEmpty: {
-              message: 'Tujuan Bank Belum Dipilh'
-            }
-          }
-        },
-        kkm: {
-          validators: {
-            notEmpty: {
-              message: 'Status Konfirmasi Belum Dipilh'
-            }
-          }
-        },
+<script type="text/javascript">
+ var modaltambah = $("#modaltambah").serialize();
+ var validator = $("#modaltambah").bootstrapValidator({
+  framework: 'bootstrap',
+  feedbackIcons: {
+    valid: "glyphicon glyphicon-ok",
+    invalid: "glyphicon glyphicon-remove", 
+    validating: "glyphicon glyphicon-refresh"
+  }, 
+  excluded: [':disabled'],
+  fields : {
+    kd_mapel : {
+     validators: {
+      notEmpty: {
+       message: 'Harus Pilih Mata Pelajaran'
+     },
+     remote: {
+      type: 'POST',
+      url: 'remote/remote_mapel.php',
+      message: 'Nama Mata Pelajaran Telah Tersedia'
+    },
+   }
+ }, 
+nm_mapel: {
+  message: 'Nama Mata Pelajaran Tidak Benar',
+  validators: {
+    notEmpty: {
+      message: 'Nama Mata Pelajaran Harus Diisi'
+    },
+    stringLength: {
+      min: 1,
+      max: 30,
+      message: 'Nama Mata Pelajaran Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+    },
+    regexp: {
+      regexp: /^[a-zA-Z0-9_ \. ]+$/,
+      message: 'Karakter Boleh Digunakan (Angka, Huruf, Titik, Underscore)'
+    },
+    remote: {
+      type: 'POST',
+      url: 'remote/remote_namamapel.php',
+      message: 'Nama Mata Pelajaran Telah Tersedia'
+    },
+kkm: {
+  message: 'Isian KKM Tidak Benar',
+  validators: {
+    notEmpty: {
+      message: 'Isian KKM Harus Diisi'
+    },
+    stringLength: {
+      min: 1,
+      max: 30,
+      message: 'Isian KKM Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+    },
+    regexp: {
+      regexp: /^[a-zA-Z0-9_ \. ]+$/,
+      message: 'Karakter Boleh Digunakan (Angka, Huruf, Titik, Underscore)'
+    },
 
-      }
-    });
+  }
+}
+
+  }
+}
+
+}
 });
 </script>
-     <link href="assets/css/bootstrapValidator.min.css" rel="stylesheet"/>
-<script src="assets/js/bootstrapValidator.min.js" type="text/javascript"></script>
-        <script src="assets/js/validator.js"></script>
-<script>
-  $(document).ready(function() {
-    $('#datePicker')
-    .datepicker({
-      format: 'dd/mm/yyyy'
-    })
-    .on('changeDate', function(e) {
-            // Revalidate the date field
-            $('#formmapel').bootstrapValidator('revalidateField', 'date');
-          });
 
-    $('#formmapel').bootstrapValidator({
-      framework: 'bootstrap',
-      icon: {
-        valid: "fa fa-smile-o",
-        invalid: "fa fa-frown-o", 
-        validating: "glyphicon glyphicon-refresh"
-      },
-      fields: {
-
-
-        kd_bank: {
-          validators: {
-            notEmpty: {
-              message: 'Harus Pilih Bank Yang Dituju'
-            }
-          }
-        },
-        date: {
-          validators: {
-            notEmpty: {
-              message: 'Tanggal Transfer Tidak Boleh Kosong'
-            },
-            date: {
-              format: 'DD/MM/YYYY',
-              message: 'Tanggal Tidak Valid'
-              
-            }
-          }
-        },
-
-      }
-    });
-  });
-</script>
 
 
 
