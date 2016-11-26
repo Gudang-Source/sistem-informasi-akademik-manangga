@@ -899,7 +899,7 @@ VALUES ('$id_kel', '$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$noh
         },
         regexp: {
           regexp: /^[a-zA-Z ]+$/,
-          message: 'Karakter Yang Boleh Digunakan hanya huruf'
+          message: 'Karakter Yang Boleh Digunakan Hanya Huruf'
         },
       }
     },
@@ -912,7 +912,7 @@ VALUES ('$id_kel', '$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$noh
         stringLength: {
           min: 1,
           max: 30,
-          message: 'Nama kelurahan Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+          message: 'Nama Kelurahan Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
         },
         different: {
           field: 'email',
@@ -925,7 +925,7 @@ VALUES ('$id_kel', '$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$noh
       validators: {
         identical:{
           field:'password',
-          message: 'Konfirmasi Password Harus Sama Dengan Password'
+          message: 'Konfirmasi Password Harus sama dengan Password'
         },
         notEmpty: {
           message: 'Password Harus Diisi'
@@ -944,7 +944,7 @@ VALUES ('$id_kel', '$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$noh
     tmpt_lahir : {
       validators: {
         notEmpty: {
-          message: 'Harus diisi tempat lahir'
+          message: 'Harus Diisi Tempat lahir'
         }
       }
     },    
@@ -1054,9 +1054,6 @@ VALUES ('$id_kel', '$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$noh
     tahun_keluar: {
       message: 'Tahun Keluar Tidak Benar',
       validators: {
-        notEmpty: {
-          message: 'Tahun Keluar Harus Diisi'
-        },
         stringLength: {
           min: 4,
           max: 4,
