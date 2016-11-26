@@ -245,6 +245,28 @@ $rowks  = mysql_fetch_array($edit);
 });
 
       </script>
+
+<script type="text/javascript">
+  function convertAngkaNIP(objek) {
+    
+    a = objek.value;
+    b = a.replace(/[^\d]/g,"");
+    
+    objek.value = b;
+
+  }            
+</script>
+
+<script type="text/javascript">
+  function convertAngkaHP(objek) {
+    
+    a = objek.value;
+    b = a.replace(/[^\d]/g,"");
+    
+    objek.value = b;
+
+  }            
+</script>
 <body>
 
   <?php
@@ -300,7 +322,7 @@ $rowks  = mysql_fetch_array($edit);
                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nip">NIP<span class="required">*</span>
                            </label>
                            <div class="col-md-6 col-sm-6 col-xs-12">
-                           <input  type="text" id="nip" name="nip" value="<?php echo $rowks['nip'];?>" required="required" class="form-control col-md-7 col-xs-12">
+                           <input  type="text" id="nip" onkeyup="convertAngkaNIP(this);" name="nip" value="<?php echo $rowks['nip'];?>" required="required" class="form-control col-md-7 col-xs-12">
                             <div class="reg-info">Contoh: 126500182411. Jumlah minimal 18 angka. Wajib diisi (Digunakan sebagai username untuk login sistem)</div>
                           </div> 
                         </div>
@@ -588,7 +610,7 @@ $rowks  = mysql_fetch_array($edit);
    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="no_hp">No. HP<span class="required">*</span>
    </label>
    <div class="col-md-6 col-sm-6 col-xs-12">
-   <input  type="text" id="no_hp" name="no_hp" value="<?php echo $rowks['no_hp'];?>" required="required" class="form-control col-md-7 col-xs-12">
+   <input  type="text" id="no_hp" name="no_hp" value="<?php echo $rowks['no_hp'];?>" onkeyup="convertAngkaHP(this);" required="required" class="form-control col-md-7 col-xs-12">
     <div class="reg-info">Wajib Isi Data No Hp</div>
   </div>
 </div>      
@@ -725,7 +747,7 @@ $rowks  = mysql_fetch_array($edit);
       }
     }
   }, 
-  agama : {
+  id_agama : {
     validators: {
       notEmpty: {
         message: 'Harus Pilih Agama'

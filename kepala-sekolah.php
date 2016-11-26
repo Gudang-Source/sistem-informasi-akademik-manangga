@@ -263,26 +263,7 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
           <div class="uk-vertical-align uk-text-right uk-height-1-1">
             <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SD N II Manangga" title="Sistem Informasi Akademik SD N II Manangga">
           </div>
-          <div class="uk-panel uk-panel-box">
-         <table class="table table-nama" style="border: none; margin-bottom:2%;">
-  <tbody>
-  <tr><td class="table-nama-id">NIM.</td>
-  <?php
-   $sqll = "SELECT * FROM user, guru, kelas WHERE guru.id_user=user.id_user AND guru.id_guru=kelas.id_guru AND  guru.nip={$_SESSION['usernameguru']}";
-   $resultl = mysql_query($sqll);
-   $rowl=mysql_fetch_array($resultl); 
-  ?> 
-  <td>: 
-  <?php echo $rowl['nip'];?></td></tr>
-  <tr><td class="table-nama-id">Nama Guru</td>
-  <td>: <?php echo $rowl['nm_guru'];?></td></tr>
-  <tr><td class="table-nama-id">Wali Kelas</td>
-  <td>: <?php echo $rowl['nm_kelas'];?> </td></tr>
-  </tr>
-  </tbody>
-  </table>
 
-  </div>
           <hr class="uk-article-divider">
           <h1 class="uk-article-title">Manajemen Kepala Sekolah <span class="uk-text-large">{ Tampil Profil Kepala Sekolah  }</span></h1>
 

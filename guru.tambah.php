@@ -85,7 +85,7 @@ if (isset ($_POST["guru_simpan"])) {
       if (trim($jns_kelamin)=="") {
       	$pesanError[]="Data <b>Jenis Kelamin</b> masih kosong.";
       }
-      if (trim($agama)=="") {
+      if (trim($id_agama)=="") {
       	$pesanError[]="Data <b>Agama</b> masih kosong.";
       }
       if (trim($status_guru)=="") {
@@ -228,6 +228,27 @@ if (isset ($_POST["guru_simpan"])) {
 });
 
       </script>
+            <script type="text/javascript">
+  function convertAngkaNIP(objek) {
+    
+    a = objek.value;
+    b = a.replace(/[^\d]/g,"");
+    
+    objek.value = b;
+
+  }            
+</script>
+
+<script type="text/javascript">
+  function convertAngkaHP(objek) {
+    
+    a = objek.value;
+    b = a.replace(/[^\d]/g,"");
+    
+    objek.value = b;
+
+  }            
+</script>
       <body>
 
       	<?php
@@ -275,7 +296,7 @@ if (isset ($_POST["guru_simpan"])) {
       									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nip">NIP<span class="required">*</span>
       									</label>
       									<div class="col-md-6 col-sm-6 col-xs-12">
-      										<input type="text" id="nip" name="nip" value="<?php echo $datanip; ?>" required="required" class="form-control col-md-7 col-xs-12">
+      										<input type="text" id="nip" name="nip" value="<?php echo $datanip; ?>" onkeyup="convertAngkaNIP(this);" required="required" class="form-control col-md-7 col-xs-12">
       										<div class="reg-info">Contoh: 126500182411. Jumlah minimal 18 angka. Wajib diisi (Digunakan sebagai username untuk login sistem)</div>
       									</div>
       								</div>
@@ -453,7 +474,7 @@ if (isset ($_POST["guru_simpan"])) {
       									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="no_hp">No. HP<span class="required">*</span>
       									</label>
       									<div class="col-md-6 col-sm-6 col-xs-12">
-      										<input type="text" id="no_hp" name="no_hp" value="<?php echo $datanohp; ?>" required="required" class="form-control col-md-7 col-xs-12">
+      										<input type="text" id="no_hp" name="no_hp" onkeyup="convertAngkaHP(this);" value="<?php echo $datanohp; ?>" required="required" class="form-control col-md-7 col-xs-12">
       										<div class="reg-info">Wajib Isi Data No Hp</div>
       									</div>
       								</div>
@@ -599,7 +620,7 @@ if (isset ($_POST["guru_simpan"])) {
   		}
   	}
   }, 
-  agama : {
+  id_agama : {
   	validators: {
   		notEmpty: {
   			message: 'Harus Pilih Agama'
