@@ -19,7 +19,7 @@ if (isset ($_POST["mengajar_simpan"])) {
     $kd_mapel     = $_POST['kd_mapel'];
     $nip     = $_POST['nip'];
     $nip     = str_replace("", "&acute;", $nip);
-    $kd_kelas     = $_POST['kd_kelas'];
+    $id_kelas     = $_POST['id_kelas'];
  //   $kd_kelas     = str_replace("", "&acute;", $kd_kelas);
     // validation form kosong
    $pesanError= array();
@@ -44,11 +44,11 @@ if (isset ($_POST["mengajar_simpan"])) {
 
     else{
 
- $jumlah = count($_POST["kd_kelas"]);
+ $jumlah = count($_POST["id_kelas"]);
 
 for($i=0; $i < $jumlah; $i++)
 {
-   $kelass=$_POST['kd_kelas'][$i];
+   $kelass=$_POST['id_kelas'][$i];
 
 
       $querytambahmengajar =  mysql_query("INSERT INTO mengajar (id_guru, kd_mapel, id_kelas) VALUES ( '$nip', '$kd_mapel',  '$kelass' )") or die(mysql_error());
@@ -136,7 +136,7 @@ for($i=0; $i < $jumlah; $i++)
 
 
 <div class="item form-group">
-      <label  class="control-label col-md-3 col-sm-3 col-xs-12" for="kd_kelas">Pilih Kelas yang Diampu <span class="required" >*</span>
+      <label  class="control-label col-md-3 col-sm-3 col-xs-12" for="id_kelas">Pilih Kelas yang Diampu <span class="required" >*</span>
       </label>
       <div class="col-md-6 col-sm-6 col-xs-12">
         <div class="select">
@@ -147,8 +147,8 @@ for($i=0; $i < $jumlah; $i++)
                
                 while ($datas = mysql_fetch_array($hasils))
                 {
-                  echo "<p><br><input type='checkbox' class='flat-red' id='kd_kelas' value='".$datas['id_kelas']."' name='kd_kelas[]'/>
-                  <label for='kd_kelas'>".$datas['nm_kelas']."</label></p>";
+                  echo "<p><br><input type='checkbox' class='flat-red' id='id_kelas' value='".$datas['id_kelas']."' name='id_kelas[]'/>
+                  <label for='id_kelas'>".$datas['nm_kelas']."</label></p>";
                 }?>
       </div>
     </div>
