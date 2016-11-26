@@ -542,7 +542,7 @@ VALUES ('$id_kel', '$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$noh
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="no_hp">No. HP<span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="no_hp" name="no_hp" value="<?php echo $datanohp; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                  <input type="text" id="no_hp" name="no_hp" value="<?php echo $datanohp; ?>" onkeyup="convertAngkaHP(this);" required="required" class="form-control col-md-7 col-xs-12">
                   <div class="reg-info">Contoh: 08123456789. Wajib Isi Data Nomor Handphone yang Dapat Dihubungi.</div>
                 </div>
               </div>
@@ -612,7 +612,7 @@ VALUES ('$id_kel', '$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$noh
              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nohp_bapak">Nomor Telepon<span class="required">*</span>
              </label>
              <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="nohp_bapak" name="nohp_bapak" value="<?php echo $datanohpbapak; ?>" required="required" class="form-control col-md-7 col-xs-12">
+              <input type="text" id="nohp_bapak" name="nohp_bapak" value="<?php echo $datanohpbapak; ?>" onkeyup="convertAngkaHP(this);" required="required" class="form-control col-md-7 col-xs-12">
               <div class="reg-info">Contoh: 08123456789</div>
             </div>
           </div>
@@ -649,7 +649,7 @@ VALUES ('$id_kel', '$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$noh
      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nohp_ibu">Nomor Telepon<span class="required">*</span>
      </label>
      <div class="col-md-6 col-sm-6 col-xs-12">
-      <input type="text" id="nohp_ibu" name="nohp_ibu" value="<?php echo $datanohpibu; ?>" required="required" class="form-control col-md-7 col-xs-12">
+      <input type="text" id="nohp_ibu" name="nohp_ibu" value="<?php echo $datanohpibu; ?>" onkeyup="convertAngkaHP(this);" required="required" class="form-control col-md-7 col-xs-12">
       <div class="reg-info">Contoh: 08123456789</div>
     </div>
   </div>
@@ -876,8 +876,8 @@ VALUES ('$id_kel', '$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$noh
          },
          stringLength: {
           min: 1,
-          max: 5,
-          message: 'NIS maksimal 5 angka.'
+          max: 9,
+          message: 'NIS maksimal 9 angka.'
         },
         remote: {
           type: 'POST',
