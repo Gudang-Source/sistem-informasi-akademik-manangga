@@ -279,6 +279,47 @@ if (isset($_POST['siswa_simpan'])) {
 });
 
       </script>
+
+  <script type="text/javascript">
+  function convertAngkaNIS(objek) {
+    
+    a = objek.value;
+    b = a.replace(/[^\d]/g,"");
+    
+    objek.value = b;
+
+  }            
+</script>
+  <script type="text/javascript">
+  function convertAngkaHP(objek) {
+    
+    a = objek.value;
+    b = a.replace(/[^\d]/g,"");
+    
+    objek.value = b;
+
+  }            
+</script>
+  <script type="text/javascript">
+  function convertAngkaGaji(objek) {
+    
+    a = objek.value;
+    b = a.replace(/[^\d]/g,"");
+    
+    objek.value = b;
+
+  }            
+</script>
+  <script type="text/javascript">
+  function convertAngka(objek) {
+    
+    a = objek.value;
+    b = a.replace(/[^\d]/g,"");
+    
+    objek.value = b;
+
+  }            
+</script>
       <body>
 
         <?php
@@ -355,7 +396,7 @@ if (isset($_POST['siswa_simpan'])) {
                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nis">NIS<span class="required">*</span>
                                    </label>
                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                     <input  type="text" id="nis" name="nis" value="<?php echo $rowks['nis'];?>" required="required" class="form-control col-md-7 col-xs-12">
+                                     <input  type="text" id="nis" name="nis" value="<?php echo $rowks['nis'];?>" onkeyup="convertAngkaNIS(this);" required="required" class="form-control col-md-7 col-xs-12">
                                      <div class="reg-info">Contoh: 55550. Wajib Diisi (Digunakan sebagai username untuk login)</div>
                                    </div>
                                  </div>
@@ -591,7 +632,7 @@ if (isset($_POST['siswa_simpan'])) {
 
 
            <div class="item form-group">
-             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email<span class="required">*</span>
+             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email</span>
              </label>
              <div class="col-md-6 col-sm-6 col-xs-12">
                <input  type="text" id="email" name="email" value="<?php echo $rowks['email'];?>" class="form-control col-md-7 col-xs-12">
@@ -602,10 +643,10 @@ if (isset($_POST['siswa_simpan'])) {
 
 
            <div class="item form-group">
-             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="no_hp">No. HP<span class="required">*</span>
+             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="no_hp">No. HP</span>
              </label>
              <div class="col-md-6 col-sm-6 col-xs-12">
-               <input  type="text" id="no_hp" name="no_hp" value="<?php echo $rowks['no_hp'];?>" class="form-control col-md-7 col-xs-12">
+               <input  type="text" id="no_hp" name="no_hp" value="<?php echo $rowks['no_hp'];?>" onkeyup="convertAngkaHP(this);" class="form-control col-md-7 col-xs-12">
                <div class="reg-info">Wajib Isi Data No Hp</div>
              </div>
            </div>      
@@ -616,7 +657,7 @@ if (isset($_POST['siswa_simpan'])) {
              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tahun_masuk">Tahun Masuk<span class="required">*</span>
              </label>
              <div class="col-md-6 col-sm-6 col-xs-12">
-               <input  type="text" id="tahun_masuk" name="tahun_masuk" value="<?php echo $rowks['tahun_masuk'];?>" required="required" class="form-control col-md-7 col-xs-12">
+               <input  type="text" id="tahun_masuk" name="tahun_masuk" value="<?php echo $rowks['tahun_masuk'];?>" onkeyup="convertAngka(this);" required="required" class="form-control col-md-7 col-xs-12">
                <div class="reg-info">Wajib Isi Data Tahun Masuk</div>
              </div>
            </div>      
@@ -624,10 +665,10 @@ if (isset($_POST['siswa_simpan'])) {
 
 
            <div class="item form-group">
-             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tahun_keluar">Tahun Keluar<span class="required">*</span>
+             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tahun_keluar">Tahun Keluar</span>
              </label>
              <div class="col-md-6 col-sm-6 col-xs-12">
-               <input  type="text" id="tahun_keluar" name="tahun_keluar" value="<?php echo $rowks['tahun_keluar'];?>" required="required" class="form-control col-md-7 col-xs-12">
+               <input  type="text" id="tahun_keluar" name="tahun_keluar" value="<?php echo $rowks['tahun_keluar'];?>" onkeyup="convertAngka(this);"  class="form-control col-md-7 col-xs-12">
                <div class="reg-info">Wajib Isi Data Tahun Keluar</div>
              </div>
            </div> 
@@ -668,10 +709,10 @@ if (isset($_POST['siswa_simpan'])) {
           </div>
 
           <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gaji_bapak">Gaji Bapak<span class="required">*</span>
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gaji_bapak">Gaji Bapak</span>
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
-            <input type="text" id="gaji_bapak" name="gaji_bapak" value="<?php echo $rowks['gaji_bapak'];?>" required="required" class="form-control col-md-7 col-xs-12">
+            <input type="text" id="gaji_bapak" name="gaji_bapak" value="<?php echo $rowks['gaji_bapak'];?>" onkeyup="convertAngkaGaji(this);" class="form-control col-md-7 col-xs-12">
             <div class="reg-info">Contoh: 3500000</div>
           </div>
         </div>
@@ -705,10 +746,10 @@ if (isset($_POST['siswa_simpan'])) {
   </div>
 
   <div class="item form-group">
-   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gaji_ibu">Gaji Ibu<span class="required">*</span>
+   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gaji_ibu">Gaji Ibu</span>
    </label>
    <div class="col-md-6 col-sm-6 col-xs-12">
-    <input type="text" id="gaji_ibu" name="gaji_ibu" value="<?php echo $rowks['gaji_ibu'];?>" required="required" class="form-control col-md-7 col-xs-12">
+    <input type="text" id="gaji_ibu" name="gaji_ibu" value="<?php echo $rowks['gaji_ibu'];?>" onkeyup="convertAngkaGaji(this);" class="form-control col-md-7 col-xs-12">
     <div class="reg-info">Contoh: 6500000</div>
   </div>
 </div>
@@ -796,8 +837,8 @@ if (isset($_POST['siswa_simpan'])) {
      },
      stringLength: {
       min: 1,
-      max: 5,
-      message: 'NIP maksimal 5 angka.'
+      max: 9,
+      message: 'NIP maksimal 9 angka.'
     },
 
   }
@@ -849,7 +890,7 @@ password1: {
     stringLength: {
       min: 1,
       max: 30,
-      message: 'Nama kelurahan Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+      message: 'Nama Kelurahan Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
     },
     different: {
       field: 'email',
@@ -939,13 +980,14 @@ no_hp: {
 },
 email: {
   validators:{
-    notEmpty: {
-      message: 'Email Harus Diisi'
-    },
     emailAddress:{
-      message: 'Email Tidal valid'
+      message: 'Email Tidak Valid'
     },
-
+        remote: {
+          type: 'POST',
+          url: './remote/remote_email_siswa.php',
+          message: 'Email Sudah Tersedia'
+        },
   }
 },
 
@@ -970,9 +1012,6 @@ tahun_masuk: {
 tahun_keluar: {
   message: 'Tahun Keluar Tidak Benar',
   validators: {
-    notEmpty: {
-      message: 'Tahun Keluar Harus Diisi'
-    },
     stringLength: {
       min: 4,
       max: 4,
@@ -1024,9 +1063,6 @@ pekerjaan_bapak: {
 gaji_bapak: {
   message: 'Gaji Tidak Benar',
   validators: {
-    notEmpty: {
-      message: 'Gaji Harus Diisi'
-    },
     stringLength: {
       min: 0,
       max: 30,
@@ -1092,9 +1128,6 @@ pekerjaan_ibu: {
 gaji_ibu: {
   message: 'Gaji Tidak Benar',
   validators: {
-    notEmpty: {
-      message: 'Gaji Harus Diisi'
-    },
     stringLength: {
       min: 0,
       max: 30,
