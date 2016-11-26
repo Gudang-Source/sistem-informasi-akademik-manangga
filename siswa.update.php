@@ -38,6 +38,7 @@ if (isset($_POST['siswa_simpan'])) {
   $kd_kelas    = $_POST['kd_kelas'];
   $tahun_masuk = $_POST['tahun_masuk'];
   $tahun_keluar = $_POST['tahun_keluar'];
+  $email = $_POST['email'];
   $id_user =3;
 
   $nm_bapak            = $_POST['nm_bapak'];
@@ -158,10 +159,15 @@ if (isset($_POST['siswa_simpan'])) {
           alamat='$alamat',
           email='$email',
           no_hp='$no_hp',
-          tahun_masuk='tahun_keluar',
+          tahun_masuk='$tahun_masuk',
+          tahun_keluar='0',
           id_kel='$id_kel'
           WHERE id_siswa='$_GET[id]'
           ") or die(mysql_error());
+         $edit = mysql_query("SELECT * FROM siswa, wali WHERE siswa.id_Wali=wali.id_wali and id_siswa='$_GET[id]'");
+            $rowks  = mysql_fetch_array($edit);
+
+        $querys = mysql_query("UPDATE wali SET id_wali='$nis', nm_bapak='$nm_bapak', pekerjaan_bapak='$pekerjaan_bapak', gaji_bapak='$gaji_bapak', nohp_bapak='$nohp_bapak', nm_ibu='$nm_ibu', pekerjaan_ibu='$pekerjaan_ibu', gaji_ibu='$gaji_ibu', nohp_ibu='$nohp_ibu', alamat='$alamat' WHERE id_wali='$rowks[id_wali]'") or die(mysql_error());
       }
 
   #jika ada pesan error validasi form
@@ -201,7 +207,8 @@ if (isset($_POST['siswa_simpan'])) {
               alamat='$alamat',
               email='$email',
               no_hp='$no_hp',
-              tahun_masuk='tahun_keluar',
+              tahun_masuk='$tahun_masuk',
+              tahun_keluar='0',
               id_wali='$nis',
               id_kel='$id_kel'
               WHERE id_siswa='$_GET[id]'
@@ -399,7 +406,7 @@ if (isset($_POST['siswa_simpan'])) {
                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date_tgl_lahir">Tanggal Lahir<span class="required">*</span>
                                    </label>
                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                     <input  type="text" id="date_tgl_lahir" name="date_tgl_lahir" value="<?php echo $rowks['date_tgl_lahir'];?>" required="required" class="form-control col-md-7 col-xs-12" data-uk-datepicker="{format:'DD/MM/YYYY'}" >
+                                     <input  type="text" id="date_tgl_lahir" name="date_tgl_lahir" value="<?php echo  date('d/m/Y', strtotime($rowks['date_tgl_lahir'] )); ?>" required="required" class="form-control col-md-7 col-xs-12" data-uk-datepicker="{format:'DD/MM/YYYY'}" >
                                      <div class="reg-info">Format: <code>DD/MM/YYYY</code></div>
                                      <div class="reg-info">Contoh: 31/12/1994</div>
                                    </div>
