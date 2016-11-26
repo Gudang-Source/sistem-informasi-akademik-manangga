@@ -79,8 +79,8 @@ if (isset ($_POST["semester_simpan"])) {
           <!-- <hr class="uk-article-divider"> -->
           <div class="uk-grid" data-uk-grid-margin>
             <div class="uk-width-medium-1-1">
-
-      <form id="formsemester" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
+            
+             <form id="formsemester" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
         
         <div class="item form-group">
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nm_semester">Nama Semester<span class="required">*</span>

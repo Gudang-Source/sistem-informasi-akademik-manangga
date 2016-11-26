@@ -89,6 +89,7 @@ $rowks  = mysql_fetch_array($edit);
        </label>
        <div class="col-md-6 col-sm-6 col-xs-12">
         <input type="text" id="nm_ekstrakurikuler" name="nm_ekstrakurikuler" value="<?php echo $rowks['nm_ekstrakurikuler'];?>" required="required" class="form-control col-md-7 col-xs-12">
+        <div class="reg-info">Contoh: Pramuka.</div>
       </div>
     </div>
 
