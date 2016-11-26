@@ -367,7 +367,7 @@ function admin(){
       <li class="uk-nav-header"><i class="uk-icon-child"></i> Siswa</li>
       <?php generateNavElement(array(10,1), 'siswa', './siswa', 'Data Siswa') ?>
       <?php generateNavElement(array(10,1), 'siswa.pertahun', './siswa.pertahun', 'Data Siswa Aktif') ?>
-      <?php generateNavElement(array(10,1), 'wali-murid', './wali-murid', 'Data Orangtua/Wali') ?>
+        <!--<?php generateNavElement(array(10,1), 'wali-murid', './wali-murid', 'Data Orangtua/Wali') ?>-->
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-user"></i> Pegawai</li>
        <?php generateNavElement(array(10,1), 'kepala-sekolah', './kepala-sekolah', 'Data Kepala Sekolah') ?>
@@ -380,7 +380,7 @@ function admin(){
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-tasks"></i> Mata Pelajaran</li>
       <?php generateNavElement(array(10,1,0), 'mapel', './mapel', 'Data Mapel') ?>
-      <?php generateNavElement(array(10,1,0), 'kkm', './kkm', 'Data KKM') ?>
+      <!--<?php generateNavElement(array(10,1,0), 'kkm', './kkm', 'Data KKM') ?>-->
 
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-circle-o-notch"></i> Mengajar</li>
