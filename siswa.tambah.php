@@ -58,9 +58,6 @@ if (isset ($_POST["siswa_simpan"])) {
   if (trim($pekerjaan_bapak)=="") {
     $pesanError[]="Data <b>Pekerjaan Bapak</b> Masih Kosong.";
   }
-  if (trim($gaji_bapak)=="") {
-    $pesanError[]="Data <b>Gaji Bapak</b> Masih Kosong.";
-  }
   if (trim($nohp_bapak)=="") {
     $pesanError[]="Data <b>No Handphone Bapak</b> Masih Kosong.";
   }
@@ -69,10 +66,6 @@ if (isset ($_POST["siswa_simpan"])) {
   }
   if (trim($pekerjaan_ibu)=="") {
     $pesanError[]="Data <b>Pekerjaan Ibu</b> Masih Kosong.";
-  }
-
-    if (trim($gaji_ibu)=="") {
-    $pesanError[]="Data <b>Gaji Ibu</b> Masih Kosong.";
   }
     if (trim($nohp_ibu)=="") {
     $pesanError[]="Data <b>No Handphone Ibu</b> Masih Kosong.";
@@ -285,6 +278,26 @@ VALUES ('$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '
 });
 
       </script>
+  <script type="text/javascript">
+  function convertAngkaNIS(objek) {
+    
+    a = objek.value;
+    b = a.replace(/[^\d]/g,"");
+    
+    objek.value = b;
+
+  }            
+</script>
+  <script type="text/javascript">
+  function convertAngkaHP(objek) {
+    
+    a = objek.value;
+    b = a.replace(/[^\d]/g,"");
+    
+    objek.value = b;
+
+  }            
+</script>
       <body>
 
         <?php
@@ -357,7 +370,7 @@ VALUES ('$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '
                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nis">NIS<span class="required">*</span>
                                </label>
                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="nis" name="nis" value="<?php echo $datanis; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="nis" name="nis" value="<?php echo $datanis; ?>" onkeyup="convertAngkaNIS(this);" required="required" class="form-control col-md-7 col-xs-12">
                                 <div class="reg-info">Contoh: 55550. Wajib Diisi (Digunakan sebagai username untuk login)</div>
                               </div>
                             </div>
@@ -496,10 +509,10 @@ VALUES ('$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '
                 </div>
 
                 <div class="item form-group">
-                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email<span class="required">*</span>
+                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email</span>
                  </label>
                  <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="email" name="email" value="<?php echo $dataemail; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                  <input type="text" id="email" name="email" value="<?php echo $dataemail; ?>" class="form-control col-md-7 col-xs-12">
                   <div class="reg-info">Contoh: ripagemah@mail.com</div>
                 </div>
               </div>
@@ -566,10 +579,10 @@ VALUES ('$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '
                 </div>
               </div>
               <div class="item form-group">
-               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gaji_bapak">Gaji Bapak<span class="required">*</span>
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gaji_bapak">Gaji Bapak</span>
                </label>
                <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="gaji_bapak" name="gaji_bapak" value="<?php echo $datagajibapak; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                <input type="text" id="gaji_bapak" name="gaji_bapak" value="<?php echo $datagajibapak; ?>" rclass="form-control col-md-7 col-xs-12">
                 <div class="reg-info">Contoh: 3500000</div>
               </div>
             </div>
@@ -582,7 +595,7 @@ VALUES ('$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '
               <div class="reg-info">Contoh: 08123456789</div>
             </div>
           </div>
-
+                <hr class="uk-article-divider">
           <div class="item form-group">
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nm_ibu">Nama Ibu<span class="required">*</span>
            </label>
@@ -603,10 +616,10 @@ VALUES ('$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '
       </div>
 
       <div class="item form-group">
-       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gaji_ibu">Gaji Ibu<span class="required">*</span>
+       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gaji_ibu">Gaji Ibu </span>
        </label>
        <div class="col-md-6 col-sm-6 col-xs-12">
-        <input type="text" id="gaji_ibu" name="gaji_ibu" value="<?php echo $datagajiibu; ?>" required="required" class="form-control col-md-7 col-xs-12">
+        <input type="text" id="gaji_ibu" name="gaji_ibu" value="<?php echo $datagajiibu; ?>" class="form-control col-md-7 col-xs-12">
         <div class="reg-info">Contoh: 6500000</div>
       </div>
     </div>
@@ -856,7 +869,7 @@ VALUES ('$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '
          stringLength: {
           min: 1,
           max: 5,
-          message: 'NIP maksimal 5 angka.'
+          message: 'NIS maksimal 5 angka.'
         },
         remote: {
           type: 'POST',
@@ -989,7 +1002,7 @@ VALUES ('$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '
           message: 'No HP Harus Diisi'
         },
         stringLength: {
-          min: 10,
+          min: 1,
           max: 30,
           message: 'No Hp Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
         },
@@ -1002,15 +1015,12 @@ VALUES ('$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '
     },
     email: {
       validators:{
-        notEmpty: {
-          message: 'Email Harus Diisi'
-        },
         emailAddress:{
-          message: 'Email Tidal valid'
+          message: 'Email Tidak valid'
         },
         remote: {
           type: 'POST',
-          url: './remote/remote_email_guru.php',
+          url: './remote/remote_email_siswa.php',
           message: 'Email Sudah Tersedia'
         },
       }

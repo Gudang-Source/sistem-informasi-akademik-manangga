@@ -6,7 +6,7 @@ header('Content-type: application/json');
 $valid = true;
 
 include "../config.php";
-$sql="SELECT email FROM guru";
+$sql="SELECT email FROM siswa";
 $sq=mysql_query($sql);
 
 
