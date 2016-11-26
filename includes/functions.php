@@ -213,7 +213,7 @@ if( isset($_SESSION['tingkat_user']) ) :
        <?php generateNavElement(array(10,1), 'siswa', './siswa', 'Data Siswa') ?>
        <?php generateNavElement(array(10,1), 'siswa.pertahun', './siswa.pertahun', 'Data Siswa per Tahun Ajaran') ?>
        <?php generateNavElement(array(2, 10), 'guru', './guru', 'Data Guru') ?>
-       <?php generateNavElement(array(10,1), 'wali-murid', './wali-murid', 'Data Orangtua/Wali') ?>
+       <!--<?php generateNavElement(array(10,1), 'wali-murid', './wali-murid', 'Data Orangtua/Wali') ?>-->
        
       <hr class="uk-article-divider">
       <li class="uk-nav-header">Akademik</li>
