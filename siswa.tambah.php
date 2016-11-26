@@ -201,11 +201,12 @@ if (isset ($_POST["siswa_simpan"])) {
               no_hp='$no_hp',
               foto='$jeneng',
               tahun_masuk='$tahun_masuk',
-              tahun_keluar='$tahun_keluar'
+              tahun_keluar='$tahun_keluar',
+              id_kel='$id_kel'
 
               ") or die(mysql_error());
-            $querywali = mysql_query("INSERT INTO wali (id_wali, nm_bapak, pekerjaan_bapak, gaji_bapak, nohp_bapak, nm_ibu, pekerjaan_ibu, gaji_ibu, nohp_ibu, alamat)
-VALUES ('$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '$nm_ibu', '$pekerjaan_ibu', '$gaji_ibu', '$nohp_ibu', '$alamat')") or die(mysql_error());
+            $querywali = mysql_query("INSERT INTO wali (id_kel, id_wali, nm_bapak, pekerjaan_bapak, gaji_bapak, nohp_bapak, nm_ibu, pekerjaan_ibu, gaji_ibu, nohp_ibu, alamat)
+VALUES ('$id_kel', '$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '$nm_ibu', '$pekerjaan_ibu', '$gaji_ibu', '$nohp_ibu', '$alamat')") or die(mysql_error());
 
 
 
@@ -290,6 +291,26 @@ VALUES ('$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '
 </script>
   <script type="text/javascript">
   function convertAngkaHP(objek) {
+    
+    a = objek.value;
+    b = a.replace(/[^\d]/g,"");
+    
+    objek.value = b;
+
+  }            
+</script>
+  <script type="text/javascript">
+  function convertAngkaGaji(objek) {
+    
+    a = objek.value;
+    b = a.replace(/[^\d]/g,"");
+    
+    objek.value = b;
+
+  }            
+</script>
+  <script type="text/javascript">
+  function convertAngka(objek) {
     
     a = objek.value;
     b = a.replace(/[^\d]/g,"");
@@ -530,7 +551,7 @@ VALUES ('$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tahun_masuk">Tahun Masuk<span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="tahun_masuk" name="tahun_masuk" value="<?php echo $datatahunmasuk; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                  <input type="text" id="tahun_masuk" name="tahun_masuk" value="<?php echo $datatahunmasuk; ?>" onkeyup="convertAngka(this);" required="required" class="form-control col-md-7 col-xs-12">
                   <div class="reg-info">Contoh: 2012.</div>
                 </div>
               </div>
@@ -539,7 +560,7 @@ VALUES ('$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tahun_keluar">Tahun Keluar<span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="tahun_keluar" name="tahun_keluar" value="<?php echo $datatahunkeluar; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                  <input type="text" id="tahun_keluar" name="tahun_keluar" value="<?php echo $datatahunkeluar; ?>" onkeyup="convertAngka(this);" required="required" class="form-control col-md-7 col-xs-12">
                   <div class="reg-info">Contoh: 2018.</div>
                 </div>
               </div>
@@ -582,7 +603,7 @@ VALUES ('$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '
                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gaji_bapak">Gaji Bapak</span>
                </label>
                <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="gaji_bapak" name="gaji_bapak" value="<?php echo $datagajibapak; ?>" rclass="form-control col-md-7 col-xs-12">
+                <input type="text" id="gaji_bapak" name="gaji_bapak" value="<?php echo $datagajibapak; ?>" onkeyup="convertAngkaGaji(this);" rclass="form-control col-md-7 col-xs-12">
                 <div class="reg-info">Contoh: 3500000</div>
               </div>
             </div>
@@ -619,7 +640,7 @@ VALUES ('$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '
        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gaji_ibu">Gaji Ibu </span>
        </label>
        <div class="col-md-6 col-sm-6 col-xs-12">
-        <input type="text" id="gaji_ibu" name="gaji_ibu" value="<?php echo $datagajiibu; ?>" class="form-control col-md-7 col-xs-12">
+        <input type="text" id="gaji_ibu" name="gaji_ibu" value="<?php echo $datagajiibu; ?>" onkeyup="convertAngkaGaji(this);" class="form-control col-md-7 col-xs-12">
         <div class="reg-info">Contoh: 6500000</div>
       </div>
     </div>
@@ -642,13 +663,6 @@ VALUES ('$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '
   </div>
 </div>
 
-<div class="item form-group">
-  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="no_hp">No. HP<span class="required">*</span>
-  </label>
-  <div class="col-md-6 col-sm-6 col-xs-12">
-    <input type="text" id="nohp_ibu" name="nohp_ibu" value="<?php echo $datanohpibu; ?>" required="required" class="form-control col-md-7 col-xs-12">
-    <div class="reg-info">Contoh: 08123456789. Wajib Isi Data Nomor Handphone yang Dapat Dihubungi.</div>
-  </div>
 
 </div>
 
@@ -736,9 +750,6 @@ VALUES ('$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '
     gaji_bapak: {
       message: 'Gaji Tidak Benar',
       validators: {
-        notEmpty: {
-          message: 'Gaji Harus Diisi'
-        },
         stringLength: {
           min: 0,
           max: 30,
@@ -804,9 +815,6 @@ VALUES ('$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '
     gaji_ibu: {
       message: 'Gaji Tidak Benar',
       validators: {
-        notEmpty: {
-          message: 'Gaji Harus Diisi'
-        },
         stringLength: {
           min: 0,
           max: 30,
