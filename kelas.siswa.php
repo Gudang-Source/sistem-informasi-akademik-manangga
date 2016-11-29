@@ -110,7 +110,7 @@ loadAssetsHead('Lihat Data Kelas Siswa');
                       </div>
                       <div class="form-group">
                         <label>Kelas</label>
-                        <select name="id_kelas"  id="id_kelas" value="" readonly class="form-control col-md-7 col-xs-12">
+                        <select name="id_kelas"  id="id_kelas" value="" readonly disabled="disabled" class="form-control col-md-7 col-xs-12">
                         <option value="">--- Pilih Kelas --</option>
                           <?php
                       //MENGAMBIL NAMA PROVINSI YANG DI DATABASE

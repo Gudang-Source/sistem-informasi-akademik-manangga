@@ -29,7 +29,7 @@ $act=$_GET['act'];
 ##########################################################3
 elseif ( $act=='update'){
 
- $id_kelas_siswa=$_POST['id_kelas_siswa'];
+ $id_kelas_siswa=$_GET['id_kelas_siswa'];
  $id_kelas=$_POST['id_kelas'];
 
 		$updatekelas_siswa=mysql_query("UPDATE kelas_siswa SET id_kelas='$id_kelas' WHERE id_kelas_siswa='$id_kelas_siswa'");
