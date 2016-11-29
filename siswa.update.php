@@ -397,7 +397,7 @@ if (isset($_POST['siswa_simpan'])) {
                                    </label>
                                    <div class="col-md-6 col-sm-6 col-xs-12">
                                      <input  type="text" id="nis" name="nis" value="<?php echo $rowks['nis'];?>" onkeyup="convertAngkaNIS(this);" required="required" class="form-control col-md-7 col-xs-12">
-                                     <div class="reg-info">Contoh: 55550. Wajib Diisi (Digunakan sebagai username untuk login)</div>
+                                     <div class="reg-info">Contoh: 151601001. Wajib Diisi Minimal 9 Karakter (Digunakan sebagai username untuk login)</div>
                                    </div>
                                  </div>
 
@@ -836,9 +836,9 @@ if (isset($_POST['siswa_simpan'])) {
        message: 'Harus Isi NIS'
      },
      stringLength: {
-      min: 1,
+      min: 9,
       max: 9,
-      message: 'NIP maksimal 9 angka.'
+      message: 'NIS 9 karakter.'
     },
 
   }

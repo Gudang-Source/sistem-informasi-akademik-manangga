@@ -392,7 +392,7 @@ VALUES ('$id_kel', '$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$noh
                                </label>
                                <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="nis" name="nis" value="<?php echo $datanis; ?>" onkeyup="convertAngkaNIS(this);" required="required" class="form-control col-md-7 col-xs-12">
-                                <div class="reg-info">Contoh: 55550. Wajib Diisi (Digunakan sebagai username untuk login)</div>
+                                <div class="reg-info">Contoh: 151601001. Wajib Diisi Minimal 9 Karakter (Digunakan sebagai username untuk login)</div>
                               </div>
                             </div>
 
@@ -875,9 +875,9 @@ VALUES ('$id_kel', '$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$noh
            message: 'Harus Isi NIS'
          },
          stringLength: {
-          min: 1,
+          min: 9,
           max: 9,
-          message: 'NIS maksimal 9 angka.'
+          message: 'NIS 9 karakter.'
         },
         remote: {
           type: 'POST',
