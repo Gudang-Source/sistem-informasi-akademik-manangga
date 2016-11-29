@@ -107,12 +107,14 @@ $cektahun = mysql_query("SELECT * FROM tahun_ajaran WHERE status='1'");
     <link href="assets/admin/paneladmin/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/admin/paneladmin/fonts/css/font-awesome.min.css" rel="stylesheet">
     <link href="assets/admin/paneladmin/css/animate.min.css" rel="stylesheet">
-
+    <link href="assets/validator/css/bootstrapValidator.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="assets/fileupload/css/bootstrap-fileupload.min.css" />
     <script src="assets/fileupload/js/jquery-2.0.3.min.js"></script>
     <script src="assets/fileupload/js/bootstrap-fileupload.js"></script>
     <script type="text/javascript" language="javascript" src="assets/jquery.js"></script>
 
+<script src="assets/validator/js/bootstrapValidator.min.js" type="text/javascript"></script>
+<script src="assets/validator/validator/validator.js"></script>
     <!-- Custom styling plus plugins -->
 
     <script src="assets/datepicker/js/bootstrap-datepicker.min.js"></script>
@@ -151,12 +153,9 @@ function loadAssetsFoot($scripts = ''){
   <div class="sia-basic_main-full">
     <?php include "footer.php";?>
     <div class="copyright">
-     <div class="uk-vertical-align uk-text-center ">
-      <div class="uk-vertical-align-middle uk-text-center">
-       <label class="uk-text-success">
-        Develop on progress with <i class="fa fa-headphones"></i>  &  <i class="fa fa-coffee"></i> 
-      </label>
-    </div>
+
+        Handcrafted with <span class="doc-heart"><i class="fa fa-heart"></i></span>  and a lot of <i class="fa fa-coffee"></i> 
+ 
   </div>
 </div>
 </div>
