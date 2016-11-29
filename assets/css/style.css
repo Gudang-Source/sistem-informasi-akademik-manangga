@@ -129,6 +129,7 @@ body, h1, h2, h3, h4, h5, h6 {
   }
 }
 
+
 .tm-bg-primary {
   background :  #fff;
 }
@@ -460,3 +461,11 @@ li .underline-menu {
   height:30px;
   width:245px;
 } 
+
+.doc-heart {
+  color: #c0392b;
+  -webkit-animation: heart-beat 1s linear infinite;
+  -moz-animation: heart-beat 1s linear infinite;
+  -ms-animation: heart-beat 1s linear infinite;
+  animation: heart-beat 1s linear infinite;
+}
