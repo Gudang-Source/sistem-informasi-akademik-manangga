@@ -180,6 +180,7 @@ for($i=0; $i < $jumlah; $i++)
                   <td ><?php echo $row[jns_kelamin]?></td>
                   <?php if (isset($_SESSION['administrator'])) { ?>
                   <td width="15%"><div class="uk-text-center">
+                  
                     <?php echo "<br><input type='checkbox'  id='id_siswa' value='".$row['id_siswa']."' name='id_siswa[]'/>"; ?>
                   </td>
                   <?php } ?>            
