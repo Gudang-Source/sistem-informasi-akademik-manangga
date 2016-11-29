@@ -34,6 +34,7 @@ loadAssetsHead('Lihat Data Mengajar');
                           <div class="uk-modal-header">
                             <h2>Tambah Data Mengajar </h2>
                           </div>
+
                           <form role="form" method="post" action="mengajar.action?act=tambah" enctype="multipart/form-data" >
                             <div class="form-group">
                               <label>NIP. </label>
@@ -115,7 +116,9 @@ loadAssetsHead('Lihat Data Mengajar');
             $rowsl=mysql_fetch_array($resultl); 
             ?> 
             <br>
+            <a href="./guru" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Guru"><i class="uk-icon-angle-left"></i> Kembali</a>
             <?php if (isset($_SESSION['administrator'])) { ?>
+
             <button  data-uk-modal="{target:'#modaltambah'}" class="uk-button uk-button-success" type="button" title="Tambah Data Mengajar"><i class="uk-icon-plus"></i> Mengajar</button>
             <?php } ?>
             <br>
