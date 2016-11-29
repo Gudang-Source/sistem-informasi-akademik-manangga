@@ -24,7 +24,7 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
  //  $date_tgl_lahir=ubahformatTgl($date_tgl_lahir0);
  // break;
   $jns_kelamin  = $_POST['jns_kelamin'];
-  $agama  = $_POST['agama'];
+  $id_agama  = $_POST['id_agama'];
   $status_guru  = $_POST['status_guru'];
   $gelar_depan  = $_POST['gelar_depan'];
   $gelar_depan_akademik  = $_POST['gelar_depan_akademik'];
@@ -86,7 +86,7 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
       if (trim($jns_kelamin)=="") {
         $pesanError[]="Data <b>Jenis Kelamin</b> masih kosong.";
       }
-      if (trim($agama)=="") {
+      if (trim($id_agama)=="") {
         $pesanError[]="Data <b>Agama</b> masih kosong.";
       }
       if (trim($status_guru)=="") {
@@ -125,7 +125,7 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
           tmpt_lahir='$tmpt_lahir',
           date_tgl_lahir='$date_tgl_lahir',
           jns_kelamin='$jns_kelamin',
-          agama='$agama',
+          id_agama='$id_agama',
           status_guru='$status_guru',
           gelar_depan='$gelar_depan',
           gelar_depan_akademik='$gelar_depan_akademik',
@@ -173,7 +173,7 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
               tmpt_lahir='$tmpt_lahir',
               date_tgl_lahir='$date_tgl_lahir',
               jns_kelamin='$jns_kelamin',
-              agama='$agama',
+              id_agama='$id_agama',
               status_guru='$status_guru',
               gelar_depan='$gelar_depan',
               gelar_depan_akademik='$gelar_depan_akademik',
@@ -404,27 +404,24 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
       </tr>
       <tr>
         <div class="item form-group">
-         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="agama">Agama<span class="required">*</span>
+         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_agama">Agama<span class="required">*</span>
          </label>
          <div class="col-md-6 col-sm-6 col-xs-12">
-           <select  type="text" class="form-control chzn-select col-md-7 col-xs-12" id="agama" name="agama" value="" required>
+           <select  type="text" class="form-control chzn-select col-md-7 col-xs-12" id="id_agama" name="id_agama" value="" required>
             <option value="">-Pilih Agama-</option>
-            <?php
-            $endiagamamu  = array('Islam','Kristen Katolik','Kristen Protestan','Hindu','Budha','Konghucu','Lainnya');
-            ?>
-
-            <?php
-            $agama =mysql_query("SELECT * FROM guru ORDER BY agama");
-            $dataagama=mysql_fetch_array($agama);
-
-            for ($d = 0; $d < sizeof($endiagamamu); $d++) {
-              if ($dataagama['agama'] == $endiagamamu[$d]) {
-               echo '<option value="'.$endiagamamu[$d].'" selected>'.$endiagamamu[$d].'</option>';
-             } else {
-               echo '<option value="'.$endiagamamu[$d].'">'.$endiagamamu[$d].'</option>';
-             }
-           }
-           ?>
+          <?php
+                    //MENGAMBIL NAMA PROVINSI YANG DI DATABASE
+      $agama =mysql_query("SELECT * FROM agama ORDER BY nm_agama asc");
+      while ($dataagama=mysql_fetch_array($agama)) {
+       if ($dataagama['id_agama']==$rowks['id_agama']) {
+         $cek ="selected";
+       }
+       else{
+        $cek= "";
+      }
+      echo "<option value=\"$dataagama[id_agama]\" $cek>$dataagama[nm_agama]</option>\n";
+    }
+    ?>
          </select>
 
        </div>
@@ -752,7 +749,7 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
           }
         }
       }, 
-      agama : {
+      id_agama : {
         validators: {
           notEmpty: {
             message: 'Harus Pilih Agama'

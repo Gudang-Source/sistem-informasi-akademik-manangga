@@ -105,14 +105,8 @@ if (isset($_POST['siswa_simpan'])) {
       if (trim($no_hp)=="") {
         $pesanError[]="Data <b>Nomor HP</b> masih kosong.";
       }
-      if (trim($email)=="") {
-        $pesanError[]="Data <b>Email</b> masih kosong.";
-      }
       if (trim($tahun_masuk)=="") {
         $pesanError[]="Data <b>Tahun Masuk</b> masih kosong.";
-      }
-      if (trim($tahun_keluar)=="") {
-        $pesanError[]="Data <b>Tahun Kelurahan</b> masih kosong.";
       }
       if (trim($id_user)=="") {
         $pesanError[] = "Data <b>id_user</b> tidak boleh kosong !";    

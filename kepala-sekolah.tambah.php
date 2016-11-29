@@ -22,7 +22,7 @@ if (isset ($_POST["kepsek_simpan"])) {
 	$date_tgl_lahir0  = $_POST['date_tgl_lahir'];
 	$date_tgl_lahir=ubahformatTgl($date_tgl_lahir0);
 	$jns_kelamin  = $_POST['jns_kelamin'];
-	$agama  = $_POST['agama'];
+	$id_agama  = $_POST['id_agama'];
 	$status_guru  = $_POST['status_guru'];
 	$gelar_depan  = $_POST['gelar_depan'];
 	$gelar_depan_akademik  = $_POST['gelar_depan_akademik'];
@@ -85,7 +85,7 @@ if (isset ($_POST["kepsek_simpan"])) {
       if (trim($jns_kelamin)=="") {
       	$pesanError[]="Data <b>Jenis Kelamin</b> masih kosong.";
       }
-      if (trim($agama)=="") {
+      if (trim($id_agama)=="") {
       	$pesanError[]="Data <b>Agama</b> masih kosong.";
       }
       if (trim($status_guru)=="") {
@@ -152,7 +152,7 @@ if (isset ($_POST["kepsek_simpan"])) {
       					tmpt_lahir='$tmpt_lahir',
       					date_tgl_lahir='$date_tgl_lahir',
       					jns_kelamin='$jns_kelamin',
-      					agama='$agama',
+      					id_agama='$id_agama',
       					status_guru='$status_guru',
       					gelar_depan='$gelar_depan',
       					gelar_depan_akademik='$gelar_depan_akademik',
@@ -183,7 +183,7 @@ if (isset ($_POST["kepsek_simpan"])) {
       $datatempatlahir  = isset($_POST['tmpt_lahir']) ? $_POST['tmpt_lahir'] : '';
       $datatanggallahir  = isset($_POST['date_tgl_lahir']) ? $_POST['date_tgl_lahir'] : '';
       $datajeniskelamin  = isset($_POST['jns_kelamin']) ? $_POST['jns_kelamin'] : '';
-      $dataagama  = isset($_POST['agama']) ? $_POST['agama'] : '';
+      $dataagama  = isset($_POST['id_agama']) ? $_POST['id_agama'] : '';
       $dataalamat  = isset($_POST['almt_sekarang']) ? $_POST['almt_sekarang'] : '';
       $datanohp  = isset($_POST['no_hp']) ? $_POST['no_hp'] : '';
       $dataemail  = isset($_POST['email']) ? $_POST['email'] : '';
@@ -272,9 +272,9 @@ if (isset ($_POST["kepsek_simpan"])) {
       						<img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="SD Negeri II Manangga" title="SD Negeri II Manangga">
       					</div>
       					<hr class="uk-article-divider">
-      					<h1 class="uk-article-title">Guru<span class="uk-text-large">{ Tambah Master Data Guru }</span></h1>
+      					<h1 class="uk-article-title">Kepala Sekolah<span class="uk-text-large">{ Tambah Master Data Kepala Sekolah }</span></h1>
       					<br>
-      					<a href="./guru" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Guru"><i class="uk-icon-angle-left"></i> Kembali</a>
+      					<a href="./kepala-sekolah" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Kepala Sekolah"><i class="uk-icon-angle-left"></i> Kembali</a>
       					<!-- <hr class="uk-article-divider"> -->
       					<div class="uk-grid" data-uk-grid-margin>
       						<div class="uk-width-medium-1-1">
@@ -307,7 +307,7 @@ if (isset ($_POST["kepsek_simpan"])) {
       								</div>
 
       								<div class="item form-group">
-      									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nm_guru">Nama Guru<span class="required">*</span>
+      									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nm_guru">Nama Kepala Sekolah<span class="required">*</span>
       									</label>
       									<div class="col-md-6 col-sm-6 col-xs-12">
       										<input type="text" id="nm_guru" name="nm_guru" value="<?php echo $datanamaguru; ?>" required="required" class="form-control col-md-7 col-xs-12">
@@ -364,22 +364,22 @@ if (isset ($_POST["kepsek_simpan"])) {
       									</div>
       								</div>
 
-      								<div class="item form-group">
-      									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="agama">Agama<span class="required">*</span>
-      									</label>
-      									<div class="col-md-6 col-sm-6 col-xs-12">
-      										<select name="agama" id="agama" value="<?php echo $dataagama; ?>" class="form-control col-md-7 col-xs-12">
-      											<option value="">--- Pilih agama yang dianut --</option>
-      											<option value="Islam">Islam</option>
-      											<option value="Kristen Protestan">Kristen Protestan</option>
-      											<option value="Kristen Katholik">Kristen Katholik</option>
-      											<option value="Hindu">Hindu</option>
-      											<option value="Buddha">Buddha</option>
-      											<option value="Konghuchu">Konghuchu</option>
-      										</select>
-      										<div class="reg-info">Pilihan Agama yang ada hanya terdapat di pilihan, apabila tidak ada dalam menu pilihan agama, harap menghubungi di bagian kesiswaan.</div>
-      									</div>
-      								</div>
+      <div class="item form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_agama">Agama<span class="required">*</span>
+           </label>
+           <div class="col-md-6 col-sm-6 col-xs-12">
+            <select name="id_agama" id="id_agama" value="<?php echo $dataagama; ?>" class="form-control col-md-7 col-xs-12">
+              <option value="">--- Pilih agama yang dianut --</option>
+               <?php
+                    //MENGAMBIL NAMA PROVINSI YANG DI DATABASE
+                            $agama =mysql_query("SELECT * FROM agama ORDER BY nm_agama");
+                            while ($dataagama=mysql_fetch_array($agama)) {
+                              echo "<option value=\"$dataagama[id_agama]\">$dataagama[nm_agama]</option>\n";
+                            }
+                            ?>
+            </select>
+          </div>
+        </div>
 
       								<div class="item form-group">
       									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="jns_kelamin">Status Guru<span class="required">*</span>
@@ -627,7 +627,7 @@ if (isset ($_POST["kepsek_simpan"])) {
   		}
   	}
   }, 
-  agama : {
+  id_agama : {
   	validators: {
   		notEmpty: {
   			message: 'Harus Pilih Agama'
