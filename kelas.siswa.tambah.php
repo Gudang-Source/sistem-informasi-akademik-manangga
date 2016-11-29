@@ -166,7 +166,7 @@ for($i=0; $i < $jumlah; $i++)
               <tbody>
                 <?php 
 
-                $query="SELECT * from siswa where id_siswa not in (select id_siswa from kelas_siswa, tahun_ajaran where tahun_ajaran.id_tahun=kelas_siswa.id_tahun and tahun_ajaran.status='1') order by nm_siswa asc";
+                $query="SELECT * from siswa where id_siswa not in (select id_siswa from kelas_siswa) order by nm_siswa asc";
                 $exe=mysql_query($query);
 
 
