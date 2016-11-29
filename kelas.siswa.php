@@ -147,8 +147,7 @@ loadAssetsHead('Lihat Data Kelas Siswa');
                       <div class="form-group">
                         <label>NIS</label>
                         <input class="form-control" name="nis" id="nis" value="<?php echo $row['nis']; ?>"  readonly  required required  />
-                        <input class="form-control" name="id_siswa" id="id_siswa" value="<?php echo $row['id_siswa']; ?>"  readonly  required required  />
-
+                     
                       </div>
 
                       <div class="form-group">
