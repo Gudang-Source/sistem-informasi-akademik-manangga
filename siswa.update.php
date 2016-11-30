@@ -994,7 +994,7 @@ tahun_masuk: {
     stringLength: {
       min: 4,
       max: 4,
-      message: 'Tahun Masuk Harus 4 Digit'
+      message: 'Tahun Masuk Harus 4 Digit.'
     },
     regexp: {
       regexp: /^[0-9+]+$/,
@@ -1007,9 +1007,9 @@ tahun_keluar: {
   message: 'Tahun Keluar Tidak Benar',
   validators: {
     stringLength: {
-      min: 4,
+      min: 1,
       max: 4,
-      message: 'Tahun Keluar Harus 4 Digit'
+      message: 'Tahun Keluar Harus 4 Digit. Isi dengan 0 bila belum keluar.'
     },
     regexp: {
       regexp: /^[0-9+]+$/,
@@ -1075,9 +1075,9 @@ nohp_bapak: {
       message: 'No HP Harus Diisi'
     },
     stringLength: {
-      min: 10,
+      min: 1,
       max: 30,
-      message: 'No Hp Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+      message: 'No Hp Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf. Isi dengan angka 0 bila tidak ada.'
     },
     regexp: {
       regexp: /^[0-9+]+$/,
@@ -1140,9 +1140,9 @@ nohp_ibu: {
       message: 'No HP Harus Diisi'
     },
     stringLength: {
-      min: 10,
+      min: 1,
       max: 30,
-      message: 'No Hp Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+      message: 'No Hp Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf. Isi dengan angka 0 bila tidak ada.'
     },
     regexp: {
       regexp: /^[0-9+]+$/,
