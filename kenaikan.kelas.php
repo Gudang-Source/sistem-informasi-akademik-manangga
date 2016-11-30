@@ -32,7 +32,7 @@ $_SESSION['thn_ajaran_sblm'] = $thn_ajaran_sblm['thn_ajaran'];
 $_SESSION['semester_sblm'] = $thn_ajaran_sblm['semester'];
 $_SESSION['status_sblm'] = $thn_ajaran_sblm['status'];
 /*form processing*/
-if (isset ($_POST["kelas_siswa_simpan"])) { 
+if (isset ($_POST["kenaikan_kelas_simpan"])) { 
 
     // baca variabel
 
@@ -78,7 +78,7 @@ if (isset ($_POST["kelas_siswa_simpan"])) {
 
     // simpan ke database
 
-   header('location: ./kelas.siswa');
+   header('location: ./kenaikan.kelas');
 
 
 
@@ -143,9 +143,27 @@ if (isset ($_POST["kelas_siswa_simpan"])) {
           <?php } ?>
         </form>
         <br>
-        <form>
+        <form id="formkenaikankelas" method="POST" class="uk-form" enctype="multipart/form-data">
+        <?php 
+                if(isset($_POST['pilih_kelas'])){
+                  $id_kelas = $_POST['id_kelas'];
+                  ?>
           <div class="uk-panel uk-panel-box uk-panel-box-secondary">
-
+            <div class="uk-width-3-10">
+               <div class="form-group">
+                 <code> <label>Pilih Kenaikan Kelas</label></code>
+                 <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="id_kelas" name="id_kelas"  >
+                  <option value="">-Pilih Kelas-</option>
+                  <?php
+                  $kelas =mysql_query("SELECT * FROM kelas where id_kelas > $id_kelas order by nm_kelas asc ");
+                  while ($datakelas=mysql_fetch_array($kelas)) { ?>
+                  <option value="<?php echo $datakelas['id_kelas'];?>"><?php echo $datakelas['nm_kelas'];?></option>
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
+            <br>
+            <br>
            <code><label>Pilih/Checklist Siswa Yang Akan Dimasukkan Ke Kenaikan Kelas</label></code>
            <div id="tablewrapper">
             <div id="tableheader">
@@ -173,9 +191,7 @@ if (isset ($_POST["kelas_siswa_simpan"])) {
                 </tr>
               </thead>
               <tbody>
-                <?php 
-                if($_POST['pilih_kelas']){
-                  $id_kelas = $_POST['id_kelas'];
+              <?php
                   $pesanError= array();
                   if (trim($id_kelas)=="") {
                     $pesanError[]="Anda Belum Pilih <b>Kelas</b>.";
@@ -216,7 +232,6 @@ if (isset ($_POST["kelas_siswa_simpan"])) {
                   <?php } ?>            
                 </tr>
                 <?php  } 
-                }
                 }
                 ?>
               </tbody>
@@ -259,21 +274,24 @@ if (isset ($_POST["kelas_siswa_simpan"])) {
 
           </div>
         </div>
-
-      </article>
-      <br><br><br>
-      <div class="uk-form-row">
+        <div class="uk-form-row">
         <div class="uk-alert">Pastikan semua isian sudah terisi dengan benar!</div>
       </div>
       <div style="text-align:center" class="form-actions no-margin-bottom">
-       <button type="submit" id="kelas_siswa_simpan" name="kelas_siswa_simpan" class="btn btn-success">Submit</button>
+       <button type="submit" id="kenaikan_kelas_simpan" name="kenaikan_kelas_simpan" class="btn btn-success">Submit</button>
      </div>
+        </form>
+      <?php } ?>
+      </article>
+      <br><br><br>
+      
+
    </div>
 
  </div>
 </div>
 
-</form>
+
 <!-- Table Sorter Script -->
 <script type="text/javascript" src="assets/tablesorter/script.js"></script>
 <script type="text/javascript">
