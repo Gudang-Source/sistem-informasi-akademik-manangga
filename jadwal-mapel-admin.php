@@ -13,11 +13,11 @@ loadAssetsHead('Master Data Jadwal Mata Pelajaran');
 // ... code here ...
     // validation form kosong
 $pesanError= array();
-if (trim($kd_mapel)=="") {
-  $pesanError[]="Data <b>Kode Mata Pelajaran</b> Masih Kosong.";
+if (trim($guru)=="") {
+  $pesanError[]="Data <b>Guru</b> Masih Kosong.";
 }
-if (trim($nm_mapel)=="") {
-  $pesanError[]="Data <b>Nama Mata Pelajaran</b> Masih Kosong.";
+if (trim($kd_mapel)=="") {
+  $pesanError[]="Data <b>Mata Pelajaran</b> Masih Kosong.";
 }
 if (trim($kkm)=="") {
   $pesanError[]="Data <b>KKM</b> Masih Kosong.";
@@ -128,27 +128,65 @@ function asd(){
                           <input type="hidden" name="id_gurus1" id="id_gurus1" onchange="asd()"  />  
                          
                           <div id="guruList"></div>  
-
-
                         </div>
 
                         <div class="form-group">
                           <label>Mata Pelajaran</label>
-                           
-                          <select name="kd_mapel"  id="kd_mapel" value="" class="form-control">
-                            <option value="">--- Pilih Mapel --</option>
-                            
-                          </select>
-                         
+                            <select name="kd_mapel"  id="kd_mapel" value="" class="form-control">
+                              <option value="">--- Pilih Mapel --</option>
+                            </select>
                           <div class="reg-info">Contoh: Bahasa Sunda</div>
                         </div>
 
-                        <div class="form-group">
-                          <label>KKM Mata Pelajaran</label>
-                          <input class="form-control" name="kkm"  id="kkm" value="" required  />
-                          <div class="reg-info">Contoh: 65</div>
+                        <div class="item form-group">
+                           <label>Pilih Kelas<span class="required">*</span></label>
+                             <div>
+                              <select name="id_kelas" id="id_kelas" class="form-control">
+                                 <option value="">--- Pilih Kelas --</option>
+                                 <?php
+                                 $query = "SELECT * from kelas";
+                                 $hasil = mysql_query($query);
+                                 while ($data = mysql_fetch_array($hasil))
+                                 {
+                                    echo "<option value=".$data['id_kelas'].">".$data['nm_kelas']."</option>";
+                                  }
+                                  ?>
+                              </select>
+                            </div>
                         </div>
 
+                        <div class="item form-group">
+                           <label>Pilih Hari<span class="required">*</span></label>
+                             <div>
+                              <select name="id_hari" id="id_hari" class="form-control">
+                                 <option value="">--- Pilih Hari --</option>
+                                 <?php
+                                 $query = "SELECT * from hari";
+                                 $hasil = mysql_query($query);
+                                 while ($data = mysql_fetch_array($hasil))
+                                 {
+                                    echo "<option value=".$data['id_hari'].">".$data['nm_hari']."</option>";
+                                  }
+                                  ?>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                           <label>Pilih Jam Pelajaran<span class="required">*</span></label>
+                             <div>
+                              <select name="id_sesi" id="id_sesi" class="form-control">
+                                 <option value="">--- Pilih Jam Pelajaran --</option>
+                                 <?php
+                                 $query = "SELECT * from sesi";
+                                 $hasil = mysql_query($query);
+                                 while ($data = mysql_fetch_array($hasil))
+                                 {
+                                    echo "<option value=".$data['id_sesi'].">".$data['jam']."</option>";
+                                  }
+                                  ?>
+                              </select>
+                            </div>
+                        </div>
                         <div class="uk-modal-footer uk-text-right">
                           <button type="button" class="uk-button uk-modal-close ">Cancel</button>
                           <button type="submit" class="uk-button uk-button-primary">Save</button>
