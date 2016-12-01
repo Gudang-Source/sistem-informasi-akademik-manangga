@@ -114,7 +114,7 @@ $cektahun = mysql_query("SELECT * FROM tahun_ajaran WHERE status='1'");
     <script type="text/javascript" language="javascript" src="assets/jquery.js"></script>
 
 <script src="assets/validator/js/bootstrapValidator.min.js" type="text/javascript"></script>
-<script src="assets/validator/validator/validator.js"></script>
+
     <!-- Custom styling plus plugins -->
 
     <script src="assets/datepicker/js/bootstrap-datepicker.min.js"></script>
