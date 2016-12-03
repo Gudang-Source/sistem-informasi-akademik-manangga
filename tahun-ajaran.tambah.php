@@ -135,7 +135,8 @@ if (isset ($_POST["tahun_simpan"])) {
 </div>
 </div>
 </div>
-
+</div>
+</div>
 <script src="assets/validator/js/bootstrapValidator.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/vendor/formvalidation/css/formValidation.min.css">
 <link rel="stylesheet" href="/asset/css/demo.css">
@@ -166,6 +167,11 @@ if (isset ($_POST["tahun_simpan"])) {
                 regexp: {
           regexp: /[0-9+]+$/,
           message: 'Format Tidak Benar'
+        },
+        remote: {
+          type: 'POST',
+          url: 'remote/remote_tahunajaran.php',
+          message: 'Tahun Ajaran Telah Tersedia'
         },
    }
  }, 
