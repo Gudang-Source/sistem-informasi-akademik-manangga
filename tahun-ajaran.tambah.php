@@ -45,8 +45,20 @@ if (isset ($_POST["tahun_simpan"])) {
     }
 
    else{
-
-$cektahun = mysql_query("SELECT * FROM tahun_ajaran WHERE status='1'");
+          $cekenegpoora = mysql_query("SELECT * FROM tahun_ajaran WHERE thn_ajaran='$thn_ajaran' and semester='$semester'");
+           $jumlahe=mysql_num_rows($cekenegpoora);
+          
+          if ($jumlahe = 1) {
+           ?> <script language="JavaScript">alert('Data Tahun Ajaran Sudah Ada !!')</script>
+  <script>
+ window.location=history.go(-1);
+ </script>
+        <?php   
+         //header('location: ./tahun-ajaran.tambah');
+        }
+           else{
+   
+          $cektahun = mysql_query("SELECT * FROM tahun_ajaran WHERE status='1'");
           mysql_num_rows($cektahun);
           $tahun_ajaransession = mysql_fetch_array($cektahun);          
 
@@ -74,6 +86,7 @@ $cektahun = mysql_query("SELECT * FROM tahun_ajaran WHERE status='1'");
     header('location: ./tahun-ajaran');
   }
  }
+}
 }
 
 
@@ -180,11 +193,7 @@ $cektahun = mysql_query("SELECT * FROM tahun_ajaran WHERE status='1'");
           regexp: /[0-9+]+$/,
           message: 'Format Tidak Benar'
         },
-        remote: {
-          type: 'POST',
-          url: 'remote/remote_tahunajaran.php',
-          message: 'Tahun Ajaran Telah Tersedia'
-        },
+        
    }
  }, 
 semester: {
