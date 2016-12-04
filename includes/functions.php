@@ -223,7 +223,8 @@ if( isset($_SESSION['tingkat_user']) ) :
         <?php generateNavElement(array(), 'profil', './profil', 'Profil') ?>
 
         <hr class="uk-article-divider">
-        <li class="uk-nav-header"><i class="uk-icon-child"></i> Siswa</li>
+        <?php if (isset($_SESSION['administrator'])) { ?>
+        <li class="uk-nav-header"><i class="uk-icon-child"></i> Siswa</li> <?php } ?>
         <?php generateNavElement(array(10,1), 'siswa', './siswa', 'Data Siswa') ?>
         <hr class="uk-article-divider">
         <li class="uk-nav-header"><i class="uk-icon-child"></i>Kelas Siswa</li>
@@ -409,7 +410,8 @@ function admin(){
       <?php generateNavElement(array(), 'profil', './profil', 'Profil') ?>
 
       <hr class="uk-article-divider">
-      <li class="uk-nav-header"><i class="uk-icon-child"></i> Siswa</li>
+      <?php if (isset($_SESSION['administrator'])) { ?>
+      <li class="uk-nav-header"><i class="uk-icon-child"></i> Siswa</li> <?php  } ?>
       <?php generateNavElement(array(10,1), 'siswa', './siswa', 'Data Siswa') ?>
 
       <hr class="uk-article-divider">
@@ -442,6 +444,7 @@ function admin(){
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-mortar-board"></i> Data Sekolah</li>
       <?php generateNavElement(array(10,2,1,0), 'siswa-profilsekolah', './siswa-profilsekolah', 'Profil Sekolah') ?>
+      <?php generateNavElement(array(10,2,1,0), 'profil-sekolah', './profil-sekolah', 'Profil Info Sekolah') ?>
       <?php generateNavElement(array(10,2,1,0), 'ekstrakurikuler', './ekstrakurikuler', 'Ekstrakurikuler') ?> 
 
 
@@ -450,12 +453,12 @@ function admin(){
       <!-- <?php generateNavElement(array(10,2,1,3,0), 'isi-data-pribadi-siswa', './isi-data-pribadi-siswa', 'Isi Data Pribadi Siswa') ?>-->
       <!--<?php generateNavElement(array(10,2,1,3,0), 'isi-data-pribadi-orangtua', './isi-data-pribadi-orangtua', 'Isi Data Orangtua/ Wali Murid') ?>-->
 
-
+      <?php if (isset($_SESSION['usernameguru'])) { ?>
       <hr class="uk-article-divider">  
-      <li class="uk-nav-header">Data Nilai</li>   
-      <?php generateNavElement(array(10), 'nilai', './nilai', 'Nilai') ?>
-      <?php generateNavElement(array(1), 'nilai', './guru_nilai', 'Nilai') ?>
-      <?php generateNavElement(array(0), 'nilai', './siswa_nilai', 'Nilai Siswa') ?>
+      <li class="uk-nav-header">Data Nilai</li> <?php } ?>
+      <?php generateNavElement(array(1,0), 'nilai', './nilai', 'Nilai') ?>
+      <?php generateNavElement(array(1,0), 'nilai', './guru_nilai', 'Nilai') ?>
+      <?php generateNavElement(array(1,0), 'nilai', './siswa_nilai', 'Nilai Siswa') ?>
       <!--<?php generateNavElement(array(10,1), 'siswa-mapel', './siswa-mapel', 'Materi Pelajaran') ?>-->
       <!-- <?php generateNavElement(array(10,0,2), 'siswa-materi', './siswa-materi', 'Materi Siswa') ?>-->
       <!--<?php generateNavElement(array(10,0,2), 'siswa-tugas', './siswa-tugas', 'Tugas Siswa') ?>-->
