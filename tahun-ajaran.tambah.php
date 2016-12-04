@@ -48,7 +48,7 @@ if (isset ($_POST["tahun_simpan"])) {
           $cekenegpoora = mysql_query("SELECT * FROM tahun_ajaran WHERE thn_ajaran='$thn_ajaran' and semester='$semester'");
            $jumlahe=mysql_num_rows($cekenegpoora);
           
-          if ($jumlahe = 1) {
+          if ($jumlahe > 0) {
            ?> <script language="JavaScript">alert('Data Tahun Ajaran Sudah Ada !!')</script>
   <script>
  window.location=history.go(-1);
