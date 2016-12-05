@@ -100,55 +100,44 @@ if (isset ($_POST["profil_simpan"])) {
         }
         else{
 
-            $query = mysql_query("INSERT INTO siswa 
-              SET id_user ='$id_user', 
-              id_wali='$nis',
-              nis='$nis', 
-              password='$password',
-              nm_siswa='$nm_siswa',
-              tempat_lahir='$tempat_lahir',
-              date_tgl_lahir='$date_tgl_lahir',
-              jns_kelamin='$jns_kelamin',
-              id_agama='$agama',
-              alamat='$alamat',
-              email='$email',
-              no_hp='$no_hp',
-              foto='$jeneng',
-              tahun_masuk='$tahun_masuk',
-              tahun_keluar='$tahun_keluar',
-              id_kel='$id_kel'
-
-              ") or die(mysql_error());
-            $querywali = mysql_query("INSERT INTO wali (id_kel, id_wali, nm_bapak, pekerjaan_bapak, gaji_bapak, nohp_bapak, nm_ibu, pekerjaan_ibu, gaji_ibu, nohp_ibu, alamat)
-VALUES ('$id_kel', '$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$nohp_bapak', '$nm_ibu', '$pekerjaan_ibu', '$gaji_ibu', '$nohp_ibu', '$alamat')") or die(mysql_error());
-
-
+            $query = mysql_query("INSERT INTO profil_sekolah 
+          SET npsn='$npsn', 
+          status_sekolah='$status_sekolah',
+          bentuk='$bentuk',
+          kodepos='$kodepos',
+          email='$email',
+          website='$website',
+          sk_pendirian='$sk_pendirian',
+          tanggal_pendirian='$tanggal_pendirian',
+          status_pemilik='$status_pemilik',
+          sk_izin='$sk_izin',
+          tanggal_izin='$tanggal_izin',
+          lokasi='$lokasi',
+          id_kel='$id_kel'
+          ") or die(mysql_error());
 
           }
           if ($query){
-            header('location: ./siswa');
+            header('location: ./profil-sekolah');
           }
-          else { $error = "Uploaded image should be jpg or gif or png"; } 
 
         }
-      }
-
 
 
     // simpan pada form, dan jika form belum terisi
-      $datanis  = isset($_POST['nis']) ? $_POST['nis'] : '';
-      $datapassword  = isset($_POST['password']) ? $_POST['password'] : '';
-      $datanamasiswa  = isset($_POST['nm_siswa']) ? $_POST['nm_siswa'] : '';
-      $datatempatlahir  = isset($_POST['tempat_lahir']) ? $_POST['tempat_lahir'] : '';
-      $datatanggallahir  = isset($_POST['date_tgl_lahir']) ? $_POST['date_tgl_lahir'] : '';
-      $datajeniskelamin  = isset($_POST['jns_kelamin']) ? $_POST['jns_kelamin'] : '';
-      $dataagama  = isset($_POST['agama']) ? $_POST['agama'] : '';
-      $dataalamat  = isset($_POST['alamat']) ? $_POST['alamat'] : '';
+      $datanpsn  = isset($_POST['npsn']) ? $_POST['npsn'] : '';
+      $datastatussekolah  = isset($_POST['status_sekolah']) ? $_POST['status_sekolah'] : '';
+      $databentuk  = isset($_POST['bentuk']) ? $_POST['bentuk'] : '';
+      $datakodepos  = isset($_POST['kodepos']) ? $_POST['kodepos'] : '';
       $dataemail  = isset($_POST['email']) ? $_POST['email'] : '';
-      $datanohp  = isset($_POST['no_hp']) ? $_POST['no_hp'] : '';
-      $datatahunmasuk = isset($_POST['tahun_masuk']) ? $_POST['tahun_masuk'] : '';
-      $datatahunkeluar = isset($_POST['tahun_keluar']) ? $_POST['tahun_keluar'] : '';
-      $datakodekelas  = isset($_POST['kd_kelas']) ? $_POST['kd_kelas'] : '';
+      $datawebsite  = isset($_POST['website']) ? $_POST['website'] : '';
+      $dataskpendirian  = isset($_POST['sk_pendirian']) ? $_POST['sk_pendirian'] : '';
+      $datatanggalpendirian  = isset($_POST['tanggal_pendirian']) ? $_POST['tanggal_pendirian'] : '';
+      $datastatuspemilik  = isset($_POST['status_pemilik']) ? $_POST['status_pemilik'] : '';
+      $dataskizin  = isset($_POST['sk_izin']) ? $_POST['sk_izin'] : '';
+      $datatanggalizin = isset($_POST['tanggal_izin']) ? $_POST['tanggal_izin'] : '';
+      $datalokasi = isset($_POST['lokasi']) ? $_POST['lokasi'] : '';
+      $datakel  = isset($_POST['id_kel']) ? $_POST['id_kel'] : '';
       ?>
 
       <script type="text/javascript">
@@ -211,35 +200,98 @@ VALUES ('$id_kel', '$nis', '$nm_bapak', '$pekerjaan_bapak', '$gaji_bapak', '$noh
             <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SDN II Manangga" title="Sistem Informasi Akademik SDN II Manangga">
           </div>
           <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Tahun Ajaran <span class="uk-text-large">{ Tambah Data Tahun Ajaran }</span></h1>
+          <h1 class="uk-article-title">Profil Sekolah <span class="uk-text-large">{ Tambah Data Profil Sekolah }</span></h1>
           <br>
-          <a href="./tahun-ajaran" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Tahun Ajaran"><i class="uk-icon-angle-left"></i> Kembali</a>
+          <a href="./profil-sekolah" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Tahun Ajaran"><i class="uk-icon-angle-left"></i> Kembali</a>
           <!-- <hr class="uk-article-divider"> -->
           <div class="uk-grid" data-uk-grid-margin>
             <div class="uk-width-medium-1-1">
              <form id="formtahun" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
         
         <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="thn_ajaran">Tahun Ajaran<span class="required">*</span>
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="npsn">Isi Data NPSN (Nomor Pokok Sekolah Nasional)<span class="required">*</span>
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
-            <input type="text" id="thn_ajaran" name="thn_ajaran" value="<?php echo $datanamatahunajaran; ?>" required="required" class="form-control col-md-7 col-xs-12">
-            <div class="reg-info">Contoh: 2012/2013</div>
+            <input type="text" id="npsn" name="npsn" value="<?php echo $datanpsn; ?>" required="required" class="form-control col-md-7 col-xs-12">
+            <div class="reg-info"></div>
           </div>
 
         </div>
 
       <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="semester">Semester<span class="required">*</span>
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status_sekolah">Status Sekolah <span class="required">*</span>
            </label>
            <div class="col-md-6 col-sm-6 col-xs-12">
-            <select name="semester" id="semester" value="<?php echo $datasemester; ?>" class="form-control col-md-7 col-xs-12">
-              <option value="">--- Semester --</option>
-              <option value="Ganjil">Ganjil</option>
-              <option value="Genap">Genap</option>
+            <select name="status_sekolah" id="status_sekolah" value="<?php echo $datastatussekolah; ?>" class="form-control col-md-7 col-xs-12">
+              <option value="">--- Status Sekolah --</option>
+              <option value="Negeri">Sekolah Negeri / Sekolah Pemerintah</option>
+              <option value="Swasta">Sekolah Swasta / Sekolah Non-Pemerintah</option>
             </select>
           </div>
         </div>
+
+      <div class="item form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="bentuk">Bentuk Sekolah <span class="required">*</span>
+           </label>
+           <div class="col-md-6 col-sm-6 col-xs-12">
+            <select name="bentuk" id="bentuk" value="<?php echo $databentuk; ?>" class="form-control col-md-7 col-xs-12">
+              <option value="">--- Bentuk Sekolah --</option>
+              <option value="Negeri">Sekolah Dasar (SD) / Sederajat</option>
+              <option value="Negeri">Sekolah Menengah Pertama (SMP) / Sederajat</option>
+              <option value="Negeri">Sekolah Menengah Atas (SMA) / Sederajat</option>
+            </select>
+          </div>
+        </div>
+
+       <hr class="uk-article-divider">
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="prov">Provinsi <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="prov" name="prov" required>
+                        <option value="">-Pilih Provinsi-</option>
+                        <?php
+                    //MENGAMBIL NAMA PROVINSI YANG DI DATABASE
+                        $provinsi =mysql_query("SELECT * FROM provinsi ORDER BY nama_prov");
+                        while ($dataprovinsi=mysql_fetch_array($provinsi)) {
+                          echo "<option value=\"$dataprovinsi[id_prov]\">$dataprovinsi[nama_prov]</option>\n";
+                        }
+                        ?>
+                      </select>
+                      <div class="reg-info">Wajib Pilih  Provinsi  </div>
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kota">Kabupaten <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="kota" name="kota" required>
+                        <option value="">-Pilih Kabupaten-</option>
+                      </select>
+                      <div class="reg-info">Wajib Pilih  Kabupaten  </div>
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_kec">Kecamatan <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="id_kec" name="id_kec" required>
+                        <option value="">-Pilih Kecamatan-</option>
+                      </select>
+                      <div class="reg-info">Wajib Pilih  Kecamatan  </div>
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_kel">Kelurahan <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="id_kel" name="id_kel" required>
+                        <option value="">-Pilih Kelurahan-</option>
+                      </select>
+                      <div class="reg-info">Wajib Pilih  Kelurahan  </div>
+                    </div>
+                  </div>
+
 
         <div style="text-align:center" class="form-actions no-margin-bottom">
          <button type="submit" id="tahun_simpan" name="tahun_simpan" class="btn btn-success">Submit</button>

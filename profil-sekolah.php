@@ -79,26 +79,21 @@ if (isset($_POST['profil-sekolah_simpan'])) {
         $pesanError[]="Data <b>Kelurahan</b> Masih kosong !!";
       }
       if (empty($file_sik_dipilih)){
-        $query = mysql_query("UPDATE guru 
-          SET id_user ='$id_user', 
-          nip='$nip', 
-          password='$password',
-          nm_guru='$nm_guru',
-          tmpt_lahir='$tmpt_lahir',
-          date_tgl_lahir='$date_tgl_lahir',
-          jns_kelamin='$jns_kelamin',
-          id_agama='$id_agama',
-          status_guru='$status_guru',
-          gelar_depan='$gelar_depan',
-          gelar_depan_akademik='$gelar_depan_akademik',
-          gelar_belakang='$gelar_belakang',
-          almt_sekarang='$almt_sekarang',
-          no_hp='$no_hp',
+        $query = mysql_query("UPDATE profil_sekolah 
+          SET npsn='$npsn', 
+          status_sekolah='$status_sekolah',
+          bentuk='$bentuk',
+          kodepos='$kodepos',
           email='$email',
-          id_kel='$id_kel' WHERE id_user='5'
+          website='$website',
+          sk_pendirian='$sk_pendirian',
+          tanggal_pendirian='$tanggal_pendirian',
+          status_pemilik='$status_pemilik',
+          sk_izin='$sk_izin',
+          tanggal_izin='$tanggal_izin',
+          lokasi='$lokasi',
+          id_kel='$id_kel'
           ") or die(mysql_error());
-
-
         
       }
       
@@ -117,55 +112,40 @@ if (isset($_POST['profil-sekolah_simpan'])) {
         
         else{
 
-          if(($_FILES["file"]["type"] == "image/gif") || ($_FILES["file"]["type"] == "image/jpeg") || ($_FILES["file"]["type"] == "image/png") || ($_FILES["file"]["type"] == "image/pjpeg")){
-            $lokasi = 'gallery/news/';
-
-
-            $file = md5(rand(1000,1000000000))."-".$nama_foto;
-            $newfilename = $file . $bagian_extensine;
-            $jeneng=str_replace(' ','-',$file);
-            $url = $lokasi . $jeneng;
-            $filename = compress_image($_FILES["file"]["tmp_name"], $url, 80); 
-
-            $query = mysql_query("UPDATE guru 
-              SET id_user ='$id_user', 
-              nip='$nip', 
-              password='$password',
-              nm_guru='$nm_guru',
-              tmpt_lahir='$tmpt_lahir',
-              date_tgl_lahir='$date_tgl_lahir',
-              jns_kelamin='$jns_kelamin',
-              id_agama='$id_agama',
-              status_guru='$status_guru',
-              gelar_depan='$gelar_depan',
-              gelar_depan_akademik='$gelar_depan_akademik',
-              gelar_belakang='$gelar_belakang',
-              almt_sekarang='$almt_sekarang',
-              no_hp='$no_hp',
-              email='$email',
-              foto='$jeneng',
-              id_kel='$id_kel' WHERE id_user='5'
-              ") or die(mysql_error());
-
+            $query = mysql_query("profil_sekolah 
+          SET npsn='$npsn', 
+          status_sekolah='$status_sekolah',
+          bentuk='$bentuk',
+          kodepos='$kodepos',
+          email='$email',
+          website='$website',
+          sk_pendirian='$sk_pendirian',
+          tanggal_pendirian='$tanggal_pendirian',
+          status_pemilik='$status_pemilik',
+          sk_izin='$sk_izin',
+          tanggal_izin='$tanggal_izin',
+          lokasi='$lokasi',
+          id_kel='$id_kel'
+          ") or die(mysql_error());
 
           }
           if ($query){
             header('location: ./profil-sekolah');
           }
-          else { $error = "Uploaded image should be jpg or gif or png"; } 
-
+      
         }
-      }
+      
 
   #update data ke database
 
 # MEMBUAT NILAI DATA PADA FORM
 # SIMPAN DATA PADA FORM, Jika saat Sumbit ada yang kosong (lupa belum diisi)
-      $edit = mysql_query("SELECT * FROM guru WHERE id_user='5'");
+      $edit = mysql_query("SELECT * FROM profil_sekolah");
       $rowks  = mysql_fetch_array($edit);
 
       ?>
-      <script type="text/javascript">
+
+<script type="text/javascript">
         var htmlobjek;
         $(document).ready(function(){
   //apabila terjadi event onchange terhadap object <select id=prov>
@@ -205,7 +185,6 @@ if (isset($_POST['profil-sekolah_simpan'])) {
     });
   });
 });
-
       </script>
       <body>
 
@@ -228,7 +207,6 @@ if (isset($_POST['profil-sekolah_simpan'])) {
 
           <hr class="uk-article-divider">
           <h1 class="uk-article-title">Manajemen Profil Sekolah <span class="uk-text-large">{ Tampil Profil Sekolah  }</span></h1>
-
                     <?php if (isset($_SESSION['administrator'])) { ?>
           <!--<a href="./kepala-sekolah.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Kepala Sekolah"><i class="uk-icon-plus"></i> Data Kepala Sekolah</a>-->
                     <br>
