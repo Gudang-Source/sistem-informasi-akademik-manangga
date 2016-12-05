@@ -24,13 +24,9 @@ if (trim($kkm)=="") {
 }
 ?>
 <script type="text/javascript">
-  // $("#id_gurus1").keyup(function(){
-//function jhl(){
-//     $(document).ready(function(){
-  //apabila terjadi event onchange terhadap object <select id=prov>
+
 function asd(){
-    var id_guru = $("#id_gurus1").val();
-   // alert('id_guru');
+    var id_guru = $("#guru").val();
     $.ajax({
       url: "inc/jikuk_mapel_mengajar.php",
       data: "id_guru="+id_guru,
@@ -40,6 +36,40 @@ function asd(){
             //di <select id=kota>
            // $("modaltambah #kd_mapel").html(msg);
             $('#modaltambah select[name="kd_mapel"]').html(msg);
+          }
+        });
+  }
+
+  function jikukkelas(){
+    var id_guru = $("#guru").val();
+    var kd_mapel = $("#kd_mapel").val();
+    $.ajax({
+      url: "inc/jikuk_kelas_mengajar.php",
+      data: "kd_mapel="+kd_mapel+"&id_guru="+id_guru,
+      cache: false,
+      success: function(msg){
+            //jika data sukses diambil dari server kita tampilkan
+            //di <select id=kota>
+           // $("modaltambah #kd_mapel").html(msg);
+            $('#modaltambah select[name="id_kelas"]').html(msg);
+          }
+        });
+  }
+
+   function jikuksesi(){
+    var id_guru = $("#guru").val();
+    var kd_mapel = $("#kd_mapel").val();
+    var id_kelas = $("#id_kelas").val();
+    var id_hari = $("#id_hari").val();
+    $.ajax({
+      url: "inc/jikuk_sesi_mengajar.php",
+      data: "kd_mapel="+kd_mapel+"&id_guru="+id_guru+"&id_kelas="+id_kelas+"&id_hari="+id_hari,
+      cache: false,
+      success: function(msg){
+            //jika data sukses diambil dari server kita tampilkan
+            //di <select id=kota>
+           // $("modaltambah #kd_mapel").html(msg);
+            $('#modaltambah select[name="id_hari"]').html(msg);
           }
         });
   }
@@ -123,16 +153,16 @@ function asd(){
                             $('#id_gurus').val($('#id_guru').val('#id_guru'));
                           }
                           </script>
-                          <input type="text" name="guru" id="guru" class="form-control" placeholder="Cari Nama / NIP" />  
+                          <input type="text" name="guru" id="guru" onchange="asd()" class="form-control" placeholder="Cari Nama / NIP" />  
                           <input type="hidden" name="id_gurus" id="id_gurus"  class="form-control" />  
-                          <input type="hidden" name="id_gurus1" id="id_gurus1" onchange="asd()"  />  
+                       
                          
                           <div id="guruList"></div>  
                         </div>
 
                         <div class="form-group">
                           <label>Mata Pelajaran</label>
-                            <select name="kd_mapel"  id="kd_mapel" value="" class="form-control">
+                            <select name="kd_mapel"  id="kd_mapel" value="" onchange="jikukkelas()" class="form-control">
                               <option value="">--- Pilih Mapel --</option>
                             </select>
                           <div class="reg-info">Contoh: Bahasa Sunda</div>
@@ -142,15 +172,8 @@ function asd(){
                            <label>Pilih Kelas<span class="required">*</span></label>
                              <div>
                               <select name="id_kelas" id="id_kelas" class="form-control">
-                                 <option value="">--- Pilih Kelas --</option>
-                                 <?php
-                                 $query = "SELECT * from kelas";
-                                 $hasil = mysql_query($query);
-                                 while ($data = mysql_fetch_array($hasil))
-                                 {
-                                    echo "<option value=".$data['id_kelas'].">".$data['nm_kelas']."</option>";
-                                  }
-                                  ?>
+                                 <option value=""> Pilih Kelas </option>
+                                
                               </select>
                             </div>
                         </div>
