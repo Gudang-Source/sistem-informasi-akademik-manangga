@@ -39,53 +39,33 @@ if (isset($_POST['profil-sekolah_simpan'])) {
   $id_kel  = $_POST['id_kel'];
   $id_kel  = str_replace("'","&acute;",$id_kel);
 
-  function compress_image($source_url, $destination_url, $quality) 
-  { 
-    $info = getimagesize($source_url); 
-    if ($info['mime'] == 'image/jpeg') 
-      $image = imagecreatefromjpeg($source_url); 
-    elseif ($info['mime'] == 'image/gif') 
-      $image = imagecreatefromgif($source_url); 
-    elseif ($info['mime'] == 'image/png') 
-      $image = imagecreatefrompng($source_url); 
-    imagejpeg($image, $destination_url, $quality); 
-    return $destination_url; 
-  } 
-
-  $nama_foto = $_FILES["file"]["name"];
-      $file_sik_dipilih = substr($nama_foto, 0, strripos($nama_foto, '.')); // strip extention
-      $bagian_extensine = substr($nama_foto, strripos($nama_foto, '.')); // strip name
-      $ukurane = $_FILES["file"]["size"];
 
   #validasi form kosong
-      $pesanError= array();
-      if (trim($nip)=="") {
-        $pesanError[]="Data <b>NIP</b> masih kosong.";
-      }
-      if (trim($password)=="") {
-        $pesanError[]="Data <b>Password</b> masih kosong.";
-      }
-      if (trim($password1)=="") {
-        $pesanError[]="Data Konfirmasi<b>Password</b> masih kosong.";
-      }
-      if (trim($nm_guru)=="") {
-        $pesanError[]="Data <b>Nama Gru</b> masih kosong.";
-      }
-      if (trim($tmpt_lahir)=="") {
-        $pesanError[]="Data <b>Tempat Lahir</b> masih kosong.";
-      }
-      if (trim($date_tgl_lahir)=="") {
-        $pesanError[]="Data <b>Tanggal Lahir</b> masih kosong.";
-      }
-      if (trim($jns_kelamin)=="") {
-        $pesanError[]="Data <b>Jenis Kelamin</b> masih kosong.";
-      }
-      if (trim($id_agama)=="") {
-        $pesanError[]="Data <b>Agama</b> masih kosong.";
-      }
-      if (trim($status_guru)=="") {
-        $pesanError[]="Data <b>Status Guru</b> masih kosong.";
-      }
+  $pesanError= array();
+  if (trim($npsn)=="") {
+    $pesanError[]="Data <b>NPSN</b> Masih Kosong.";
+  }
+  if (trim($status_sekolah)=="") {
+    $pesanError[]="Data <b>Status Sekolah</b> Masih Kosong.";
+  }
+  if (trim($kodepos)=="") {
+    $pesanError[]="Data <b>Kode Pos</b> Masih Kosong.";
+  }
+  if (trim($email)=="") {
+    $pesanError[]="Data <b>Email</b> Masih Kosong.";
+  }
+ if (trim($website)=="") {
+    $pesanError[]="Data <b>Website</b> Masih Kosong.";
+  }
+ if (trim($sk_pendirian)=="") {
+    $pesanError[]="Data <b>SK Pendirian</b> Masih Kosong.";
+  }
+ if (trim($tanggal_pendirian)=="") {
+    $pesanError[]="Data <b>Tanggal Pendirian</b> Masih Kosong.";
+  }
+ if (trim($lokasi)=="") {
+    $pesanError[]="Data <b>Lokasi</b> Masih Kosong.";
+  }
       if (trim($prov)=="") {
         $pesanError[] = "Data <b>Provinsi</b> tidak boleh kosong !";    
       }
@@ -97,18 +77,6 @@ if (isset($_POST['profil-sekolah_simpan'])) {
       }
       if (trim($id_kel)=="") {
         $pesanError[]="Data <b>Kelurahan</b> Masih kosong !!";
-      }
-      if (trim($almt_sekarang)=="") {
-        $pesanError[]="Data <b>Alamat Sekarang</b> masih kosong.";
-      }
-      if (trim($no_hp)=="") {
-        $pesanError[]="Data <b>Nomor HP</b> masih kosong.";
-      }
-      if (trim($email)=="") {
-        $pesanError[]="Data <b>Email</b> masih kosong.";
-      }
-      if (trim($id_user)=="") {
-        $pesanError[] = "Data <b>id_user</b> tidak boleh kosong !";    
       }
       if (empty($file_sik_dipilih)){
         $query = mysql_query("UPDATE guru 
@@ -182,7 +150,7 @@ if (isset($_POST['profil-sekolah_simpan'])) {
 
           }
           if ($query){
-            header('location: ./kepala-sekolah');
+            header('location: ./profil-sekolah');
           }
           else { $error = "Uploaded image should be jpg or gif or png"; } 
 
@@ -259,7 +227,7 @@ if (isset($_POST['profil-sekolah_simpan'])) {
           </div>
 
           <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Manajemen Kepala Sekolah <span class="uk-text-large">{ Tampil Profil Kepala Sekolah  }</span></h1>
+          <h1 class="uk-article-title">Manajemen Profil Sekolah <span class="uk-text-large">{ Tampil Profil Sekolah  }</span></h1>
 
                     <?php if (isset($_SESSION['administrator'])) { ?>
           <!--<a href="./kepala-sekolah.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Kepala Sekolah"><i class="uk-icon-plus"></i> Data Kepala Sekolah</a>-->
@@ -281,7 +249,7 @@ if (isset($_POST['profil-sekolah_simpan'])) {
                     <p style="text-align:center" ;="" font-weight:bold;=""></p>
 
                   </div></div></div>
-                  <div class="uk-width-7-10">  <div class="uk-panel uk-panel-box"> <table class="uk-table uk-table-hover  uk-table-condensed"><tr><td></td><td></td><td></td><td></td><td width="70"><li><a href="kepala-sekolah.update" ><i  class="uk-icon-pencil"></i> Edit</a></li></td> </tr></table>                   
+                  <div class="uk-width-7-10">  <div class="uk-panel uk-panel-box"> <table class="uk-table uk-table-hover  uk-table-condensed"><tr><td></td><td></td><td></td><td></td><td width="70"><li><a href="profil-sekolah.update" ><i  class="uk-icon-pencil"></i> Edit</a></li></td> </tr></table>                   
                     <table class="uk-table uk-table-hover  uk-table-condensed">
                       <tbody>
                         <tr>
