@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require ( __DIR__ . '/init.php');
 checkUserAuth();
 checkUserRole(array(0,1,2,10));
@@ -9,6 +11,7 @@ $ui_register_page = 'jadwal-mapel-admin';
 // LOAD HEADER
 loadAssetsHead('Master Data Jadwal Mata Pelajaran');
 
+$id_tahun=$_SESSION['id_tahun'];
 // FORM PROCESSING
 // ... code here ...
     // validation form kosong
@@ -36,6 +39,22 @@ function asd(){
             //di <select id=kota>
            // $("modaltambah #kd_mapel").html(msg);
             $('#modaltambah select[name="kd_mapel"]').html(msg);
+            $('select[name="kd_mapel"]').html(msg);
+          }
+        });
+  }
+  function asdedit(){
+    var id_guru = $("#guru").val();
+    $.ajax({
+      url: "inc/jikuk_mapel_mengajar.php",
+      data: "id_guru="+id_guru,
+      cache: false,
+      success: function(msg){
+            //jika data sukses diambil dari server kita tampilkan
+            //di <select id=kota>
+           // $("modaltambah #kd_mapel").html(msg);
+            $('#modaltambah select[name="kd_mapel"]').html(msg);
+            $('select[name="kd_mapel"]').html(msg);
           }
         });
   }
@@ -145,7 +164,7 @@ function asd(){
                       <div class="uk-modal-header">
                         <h2>Tambah Data Jadwal Mata Pelajaran</h2>
                       </div>
-                      <form role="form" id="formmapel" action="mapel.action?act=tambah" enctype="multipart/form-data" method="POST" >
+                      <form role="form" id="formmapel" action="jadwal.action?act=tambah" enctype="multipart/form-data" method="POST" >
                         <div class="form-group">
                           <label>Nama Guru</label>
                           <script type="text/javascript">
@@ -153,7 +172,7 @@ function asd(){
                             $('#id_gurus').val($('#id_guru').val('#id_guru'));
                           }
                           </script>
-                          <input type="text" name="guru" id="guru" onchange="asd()" class="form-control" placeholder="Cari Nama / NIP" />  
+                          <input type="text" name="guru" id="guru" onkeyup="asd()" class="form-control" placeholder="Cari Nama / NIP" />  
                           <input type="hidden" name="id_gurus" id="id_gurus"  class="form-control" />  
                        
                          
@@ -222,17 +241,27 @@ function asd(){
 
                   <?php 
 
-                  $query="SELECT * FROM mapel order by nm_mapel asc";
+                  $query="SELECT guru.nm_guru, guru.nip , jadwal.id_jadwal_mapel, mapel.kd_mapel,mengajar.id_mengajar, mapel.nm_mapel, kelas.nm_kelas, hari.nm_hari, sesi.jam, tahun_ajaran.thn_ajaran, tahun_ajaran.semester, mengajar.id_guru FROM jadwal, sesi, hari, mengajar, mapel, guru, kelas, tahun_ajaran 
+                  		where jadwal.id_mengajar=mengajar.id_mengajar 
+                  		and jadwal.id_sesi=sesi.id_sesi
+                  		and jadwal.id_hari=hari.id_hari
+                  		and mengajar.id_guru=guru.id_guru
+                  		and mengajar.id_kelas=kelas.id_kelas
+                  		and mengajar.kd_mapel=mapel.kd_mapel
+                  		and jadwal.id_tahun=tahun_ajaran.id_tahun
+                  		and jadwal.id_tahun='$id_tahun' 
+                  		order by hari.nm_hari asc";
                   $exe=mysql_query($query);
                   $no=0;
                   while ($row=mysql_fetch_array($exe)) { $no++;
 
-                    $kd_mapel=$row['kd_mapel'];
+                    $id_jadwal=$row['id_jadwal'];
+                    $id_gurumengajar=$row[mengajar.id_guru];
                     ?>
 
 
 
-                    <div id="modal<?php echo $kd_mapel ;?>" class="uk-modal">
+                    <div id="modal<?php echo $id_jadwal ;?>" class="uk-modal">
                       <div class="uk-modal-dialog">
                         <button type="button" class="uk-modal-close uk-close"></button>
                         <div class="uk-modal-header">
@@ -257,44 +286,133 @@ function asd(){
 
                         <div class="uk-modal-footer uk-text-right">
                           <button type="button" class="uk-button uk-modal-close ">Cancel</button>
-                          <button data-uk-modal="{target:'#modaledit<?php echo $kd_mapel ;?>'}" class="uk-button uk-button-primary">Edit</button>
+                          <button data-uk-modal="{target:'#modaledit<?php echo $id_jadwal ;?>'}" class="uk-button uk-button-primary">Edit</button>
                         </div>
 
 
                       </div>
                     </div>
 
-                    <div id="modaledit<?php echo $kd_mapel ;?>" class="uk-modal">
+                    <div id="modaledit<?php echo $id_jadwal ;?>" class="uk-modal">
+                     <script>  
+           $(document).ready(function(){  
+            $('#guruedit').keyup(function(){  
+             var query = $(this).val();  
+             if(query != '')  
+             {  
+              $.ajax({  
+               url:"remote/search_nip.php",  
+               method:"POST",  
+               data:{query:query},  
+               success:function(data)  
+               {  
+                $('#guruList').fadeIn();  
+                $('#guruList').html(data);  
+              }  
+            });  
+            }  
+          });  
+            $(document).on('click', 'li', function(){  
+             $('#guru').val($(this).text());  
+             $('#guruList').fadeOut();  
+             $ak=$('#id_gurus').val($(this).html());
+             $('#id_gurus1').val($('#id_guruq').val());
+             $('#id_gurus12').val($('#id_gurus1').val());
+              asd()
+           });  
+          });  
+         </script>
                       <div class="uk-modal-dialog">
                         <button type="button" class="uk-modal-close uk-close"></button>
                         <div class="uk-modal-header">
                           <h2>Edit Data Mata Pelajaran</h2>
                         </div>
-                        <form role="form" method="post" action="mapel.action?act=update&&kd_mapel=<?php echo $kd_mapel;  ?>" enctype="multipart/form-data" >
-                          <div class="form-group">
-                            <label>Kode Mata Pelajaran</label>
-                            <input class="form-control" name="kd_mapel" id="kd_mapel" value="<?php echo $row['kd_mapel']; ?>"   required  />
-                            
-                          </div>
+                        <form role="form" method="post" action="jadwal.action?act=update&&id_jadwal=<?php echo $id_jadwal;  ?>" enctype="multipart/form-data" >
+                         <div class="form-group">
+                          <label>Nama Guru</label>
+                          <script type="text/javascript">
+                          function nglebokkenilaiidguru(){
+                            $('#id_gurus').val($('#id_guru').val('#id_guru'));
+                          }
+                          </script>
+                          <input type="text" name="guru" id="guruedit" onkeyup="asdedit()" value="<?php echo ucwords($row["nm_guru"]).' {' .$row["nip"]. ' }' ?>" class="form-control" placeholder="Cari Nama / NIP" />  
+                          <input type="hidden" name="id_gurus" id="id_gurus"  class="form-control" />  
+                       
+                         
+                          <div id="guruList"></div>  
+                        </div>
 
-                          <div class="form-group">
-                            <label>Nama Mata Pelajaran</label>
-                            <input class="form-control" name="nm_mapel" id="nm_mapel" value="<?php echo $row['nm_mapel']; ?>"  required />
-                            <div class="reg-info">Contoh: Bahasa Sunda</div>
-                          </div>
+                        <div class="form-group">
+                          <label>Mata Pelajaran</label>
+                            <select name="kd_mapel"  id="kd_mapel" onchange="jikukkelas()" class="form-control">
+                              <option value="">--- Pilih Mapel --</option>
+                              	<?php
+                   
+                            $mapels =mysql_query("SELECT kd_mapel, nm_mapel FROM mapel where kd_mapel in (SELECT mapel.kd_mapel FROM mapel left join mengajar on mengajar.kd_mapel=mapel.kd_mapel 
+					where mengajar.id_guru='$row[id_guru]' 
+					) order by nm_mapel asc");
+                            while ($datamapel=mysql_fetch_array($mapels)) {
+                             if ($datamapel['kd_mapel']==$row['kd_mapel']) {
+                               $cek ="selected";
+                             }
+                             else{
+                              $cek= "";
+                            }
+                            echo "<option value=\"$datamapel[kd_mapel]\" $cek>$datamapel[nm_mapel]</option>\n";
+                          }
+                          ?>
+                            </select>
+                          <div class="reg-info">Contoh: Bahasa Sunda</div>
+                        </div>
 
-                          <div class="form-group">
-                            <label>KKM Mata Pelajaran</label>
-                            <input class="form-control" name="kkm"  id="kkm" value="<?php echo $row['kkm']; ?>"  required  />
-                            <div class="reg-info">Contoh: 65</div>
-                          </div>
+                        <div class="item form-group">
+                           <label>Pilih Kelas<span class="required">*</span></label>
+                             <div>
+                              <select name="id_kelas" id="id_kelas" class="form-control">
+                                 <option value=""> Pilih Kelas </option>
+                                
+                              </select>
+                            </div>
+                        </div>
 
-                          <div class="uk-modal-footer uk-text-right">
-                            <button type="button" class="uk-button uk-modal-close ">Cancel</button>
-                            <button type="submit" class="uk-button uk-button-primary">Save</button>
-                          </div>
-                          <input type="hidden" name="edit" value="edit">
-                        </form>
+                        <div class="item form-group">
+                           <label>Pilih Hari<span class="required">*</span></label>
+                             <div>
+                              <select name="id_hari" id="id_hari" class="form-control">
+                                 <option value="">--- Pilih Hari --</option>
+                                 <?php
+                                 $query = "SELECT * from hari";
+                                 $hasil = mysql_query($query);
+                                 while ($data = mysql_fetch_array($hasil))
+                                 {
+                                    echo "<option value=".$data['id_hari'].">".$data['nm_hari']."</option>";
+                                  }
+                                  ?>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                           <label>Pilih Jam Pelajaran<span class="required">*</span></label>
+                             <div>
+                              <select name="id_sesi" id="id_sesi" class="form-control">
+                                 <option value="">--- Pilih Jam Pelajaran --</option>
+                                 <?php
+                                 $query = "SELECT * from sesi";
+                                 $hasil = mysql_query($query);
+                                 while ($data = mysql_fetch_array($hasil))
+                                 {
+                                    echo "<option value=".$data['id_sesi'].">".$data['jam']."</option>";
+                                  }
+                                  ?>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="uk-modal-footer uk-text-right">
+                          <button type="button" class="uk-button uk-modal-close ">Cancel</button>
+                          <button type="submit" class="uk-button uk-button-primary">Save</button>
+                        </div>
+                        <input type="hidden" name="tambah" value="tambah">
+                      </form>
 
                       </div>
                     </div>
@@ -303,30 +421,21 @@ function asd(){
                     
 
                     <tr>
-                      <td><?php echo $row[0]?></td>
-                      <td><?php echo $row[1]?></td>
-                      <td><?php if($row[1]==1){
-                        echo 'Petugas';
-                      }
-                      else if($row[1]==0){
-                        echo 'Pimpinan';
-                      }
-                      else if($row[1]==10){
-                        echo 'Admin';
-                      }
-                      ?></td>
-                      <td><?php echo $row[2]?></td>
-                      <td><?php echo $row[3]?></td>
-                      <td><?php echo $row[2]?></td>
-                      <td><?php echo $row[3]?></td>
-                      <td><?php echo $row[3]?></td>
-                      <td><?php echo $row[3]?></td>                
+                      <td><?php echo $no;?></td>
+                      <td><?php echo $row[nm_guru]?></td>
+                      <td><?php echo $row[nip]?></td>
+                      <td><?php echo $row[nm_mapel]?></td>
+                      <td><?php echo $row[nm_kelas]?></td>
+                      <td><?php echo $row[nm_hari]?></td>
+                      <td><?php echo $row[jam]?></td>
+                      <td><?php echo $row[thn_ajaran]?></td>
+                      <td><?php echo $row[semester]?></td>                
 
                       <?php if (isset($_SESSION['administrator'])) { ?>
                       <td>
-                        <button class="uk-button" data-uk-modal="{target:'#modal<?php echo $kd_mapel ;?>'}"><i class="uk-icon-search"></i></button>
-                        <button class="uk-button" data-uk-modal="{target:'#modaledit<?php echo $kd_mapel ;?>'}"><i class="uk-icon-pencil"></i></button>
-                        <a href="mapel.action?act=hapus&&kd_mapel=<?php echo $kd_mapel; ?>" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a>
+                        <button class="uk-button" data-uk-modal="{target:'#modal<?php echo $id_jadwal ;?>'}"><i class="uk-icon-search"></i></button>
+                        <button class="uk-button" data-uk-modal="{target:'#modaledit<?php echo $id_jadwal ;?>'}"><i class="uk-icon-pencil"></i></button>
+                        <a href="jadwal.action?act=hapus&&id_jadwal=<?php echo $id_jadwal; ?>" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a>
 
                       </div>  
                     </td>
