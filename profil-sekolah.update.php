@@ -5,18 +5,42 @@ checkUserAuth();
 checkUserRole(array(10));
 
 // TEMPLATE CONTROL
-$ui_register_page     = 'tahun_ajaran';
+$ui_register_page     = 'profil-sekolah';
 $ui_register_assets   = array('datepicker');
 
 // LOAD HEADER
-loadAssetsHead('Update Data Tahun Ajaran');
+loadAssetsHead('Update Data Master Profil Sekolah');
 
 //LOAD DATA
-if (isset($_POST['tahun_simpan'])) {
+if (isset($_POST['profil_simpan'])) {
 
   #baca variabel
-    $thn_ajaran     = $_POST['thn_ajaran'];
-    $semester     = $_POST['semester'];
+    $npsn     = $_POST['npsn'];
+    $npsn     = str_replace("", "&acute;", $npsn);
+    $npsn     = ucwords(strtolower($npsn));
+
+    $status_sekolah         = $_POST['status_sekolah'];
+    $bentuk                 = $_POST['bentuk'];
+    $kodepos                = $_POST['kodepos'];
+    $email                  = $_POST['email'];
+    $website                = $_POST['website'];
+    $sk_pendirian           = $_POST['sk_pendirian'];
+    $tanggal_pendirian0     = $_POST['tanggal_pendirian'];
+    $tanggal_pendirian      = ubahformatTgl($tanggal_pendirian0);
+    $status_pemilik         = $_POST['status_pemilik'];
+    $sk_izin                = $_POST['sk_izin'];
+    $tanggal_izin0          = $_POST['tanggal_izin'];
+    $tanggal_izin           = ubahformatTgl($tanggal_izin0);
+    $lokasi                 = $_POST['lokasi'];
+    $id_kec                 = $_POST['id_kec'];
+    $id_kec                 = str_replace("'","&acute;",$id_kec);
+    $kota                   = $_POST['kota'];
+    $kota                   = str_replace("'","&acute;",$kota);
+    $prov                   = $_POST['prov'];
+    $prov                   = str_replace("'","&acute;",$prov);
+    $alamat_sekolah         = $_POST['alamat_sekolah'];
+    $id_kel                 = $_POST['id_kel'];
+    $id_kel                 = str_replace("'","&acute;",$id_kel);
 
   #jika ada pesan error validasi form
   if (count($pesanError)>=1) {

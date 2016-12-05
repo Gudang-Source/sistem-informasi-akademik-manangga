@@ -20,25 +20,28 @@ if (isset ($_POST["profil_simpan"])) {
     $npsn     = str_replace("", "&acute;", $npsn);
     $npsn     = ucwords(strtolower($npsn));
 
-    $status_sekolah     = $_POST['status_sekolah'];
-    $bentuk             = $_POST['bentuk'];
-    $kodepos             = $_POST['kodepos'];
-    $email             = $_POST['email'];
-    $website             = $_POST['website'];
-    $sk_pendirian             = $_POST['sk_pendirian'];
-    $tanggal_pendirian             = $_POST['tanggal_pendirian'];
-    $status_pemilik             = $_POST['status_pemilik'];
-    $sk_izin             = $_POST['sk_izin'];
-    $tanggal_izin             = $_POST['tanggal_izin'];
-    $lokasi             = $_POST['lokasi'];
-  $id_kec  = $_POST['id_kec'];
-  $id_kec  = str_replace("'","&acute;",$id_kec);
-  $kota  = $_POST['kota'];
-  $kota  = str_replace("'","&acute;",$kota);
-  $prov  = $_POST['prov'];
-  $prov  = str_replace("'","&acute;",$prov);
-  $id_kel  = $_POST['id_kel'];
-  $id_kel  = str_replace("'","&acute;",$id_kel);
+    $status_sekolah         = $_POST['status_sekolah'];
+    $bentuk                 = $_POST['bentuk'];
+    $kodepos                = $_POST['kodepos'];
+    $email                  = $_POST['email'];
+    $website                = $_POST['website'];
+    $sk_pendirian           = $_POST['sk_pendirian'];
+    $tanggal_pendirian0     = $_POST['tanggal_pendirian'];
+    $tanggal_pendirian      = ubahformatTgl($tanggal_pendirian0);
+    $status_pemilik         = $_POST['status_pemilik'];
+    $sk_izin                = $_POST['sk_izin'];
+    $tanggal_izin0          = $_POST['tanggal_izin'];
+    $tanggal_izin           = ubahformatTgl($tanggal_izin0);
+    $lokasi                 = $_POST['lokasi'];
+    $id_kec                 = $_POST['id_kec'];
+    $id_kec                 = str_replace("'","&acute;",$id_kec);
+    $kota                   = $_POST['kota'];
+    $kota                   = str_replace("'","&acute;",$kota);
+    $prov                   = $_POST['prov'];
+    $prov                   = str_replace("'","&acute;",$prov);
+    $alamat_sekolah         = $_POST['alamat_sekolah'];
+    $id_kel                 = $_POST['id_kel'];
+    $id_kel                 = str_replace("'","&acute;",$id_kel);
 
     // validation form kosong
    $pesanError= array();
@@ -57,15 +60,6 @@ if (isset ($_POST["profil_simpan"])) {
  if (trim($website)=="") {
     $pesanError[]="Data <b>Website</b> Masih Kosong.";
   }
- if (trim($sk_pendirian)=="") {
-    $pesanError[]="Data <b>SK Pendirian</b> Masih Kosong.";
-  }
- if (trim($tanggal_pendirian)=="") {
-    $pesanError[]="Data <b>Tanggal Pendirian</b> Masih Kosong.";
-  }
- if (trim($lokasi)=="") {
-    $pesanError[]="Data <b>Lokasi</b> Masih Kosong.";
-  }
       if (trim($prov)=="") {
         $pesanError[] = "Data <b>Provinsi</b> tidak boleh kosong !";    
       }
@@ -78,6 +72,9 @@ if (isset ($_POST["profil_simpan"])) {
       if (trim($id_kel)=="") {
         $pesanError[]="Data <b>Kelurahan</b> Masih kosong !!";
       }
+    if (trim($alamat_sekolah)=="") {
+       $pesanError[]="Data <b>Alamat Sekolah</b> Masih Kosong.";
+     }
 
     // validasi kode kelas pada database
       $cekSql ="SELECT * FROM profil_sekolah WHERE id_sekolah='$id_sekolah'";
@@ -100,10 +97,11 @@ if (isset ($_POST["profil_simpan"])) {
         }
         else{
 
-            $query = mysql_query("INSERT INTO profil_sekolah 
+          $query = mysql_query("INSERT INTO profil_sekolah 
           SET npsn='$npsn', 
           status_sekolah='$status_sekolah',
           bentuk='$bentuk',
+          alamat_sekolah='$alamat_sekolah',
           kodepos='$kodepos',
           email='$email',
           website='$website',
@@ -125,19 +123,20 @@ if (isset ($_POST["profil_simpan"])) {
 
 
     // simpan pada form, dan jika form belum terisi
-      $datanpsn  = isset($_POST['npsn']) ? $_POST['npsn'] : '';
-      $datastatussekolah  = isset($_POST['status_sekolah']) ? $_POST['status_sekolah'] : '';
-      $databentuk  = isset($_POST['bentuk']) ? $_POST['bentuk'] : '';
-      $datakodepos  = isset($_POST['kodepos']) ? $_POST['kodepos'] : '';
-      $dataemail  = isset($_POST['email']) ? $_POST['email'] : '';
-      $datawebsite  = isset($_POST['website']) ? $_POST['website'] : '';
-      $dataskpendirian  = isset($_POST['sk_pendirian']) ? $_POST['sk_pendirian'] : '';
-      $datatanggalpendirian  = isset($_POST['tanggal_pendirian']) ? $_POST['tanggal_pendirian'] : '';
-      $datastatuspemilik  = isset($_POST['status_pemilik']) ? $_POST['status_pemilik'] : '';
-      $dataskizin  = isset($_POST['sk_izin']) ? $_POST['sk_izin'] : '';
-      $datatanggalizin = isset($_POST['tanggal_izin']) ? $_POST['tanggal_izin'] : '';
-      $datalokasi = isset($_POST['lokasi']) ? $_POST['lokasi'] : '';
-      $datakel  = isset($_POST['id_kel']) ? $_POST['id_kel'] : '';
+      $datanpsn             = isset($_POST['npsn']) ? $_POST['npsn'] : '';
+      $datastatussekolah    = isset($_POST['status_sekolah']) ? $_POST['status_sekolah'] : '';
+      $databentuk           = isset($_POST['bentuk']) ? $_POST['bentuk'] : '';
+      $dataalamatsekolah    = isset($_POST['alamat_sekolah']) ? $_POST['alamat_sekolah'] : '';
+      $datakodepos          = isset($_POST['kodepos']) ? $_POST['kodepos'] : '';
+      $dataemail            = isset($_POST['email']) ? $_POST['email'] : '';
+      $datawebsite          = isset($_POST['website']) ? $_POST['website'] : '';
+      $dataskpendirian      = isset($_POST['sk_pendirian']) ? $_POST['sk_pendirian'] : '';
+      $datatanggalpendirian = isset($_POST['tanggal_pendirian']) ? $_POST['tanggal_pendirian'] : '';
+      $datastatuspemilik    = isset($_POST['status_pemilik']) ? $_POST['status_pemilik'] : '';
+      $dataskizin           = isset($_POST['sk_izin']) ? $_POST['sk_izin'] : '';
+      $datatanggalizin      = isset($_POST['tanggal_izin']) ? $_POST['tanggal_izin'] : '';
+      $datalokasi           = isset($_POST['lokasi']) ? $_POST['lokasi'] : '';
+      $datakel              = isset($_POST['id_kel']) ? $_POST['id_kel'] : '';
       ?>
 
       <script type="text/javascript">
@@ -259,7 +258,7 @@ if (isset ($_POST["profil_simpan"])) {
           <!-- <hr class="uk-article-divider"> -->
           <div class="uk-grid" data-uk-grid-margin>
             <div class="uk-width-medium-1-1">
-             <form id="formtahun" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
+             <form id="formprofil" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
         
         <div class="item form-group">
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="npsn">Isi Data NPSN (Nomor Pokok Sekolah Nasional)<span class="required">*</span>
@@ -395,13 +394,14 @@ if (isset ($_POST["profil_simpan"])) {
                 </div>
 
                   <div class="item form-group">
-                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tanggal_pendirian">Tanggal Pendirian Sekolah <span class="required">*</span>
-                   </label>
-                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" id="tanggal_pendirian" name="tanggal_pendirian" value="<?php echo $datatanggalpendirian; ?>" required="required" class="form-control col-md-7 col-xs-12">
-                    <div class="reg-info">Contoh:</div>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tanggal_pendirian">Tanggal Pendirian Sekolah<span class="required">*</span>
+                    </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="tanggal_pendirian" name="tanggal_pendirian" value="<?php echo $datatanggalpendirian; ?>" required="required" class="form-control col-md-7 col-xs-12" data-uk-datepicker="{format:'DD/MM/YYYY'}" >
+                      <div class="reg-info">Format: <code>DD/MM/YYYY</code></div>
+                      <div class="reg-info">Contoh: 31/12/1994</div>
+                      </div>
                   </div>
-                </div>
 
                   <div class="item form-group">
                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status_pemilik">Status Kepemilikan Sekolah <span class="required">*</span>
@@ -422,13 +422,14 @@ if (isset ($_POST["profil_simpan"])) {
                 </div>
 
                   <div class="item form-group">
-                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tanggal_izin">Tanggal Izin Operasional<span class="required">*</span>
-                   </label>
-                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" id="tanggal_izin" name="tanggal_izin" value="<?php echo $datatanggalizin; ?>" required="required" class="form-control col-md-7 col-xs-12">
-                    <div class="reg-info">Contoh:</div>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tanggal_izin">Tanggal Izin Operasional<span class="required">*</span>
+                    </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="tanggal_izin" name="tanggal_izin" value="<?php echo $datatanggalizin; ?>" required="required" class="form-control col-md-7 col-xs-12" data-uk-datepicker="{format:'DD/MM/YYYY'}" >
+                      <div class="reg-info">Format: <code>DD/MM/YYYY</code></div>
+                      <div class="reg-info">Contoh: 31/12/1994</div>
+                      </div>
                   </div>
-                </div>
 
        <hr class="uk-article-divider">
 
@@ -441,7 +442,7 @@ if (isset ($_POST["profil_simpan"])) {
 
 
         <div style="text-align:center" class="form-actions no-margin-bottom">
-         <button type="submit" id="tahun_simpan" name="tahun_simpan" class="btn btn-success">Submit</button>
+         <button type="submit" id="profil_simpan" name="profil_simpan" class="btn btn-success">Submit</button>
        </div>
      </form>    
 </div>
