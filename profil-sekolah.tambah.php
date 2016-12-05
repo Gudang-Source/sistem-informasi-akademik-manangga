@@ -182,6 +182,59 @@ if (isset ($_POST["profil_simpan"])) {
 });
 
       </script>
+
+      <script type="text/javascript" src="assets/tiny_mce/tiny_mce_src.js"></script>
+      <script type="text/javascript">
+
+            //http://cariprogram.blogspot.com
+            //nuramijaya@gmail.com
+
+            tinyMCE.init({
+
+              mode : "textareas",
+
+              // ===========================================
+              // Set THEME to ADVANCED
+              // ===========================================
+
+              theme : "advanced",
+
+              // ===========================================
+              // INCLUDE the PLUGIN
+              // ===========================================
+
+              plugins : "jbimages,autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist,autosave",
+
+              // ===========================================
+              // Set LANGUAGE to EN (Otherwise, you have to use plugin's translation file)
+              // ===========================================
+
+              language : "en",
+
+              theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
+              theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+              theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+
+              // ===========================================
+              // Put PLUGIN'S BUTTON on the toolbar
+              // ===========================================
+
+              theme_advanced_buttons4 : "jbimages,|,insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak,restoredraft",
+
+              theme_advanced_toolbar_location : "top",
+              theme_advanced_toolbar_align : "left",
+              theme_advanced_statusbar_location : "bottom",
+              theme_advanced_resizing : true,
+
+              // ===========================================
+              // Set RELATIVE_URLS to FALSE (This is required for images to display properly)
+              // ===========================================
+
+              relative_urls : false
+
+            });
+
+</script>
 <body>
 
   <?php
@@ -282,7 +335,7 @@ if (isset ($_POST["profil_simpan"])) {
                     </div>
                   </div>
                   <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_kel">Kelurahan <span class="required">*</span>
+                    <label class="control-label col-md-63 col-sm-3 col-xs-12" for="id_kel">Kelurahan <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <select type="text" class="form-control chzn-select col-md-7 col-xs-12" id="id_kel" name="id_kel" required>
@@ -291,6 +344,100 @@ if (isset ($_POST["profil_simpan"])) {
                       <div class="reg-info">Wajib Pilih  Kelurahan  </div>
                     </div>
                   </div>
+
+                  <div class="item form-group">
+                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kodepos">Kode Pos<span class="required">*</span>
+                   </label>
+                   <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="kodepos" name="kodepos" value="<?php echo $datakodepos; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                    <div class="reg-info">Contoh: 55283.</div>
+                  </div>
+                </div>
+
+                  <div class="item form-group">
+                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="alamat_sekolah">Alamat Lengkap<span class="required">*</span>
+                   </label>
+                   <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="alamat_sekolah" name="alamat_sekolah" value="<?php echo $dataalamatsekolah; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                    <div class="reg-info">Contoh: Jalan Kenangan, Kota Barat, Depok, Yogyakarta.</div>
+                  </div>
+                </div>
+
+       <hr class="uk-article-divider">
+
+                  <div class="item form-group">
+                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Surat Elektronik (Email)<span class="required">*</span>
+                   </label>
+                   <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="email" name="email" value="<?php echo $dataemail; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                    <div class="reg-info">Contoh: sekolah@email.com.</div>
+                  </div>
+                </div>
+
+                  <div class="item form-group">
+                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">Alamat Situs (Website)<span class="required">*</span>
+                   </label>
+                   <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="website" name="website" value="<?php echo $datawebsite; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                    <div class="reg-info">Contoh: http://situs-sekolah.ac.id</div>
+                  </div>
+                </div>
+
+       <hr class="uk-article-divider">
+
+                  <div class="item form-group">
+                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sk_pendirian">Nomor Surat Keputusan Pendirian Sekolah (SK Pendirian) <span class="required">*</span>
+                   </label>
+                   <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="sk_pendirian" name="sk_pendirian" value="<?php echo $dataskpendirian; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                    <div class="reg-info">Contoh:</div>
+                  </div>
+                </div>
+
+                  <div class="item form-group">
+                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tanggal_pendirian">Tanggal Pendirian Sekolah <span class="required">*</span>
+                   </label>
+                   <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="tanggal_pendirian" name="tanggal_pendirian" value="<?php echo $datatanggalpendirian; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                    <div class="reg-info">Contoh:</div>
+                  </div>
+                </div>
+
+                  <div class="item form-group">
+                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status_pemilik">Status Kepemilikan Sekolah <span class="required">*</span>
+                   </label>
+                   <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="status_pemilik" name="status_pemilik" value="<?php echo $datastatuspemilik; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                    <div class="reg-info">Contoh: Pemerintah Daerah</div>
+                  </div>
+                </div>
+
+                  <div class="item form-group">
+                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sk_izin">Nomor Surat Izin Operasional (SK Izin Operasional) <span class="required">*</span>
+                   </label>
+                   <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="sk_izin" name="sk_izin" value="<?php echo $dataskizin; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                    <div class="reg-info">Contoh: Pemerintah Daerah</div>
+                  </div>
+                </div>
+
+                  <div class="item form-group">
+                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tanggal_izin">Tanggal Izin Operasional<span class="required">*</span>
+                   </label>
+                   <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="tanggal_izin" name="tanggal_izin" value="<?php echo $datatanggalizin; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                    <div class="reg-info">Contoh:</div>
+                  </div>
+                </div>
+
+       <hr class="uk-article-divider">
+
+        <div class="form-group">
+          <label for="content">Lokasi Sekolah<span class="required">*</span></label>
+          <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+          <div class="reg-info">Contoh:</div>
+        </div>
+
 
 
         <div style="text-align:center" class="form-actions no-margin-bottom">
