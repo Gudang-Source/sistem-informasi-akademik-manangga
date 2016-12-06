@@ -32,7 +32,7 @@ if (isset ($_POST["profil_simpan"])) {
     $sk_izin                = $_POST['sk_izin'];
     $tanggal_izin0          = $_POST['tanggal_izin'];
     $tanggal_izin           = ubahformatTgl($tanggal_izin0);
-    $lokasi                 = $_POST['lokasi'];
+    $content                 = $_POST['content'];
     $id_kec                 = $_POST['id_kec'];
     $id_kec                 = str_replace("'","&acute;",$id_kec);
     $kota                   = $_POST['kota'];
@@ -135,7 +135,7 @@ if (isset ($_POST["profil_simpan"])) {
           status_pemilik='$status_pemilik',
           sk_izin='$sk_izin',
           tanggal_izin='$tanggal_izin',
-          lokasi='$lokasi',
+          content='$content',
           foto='$jeneng',
           id_kel='$id_kel'
           ") or die(mysql_error());
@@ -161,7 +161,7 @@ if (isset ($_POST["profil_simpan"])) {
       $datastatuspemilik    = isset($_POST['status_pemilik']) ? $_POST['status_pemilik'] : '';
       $dataskizin           = isset($_POST['sk_izin']) ? $_POST['sk_izin'] : '';
       $datatanggalizin      = isset($_POST['tanggal_izin']) ? $_POST['tanggal_izin'] : '';
-      $datalokasi           = isset($_POST['lokasi']) ? $_POST['lokasi'] : '';
+      $datacontent           = isset($_POST['content']) ? $_POST['content'] : '';
       $datakel              = isset($_POST['id_kel']) ? $_POST['id_kel'] : '';
       ?>
 
@@ -459,7 +459,6 @@ if (isset ($_POST["profil_simpan"])) {
                    </label>
                    <div class="col-md-6 col-sm-6 col-xs-12">
                     <input type="text" id="sk_izin" name="sk_izin" value="<?php echo $dataskizin; ?>" required="required" class="form-control col-md-7 col-xs-12">
-                    <div class="reg-info">Contoh: Pemerintah Daerah</div>
                   </div>
                 </div>
 
@@ -480,8 +479,6 @@ if (isset ($_POST["profil_simpan"])) {
           <textarea class="form-control" name="content" id="content" rows="3"></textarea>
           <div class="reg-info">Contoh:</div>
         </div>
-
-
 
         <div style="text-align:center" class="form-actions no-margin-bottom">
          <button type="submit" id="profil_simpan" name="profil_simpan" class="btn btn-success">Submit</button>
