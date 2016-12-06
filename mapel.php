@@ -101,7 +101,7 @@ loadAssetsHead('Master Data Mata Pelajaran');
 												  <form role="form" id="formmapel" action="mapel.action?act=tambah" enctype="multipart/form-data" method="POST" >
 													<div class="form-group">
 														<label>Kode Mata Pelajaran</label>
-														<input class="form-control" name="kd_mapel" id="kd_mapel" value=""   required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="kd_mapel" id="kd_mapel" value=""   required  />
 														
 													</div>
 
@@ -180,7 +180,7 @@ loadAssetsHead('Master Data Mata Pelajaran');
 												<form role="form" method="post" action="mapel.action?act=update&&kd_mapel=<?php echo $kd_mapel;  ?>" enctype="multipart/form-data" >
 													<div class="form-group">
 														<label>Kode Mata Pelajaran</label>
-														<input class="form-control" name="kd_mapel" id="kd_mapel" value="<?php echo $row['kd_mapel']; ?>"   required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="kd_mapel" id="kd_mapel" value="<?php echo $row['kd_mapel']; ?>"   required  />
 														
 													</div>
 
@@ -192,7 +192,7 @@ loadAssetsHead('Master Data Mata Pelajaran');
 
 													<div class="form-group">
 														<label>KKM Mata Pelajaran</label>
-														<input class="form-control" name="kkm"  id="kkm" value="<?php echo $row['kkm']; ?>"  required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="kkm"  id="kkm" value="<?php echo $row['kkm']; ?>"  required  />
     														<div class="reg-info">Contoh: 65</div>
 													</div>
 

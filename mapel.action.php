@@ -37,7 +37,7 @@ elseif ( $act=='update'){
 
 		$updatemapel=mysql_query("UPDATE mapel SET  kkm='$kkm', kd_mapel='$kd_mapel' , nm_mapel='$nm_mapel' WHERE kd_mapel='$kd_mapellama'");
 ?>
-<script language="JavaScript">alert('Data Mata Pelajaran Berhasil Di Edit')</script>
+<script language="JavaScript">alert('Data Mata Pelajaran Berhasil Diedit')</script>
 	<script>
  window.location=history.go(-1);
  </script>		
@@ -56,7 +56,7 @@ elseif ( $act=='tambah'){
  
 		$updatemapel=mysql_query("INSERT INTO mapel SET nm_mapel='$nm_mapel' , kkm='$kkm', kd_mapel='$kd_mapel'");
 ?>
-<script language="JavaScript">alert('Data Mata Pelajaran Berhasil Di ditambah')</script>
+<script language="JavaScript">alert('Data Mata Pelajaran Berhasil Ditambah')</script>
 	<script>
  window.location=history.go(-1);
  </script>		
