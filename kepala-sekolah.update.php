@@ -20,9 +20,8 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
   $password1  = $_POST['password1'];
   $nm_guru  = $_POST['nm_guru'];
   $tmpt_lahir  = $_POST['tmpt_lahir'];
-  $date_tgl_lahir  = $_POST['date_tgl_lahir'];
- //  $date_tgl_lahir=ubahformatTgl($date_tgl_lahir0);
- // break;
+  $date_tgl_lahir0  = $_POST['date_tgl_lahir'];
+  $date_tgl_lahir=ubahformatTgl($date_tgl_lahir0);
   $jns_kelamin  = $_POST['jns_kelamin'];
   $id_agama  = $_POST['id_agama'];
   $status_guru  = $_POST['status_guru'];
@@ -359,15 +358,15 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
                  </div>
                </tr>
                <tr>
-                <div class="item form-group">
-                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date_tgl_lahir">Tanggal Lahir<span class="required">*</span>
-                 </label>
-                 <div class="col-md-6 col-sm-6 col-xs-12">
-                 <input  type="text" id="date_tgl_lahir" name="date_tgl_lahir" value="<?php echo $rowks['date_tgl_lahir'];?>" required="required" class="form-control col-md-7 col-xs-12" data-uk-datepicker="{format:'YYYY/DD/MM'}" >
-                          <div class="reg-info">Format: <code>DD/MM/YYYY</code></div>
-                          <div class="reg-info">Contoh: 31/12/1994</div>
-                </div>
-              </div>
+ <div class="item form-group">
+                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date_tgl_lahir">Tanggal Lahir<span class="required">*</span>
+                                   </label>
+                                   <div class="col-md-6 col-sm-6 col-xs-12">
+                                     <input  type="text" id="date_tgl_lahir" name="date_tgl_lahir" value="<?php echo  date('d/m/Y', strtotime($rowks['date_tgl_lahir'] )); ?>" required="required" class="form-control col-md-7 col-xs-12" data-uk-datepicker="{format:'DD/MM/YYYY'}" >
+                                     <div class="reg-info">Format: <code>DD/MM/YYYY</code></div>
+                                     <div class="reg-info">Contoh: 31/12/1994</div>
+                                   </div>
+                                 </div>
             </tr>
             <tr>
               <div class="item form-group">
