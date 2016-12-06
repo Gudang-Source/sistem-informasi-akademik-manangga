@@ -1,13 +1,13 @@
 <?php
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(1, 2, 10, 0));
+checkUserRole(array(10,1,0,24));
 
 // TEMPLATE CONTROL
 $ui_register_page = 'guru';
 
 // LOAD HEADER
-loadAssetsHead('Master Data Guru');
+loadAssetsHead('Data Guru');
 
 // FORM PROCESSING
 // ... code here ...
@@ -37,7 +37,7 @@ loadAssetsHead('Master Data Guru');
 		  </div>
 
 		  <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Manajemen Guru <span class="uk-text-large">
+          <h1 class="uk-article-title">Data Guru <span class="uk-text-large">
           <?php  if (isset($_SESSION['administrator'])) {?>
 		  { Master Data }</span></h1>
           <?php  }?>
