@@ -434,14 +434,15 @@ function admin(){
       <li class="uk-nav-header"><i class="uk-icon-user"></i> Pegawai</li>
       <?php generateNavElement(array(10,1,0,24), 'kepala-sekolah', './kepala-sekolah', 'Data Kepala Sekolah') ?>
       <?php generateNavElement(array(10,1,0,24), 'guru', './guru', 'Data Guru') ?>
-
+<?php if(isset($_SESSION['administrator'])) { ?>
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-home"></i> Kelas</li>
       <?php generateNavElement(array(10,1), 'kelas', './kelas', 'Data Kelas') ?>
-
+<?php }?>
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-tasks"></i> Mata Pelajaran</li>
-      <?php generateNavElement(array(10,1,0), 'mapel', './mapel', 'Data Mapel') ?>
+      <?php generateNavElement(array(10), 'mapel', './mapel', 'Data Mapel') ?>
+      <?php generateNavElement(array(1), 'guru.mapel', './guru.mapel', 'Data Mapel') ?>
       <!--<?php generateNavElement(array(10,1,0), 'kkm', './kkm', 'Data KKM') ?>-->
 
       <hr class="uk-article-divider">
