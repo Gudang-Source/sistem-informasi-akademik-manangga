@@ -461,45 +461,17 @@ function admin(){
       <?php generateNavElement(array(10), 'manajemen-sesi', './manajemen-sesi', 'Manajemen Sesi') ?>
       <?php generateNavElement(array(1), 'guru.jadwal-mapel', './guru.jadwal-mapel', 'Jadwal Pelajaran') ?>
       <?php generateNavElement(array(0), 'jadwal-mapel-siswa', './jadwal-mapel-siswa', 'Jadwal Pelajaran') ?>
-      
-
-
-
-      <!-- <hr class="uk-article-divider">-->
-      <!--  <li class="uk-nav-header">Data Pribadi Siswa</li>-->
-      <!-- <?php generateNavElement(array(10,2,1,3,0), 'isi-data-pribadi-siswa', './isi-data-pribadi-siswa', 'Isi Data Pribadi Siswa') ?>-->
-      <!--<?php generateNavElement(array(10,2,1,3,0), 'isi-data-pribadi-orangtua', './isi-data-pribadi-orangtua', 'Isi Data Orangtua/ Wali Murid') ?>-->
-
+     
+     
       <?php if (isset($_SESSION['usernameguru'])) { ?>
       <hr class="uk-article-divider">  
-      <li class="uk-nav-header"><i class="uk-icon-file-text"></i>  Data Nilai</li> <?php } ?>
+      <li class="uk-nav-header"><i class="uk-icon-file-text"></i>  Data Nilai</li> 
       <?php generateNavElement(array(1,0), 'nilai', './nilai', 'Nilai') ?>
       <?php generateNavElement(array(1,0), 'nilai', './guru_nilai', 'Nilai') ?>
       <?php generateNavElement(array(1,0), 'nilai', './siswa_nilai', 'Nilai Siswa') ?>
-      <!--<?php generateNavElement(array(10,1), 'siswa-mapel', './siswa-mapel', 'Materi Pelajaran') ?>-->
-      <!-- <?php generateNavElement(array(10,0,2), 'siswa-materi', './siswa-materi', 'Materi Siswa') ?>-->
-      <!--<?php generateNavElement(array(10,0,2), 'siswa-tugas', './siswa-tugas', 'Tugas Siswa') ?>-->
-
-
-      <!--<?php generateNavElement(array(10,1), 'semester', './semester', 'Semester') ?>  
-      <!-- <?php generateNavElement(array(10,1), 'siswa-lihatguru', './siswa-lihatguru', 'Daftar Guru') ?>-->
-
-      <!--  <?php generateNavElement(array(10,1), 'materi-guru', './materi-guru', 'Materi') ?>-->
-      <!--  <?php generateNavElement(array(10,1), 'tugas-guru', './tugas-guru', 'Tugas') ?>-->
-      <!--<?php generateNavElement(array(10,1), 'guru-mengajar', './guru-mengajar', 'Kelas Mengajar') ?>-->
-      <!--  <?php generateNavElement(array(10,1), 'guru-materi', './guru-materi', 'Materi Ajar') ?>-->
-      <!--  <?php generateNavElement(array(10,1), 'guru-tugas', './guru-tugas', 'Tugas') ?>-->
-      <!--  <?php generateNavElement(array(10,1), 'guru-pengumuman', './guru-pengumuman', 'Pengumuman') ?>-->
-      <?php// generateNavElement(array(0,1,10), 'name', 'link', 'value') ?>
-
-
-      <!--  <?php generateNavElement(array(10,2,10,1), 'riwayat-pembayaran', './riwayat-pembayaran', 'Riwayat Pembayaran') ?>-->
-      <!--  <?php generateNavElement(array(10,1), 'tagihan-pembayaran', './tagihan-pembayaran', 'Tagihan Pembayaran') ?>-->
-      
-      <!--  <?php generateNavElement(array(10,2,10,1), 'riwayat-pembayaran', './riwayat-pembayaran', 'Riwayat Pembayaran') ?>-->
-      <!-- <?php generateNavElement(array(10,1), 'tagihan-pembayaran', './tagihan-pembayaran', 'Tagihan Pembayaran') ?>-->
+     
       <li class="uk-nav-divider"></li>
-
+<?php } ?>
 
 
       <li><a href="./logout">Keluar</a></li>
