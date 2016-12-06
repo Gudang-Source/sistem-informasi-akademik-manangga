@@ -398,21 +398,29 @@ function admin(){
       <?php if(isset($_SESSION['usernamesiswa'])) { siswa(); }?>
       <?php if(isset($_SESSION['usernameguru'])) { guru(); }?>
       <?php if(isset($_SESSION['usernametu'])) { pegawai(); }?>
+<?php if(isset($_SESSION['administrator'])) { ?>
 
+      <?php }?>
 
       <hr class="uk-article-divider">
 
       <li class="uk-nav-header"></li>
       <?php generateNavElement(array(0,1,2,10), 'dashboard', './dashboard', 'Dashboard') ?>
+      <?php if(isset($_SESSION['administrator'])) { ?>
       <hr class="uk-article-divider"> 
+      
+
       <li class="uk-nav-header"><i class="uk-icon-institution"></i> Tahun Ajaran</li>
-      <?php generateNavElement(array(10,1), 'tahun-ajaran', './tahun-ajaran', 'Data Tahun Ajaran') ?>
+      <?php generateNavElement(array(10), 'tahun-ajaran', './tahun-ajaran', 'Data Tahun Ajaran') ?>
       <?php generateNavElement(array(), 'profil', './profil', 'Profil') ?>
 
+      <?php }?>
+
       <hr class="uk-article-divider">
-      <?php if (isset($_SESSION['administrator'])) { ?>
-      <li class="uk-nav-header"><i class="uk-icon-child"></i> Siswa</li> <?php  } ?>
-      <?php generateNavElement(array(10,1), 'siswa', './siswa', 'Data Siswa') ?>
+      
+      <li class="uk-nav-header"><i class="uk-icon-child"></i> Siswa</li> 
+      <?php generateNavElement(array(10), 'siswa', './siswa', 'Data Siswa') ?>
+       <?php generateNavElement(array(1), 'guru.siswa', './guru.siswa', 'Data Siswa') ?>
 
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-child"></i> Kelas Siswa</li>
