@@ -2,7 +2,7 @@
 <?php
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(10,1));
+checkUserRole(array(10));
 
 // TEMPLATE CONTROL
 $ui_register_page     = 'profil-sekolah';
@@ -12,36 +12,56 @@ $ui_register_assets   = array('datepicker');
 loadAssetsHead('Data Profil Sekolah');
 
 //LOAD DATA
-if (isset($_POST['profil-sekolah_simpan'])) {
+if (isset($_POST['profil_simpan'])) {
 
   #baca variabel
     $npsn     = $_POST['npsn'];
     $npsn     = str_replace("", "&acute;", $npsn);
     $npsn     = ucwords(strtolower($npsn));
 
-    $status_sekolah     = $_POST['status_sekolah'];
-    $bentuk             = $_POST['bentuk'];
-    $kodepos             = $_POST['kodepos'];
-    $email             = $_POST['email'];
-    $website             = $_POST['website'];
-    $sk_pendirian             = $_POST['sk_pendirian'];
-    $tanggal_pendirian             = $_POST['tanggal_pendirian'];
-    $status_pemilik             = $_POST['status_pemilik'];
-    $sk_izin             = $_POST['sk_izin'];
-    $tanggal_izin             = $_POST['tanggal_izin'];
-    $lokasi             = $_POST['lokasi'];
-  $id_kec  = $_POST['id_kec'];
-  $id_kec  = str_replace("'","&acute;",$id_kec);
-  $kota  = $_POST['kota'];
-  $kota  = str_replace("'","&acute;",$kota);
-  $prov  = $_POST['prov'];
-  $prov  = str_replace("'","&acute;",$prov);
-  $id_kel  = $_POST['id_kel'];
-  $id_kel  = str_replace("'","&acute;",$id_kel);
+    $status_sekolah         = $_POST['status_sekolah'];
+    $bentuk                 = $_POST['bentuk'];
+    $kodepos                = $_POST['kodepos'];
+    $email                  = $_POST['email'];
+    $website                = $_POST['website'];
+    $sk_pendirian           = $_POST['sk_pendirian'];
+    $tanggal_pendirian0     = $_POST['tanggal_pendirian'];
+    $tanggal_pendirian      = ubahformatTgl($tanggal_pendirian0);
+    $status_pemilik         = $_POST['status_pemilik'];
+    $sk_izin                = $_POST['sk_izin'];
+    $tanggal_izin0          = $_POST['tanggal_izin'];
+    $tanggal_izin           = ubahformatTgl($tanggal_izin0);
+    $content                 = $_POST['content'];
+    $id_kec                 = $_POST['id_kec'];
+    $id_kec                 = str_replace("'","&acute;",$id_kec);
+    $kota                   = $_POST['kota'];
+    $kota                   = str_replace("'","&acute;",$kota);
+    $prov                   = $_POST['prov'];
+    $prov                   = str_replace("'","&acute;",$prov);
+    $alamat_sekolah         = $_POST['alamat_sekolah'];
+    $id_kel                 = $_POST['id_kel'];
+    $id_kel                 = str_replace("'","&acute;",$id_kel);
 
+  function compress_image($source_url, $destination_url, $quality) 
+  { 
+    $info = getimagesize($source_url); 
+    if ($info['mime'] == 'image/jpeg') 
+      $image = imagecreatefromjpeg($source_url); 
+    elseif ($info['mime'] == 'image/gif') 
+      $image = imagecreatefromgif($source_url); 
+    elseif ($info['mime'] == 'image/png') 
+      $image = imagecreatefrompng($source_url); 
+    imagejpeg($image, $destination_url, $quality); 
+    return $destination_url; 
+  } 
+
+  $nama_foto = $_FILES["file"]["name"];
+      $file_sik_dipilih = substr($nama_foto, 0, strripos($nama_foto, '.')); // strip extention
+      $bagian_extensine = substr($nama_foto, strripos($nama_foto, '.')); // strip name
+      $ukurane = $_FILES["file"]["size"];
 
   #validasi form kosong
-  $pesanError= array();
+   $pesanError= array();
   if (trim($npsn)=="") {
     $pesanError[]="Data <b>NPSN</b> Masih Kosong.";
   }
@@ -57,15 +77,6 @@ if (isset($_POST['profil-sekolah_simpan'])) {
  if (trim($website)=="") {
     $pesanError[]="Data <b>Website</b> Masih Kosong.";
   }
- if (trim($sk_pendirian)=="") {
-    $pesanError[]="Data <b>SK Pendirian</b> Masih Kosong.";
-  }
- if (trim($tanggal_pendirian)=="") {
-    $pesanError[]="Data <b>Tanggal Pendirian</b> Masih Kosong.";
-  }
- if (trim($lokasi)=="") {
-    $pesanError[]="Data <b>Lokasi</b> Masih Kosong.";
-  }
       if (trim($prov)=="") {
         $pesanError[] = "Data <b>Provinsi</b> tidak boleh kosong !";    
       }
@@ -78,11 +89,18 @@ if (isset($_POST['profil-sekolah_simpan'])) {
       if (trim($id_kel)=="") {
         $pesanError[]="Data <b>Kelurahan</b> Masih kosong !!";
       }
+    if (trim($alamat_sekolah)=="") {
+       $pesanError[]="Data <b>Alamat Sekolah</b> Masih Kosong.";
+     }
+      if (empty($file_sik_dipilih)){
+        $pesanError[] = "Anda Belum Memilih Foto !";    
+      }
       if (empty($file_sik_dipilih)){
         $query = mysql_query("UPDATE profil_sekolah 
           SET npsn='$npsn', 
           status_sekolah='$status_sekolah',
           bentuk='$bentuk',
+          alamat_sekolah='$alamat_sekolah',
           kodepos='$kodepos',
           email='$email',
           website='$website',
@@ -91,9 +109,12 @@ if (isset($_POST['profil-sekolah_simpan'])) {
           status_pemilik='$status_pemilik',
           sk_izin='$sk_izin',
           tanggal_izin='$tanggal_izin',
-          lokasi='$lokasi',
+          content='$content',
+          foto='$jeneng',
           id_kel='$id_kel'
           ") or die(mysql_error());
+
+
         
       }
       
@@ -112,10 +133,21 @@ if (isset($_POST['profil-sekolah_simpan'])) {
         
         else{
 
-            $query = mysql_query("profil_sekolah 
+          if(($_FILES["file"]["type"] == "image/gif") || ($_FILES["file"]["type"] == "image/jpeg") || ($_FILES["file"]["type"] == "image/png") || ($_FILES["file"]["type"] == "image/pjpeg")){
+            $lokasi = 'gallery/news/';
+
+
+            $file = md5(rand(1000,1000000000))."-".$nama_foto;
+            $newfilename = $file . $bagian_extensine;
+            $jeneng=str_replace(' ','-',$file);
+            $url = $lokasi . $jeneng;
+            $filename = compress_image($_FILES["file"]["tmp_name"], $url, 80); 
+
+            $query = mysql_query("UPDATE profil_sekolah 
           SET npsn='$npsn', 
           status_sekolah='$status_sekolah',
           bentuk='$bentuk',
+          alamat_sekolah='$alamat_sekolah',
           kodepos='$kodepos',
           email='$email',
           website='$website',
@@ -124,17 +156,20 @@ if (isset($_POST['profil-sekolah_simpan'])) {
           status_pemilik='$status_pemilik',
           sk_izin='$sk_izin',
           tanggal_izin='$tanggal_izin',
-          lokasi='$lokasi',
+          content='$content',
+          foto='$jeneng',
           id_kel='$id_kel'
           ") or die(mysql_error());
+
 
           }
           if ($query){
             header('location: ./profil-sekolah');
           }
-      
+          else { $error = "Uploaded image should be jpg or gif or png"; } 
+
         }
-      
+      }
 
   #update data ke database
 
@@ -144,8 +179,7 @@ if (isset($_POST['profil-sekolah_simpan'])) {
       $rowks  = mysql_fetch_array($edit);
 
       ?>
-
-<script type="text/javascript">
+      <script type="text/javascript">
         var htmlobjek;
         $(document).ready(function(){
   //apabila terjadi event onchange terhadap object <select id=prov>
@@ -185,7 +219,84 @@ if (isset($_POST['profil-sekolah_simpan'])) {
     });
   });
 });
+
       </script>
+
+      </script>
+            <script type="text/javascript">
+  function convertAngkaNIP(objek) {
+    
+    a = objek.value;
+    b = a.replace(/[^\d]/g,"");
+    
+    objek.value = b;
+
+  }            
+</script>
+
+<script type="text/javascript">
+  function convertAngkaHP(objek) {
+    
+    a = objek.value;
+    b = a.replace(/[^\d]/g,"");
+    
+    objek.value = b;
+
+  }            
+</script>
+
+     <script type="text/javascript" src="assets/tiny_mce/tiny_mce_src.js"></script>
+      <script type="text/javascript">
+
+            //http://cariprogram.blogspot.com
+            //nuramijaya@gmail.com
+
+            tinyMCE.init({
+
+              mode : "textareas",
+
+              // ===========================================
+              // Set THEME to ADVANCED
+              // ===========================================
+
+              theme : "advanced",
+
+              // ===========================================
+              // INCLUDE the PLUGIN
+              // ===========================================
+
+              plugins : "jbimages,autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist,autosave",
+
+              // ===========================================
+              // Set LANGUAGE to EN (Otherwise, you have to use plugin's translation file)
+              // ===========================================
+
+              language : "en",
+
+              theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
+              theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+              theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+
+              // ===========================================
+              // Put PLUGIN'S BUTTON on the toolbar
+              // ===========================================
+
+              theme_advanced_buttons4 : "jbimages,|,insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak,restoredraft",
+
+              theme_advanced_toolbar_location : "top",
+              theme_advanced_toolbar_align : "left",
+              theme_advanced_statusbar_location : "bottom",
+              theme_advanced_resizing : true,
+
+              // ===========================================
+              // Set RELATIVE_URLS to FALSE (This is required for images to display properly)
+              // ===========================================
+
+              relative_urls : false
+
+            });
+
+</script>
       <body>
 
         <?php
@@ -204,199 +315,108 @@ if (isset($_POST['profil-sekolah_simpan'])) {
           <div class="uk-vertical-align uk-text-right uk-height-1-1">
             <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SD N II Manangga" title="Sistem Informasi Akademik SD N II Manangga">
           </div>
-
           <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Manajemen Profil Sekolah <span class="uk-text-large">{ Tampil Profil Sekolah  }</span></h1>
-                    <?php if (isset($_SESSION['administrator'])) { ?>
-          <!--<a href="./kepala-sekolah.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Kepala Sekolah"><i class="uk-icon-plus"></i> Data Kepala Sekolah</a>-->
-                    <br>
- <br>
-      <?php } ?>
+          <h1 class="uk-article-title">Profil Sekolah <span class="uk-text-large">{ Tampil Profil Sekolah  }</span></h1>
+          <br>
+          <a href="./profil-sekolah" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Profil Sekolah"><i class="uk-icon-angle-left"></i> Kembali</a>
           <!-- <hr class="uk-article-divider"> -->
+          <form id="formprofil" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
           <div class="uk-grid" data-uk-grid-margin>
             <div class="uk-width-medium-1-1">
-              <form id="formguru" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
+              <form id="formprofil" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
 
                 <div class="uk-grid">
-                  <div class="uk-width-3-10"><div class="uk-panel uk-panel-box"><div class="sia-profile">
-
-                    <img src="gallery/news/<?=$rowks['foto'];?>">
-                    <br><br>
-                    <p style="text-align:center" ;="" font-weight:bold;=""><b><?php echo $rowks['nm_guru'];?></b></p>
-                    <p style="text-align:center" ;="" font-weight:bold;=""><b><?php echo $rowks['nip'];?></b></p>
-                    <p style="text-align:center" ;="" font-weight:bold;=""></p>
-
-                  </div></div></div>
+                  <div class="uk-width-3-10"><div class="uk-panel uk-panel-box">
+                     <div class="item form-group">
+                    
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-lg-8">
+                        <div class="fileupload fileupload-new" data-provides="fileupload">
+                          <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="gallery/news/<?=$rowks['foto'];?>"></div>
+                          <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                          <div>
+                            <span class="btn btn-file btn-primary btn-xs"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" accept="image/*" name="file" id="file" placeholder="file" /></span>
+                            <a href="#" class="btn btn-danger btn-xs fileupload-exists" data-dismiss="fileupload">Remove</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                   
+                  </div></div>
                   <div class="uk-width-7-10">  <div class="uk-panel uk-panel-box"> <table class="uk-table uk-table-hover  uk-table-condensed"><tr><td></td><td></td><td></td><td></td><td width="70"><li><a href="profil-sekolah.update" ><i  class="uk-icon-pencil"></i> Edit</a></li></td> </tr></table>                   
                     <table class="uk-table uk-table-hover  uk-table-condensed">
                       <tbody>
                         <tr>
                           <div class="item form-group">
-                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nip">NIP<span class="required">*</span>
+                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="npsn">Isi Data NPSN (Nomor Pokok Sekolah Nasional)<span class="required">*</span>
                            </label>
                            <div class="col-md-6 col-sm-6 col-xs-12">
-                           <input readonly type="text" id="nip" name="nip" value="<?php echo $rowks['nip'];?>" required="required" class="form-control col-md-7 col-xs-12">
-                            <div class="hidden">Contoh: 126500182411. Jumlah minimal 18 angka. Wajib diisi (Digunakan sebagai username untuk login sistem)</div>
+                           <input readonly type="text" id="npsn" name="npsn" onkeyup="convertAngkaNIP(this);" value="<?php echo $rowks['npsn'];?>" required="required" class="form-control col-md-7 col-xs-12">
+                            <div class="reg-info"></div>
                           </div> 
                         </div>
                       
                     </tr>
-                    <tr>
-                      <div class="item form-group">
-                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nm_guru">Nama Guru<span class="required">*</span>
-                       </label>
-                       <div class="col-md-6 col-sm-6 col-xs-12">
-                       <input readonly type="text" id="nm_guru" name="nm_guru" value="<?php echo $rowks['nm_guru'];?>" required="required" class="form-control col-md-7 col-xs-12">
-                        <div class="hidden">Contoh: Fajar Nurrohmat. Jumlah minimal 1 huruf. Wajib diisi (Tuliskan nama saja, tidak dengan gelar akademik)</div>
-                      </div>
-                    </div>
-                  </tr>
-                  <tr>
-                   <div class="item form-group">
-                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password<span class="required">*</span>
-                     </label>
-                     <div class="col-md-6 col-sm-6 col-xs-12">
-                     <input readonly type="text" id="password" name="password" value="<?php echo $rowks['password'];?>" required="required" class="form-control col-md-7 col-xs-12">
-                    </div>
-                  </div>
-                </tr>
-                <tr>
-                 <div class="item form-group">
-                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password1">Konfirmasi Password<span class="required">*</span>
-                   </label>
-                   <div class="col-md-6 col-sm-6 col-xs-12">
-                   <input readonly type="text" id="password1" name="password1" value="<?php echo $rowks['password'];?>" required="required" class="form-control col-md-7 col-xs-12">
-                     <div class="hidden">Contoh: 126500182411. Jumlah minimal 6 karakter. Harus Sama dengan Password. Wajib diisi (Digunakan untuk login)</div>
-                   </div>
-                 </div>
-               </tr>
-               <tr>
-                <div class="item form-group">
-                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date_tgl_lahir">Tanggal Lahir<span class="required">*</span>
-                 </label>
-                 <div class="col-md-6 col-sm-6 col-xs-12">
-                 <input readonly type="text" id="date_tgl_lahir" name="date_tgl_lahir" value="<?php echo $rowks['date_tgl_lahir'];?>" required="required" class="form-control col-md-7 col-xs-12" data-uk-datepicker="{format:'YYYY/DD/MM'}" >
-                  <div class="hidden">Format: <code>TTTT/HH/BB</code></div>
-                  <div class="hidden">Contoh: 1995/31/12</div>
-                </div>
-              </div>
-            </tr>
-            <tr>
-              <div class="item form-group">
-               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tmpt_lahir">Tempat Lahir<span class="required">*</span>
-               </label>
-               <div class="col-md-6 col-sm-6 col-xs-12">
-               <input readonly type="text" id="tmpt_lahir" name="tmpt_lahir" value="<?php echo $rowks['tmpt_lahir'];?>" required="required" class="form-control col-md-7 col-xs-12">
-              </div>
-            </div>
-          </tr>
-          <tr>
+
+           <tr>
             <div class="item form-group">
-             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="jns_kelamin">Jenis Kelamin<span class="required">*</span>
+             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status_sekolah">Status Sekolah<span class="required">*</span>
              </label>
              <div class="col-md-6 col-sm-6 col-xs-12">
-               <select disabled type="text" class="form-control chzn-select col-md-7 col-xs-12" id="jns_kelamin" name="jns_kelamin" value="" required>
-                <option value="">-Pilih Jenis Kelamin-</option> 
-                <?php
-                $jns_kelamin =mysql_query("SELECT * FROM guru ORDER BY jns_kelamin");
-                while ($datajeniskelamin=mysql_fetch_array($jns_kelamin)) {
-                 if ($datajeniskelamin['jns_kelamin']==$rowks['jns_kelamin']) {
-                   $cek ="selected";
+               <select disabled type="text" class="form-control chzn-select col-md-7 col-xs-12" id="status_sekolah" name="status_sekolah" value="" required>
+                <option value="">-Pilih Status Sekolah-</option> 
+                  <?php
+                     if ($rowks['status_sekolah']=="Negeri") {
+                  ?>
+                     <option value="Negeri" selected>Sekolah Negeri / Sekolah Pemerintah</option>
+                     <option value="Swasta">Sekolah Swasta / Sekolah Non-Pemerintah</option>
+                 <?php
                  }
-                 else{
-                  $cek= "";
-                }
-                echo "<option value=\"$datajeniskelamin[jns_kelamin]\" $cek>$datajeniskelamin[jns_kelamin]</option>\n";
-              }
-              ?>
+                 else{ ?>
+                    <option value="Negeri">Sekolah Negeri / Sekolah Pemerintah</option>
+                    <option value="Swasta" selected>Sekolah Swasta / Sekolah Non-Pemerintah</option>     
+                 <?php     } 
+                 ?>
+                 </select>
+             </div>
+            </div>
+          </tr>
+
+        <tr>
+            <div class="item form-group">
+             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="bentuk">Bentuk Sekolah<span class="required">*</span>
+             </label>
+             <div class="col-md-6 col-sm-6 col-xs-12">
+               <select disabled type="text" class="form-control chzn-select col-md-7 col-xs-12" id="bentuk" name="bentuk" value="" required>
+                <option value="">--- Status Sekolah --</option> 
+       <?php
+        if ($rowks['bentuk']=="SD") {
+        ?>
+          <option value="SD" selected>Sekolah Dasar (SD) / Sederajat</option>
+          <option value="SMP">Sekolah Menengah Pertama (SMP) / Sederajat</option>
+          <option value="SMA">Sekolah Menengah Atas (SMA) / Sederajat</option>
+        <?php
+        }
+         elseif ($rowks['bentuk']=="SMP") { ?>
+          <option value="SD">Sekolah Dasar (SD) / Sederajat</option>
+          <option value="SMP" selected>Sekolah Menengah Pertama (SMP) / Sederajat</option>
+          <option value="SMA">Sekolah Menengah Atas (SMA) / Sederajat</option> 
+      <?php 
+      } 
+         else { ?>
+        <option value="SD">Sekolah Dasar (SD) / Sederajat</option>
+          <option value="SMP">Sekolah Menengah Pertama (SMP) / Sederajat</option>
+          <option value="SMA" selected>Sekolah Menengah Atas (SMA) / Sederajat</option> 
+      <?php }  ?>
+
+
             </select>
 
           </div>
         </div>
       </tr>
-
-      <tr>
-        <div class="item form-group">
-         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_agama">Agama<span class="required">*</span>
-         </label>
-         <div class="col-md-6 col-sm-6 col-xs-12">
-           <select disabled type="text" class="form-control chzn-select col-md-7 col-xs-12" id="id_agama" name="id_agama" value="" required>
-            <option value="">-Pilih Agama-</option>
-          <?php
-                    //MENGAMBIL NAMA PROVINSI YANG DI DATABASE
-      $agama =mysql_query("SELECT * FROM agama ORDER BY nm_agama asc");
-      while ($dataagama=mysql_fetch_array($agama)) {
-       if ($dataagama['id_agama']==$rowks['id_agama']) {
-         $cek ="selected";
-       }
-       else{
-        $cek= "";
-      }
-      echo "<option value=\"$dataagama[id_agama]\" $cek>$dataagama[nm_agama]</option>\n";
-    }
-    ?>
-         </select>
-
-       </div>
-     </div>
-   </tr>
-     
-   <tr>
-     <div class="item form-group">
-      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="jns_kelamin">Status Guru<span class="required">*</span>
-      </label>
-      <div class="col-md-6 col-sm-6 col-xs-12">
-        <select disabled name="status_guru" id="status_guru" value="" class="form-control col-md-7 col-xs-12">
-          <option value="">--- Pilih Status Guru --</option>
-          <?php
-          $status_guru=mysql_query("SELECT * FROM guru ORDER BY status_guru");
-          while ($datastatusguru=mysql_fetch_array($status_guru)) {
-           if ($datastatusguru['status_guru']==$rowks['status_guru']) {
-             $cek ="selected";
-           }
-           else{
-            $cek= "";
-          }
-          echo "<option value=\"$datastatusguru[status_guru]\" $cek>$datastatusguru[status_guru]</option>\n";
-        }
-        ?>
-      </select>
-      <div class="hidden">Status Guru hanya Wiyata Bhakti dan Pegawai Negri Sipil(PNS), Pilih Salah Satu!</div>
-    </div>
-  </div>
-
-
-</tr>
-<tr>
-  <div class="item form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gelar_depan">Gelar Depan Non Akademik<span class="required">*</span>
-    </label>
-    <div class="col-md-6 col-sm-6 col-xs-12">
-    <input readonly type="text" id="gelar_depan" name="gelar_depan" value="<?php echo $rowks['gelar_depan'];?>"  class="form-control col-md-7 col-xs-12">
-      <div class="hidden">Kosongkan Jika Tidak Ada Gelar Depan Non Akademik </div>
-    </div>
-  </div>            
-</tr>
-<tr>
-  <div class="item form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gelar_depan_akademik">Gelar Depan Akademik<span class="required">*</span>
-    </label>
-    <div class="col-md-6 col-sm-6 col-xs-12">
-    <input readonly type="text" id="gelar_depan_akademik" name="gelar_depan_akademik" value="<?php echo $rowks['gelar_depan_akademik'];?>"  class="form-control col-md-7 col-xs-12">
-      <div class="hidden">Kosongkan Jika Tidak Ada Gelar Depan Akademik</div>
-    </div>
-  </div>      
-</tr>
-<tr>
-  <div class="item form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gelar_belakang">Gelar Belakang<span class="required">*</span>
-    </label>
-    <div class="col-md-6 col-sm-6 col-xs-12">
-    <input readonly type="text" id="gelar_belakang" name="gelar_belakang" value="<?php echo $rowks['gelar_belakang'];?>"  class="form-control col-md-7 col-xs-12">
-      <div class="hidden">Kosongkan Jika Tidak Ada Gelar Belakang</div>
-    </div>
-  </div>      
-</tr>
+       <hr class="uk-article-divider">
 <tr>
   <?php               
   $jeng =mysql_query("SELECT *
@@ -509,41 +529,111 @@ if (isset($_POST['profil-sekolah_simpan'])) {
 </div>
 </div>      
 </tr>
-<tr>
+  <tr>
   <div class="item form-group">
-   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="almt_sekarang">Alamat Rumah<span class="required">*</span>
+   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kodepos">Kode Pos<span class="required">*</span>
    </label>
 
    <div class="col-md-6 col-sm-6 col-xs-12">
-   <input readonly type="text" id="almt_sekarang" name="almt_sekarang" value="<?php echo $rowks['almt_sekarang'];?>" required="required" class="form-control col-md-7 col-xs-12">
-    <div class="hidden">Wajib diisi data alamat rumah sekarang, isi data alamat rumah sekarang dengan lengkap</div>
+   <input readonly type="text" id="kodepos" name="kodepos" value="<?php echo $rowks['kodepos'];?>" required="required" class="form-control col-md-7 col-xs-12">
+    <div class="reg-info">Kode pos sekolah.</div>
   </div>
 </div>      
 </tr>
-<tr>
+  <tr>
   <div class="item form-group">
-   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="no_hp">No. HP<span class="required">*</span>
+   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="alamat_sekolah">Alamat Lengkap<span class="required">*</span>
    </label>
    <div class="col-md-6 col-sm-6 col-xs-12">
-   <input readonly type="text" id="no_hp" name="no_hp" value="<?php echo $rowks['no_hp'];?>" required="required" class="form-control col-md-7 col-xs-12">
-    <div class="hidden">Wajib Isi Data No Hp</div>
+   <input readonly type="text" id="alamat_sekolah" name="alamat_sekolah" value="<?php echo $rowks['alamat_sekolah'];?>" required="required" class="form-control col-md-7 col-xs-12">
+    <div class="reg-info">Alamat Sekolah.</div>
   </div>
 </div>      
 </tr>
-<tr>
+       <hr class="uk-article-divider">
+  <tr>
   <div class="item form-group">
-   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email<span class="required">*</span>
+   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Surat Elektronik (Email)<span class="required">*</span>
    </label>
    <div class="col-md-6 col-sm-6 col-xs-12">
    <input readonly type="text" id="email" name="email" value="<?php echo $rowks['email'];?>" required="required" class="form-control col-md-7 col-xs-12">
-    <div class="hidden">Email Wajib Diisi </div>
+    <div class="reg-info">Email Resmi Sekolah.</div>
   </div>
 </div>      
 </tr>
-<tr>
-  
-</form>      
+  <tr>
+  <div class="item form-group">
+   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">Alamat Situs (Website)<span class="required">*</span>
+   </label>
+   <div class="col-md-6 col-sm-6 col-xs-12">
+   <input readonly type="text" id="website" name="website" value="<?php echo $rowks['website'];?>" required="required" class="form-control col-md-7 col-xs-12">
+    <div class="reg-info">Alamat Situs Resmi Sekolah.</div>
+  </div>
+</div>      
 </tr>
+    <hr class="uk-article-divider">
+  <tr>
+  <div class="item form-group">
+   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sk_pendirian">Nomor Surat Keputusan Pendirian Sekolah (SK Pendirian)<span class="required">*</span>
+   </label>
+   <div class="col-md-6 col-sm-6 col-xs-12">
+   <input readonly type="text" id="sk_pendirian" name="sk_pendirian" value="<?php echo $rowks['sk_pendirian'];?>" required="required" class="form-control col-md-7 col-xs-12">
+    <div class="reg-info">Alamat Situs Resmi Sekolah.</div>
+  </div>
+</div>      
+</tr>
+    <tr>
+        <div class="item form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tanggal_pendirian">Tanggal Pendirian Sekolah<span class="required">*</span>
+          </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input readonly type="text" id="tanggal_pendirian" name="tanggal_pendirian" value="<?php echo  date('d/m/Y', strtotime($rowks['tanggal_pendirian'] )); ?>" required="required" class="form-control col-md-7 col-xs-12" data-uk-datepicker="{format:'DD/MM/YYYY'}" >
+            <div class="reg-info">Format: <code>DD/MM/YYYY</code></div>
+            <div class="reg-info">Contoh: 31/12/1994</div>
+            </div>
+            </div>
+    </tr>
+
+            <tr>
+              <div class="item form-group">
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status_pemilik">Status Kepemilikan Sekolah<span class="required">*</span>
+               </label>
+               <div class="col-md-6 col-sm-6 col-xs-12">
+               <input readonly type="text" id="status_pemilik" name="status_pemilik" value="<?php echo $rowks['status_pemilik'];?>" required="required" class="form-control col-md-7 col-xs-12">
+                    <div class="reg-info">Contoh: Pemerintah Daerah</div>
+              </div>
+            </div>
+          </tr>
+
+            <tr>
+              <div class="item form-group">
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sk_izin">Nomor Surat Izin Operasional (SK Izin Operasional)<span class="required">*</span>
+               </label>
+               <div class="col-md-6 col-sm-6 col-xs-12">
+               <input readonly type="text" id="sk_izin" name="sk_izin" value="<?php echo $rowks['sk_izin'];?>" required="required" class="form-control col-md-7 col-xs-12">
+              </div>
+            </div>
+          </tr>
+
+    <tr>
+        <div class="item form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tanggal_izin">Tanggal Izin Operasional<span class="required">*</span>
+          </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input readonly type="text" id="tanggal_izin" name="tanggal_izin" value="<?php echo  date('d/m/Y', strtotime($rowks['tanggal_izin'] )); ?>" required="required" class="form-control col-md-7 col-xs-12" data-uk-datepicker="{format:'DD/MM/YYYY'}" >
+            <div class="reg-info">Format: <code>DD/MM/YYYY</code></div>
+            <div class="reg-info">Contoh: 31/12/1994</div>
+            </div>
+            </div>
+    </tr>
+        <hr class="uk-article-divider">
+
+        <div class="form-group">
+          <label>Lokasi Sekolah<span class="required">*</span></label>
+          <text value="<?php echo "$rowks[content]";?>  <?php echo "$rowks[content]";?></text>
+        </div>  
+ 
+
 </tbody>
 </table>
 
@@ -658,7 +748,7 @@ if (isset($_POST['profil-sekolah_simpan'])) {
           }
         }
       }, 
-      agama : {
+      id_agama : {
         validators: {
           notEmpty: {
             message: 'Harus Pilih Agama'

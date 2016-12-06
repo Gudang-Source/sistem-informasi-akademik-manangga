@@ -638,7 +638,7 @@ if (isset($_POST['profil_simpan'])) {
     <div class="uk-alert">Pastikan semua isian sudah terisi dengan benar!</div>
   </div>
   <div style="text-align:center" class="form-actions no-margin-bottom">
-   <button type="submit" id="kepala-sekolah_simpan" name="kepala-sekolah_simpan" class="btn btn-success">Submit</button>
+   <button type="submit" id="profil_simpan" name="profil_simpan" class="btn btn-success">Submit</button>
  </div>
 </form>      
 </tr>
