@@ -118,9 +118,13 @@ $rowks  = mysql_fetch_array($edit);
     </div>
 
     <div style="text-align:center" class="form-actions no-margin-bottom">
-     <button type="submit" id="mapel_simpan" name="mapel_simpan" class="btn btn-success">Submit</button>
+     <button type="submit" id="sesi_simpan" name="sesi_simpan" class="btn btn-success">Submit</button>
    </div>
  </form>
+</div>
+</div>
+</div>
+</div>
 </div>
 
 <script src="assets/validator/js/bootstrapValidator.min.js" type="text/javascript"></script>
@@ -130,8 +134,8 @@ $rowks  = mysql_fetch_array($edit);
 <script src="/vendor/formvalidation/js/framework/uikit.min.js"></script>
 
 <script type="text/javascript">
- var formmapel = $("#formmapel").serialize();
- var validator = $("#formmapel").bootstrapValidator({
+ var formsesi = $("#formsesi").serialize();
+ var validator = $("#formsesi").bootstrapValidator({
   framework: 'bootstrap',
   feedbackIcons: {
     valid: "glyphicon glyphicon-ok",
@@ -140,31 +144,17 @@ $rowks  = mysql_fetch_array($edit);
   }, 
   excluded: [':disabled'],
   fields : {
-    kd_mapel : {
-     validators: {
-      notEmpty: {
-       message: 'Harus Pilih Mata Pelajaran'
-     },
-
-   }
- }, 
-nm_mapel: {
-  message: 'Nama Mata Pelajaran Tidak Benar',
+jam: {
+  message: 'Format Jam Sesi Pelajaran Tidak Benar',
   validators: {
     notEmpty: {
-      message: 'Nama Mata Pelajaran Harus Diisi'
+      message: 'Jam Sesi Pelajaran Harus Diisi'
     },
     stringLength: {
-      min: 1,
-      max: 30,
-      message: 'Nama Mata Pelajaran Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+      min: 11,
+      max: 11,
+      message: 'Format sesuai contoh'
     },
-    regexp: {
-      regexp: /^[a-zA-Z0-9_ \. ]+$/,
-      message: 'Karakter Boleh Digunakan (Angka, Huruf, Titik, Underscore)'
-    },
-  
-
   }
 }
 

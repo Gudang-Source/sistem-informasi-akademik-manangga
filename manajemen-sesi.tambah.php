@@ -139,7 +139,8 @@ if (isset ($_POST["sesi_simpan"])) {
 </div>
 </div>
 </div>
-
+</div>
+</div>
 <script src="assets/validator/js/bootstrapValidator.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/vendor/formvalidation/css/formValidation.min.css">
 <link rel="stylesheet" href="/asset/css/demo.css">
@@ -147,8 +148,8 @@ if (isset ($_POST["sesi_simpan"])) {
 <script src="/vendor/formvalidation/js/framework/uikit.min.js"></script>
 
 <script type="text/javascript">
- var formmapel = $("#formmapel").serialize();
- var validator = $("#formmapel").bootstrapValidator({
+ var formsesi = $("#formsesi").serialize();
+ var validator = $("#formsesi").bootstrapValidator({
   framework: 'bootstrap',
   feedbackIcons: {
     valid: "glyphicon glyphicon-ok",
@@ -157,39 +158,17 @@ if (isset ($_POST["sesi_simpan"])) {
   }, 
   excluded: [':disabled'],
   fields : {
-    kd_mapel : {
-     validators: {
-      notEmpty: {
-       message: 'Harus Pilih Mata Pelajaran'
-     },
-     remote: {
-      type: 'POST',
-      url: 'remote/remote_mapel.php',
-      message: 'Nama Mata Pelajaran Telah Tersedia'
-    },
-   }
- }, 
-nm_mapel: {
-  message: 'Nama Mata Pelajaran Tidak Benar',
+jam: {
+  message: 'Format Jam Sesi Pelajaran Tidak Benar',
   validators: {
     notEmpty: {
-      message: 'Nama Mata Pelajaran Harus Diisi'
+      message: 'Jam Sesi Pelajaran Harus Diisi'
     },
     stringLength: {
-      min: 1,
-      max: 30,
-      message: 'Nama Mata Pelajaran Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
+      min: 11,
+      max: 11,
+      message: 'Format sesuai contoh'
     },
-    regexp: {
-      regexp: /^[a-zA-Z0-9_ \. ]+$/,
-      message: 'Karakter Boleh Digunakan (Angka, Huruf, Titik, Underscore)'
-    },
-    remote: {
-      type: 'POST',
-      url: 'remote/remote_namamapel.php',
-      message: 'Nama Mata Pelajaran Telah Tersedia'
-    },
-
   }
 }
 
