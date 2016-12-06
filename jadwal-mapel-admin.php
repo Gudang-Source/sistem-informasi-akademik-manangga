@@ -153,7 +153,7 @@ if (trim($kkm)=="") {
 											</div>
 											<form role="form" id="formmapel" action="jadwal.action?act=tambah" enctype="multipart/form-data" method="POST" >
 												<div class="form-group">
-													<label>Nama Guru</label>
+													<label>Nama Guru<span class="required">*</label>
 													<script type="text/javascript">
 														function nglebokkenilaiidguru(){
 															$('#id_gurus').val($('#id_guru').val('#id_guru'));
@@ -167,7 +167,7 @@ if (trim($kkm)=="") {
 												</div>
 
 												<div class="form-group">
-													<label>Mata Pelajaran</label>
+													<label>Mata Pelajaran<span class="required">*</label>
 													<select name="kd_mapel"  id="kd_mapel" value="" onchange="jikukkelas()" class="form-control">
 														<option value="">--- Pilih Mapel --</option>
 													</select>
