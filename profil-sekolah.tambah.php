@@ -43,6 +43,24 @@ if (isset ($_POST["profil_simpan"])) {
     $id_kel                 = $_POST['id_kel'];
     $id_kel                 = str_replace("'","&acute;",$id_kel);
 
+  function compress_image($source_url, $destination_url, $quality) 
+  { 
+    $info = getimagesize($source_url); 
+    if ($info['mime'] == 'image/jpeg') 
+      $image = imagecreatefromjpeg($source_url); 
+    elseif ($info['mime'] == 'image/gif') 
+      $image = imagecreatefromgif($source_url); 
+    elseif ($info['mime'] == 'image/png') 
+      $image = imagecreatefrompng($source_url); 
+    imagejpeg($image, $destination_url, $quality); 
+    return $destination_url; 
+  } 
+
+  $nama_foto = $_FILES["file"]["name"];
+      $file_sik_dipilih = substr($nama_foto, 0, strripos($nama_foto, '.')); // strip extention
+      $bagian_extensine = substr($nama_foto, strripos($nama_foto, '.')); // strip name
+      $ukurane = $_FILES["file"]["size"];
+
     // validation form kosong
    $pesanError= array();
   if (trim($npsn)=="") {
@@ -75,12 +93,8 @@ if (isset ($_POST["profil_simpan"])) {
     if (trim($alamat_sekolah)=="") {
        $pesanError[]="Data <b>Alamat Sekolah</b> Masih Kosong.";
      }
-
-    // validasi kode kelas pada database
-      $cekSql ="SELECT * FROM profil_sekolah WHERE id_sekolah='$id_sekolah'";
-      $cekQry = mysql_query($cekSql) or die("Error Query:".mysql_error());
-      if (mysql_num_rows($cekQry)>=1) {
-        $pesanError[]= "Maaf, ID Sekolah <b>$id_sekolah</b> Sudah Ada, ganti dengan nama lain";
+      if (empty($file_sik_dipilih)){
+        $pesanError[] = "Anda Belum Memilih Foto !";    
       }
 
     // jika ada error dari validasi form
@@ -97,6 +111,17 @@ if (isset ($_POST["profil_simpan"])) {
         }
         else{
 
+          if(($_FILES["file"]["type"] == "image/gif") || ($_FILES["file"]["type"] == "image/jpeg") || ($_FILES["file"]["type"] == "image/png") || ($_FILES["file"]["type"] == "image/pjpeg")){
+            $lokasi = 'gallery/news/';
+
+             //$jeneng = $id_pegawai.'.jpg';
+
+            $file = md5(rand(1000,1000000000))."-".$nama_foto;
+            $newfilename = $file . $bagian_extensine;
+            $jeneng=str_replace(' ','-',$file);
+            $url = $lokasi . $jeneng;
+            $filename = compress_image($_FILES["file"]["tmp_name"], $url, 80); 
+
           $query = mysql_query("INSERT INTO profil_sekolah 
           SET npsn='$npsn', 
           status_sekolah='$status_sekolah',
@@ -111,6 +136,7 @@ if (isset ($_POST["profil_simpan"])) {
           sk_izin='$sk_izin',
           tanggal_izin='$tanggal_izin',
           lokasi='$lokasi',
+          foto='$jeneng',
           id_kel='$id_kel'
           ") or die(mysql_error());
 
@@ -118,10 +144,10 @@ if (isset ($_POST["profil_simpan"])) {
           if ($query){
             header('location: ./profil-sekolah');
           }
-
+          else { $error = "Uploaded image should be jpg or gif or png"; } 
         }
 
-
+}
     // simpan pada form, dan jika form belum terisi
       $datanpsn             = isset($_POST['npsn']) ? $_POST['npsn'] : '';
       $datastatussekolah    = isset($_POST['status_sekolah']) ? $_POST['status_sekolah'] : '';
@@ -260,6 +286,22 @@ if (isset ($_POST["profil_simpan"])) {
             <div class="uk-width-medium-1-1">
              <form id="formprofil" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
         
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="foto">Image <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <div class="col-lg-8">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                              <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="./assets/fileupload/images/nopict.jpg" alt="" /></div>
+                              <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                              <div>
+                                <span class="btn btn-file btn-primary btn-xs"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" accept="image/*" name="file" id="file" placeholder="file" /></span>
+                                <a href="#" class="btn btn-danger btn-xs fileupload-exists" data-dismiss="fileupload">Remove</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
         <div class="item form-group">
            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="npsn">Isi Data NPSN (Nomor Pokok Sekolah Nasional)<span class="required">*</span>
            </label>
@@ -288,9 +330,9 @@ if (isset ($_POST["profil_simpan"])) {
            <div class="col-md-6 col-sm-6 col-xs-12">
             <select name="bentuk" id="bentuk" value="<?php echo $databentuk; ?>" class="form-control col-md-7 col-xs-12">
               <option value="">--- Bentuk Sekolah --</option>
-              <option value="Negeri">Sekolah Dasar (SD) / Sederajat</option>
-              <option value="Negeri">Sekolah Menengah Pertama (SMP) / Sederajat</option>
-              <option value="Negeri">Sekolah Menengah Atas (SMA) / Sederajat</option>
+              <option value="SD">Sekolah Dasar (SD) / Sederajat</option>
+              <option value="SMP">Sekolah Menengah Pertama (SMP) / Sederajat</option>
+              <option value="SMA">Sekolah Menengah Atas (SMA) / Sederajat</option>
             </select>
           </div>
         </div>

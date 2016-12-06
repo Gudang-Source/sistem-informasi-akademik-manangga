@@ -384,7 +384,7 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
              </label>
              <div class="col-md-6 col-sm-6 col-xs-12">
                <select  type="text" class="form-control chzn-select col-md-7 col-xs-12" id="jns_kelamin" name="jns_kelamin" value="" required>
-                <option value="">-Pilih Jenis Kelaimn-</option> 
+                <option value="">-Pilih Jenis Kelamin-</option> 
        <?php
         if ($rowks['jns_kelamin']=="Laki-laki") {
         ?>
@@ -429,7 +429,7 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
    </tr>
    <tr>
      <div class="item form-group">
-      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="jns_kelamin">Status Guru<span class="required">*</span>
+      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status_guru">Status Guru<span class="required">*</span>
       </label>
       <div class="col-md-6 col-sm-6 col-xs-12">
         <select  name="status_guru" id="status_guru" value="" class="form-control col-md-7 col-xs-12">
