@@ -631,8 +631,9 @@ if (isset($_POST['profil_simpan'])) {
                <label class="control-label col-md-3 col-sm-3 col-xs-12">Lokasi Sekolah<span class="required">*</span>
                </label>
                <div>
-               <text value="<?php echo $rowks['content'];?>">
-              </div>
+
+            <?php echo $rowks[content];?>
+               </div>
             </div>
           </tr>
 

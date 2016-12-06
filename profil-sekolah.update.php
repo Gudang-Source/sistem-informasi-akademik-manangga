@@ -107,7 +107,7 @@ if (isset($_POST['profil_simpan'])) {
           sk_izin='$sk_izin',
           tanggal_izin='$tanggal_izin',
           content='$content',
-          foto='$jeneng',
+          
           id_kel='$id_kel'
           ") or die(mysql_error());
 
@@ -627,7 +627,9 @@ if (isset($_POST['profil_simpan'])) {
 
         <div class="form-group">
           <label for="content">Lokasi Sekolah<span class="required">*</span></label>
-          <textarea class="form-control" name="content" id="content" rows="3" value="<?php echo "$rowks[content]"; ?>"><?php echo "$rowks[content]";?></textarea>
+          <textarea class="form-control" name="content" id="content" rows="3" value="<?php echo $rowks[content]; ?>">
+            <?php echo $rowks[content];?>
+          </textarea>
         </div>  
  
 <tr>
