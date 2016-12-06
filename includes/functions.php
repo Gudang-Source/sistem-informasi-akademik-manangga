@@ -422,14 +422,18 @@ function admin(){
       <?php generateNavElement(array(10), 'siswa', './siswa', 'Data Siswa') ?>
        <?php generateNavElement(array(1), 'guru.siswa', './guru.siswa', 'Data Siswa') ?>
 
+<?php if(isset($_SESSION['administrator'])) { ?>
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-child"></i> Kelas Siswa</li>
       <?php generateNavElement(array(10,1), 'kelas.siswa', './kelas.siswa', 'Data Kelas Siswa') ?>
       <?php generateNavElement(array(10,1), 'kenaikan.kelas', './kenaikan.kelas', 'Data Kenaikan Kelas') ?>
+
+<?php }?>
+
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-user"></i> Pegawai</li>
-      <?php generateNavElement(array(10,1), 'kepala-sekolah', './kepala-sekolah', 'Data Kepala Sekolah') ?>
-      <?php generateNavElement(array(2,1, 10, 0), 'guru', './guru', 'Data Guru') ?>
+      <?php generateNavElement(array(10,1,0,24), 'kepala-sekolah', './kepala-sekolah', 'Data Kepala Sekolah') ?>
+      <?php generateNavElement(array(10,1,0,24), 'guru', './guru', 'Data Guru') ?>
 
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-home"></i> Kelas</li>
