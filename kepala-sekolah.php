@@ -2,7 +2,7 @@
 <?php
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(10,1));
+checkUserRole(array(10,1,0,24));
 
 // TEMPLATE CONTROL
 $ui_register_page     = 'kepala-sekolah';
@@ -265,7 +265,7 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
           </div>
 
           <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Manajemen Kepala Sekolah <span class="uk-text-large">{ Tampil Profil Kepala Sekolah  }</span></h1>
+          <h1 class="uk-article-title">Data Kepala Sekolah <span class="uk-text-large">{ Tampil Profil Kepala Sekolah  }</span></h1>
 
                     <?php if (isset($_SESSION['administrator'])) { ?>
           <!--<a href="./kepala-sekolah.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Kepala Sekolah"><i class="uk-icon-plus"></i> Data Kepala Sekolah</a>-->
@@ -287,7 +287,7 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
                     <p style="text-align:center" ;="" font-weight:bold;=""></p>
 
                   </div></div></div>
-                  <div class="uk-width-7-10">  <div class="uk-panel uk-panel-box"> <table class="uk-table uk-table-hover  uk-table-condensed"><tr><td></td><td></td><td></td><td></td><td width="70"><li><a href="kepala-sekolah.update" ><i  class="uk-icon-pencil"></i> Edit</a></li></td> </tr></table>                   
+                  <div class="uk-width-7-10">  <div class="uk-panel uk-panel-box"> <table class="uk-table uk-table-hover  uk-table-condensed"><tr><td></td><td></td><td></td><td></td><td width="70"><li><?php if (isset($_SESSION['administrator']) || isset($_SESSION['kepsek']) ) { ?><a href="kepala-sekolah.update" ><i  class="uk-icon-pencil"></i> Edit</a><?php } ?></li></td> </tr></table>                   
                     <table class="uk-table uk-table-hover  uk-table-condensed">
                       <tbody>
                         <tr>
