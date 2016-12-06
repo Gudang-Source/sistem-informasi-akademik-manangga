@@ -23,7 +23,16 @@ loadAssetsHead('Master Data Mata Pelajaran');
     $pesanError[]="Data <b>KKM</b> Masih Kosong.";
   }
 ?>
+  <script type="text/javascript">
+  function convertAngka(objek) {
+    
+    a = objek.value;
+    b = a.replace(/[^\d]/g,"");
+    
+    objek.value = b;
 
+  }            
+</script>
 <link rel="stylesheet" href="assets/tablesorter/style.css" />
 <body>
 
@@ -104,7 +113,7 @@ loadAssetsHead('Master Data Mata Pelajaran');
 
 													<div class="form-group">
 														<label>KKM Mata Pelajaran</label>
-														<input class="form-control" name="kkm"  id="kkm" value="" required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="kkm"  id="kkm" value="" required  />
     														<div class="reg-info">Contoh: 65</div>
 													</div>
 
