@@ -122,16 +122,20 @@ if( isset($_POST['login']) ){
 			}
 //>>>>>>>>>>>>>>>>>GURU PIKET<<<<<<<<<<<<<<<<<
 			elseif(strlen($username)==18){
-				date_default_timezone_set("asia/jakarta");
-				$a_hari = array(1=>"Senin","Selasa","Rabu","Kamis","Jumat", "Sabtu");
-				$hari = $a_hari[date("N")];	
-				$cek = mysql_query("SELECT * FROM user, guru WHERE user.id_user=guru.id_user AND nip='$username' AND password='$password' AND hari = '$hari'");
+				// date_default_timezone_set("asia/jakarta");
+				// $a_hari = array(1=>"Senin","Selasa","Rabu","Kamis","Jumat", "Sabtu");
+				// $hari = $a_hari[date("N")];	
+				$cek = mysql_query("SELECT * FROM user, guru WHERE user.id_user=guru.id_user AND nip='$username' AND password='$password' ");
 				if(mysql_num_rows($cek)==1){//jika berhasil akan bernilai 1
 					$c = mysql_fetch_array($cek);
 					$_SESSION['id_user'] = $c['id_user'];
+					$_SESSION['nip'] = $c['nip'];
 					$_SESSION['usernameguru'] = $c['nip'];
+					$_SESSION['id_guru'] = $c['id_guru'];
 					$_SESSION['tingkat_user'] = $c['tingkat_user'];
 					$_SESSION['hari'] = $c['hari'];
+					$_SESSION['guru'] = "guru";
+
 
 					$cektahun = mysql_query("SELECT * FROM tahun_ajaran WHERE status='1'");
 					mysql_num_rows($cektahun);
