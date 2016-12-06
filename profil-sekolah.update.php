@@ -660,8 +660,8 @@ if (isset($_POST['profil_simpan'])) {
 
 <script type="text/javascript">
 
-  var formguru = $("#formguru").serialize();
-  var validator = $("#formguru").bootstrapValidator({
+  var formprofil = $("#formprofil").serialize();
+  var validator = $("#formprofil").bootstrapValidator({
     framework: 'bootstrap',
     feedbackIcons: {
       valid: "glyphicon glyphicon-ok",
@@ -670,102 +670,62 @@ if (isset($_POST['profil_simpan'])) {
     }, 
     excluded: [':disabled'],
     fields : {
-     
-      nip : {
+      npsn : {
         validators: {
-          notEmpty: {
-            message: 'Harus Isi NIP'
-          },
           stringLength: {
             min: 1,
-            max: 18,
-            message: 'NIP minimal 18 angka.'
-          },
-          
-        }
-      },
-      nm_guru: {
-        message: 'Nama Tidak Benar',
-        validators: {
-          notEmpty: {
-            message: 'Nama Harus Diisi'
-          },
-          stringLength: {
-            min: 1,
-            max: 50,
-            message: 'Nama Harus Lebih dari 1 Huruf dan Maksimal 50 Huruf'
-          },
-          regexp: {
-            regexp: /^[a-zA-Z ]+$/,
-            message: 'Karakter Yang Boleh Digunakan hanya huruf'
+            max: 40,
+            message: 'NPSN minimal 1 angka.'
           },
         }
       },
-      password: {
-        message: 'Data Password Tidak Benar',
+      status_sekolah : {
         validators: {
           notEmpty: {
-            message: 'Password Harus Diisi'
-          },
-          stringLength: {
-            min: 1,
-            max: 30,
-            message: 'Nama kelurahan Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
-          },
-          different: {
-            field: 'email',
-            message:'Password Harus Beda dengan Email'
-          },          
-        }
-      },
-      password1: {
-        message: 'Data Password Tidak Benar',
-        validators: {
-          identical:{
-            field:'password',
-            message: 'Konfirmasi Password Harus Sama Dengan Password'
-          },
-          notEmpty: {
-            message: 'Password Harus Diisi'
-          },
-          stringLength: {
-            min: 1,
-            max: 30,
-            message: 'Nama kelurahan Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
-          },
-          different: {
-            field: 'email',
-            message:'Password Harus Beda dengan Email'
-          },
-        }
-      },
-
-
-      tmpt_lahir : {
-        validators: {
-          notEmpty: {
-            message: 'Harus diisi tempat lahir'
+            message: 'Harus Pilih Status Sekolah'
           }
         }
-      },    
-      jns_kelamin : {
+      },   
+      bentuk : {
         validators: {
           notEmpty: {
-            message: 'Harus Pilih Jenis Kelamin'
+            message: 'Harus Pilih Bentuk Sekolah'
           }
         }
-      }, 
-      id_agama : {
+      },   
+      alamat_sekolah : {
+        message: 'Alamat Tidak Benar',
         validators: {
           notEmpty: {
-            message: 'Harus Pilih Agama'
-          }
+            message: 'Alamat Harus Diisi'
+          },
+          stringLength: {
+            min: 10,
+            max: 100,
+            message: 'Alamat Harus Lebih dari 10 Huruf dan Maksimal 100 Huruf'
+          },
         }
-      },    
-      status_guru : {
+      },
+     kodepos: {
+        message: 'Kodepos Tidak Benar',
         validators: {
           notEmpty: {
-            message: 'Harus Pilih Status Guru'
+            message: 'Kodepos Harus Diisi'
+          },
+        }
+      },
+      email: {
+        validators:{
+          emailAddress:{
+            message: 'Email Tidak Valid'
+          },
+        }
+      },
+ 
+      status_pemilik : {
+        validators: {
+          notEmpty: {
+            message: 'Isi Status Pemilik Sekolah'
           }
         }
       },       
@@ -799,50 +759,17 @@ if (isset($_POST['profil_simpan'])) {
           }
         }
       }, 
-      almt_sekarang : {
-        message: 'Alamat Tidak Benar',
-        validators: {
-          notEmpty: {
-            message: 'Alamat Harus Diisi'
-          },
-          stringLength: {
-            min: 10,
-            max: 100,
-            message: 'Alamat Harus Lebih dari 10 Huruf dan Maksimal 100 Huruf'
-          },
 
-
-        }
-      }, 
       no_hp: {
         message: 'No HP Tidak Benar',
         validators: {
-          notEmpty: {
-            message: 'No HP Harus Diisi'
-          },
-          stringLength: {
-            min: 10,
-            max: 30,
-            message: 'No Hp Harus Lebih dari 1 Huruf dan Maksimal 30 Huruf'
-          },
           regexp: {
             regexp: /^[0-9+]+$/,
             message: 'Format Tidak Benar'
           },
-
         }
       },
-      email: {
-        validators:{
-          notEmpty: {
-            message: 'Email Harus Diisi'
-          },
-          emailAddress:{
-            message: 'Email Tidal valid'
-          },
 
-        }
-      },
 
 
 
