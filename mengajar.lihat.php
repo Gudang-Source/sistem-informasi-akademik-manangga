@@ -73,7 +73,7 @@ loadAssetsHead('Lihat Data Mengajar');
                                 while ($datakelas=mysql_fetch_array($cekkelas)) {
                                 
 
-                               echo "<option value=\"$datakelas[id_kelas]\" >$datakelas[id_kelas]</option>";
+                               echo "<option value=\"$datakelas[id_kelas]\" >$datakelas[nm_kelas]</option>";
                                 }
                                 ?>
                               </select>
