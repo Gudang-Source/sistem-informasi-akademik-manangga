@@ -335,8 +335,6 @@ if (isset($_POST['profil_simpan'])) {
                           <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="gallery/news/<?=$rowks['foto'];?>"></div>
                           <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                           <div>
-                            <span class="btn btn-file btn-primary btn-xs"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" accept="image/*" name="file" id="file" placeholder="file" /></span>
-                            <a href="#" class="btn btn-danger btn-xs fileupload-exists" data-dismiss="fileupload">Remove</a>
                           </div>
                         </div>
                       </div>
@@ -628,10 +626,16 @@ if (isset($_POST['profil_simpan'])) {
     </tr>
         <hr class="uk-article-divider">
 
-        <div class="form-group">
-          <label>Lokasi Sekolah<span class="required">*</span></label>
-          <text value="<?php echo "$rowks[content]";?>  <?php echo "$rowks[content]";?></text>
-        </div>  
+            <tr>
+              <div class="item form-group">
+               <label class="control-label col-md-3 col-sm-3 col-xs-12">Lokasi Sekolah<span class="required">*</span>
+               </label>
+               <div>
+               <text value="<?php echo $rowks['content'];?>">
+              </div>
+            </div>
+          </tr>
+
  
 
 </tbody>

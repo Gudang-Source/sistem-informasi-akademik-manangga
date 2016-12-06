@@ -93,9 +93,6 @@ if (isset($_POST['profil_simpan'])) {
        $pesanError[]="Data <b>Alamat Sekolah</b> Masih Kosong.";
      }
       if (empty($file_sik_dipilih)){
-        $pesanError[] = "Anda Belum Memilih Foto !";    
-      }
-      if (empty($file_sik_dipilih)){
         $query = mysql_query("UPDATE profil_sekolah 
           SET npsn='$npsn', 
           status_sekolah='$status_sekolah',
