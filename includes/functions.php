@@ -417,6 +417,12 @@ function admin(){
       <?php }?>
 
       <hr class="uk-article-divider">
+      <li class="uk-nav-header"><i class="uk-icon-mortar-board"></i> Data Sekolah</li>
+       <!--<?php generateNavElement(array(10,2,1,0), 'siswa-profilsekolah', './siswa-profilsekolah', 'Profil Sekolah') ?>-->
+      <?php generateNavElement(array(10,1,0,24), 'profil-sekolah', './profil-sekolah', 'Profil Sekolah') ?>
+      <?php generateNavElement(array(10,1,0,24), 'ekstrakurikuler', './ekstrakurikuler', 'Ekstrakurikuler') ?> 
+
+      <hr class="uk-article-divider">
       
       <li class="uk-nav-header"><i class="uk-icon-child"></i> Siswa</li> 
       <?php generateNavElement(array(10), 'siswa', './siswa', 'Data Siswa') ?>
@@ -444,21 +450,19 @@ function admin(){
       <?php generateNavElement(array(10), 'mapel', './mapel', 'Data Mapel') ?>
       <?php generateNavElement(array(1), 'guru.mapel', './guru.mapel', 'Data Mapel') ?>
       <!--<?php generateNavElement(array(10,1,0), 'kkm', './kkm', 'Data KKM') ?>-->
-
+<?php if(isset($_SESSION['administrator'])) { ?>
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-circle-o-notch"></i> Mengajar</li>
       <?php generateNavElement(array(10,1), 'mengajar', './mengajar', 'Data Mengajar') ?>
-
+<?php }?>
       <hr class="uk-article-divider">  
       <li class="uk-nav-header"><i class="uk-icon-calendar"></i> Jadwal Mapel</li>  
       <?php generateNavElement(array(10), 'jadwal-mapel-admin', './jadwal-mapel-admin', 'Manajemen Jadwal') ?>
       <?php generateNavElement(array(10), 'manajemen-sesi', './manajemen-sesi', 'Manajemen Sesi') ?>
-      <?php generateNavElement(array(10, 0), 'jadwal-mapel-siswa', './jadwal-mapel-siswa', 'Jadwal Pelajaran') ?>
-      <hr class="uk-article-divider">
-      <li class="uk-nav-header"><i class="uk-icon-mortar-board"></i> Data Sekolah</li>
-       <!--<?php generateNavElement(array(10,2,1,0), 'siswa-profilsekolah', './siswa-profilsekolah', 'Profil Sekolah') ?>-->
-      <?php generateNavElement(array(10,2,1,0), 'profil-sekolah', './profil-sekolah', 'Profil Sekolah') ?>
-      <?php generateNavElement(array(10,2,1,0), 'ekstrakurikuler', './ekstrakurikuler', 'Ekstrakurikuler') ?> 
+      <?php generateNavElement(array(1), 'guru.jadwal-mapel', './guru.jadwal-mapel', 'Jadwal Pelajaran') ?>
+      <?php generateNavElement(array(0), 'jadwal-mapel-siswa', './jadwal-mapel-siswa', 'Jadwal Pelajaran') ?>
+      
+
 
 
       <!-- <hr class="uk-article-divider">-->
@@ -468,7 +472,7 @@ function admin(){
 
       <?php if (isset($_SESSION['usernameguru'])) { ?>
       <hr class="uk-article-divider">  
-      <li class="uk-nav-header">Data Nilai</li> <?php } ?>
+      <li class="uk-nav-header"><i class="uk-icon-file-text"></i>  Data Nilai</li> <?php } ?>
       <?php generateNavElement(array(1,0), 'nilai', './nilai', 'Nilai') ?>
       <?php generateNavElement(array(1,0), 'nilai', './guru_nilai', 'Nilai') ?>
       <?php generateNavElement(array(1,0), 'nilai', './siswa_nilai', 'Nilai Siswa') ?>
