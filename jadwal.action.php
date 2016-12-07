@@ -28,7 +28,7 @@ if( $act=='hapus'){
 	if ($hapusjadwal) { ?>
 	
 
-	<script language="JavaScript">alert('Data Jadwal Mata Pelajaran Berhasil Di dihapus')</script>
+	<script language="JavaScript">alert('Data Jadwal Mata Pelajaran Berhasil Dihapus')</script>
 	<script>
 		window.location=history.go(-1);
 	</script>		
@@ -37,7 +37,7 @@ if( $act=='hapus'){
 } 
 else {
 	?>
-	<script language="JavaScript">alert('Data Jadwal Mata Pelajaran GAGAL Di dihapus')</script>
+	<script language="JavaScript">alert('Data Jadwal Mata Pelajaran GAGAL Dihapus')</script>
 	<script>
 		window.location=history.go(-1);
 	</script>		
@@ -71,7 +71,7 @@ elseif ( $act=='update'){
 	if ($updatejadwalmapel) { ?>
 	
 
-	<script language="JavaScript">alert('Data Jadwal Mata Pelajaran Berhasil Di diubah')</script>
+	<script language="JavaScript">alert('Data Jadwal Mata Pelajaran Berhasil Diubah')</script>
 	<script>
 		window.location=history.go(-1);
 	</script>		
@@ -80,7 +80,7 @@ elseif ( $act=='update'){
 } 
 else {
 	?>
-	<script language="JavaScript">alert('Data Jadwal Mata Pelajaran GAGAL Di diubah')</script>
+	<script language="JavaScript">alert('Data Jadwal Mata Pelajaran GAGAL Diubah')</script>
 	<script>
 		window.location=history.go(-1);
 	</script>		
@@ -115,7 +115,7 @@ elseif ( $act=='tambah'){
 	if ($tambahjadwal) { ?>
 	
 
-	<script language="JavaScript">alert('Data Jadwal Mata Pelajaran Berhasil Di ditambah')</script>
+	<script language="JavaScript">alert('Data Jadwal Mata Pelajaran Berhasil Ditambah')</script>
 	<script>
 		window.location=history.go(-1);
 	</script>		
@@ -124,7 +124,7 @@ elseif ( $act=='tambah'){
 } 
 else {
 	?>
-	<script language="JavaScript">alert('Data Jadwal Mata Pelajaran GAGAL Di ditambah')</script>
+	<script language="JavaScript">alert('Data Jadwal Mata Pelajaran GAGAL Ditambah')</script>
 	<script>
 		window.location=history.go(-1);
 	</script>		
