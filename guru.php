@@ -38,13 +38,14 @@ loadAssetsHead('Data Guru');
 
 		  <hr class="uk-article-divider">
           <h1 class="uk-article-title">Data Guru <span class="uk-text-large">
-          <?php  if (isset($_SESSION['administrator'])) {?>
 		  { Master Data }</span></h1>
-          <?php  }?>
+		  <hr class="uk-article-divider">
           <br>
           <br>
+<?php  if (isset($_SESSION['id_guru'])) {?>
            <?php
-            $sqll = "SELECT * FROM user, guru WHERE guru.id_user=user.id_user AND nip={$_SESSION['usernameguru']}";
+
+            $sqll = "SELECT * FROM user, guru WHERE guru.id_user=user.id_user AND id_guru={$_SESSION['id_guru']}";
             $resultl = mysql_query($sqll);
             $rowsl=mysql_fetch_array($resultl); 
             ?> 
@@ -70,10 +71,11 @@ loadAssetsHead('Data Guru');
                 </table>
               </div>
             </div>
+<?php  }?>
           <?php if (isset($_SESSION['administrator'])) { ?>
           <a href="./guru.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Guru"><i class="uk-icon-plus"></i> Data Guru</a>
 		  <?php } ?>
-		   <br>
+		   <br><br>
 				<div id="tablewrapper">
 					<div id="tableheader">
 						<div class="search">

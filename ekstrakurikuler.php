@@ -1,7 +1,7 @@
 <?php
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(0,1,2,10));
+checkUserRole(array(0,1,2,10,24));
 
 // TEMPLATE CONTROL
 $ui_register_page = 'ekstrakurikuler';
@@ -38,10 +38,11 @@ loadAssetsHead('Master Data Ekstrakurikuler');
       
       <hr class="uk-article-divider">
           <h1 class="uk-article-title">Master Data Ekstrakurikuler <span class="uk-text-large">
-          <?php  if (isset($_SESSION['administrator'])) {?>
+
       { Master Data }</span></h1>
-          <?php  }?>
+
           <br><br>
+<?php  if (isset($_SESSION['id_guru'])) {?>
            <?php
             $sqll = "SELECT * FROM user, guru WHERE guru.id_user=user.id_user AND nip={$_SESSION['usernameguru']}";
             $resultl = mysql_query($sqll);
@@ -70,6 +71,7 @@ loadAssetsHead('Master Data Ekstrakurikuler');
                 </table>
               </div>
             </div>
+<?php  }?>
           <?php if (isset($_SESSION['administrator'])) { ?>
           <a href="./ekstrakurikuler.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Ekstrakurikuler"><i class="uk-icon-plus"></i> Ekstrakurikuler</a>
       <?php } ?>

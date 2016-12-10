@@ -1,7 +1,7 @@
 <?php
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(0,1,2,10));
+checkUserRole(array(0,1,2,10,24));
 
 // TEMPLATE CONTROL
 $ui_register_page = 'mapel';
@@ -61,7 +61,37 @@ loadAssetsHead('Master Data Mata Pelajaran');
 						<?php  if (isset($_SESSION['administrator'])) {?>
 						{ Master Data }</span></h1>
 						<?php  }?>
-						<br>
+						<br><br>
+<?php  if (isset($_SESSION['id_guru'])) {?>
+           <?php
+
+            $sqll = "SELECT * FROM user, guru WHERE guru.id_user=user.id_user AND id_guru={$_SESSION['id_guru']}";
+            $resultl = mysql_query($sqll);
+            $rowsl=mysql_fetch_array($resultl); 
+            ?> 
+            <div class="uk-panel uk-panel-box">
+              <div class="uk-overflow-container">
+                <table class="uk-table uk-table-condensed uk-text-nowrap">
+                  <thead>
+                    <tr>
+                      <th class="uk-width-1-4">Data </th>
+                      <th class="uk-width-3-4"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>NIP.</td>
+                      <td><?php echo $rowsl['nip'];?></td>
+                    </tr>
+                    <tr>
+                      <td>Nama Guru</td>
+                      <td><?php echo $rowsl['nm_guru'];?></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+<?php  }?>
 						<?php if (isset($_SESSION['administrator'])) { ?>
            	 <button  data-uk-modal="{target:'#modaltambah'}" class="uk-button uk-button-success" type="button" title="Tambah Data Mata Pelajaran"><i class="uk-icon-plus"></i> Mata Pelajaran</button>
             <?php } ?>

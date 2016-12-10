@@ -2,7 +2,7 @@
 // user login
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(10,1));
+checkUserRole(array(10,1,24));
 
 // TEMPLATE CONTROL
 $ui_register_page = 'siswa';
@@ -61,14 +61,14 @@ loadAssetsHead('Master Data Siswa');
             <thead>
               <tr>
                
-                <th><h3 class="uk-text-center" >NIS</h3></th>
-                <th><h3 class="uk-text-center" >Nama Siswa</h3></th>
+                <th><h3>NIS</h3></th>
+                <th><h3>Nama Siswa</h3></th>
                 
-                <th><h3 class="uk-text-center" >Jenis Kelamin</h3></th>
+                <th><h3>Jenis Kelamin</h3></th>
                 
-                <?php if (isset($_SESSION['administrator'])) { ?>
-                <th><h3 class="uk-text-center">Aksi</h3></th>
-                <?php }?>
+
+                <th><h3>Aksi</h3></th>
+                
               </tr>
             </thead>
               <tbody>
@@ -86,12 +86,14 @@ loadAssetsHead('Master Data Siswa');
                 <td ><?php echo $row[nis]?></td>
                 <td ><?php echo $row[nm_siswa]?></td>
                 <td ><?php echo $row[jns_kelamin]?></td>
-                <?php if (isset($_SESSION['administrator'])) { ?>
+        
                 <td width="15%"><div class="uk-text-center">
                   <a href="siswa.lihat?id=<?php echo $row[id_siswa]?>" title="Lihat" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-search"></i></a>
+                                  <?php if (isset($_SESSION['administrator'])) { ?>
                   <a href="siswa.update?id=<?php echo $row[id_siswa]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
+                  <?php }?>
                 </td>
-                <?php } ?>            
+                    
                 </tr>
                 <?php  } ?>
               </tbody>

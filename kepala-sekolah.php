@@ -311,6 +311,7 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
                       </div>
                     </div>
                   </tr>
+<?php if (isset($_SESSION['administrator'])) { ?>
                   <tr>
                    <div class="item form-group">
                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password<span class="required">*</span>
@@ -330,6 +331,7 @@ if (isset($_POST['kepala-sekolah_simpan'])) {
                    </div>
                  </div>
                </tr>
+<?php }?>
                <tr>
                                    <div class="item form-group">
                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date_tgl_lahir">Tanggal Lahir<span class="required">*</span>

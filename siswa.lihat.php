@@ -2,7 +2,7 @@
 <?php
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(10));
+checkUserRole(array(10,24));
 
 // TEMPLATE CONTROL
 $ui_register_page     = 'siswa';
@@ -298,7 +298,7 @@ if (isset($_POST['siswa_simpan'])) {
                   <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SD N II Manangga" title="Sistem Informasi Akademik SD N II Manangga">
                 </div>
                 <hr class="uk-article-divider">
-                <h1 class="uk-article-title">Manajemen Siswa <span class="uk-text-large">{ Edit Siswa }</span></h1>
+                <h1 class="uk-article-title">Manajemen Siswa <span class="uk-text-large">{ Lihat Profil Siswa }</span></h1>
                 <br>
                 <a href="./siswa" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Siswa"><i class="uk-icon-angle-left"></i> Kembali</a>
                 <!-- <hr class="uk-article-divider"> -->
@@ -327,7 +327,7 @@ if (isset($_POST['siswa_simpan'])) {
                               <ul id="tabs_example2" class="uk-switcher uk-width-7-10">
                                 <li>
                                   <div class="uk-panel uk-panel-box"> 
-                                  <table class="uk-table uk-table-hover  uk-table-condensed"><tr><td><code class="title">Data Pribadi Siswa</code></td><td></td><td></td><td></td><td width="70"><li><a href="siswa.update?id=<?php echo $rowks[id_siswa]?>" ><i  class="uk-icon-pencil"></i> Edit</a></li></td> </tr></table>  
+                                  <table class="uk-table uk-table-hover  uk-table-condensed"><tr><td><code class="title">Data Pribadi Siswa</code></td><td></td><td></td><td></td><td width="70"><?php if (isset($_SESSION['administrator'])) { ?><li><a href="siswa.update?id=<?php echo $rowks[id_siswa]?>" ><i  class="uk-icon-pencil"></i> Edit</a></li><?php }?></td> </tr></table>  
            
                                    <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="foto">Image <span class="required">*</span>
@@ -343,11 +343,6 @@ if (isset($_POST['siswa_simpan'])) {
                                       </div>
                                     </div>
                                   </div>                
-
-
-
-
-
 
                                   <div class="item form-group">
                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nis">NIS<span class="required">*</span>
@@ -369,7 +364,7 @@ if (isset($_POST['siswa_simpan'])) {
                                    </div>
                                  </div>
 
-
+<?php if (isset($_SESSION['administrator'])) { ?>
                                  <div class="item form-group">
                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password<span class="required">*</span>
                                    </label>
@@ -388,7 +383,7 @@ if (isset($_POST['siswa_simpan'])) {
                                    </div>
                                  </div>
 
-
+<?php }?>
 
                                  <div class="item form-group">
                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tempat_lahir">Tempat Lahir<span class="required">*</span>
