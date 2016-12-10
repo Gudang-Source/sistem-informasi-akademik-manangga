@@ -6,7 +6,7 @@ checkUserAuth();
 checkUserRole(array(0));
 
 // TEMPLATE CONTROL
-$ui_register_page = 'guru.jadwal-mapel';
+$ui_register_page = 'jadwal-mapel-siswa';
 
 // LOAD HEADER
 loadAssetsHead('Data Jadwal Mata Pelajaran');
@@ -51,10 +51,22 @@ if (trim($kkm)=="") {
 					</div>
 
 					<hr class="uk-article-divider">
+              <?php
+$sqls = "SELECT * from kelas_siswa where id_siswa= $_SESSION[id_siswa]";
+$results = mysql_query($sqls);
+$rows=mysql_fetch_array($results);
+$id_kelasab=$rows[id_kelas];
+?>
+
+
+
+<?php
+$sql = "SELECT * from siswa, kelas_siswa where kelas_siswa.id_siswa=siswa.id_siswa AND kelas_siswa.id_kelas='$id_kelasab'";
+$result = mysql_query($sql);
+$row=mysql_fetch_array($result);
+?>
 					<h1 class="uk-article-title">Data Jadwal Mata Pelajaran <span class="uk-text-large">
-						
-						{ Data Jadwal Yang Diampu }</span></h1>
-					
+						{ Kelas <b><?php echo "{$row['id_kelas']}";?></b> }</span></h1>
 						<br>
 						<br><br>
 
