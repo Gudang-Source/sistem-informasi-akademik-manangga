@@ -12,30 +12,30 @@ loadAssetsHead('Data Nilai');
 if (isset ($_POST["nilai_tampilkan"]) ){ 
 
 
-	 $id_guru       = $_POST['id_guru'];
+	$id_guru       = $_POST['id_guru'];
 	
-	 $id_kelas       = $_POST['id_kelas'];
+	$id_kelas       = $_POST['id_kelas'];
 	
 	$kd_mapel       = $_POST['kd_mapel'];
 	
 
 	$querytampil=mysql_query("SELECT * FROM nilai, siswa, kelas_siswa, kelas, mengajar 
-	where nilai.id_kelas_siswa=kelas_siswa.id_kelas_siswa
-	and kelas_siswa.id_siswa=siswa.id_siswa  
-	and mengajar.id_kelas=kelas_siswa.id_kelas  
-	and nilai.id_tahun='$_SESSION[id_tahun]'
-	and nilai.kd_mapel='$kd_mapel'
-	and kelas_siswa.id_kelas='$id_kelas'
-	and mengajar.id_guru='$id_guru'
-	order by siswa.nm_siswa asc");	
+		where nilai.id_kelas_siswa=kelas_siswa.id_kelas_siswa
+		and kelas_siswa.id_siswa=siswa.id_siswa  
+		and mengajar.id_kelas=kelas_siswa.id_kelas  
+		and nilai.id_tahun='$_SESSION[id_tahun]'
+		and nilai.kd_mapel='$kd_mapel'
+		and kelas_siswa.id_kelas='$id_kelas'
+		and mengajar.id_guru='$id_guru'
+		order by siswa.nm_siswa asc");	
 
 
 	$tampilketerangan=mysql_query("SELECT * FROM mengajar,mapel,kelas 
-									where mengajar.id_kelas=kelas.id_kelas 
-									and mengajar.kd_mapel=mapel.kd_mapel 
-									and mengajar.kd_mapel='$kd_mapel'
-									and mengajar.id_kelas='$id_kelas'
-								  ");	
+		where mengajar.id_kelas=kelas.id_kelas 
+		and mengajar.kd_mapel=mapel.kd_mapel 
+		and mengajar.kd_mapel='$kd_mapel'
+		and mengajar.id_kelas='$id_kelas'
+		");	
 	
 
 }
@@ -135,179 +135,182 @@ if (trim($kkm)=="") {
 								<?php if (isset ($_POST["nilai_tampilkan"]) ) : ?>
 									<div class="uk-form-row">
 										<?php $exe123  = mysql_query("SELECT * FROM mengajar,mapel,kelas 
-									where mengajar.id_kelas=kelas.id_kelas 
-									and mengajar.kd_mapel=mapel.kd_mapel 
-									and mengajar.kd_mapel='$kd_mapel'
-									and mengajar.id_kelas='$id_kelas'"); 
-										$keterangane=mysql_fetch_array($exe123); ?>
-										<label class="uk-form-label">Mata Pelajaran : <span class="uk-text-success"><?php echo $keterangane[nm_mapel];?></span></label>
-										<label class="uk-form-label">Kelas : <span class="uk-text-success"><?php echo $keterangane[nm_kelas];?></span></label>
-									</div>
-								</form>
-								<div id="tablewrapper">
-									<div id="tableheader">
-										<div class="search">
-											<select id="columns" onchange="sorter.search('query')"></select>
-											<input type="text" id="query" onkeyup="sorter.search('query')" />
+											where mengajar.id_kelas=kelas.id_kelas 
+											and mengajar.kd_mapel=mapel.kd_mapel 
+											and mengajar.kd_mapel='$kd_mapel'
+											and mengajar.id_kelas='$id_kelas'"); 
+											$keterangane=mysql_fetch_array($exe123); ?>
+											<label class="uk-form-label">Mata Pelajaran : <span class="uk-text-success"><?php echo $keterangane[nm_mapel];?></span></label>
+											<label class="uk-form-label">Kelas : <span class="uk-text-success"><?php echo $keterangane[nm_kelas];?></span></label>
 										</div>
-										<span class="details">
-											<div>Data <span id="startrecord"></span>-<span id="endrecord"></span> dari <span id="totalrecords"></span></div>
-											<div><a href="javascript:sorter.reset()">(atur ulang)</a></div>
-										</span>
-									</div>
-									<table id="table" class="uk-table uk-table-hover uk-table-striped uk-table-condensed" width="100%" width="100%">
-										<thead>
-											<tr>
-												<th><h4 class="uk-text-center">No</h4></th>
+									</form>
+									<div id="tablewrapper">
+										<div id="tableheader">
+											<div class="search">
+												<select id="columns" onchange="sorter.search('query')"></select>
+												<input type="text" id="query" onkeyup="sorter.search('query')" />
+											</div>
+											<span class="details">
+												<div>Data <span id="startrecord"></span>-<span id="endrecord"></span> dari <span id="totalrecords"></span></div>
+												<div><a href="javascript:sorter.reset()">(atur ulang)</a></div>
+											</span>
+										</div>
+										<table id="table" class="uk-table uk-table-hover uk-table-striped uk-table-condensed" width="100%" width="100%">
+											<thead>
+												<tr>
 
-												<th><h4 class="uk-text-center" >NIS</h4></th>
-												<th><h4 class="uk-text-center" >Nama Siswa</h4></th>
-												<th><h4 class="uk-text-center" >Jenis Kelamin</h4></th>
-												<th><h4 class="uk-text-center" >Ulangan Harian</h4></th>
-												<th><h4 class="uk-text-center" >Tugas</h4></th>
-												<th><h4 class="uk-text-center" >UTS</h4></th>
-												<th><h4 class="uk-text-center" >UAS</h4></th>
-												<th><h4 class="uk-text-center" >Nilai Akhir</h4></th>
-												<?php if (isset($_SESSION['id_guru'])) { ?>
-												<th><h4 class="uk-text-center">Aksi</h4></th>
-												<?php }?>
-											</tr>
-										</thead>
-										<tbody>
-											<?php 
-											$no=1;
-											$exes  = mysql_query("SELECT distinct * FROM ( SELECT distinct nilai.*, siswa.* FROM nilai, siswa, kelas_siswa, kelas, mengajar 
-																	where nilai.id_kelas_siswa=kelas_siswa.id_kelas_siswa
-																	and kelas_siswa.id_siswa=siswa.id_siswa  
-																	and mengajar.id_kelas=kelas_siswa.id_kelas  
-																	and nilai.id_tahun='$_SESSION[id_tahun]'
-																	and nilai.kd_mapel='$kd_mapel'
-																	and kelas_siswa.id_kelas='$id_kelas'
-																	and mengajar.id_guru='$id_guru'
-																	order by siswa.nm_siswa asc
-																	) 
-																	JSKDJS
-																	group by id_siswa order by nm_siswa asc
-																");
-											while($rows=mysql_fetch_array($exes)) { 
+													<th><h3 class="uk-text-center" >NO</h3></th>
+													<th><h3 class="uk-text-center" >NIS</h3></th>
+													<th><h3 class="uk-text-center" >Nama Siswa</h3></th>
 
-											$tugasakhir=($rows['t1']+$rows['t2']+$rows['t3']+$rows['t4']+$rows['t5']+$rows['t6']+$rows['t7'])/7;
-											$uhakhir=($rows['uh1']+$rows['uh2']+$rows['uh3']+$rows['uh4']+$rows['uh5']+$rows['uh6']+$rows['uh7'])/7;
-											?>
-
-											<tr>
-												<td><div class="uk-text-center"><?php echo $no?></div></td>
-
-													<td><div class="uk-text-center"><?php echo $rows[nis]?></div></td>
-													<td><div class="uk-text-left"><?php echo ucwords( strtolower($rows[nm_siswa]))?></div></td>
-													<td><div class="uk-text-center"><?php echo $rows[jns_kelamin]?></div></td>
-													<td><div class="uk-text-center"><?php echo $uhakhir;?></div></td>
-													<td><div class="uk-text-center"><?php echo $tugasakhir;?></div></td>
-													<td><div class="uk-text-center"><?php if($rows[uts]==''){echo "0"; }else{echo $rows[uts];}?></div></td>
-													<td><div class="uk-text-center"><?php if($rows[uas]==''){echo "0"; }else{echo $rows[uas];}?></div></td>
-													<td><div class="uk-text-center"><?php if($rows[nilaiakhir]==''){echo "0"; }else{echo $rows[nilaiakhir];}?></div></td>
+													<th><h3 class="uk-text-center" >Jenis Kelamin</h3></th>
+													<th><h3 class="uk-text-center" >Ulangan Harian</h3></th>
+													<th><h3 class="uk-text-center" >Tugas</h3></th>
+													<th><h3 class="uk-text-center" >UTS</h3></th>
+													<th><h3 class="uk-text-center" >UAS</h3></th>
+													<th><h3 class="uk-text-center" >Nilai Akhir</h3></th>
 
 													<?php if (isset($_SESSION['id_guru'])) { ?>
-													<td><div class="uk-text-center">
-														<button class="uk-button" data-uk-modal="{target:'#modal<?php echo $kd_mapel ;?>'}"><i class="uk-icon-search"></i></button>
-														<button class="uk-button" data-uk-modal="{target:'#modaledit<?php echo $kd_mapel ;?>'}"><i class="uk-icon-pencil"></i></button>
-														<a href="mapel.action?act=hapus&&kd_mapel=<?php echo $kd_mapel; ?>" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a>
+													<th><h3 class="uk-text-center">Option</h3></th>
+													<?php }?>
+												</tr>
+											</thead>
+											<tbody>
+												<?php 
+												$no=0;
+												$exes  = mysql_query("SELECT distinct * FROM ( SELECT distinct nilai.*, siswa.* FROM nilai, siswa, kelas_siswa, kelas, mengajar 
+													where nilai.id_kelas_siswa=kelas_siswa.id_kelas_siswa
+													and kelas_siswa.id_siswa=siswa.id_siswa  
+													and mengajar.id_kelas=kelas_siswa.id_kelas  
+													and nilai.id_tahun='$_SESSION[id_tahun]'
+													and nilai.kd_mapel='$kd_mapel'
+													and kelas_siswa.id_kelas='$id_kelas'
+													and mengajar.id_guru='$id_guru'
+													order by siswa.nm_siswa asc
+													) 
+												JSKDJS
+												group by id_siswa order by nm_siswa asc
+												");
+												while($rows=mysql_fetch_array($exes)) { 
 
-													</div>	
-												</td>
-												<?php } ?>						
-											</tr>
-											<?php $no++; } ?>
-										</tbody>
-									</table>
-									<!-- PAGINATION -->
-									<div id="tablefooter">
-										<div id="tablenav">
-											<div>
-												<img src="assets/tablesorter/images/first.gif" width="16" height="16" alt="First Page" onclick="sorter.move(-1,true)" />
-												<img src="assets/tablesorter/images/previous.gif" width="16" height="16" alt="First Page" onclick="sorter.move(-1)" />
-												<img src="assets/tablesorter/images/next.gif" width="16" height="16" alt="First Page" onclick="sorter.move(1)" />
-												<img src="assets/tablesorter/images/last.gif" width="16" height="16" alt="Last Page" onclick="sorter.move(1,true)" />
+													$tugasakhir=($rows['t1']+$rows['t2']+$rows['t3']+$rows['t4']+$rows['t5']+$rows['t6']+$rows['t7'])/7;
+													$uhakhir=($rows['uh1']+$rows['uh2']+$rows['uh3']+$rows['uh4']+$rows['uh5']+$rows['uh6']+$rows['uh7'])/7;
+													$no++; ?>
+
+													<tr>
+
+														<td><div class="uk-text-center"><?php echo $no?></div></td>
+														<td><div class="uk-text-center"><?php echo $rows[nis]?></div></td>
+														<td><div class="uk-text-left"><?php echo ucwords( strtolower($rows[nm_siswa]))?></div></td>
+														<td><div class="uk-text-center"><?php echo $rows[jns_kelamin]?></div></td>
+														<td><div class="uk-text-center"><?php echo round($uhakhir,2);?></div></td>
+														<td><div class="uk-text-center"><?php echo round($tugasakhir,2);?></div></td>
+														<td><div class="uk-text-center"><?php if($rows[uts]==''){echo "0"; }else{echo $rows[uts];}?></div></td>
+														<td><div class="uk-text-center"><?php if($rows[uas]==''){echo "0"; }else{echo $rows[uas];}?></div></td>
+														<td><div class="uk-text-center"><?php if($rows[nilaiakhir]==''){echo "0"; }else{echo $rows[nilaiakhir];}?></div></td>
+
+														<?php if (isset($_SESSION['id_guru'])) { ?>
+														<td width="15%"><div class="uk-text-center">
+															<button class="uk-button" data-uk-modal="{target:'#modal<?php echo $kd_mapel ;?>'}"><i class="uk-icon-search"></i></button>
+															<button class="uk-button" data-uk-modal="{target:'#modaledit<?php echo $kd_mapel ;?>'}"><i class="uk-icon-pencil"></i></button>
+															<a href="mapel.action?act=hapus&&kd_mapel=<?php echo $kd_mapel; ?>" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a>
+
+														</td>
+														<?php } ?>            
+													</tr>
+													<?php  } 
+													
+													?>
+												</tbody>
+											</table>
+											<!-- PAGINATION -->
+											<div id="tablefooter">
+												<div id="tablenav">
+													<div>
+														<img src="assets/tablesorter/images/first.gif" width="16" height="16" alt="First Page" onclick="sorter.move(-1,true)" />
+														<img src="assets/tablesorter/images/previous.gif" width="16" height="16" alt="First Page" onclick="sorter.move(-1)" />
+														<img src="assets/tablesorter/images/next.gif" width="16" height="16" alt="First Page" onclick="sorter.move(1)" />
+														<img src="assets/tablesorter/images/last.gif" width="16" height="16" alt="Last Page" onclick="sorter.move(1,true)" />
+													</div>
+													<div>
+														<select id="pagedropdown"></select>
+													</div>
+													<div>
+														<a href="javascript:sorter.showall()">Lihat semua</a>
+													</div>
+												</div>
+												<div id="tablelocation">
+													<div>
+														<span>Tampilkan</span>
+														<select onchange="sorter.size(this.value)">
+															<option value="5">5</option>
+															<option value="10" selected="selected">10</option>
+															<option value="20">20</option>
+															<option value="50">50</option>
+															<option value="100">100</option>
+														</select>
+														<span>Data Per halaman</span>
+													</div>
+													<div class="page">(Halaman <span id="currentpage"></span> dari <span id="totalpages"></span>)</div>
+												</div>
 											</div>
-											<div>
-												<select id="pagedropdown"></select>
-											</div>
-											<div>
-												<a href="javascript:sorter.showall()">Lihat semua</a>
-											</div>
+											<!-- END Pagination -->
 										</div>
-										<div id="tablelocation">
-											<div>
-												<span>Tampilkan</span>
-												<select onchange="sorter.size(this.value)">
-													<option value="5">5</option>
-													<option value="10" selected="selected">10</option>
-													<option value="20">20</option>
-													<option value="50">50</option>
-													<option value="100">100</option>
-												</select>
-												<span>Data Per halaman</span>
+
+										<hr class="uk-article-divider">
+										<form class="uk-form uk-margin-top" method="post">
+											<div class="uk-form-row">
+												<button type="submit" id="tombolExport" value="Cetak Laporan" name="lap_cetak" class="uk-button uk-button-primary" title="Cetak Laporan"><i class="uk-icon-print"></i> Cetak Laporan</button>
 											</div>
-											<div class="page">(Halaman <span id="currentpage"></span> dari <span id="totalpages"></span>)</div>
-										</div>
-									</div>
-									<!-- END Pagination -->
+										</form>
+									<?php endif; ?>
 								</div>
-
-								<hr class="uk-article-divider">
-								<form class="uk-form uk-margin-top" method="post">
-									<div class="uk-form-row">
-										<button type="submit" id="tombolExport" value="Cetak Laporan" name="lap_cetak" class="uk-button uk-button-primary" title="Cetak Laporan"><i class="uk-icon-print"></i> Cetak Laporan</button>
-									</div>
-								</form>
-							<?php endif; ?>
-						</div>
+							</div>
+						</article>
 					</div>
-				</article>
-			</div>
-		</div>
-	</div><br><br><br>
+				</div>
+			</div><br><br><br>
 
 
 
 
-<!-- Table Sorter Script -->
-<script type="text/javascript" src="assets/tablesorter/script.js"></script>
-<script type="text/javascript">
-	var sorter = new TINY.table.sorter('sorter','table',{
-		headclass:'head',
-		ascclass:'asc',
-		descclass:'desc',
-		evenclass:'evenrow',
-		oddclass:'oddrow',
-		evenselclass:'evenselected',
-		oddselclass:'oddselected',
-		paginate:true,
-		size:10,
-		colddid:'columns',
-		currentid:'currentpage',
-		totalid:'totalpages',
-		startingrecid:'startrecord',
-		endingrecid:'endrecord',
-		totalrecid:'totalrecords',
-		hoverid:'selectedrow',
-		pageddid:'pagedropdown',
-		navid:'tablenav',
-		sortcolumn:0,
-		sortdir:0,
-		sum:[3],
-		columns:[{index:3, format:' unit', decimals:1}],
-		init:true
-	});
-</script>
-<!-- END Table Sorter Script -->
+			<!-- Table Sorter Script -->
+			<script type="text/javascript" src="assets/tablesorter/script.js"></script>
+			<script type="text/javascript">
+				var sorter = new TINY.table.sorter('sorter','table',{
+					headclass:'head',
+					ascclass:'asc',
+					descclass:'desc',
+					evenclass:'evenrow',
+					oddclass:'oddrow',
+					evenselclass:'evenselected',
+					oddselclass:'oddselected',
+					paginate:true,
+					size:10,
+					colddid:'columns',
+					currentid:'currentpage',
+					totalid:'totalpages',
+					startingrecid:'startrecord',
+					endingrecid:'endrecord',
+					totalrecid:'totalrecords',
+					hoverid:'selectedrow',
+					pageddid:'pagedropdown',
+					navid:'tablenav',
+					sortcolumn:0,
+					sortdir:0,
+					sum:[3],
+					columns:[{index:3, format:' unit', decimals:1}],
+					init:true
+				});
+			</script>
+			<!-- END Table Sorter Script -->
 
 
 
-</body>
+		</body>
 
-<script>
-	$(document).ready(function (){
+		<script>
+			$(document).ready(function (){
   // FORM SUBMIT and PROGRESS BAR CONTROL
   $('#kd_mapel').on('change', function(){
   	validate();
@@ -336,24 +339,24 @@ if (trim($kkm)=="") {
 });
 
 
-	function validate(){
-		if (
-			$('#kd_mapel').val() != '' &&
-			$('#id_kelas').val() != ''
-			) {
+			function validate(){
+				if (
+					$('#kd_mapel').val() != '' &&
+					$('#id_kelas').val() != ''
+					) {
 
-			$('#nilai_tampilkan').prop('disabled', false);
-	}
-	else {
-		$('#nilai_tampilkan').prop('disabled', true);
-	}
-}
+					$('#nilai_tampilkan').prop('disabled', false);
+			}
+			else {
+				$('#nilai_tampilkan').prop('disabled', true);
+			}
+		}
 
-function progress(){
-	var w1 = ($('#kd_mapel').val() != '') ? 50 : 0;
-	var w2 = ($('#id_kelas').val() != '') ? 50 : 0;
-	wt = w1 + w2;
-	$('#nilai_progress').css('width', wt+'%');
+		function progress(){
+			var w1 = ($('#kd_mapel').val() != '') ? 50 : 0;
+			var w2 = ($('#id_kelas').val() != '') ? 50 : 0;
+			wt = w1 + w2;
+			$('#nilai_progress').css('width', wt+'%');
 //	jikukkelas();
 }
 
@@ -362,7 +365,7 @@ function progress(){
 
 </script>
 
-JS;
+<?php
 
 // LOAD FOOTER
 loadAssetsFoot($scripts);
