@@ -184,13 +184,13 @@ if (isset ($_POST["kenaikan_kelas_simpan"])) {
               <thead>
                 <tr>
 
-                  <th><h3 class="uk-text-center" >NIS</h3></th>
-                  <th><h3 class="uk-text-center" >Nama Siswa</h3></th>
+                  <th><h3>NIS</h3></th>
+                  <th><h3>Nama Siswa</h3></th>
 
-                  <th><h3 class="uk-text-center" >Jenis Kelamin</h3></th>
+                  <th><h3>Jenis Kelamin</h3></th>
 
                   <?php if (isset($_SESSION['administrator'])) { ?>
-                  <th><h3 class="uk-text-center">Check List</h3></th>
+                  <th><h3Check List</h3></th>
                   <?php }?>
                 </tr>
               </thead>
