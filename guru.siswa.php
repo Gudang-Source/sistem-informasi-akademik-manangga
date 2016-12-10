@@ -43,9 +43,35 @@ loadAssetsHead('Lihat Data Siswa');
           <h1 class="uk-article-title">Data Siswa <span class="uk-text-large">
            { Daftar Siswa Yang Diampu }                 
            </span></h1>
-           
-            <br>
-           
+                    <br>
+            <?php
+            $sqll = "SELECT * FROM user, guru WHERE guru.id_user=user.id_user AND nip={$_SESSION['usernameguru']}";
+            $resultl = mysql_query($sqll);
+            $rowsl=mysql_fetch_array($resultl); 
+            ?> 
+            <div class="uk-panel uk-panel-box">
+              <div class="uk-overflow-container">
+                <table class="uk-table uk-table-condensed uk-text-nowrap">
+                  <thead>
+                    <tr>
+                      <th class="uk-width-1-4">Data </th>
+                      <th class="uk-width-3-4"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>NIP.</td>
+                      <td><?php echo $rowsl['nip'];?></td>
+                    </tr>
+                    <tr>
+                      <td>Nama Guru</td>
+                      <td><?php echo $rowsl['nm_guru'];?></td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
             <br><br>
 
             <div id="tablewrapper">
