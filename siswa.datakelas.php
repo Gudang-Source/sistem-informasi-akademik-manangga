@@ -1,15 +1,16 @@
 <!-- user login -->
 <?php
+session_start();
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(10,1));
+checkUserRole(array(0));
 
 // TEMPLATE CONTROL
-$ui_register_page     = 'kelas.siswa';
+$ui_register_page     = 'siswa.datakelas';
 $ui_register_assets   = array('datepicker');
 
 // LOAD HEADER
-loadAssetsHead('Lihat Data Kelas Siswa');
+loadAssetsHead('Lihat Data Siswa');
 
 // FORM PROCESSING
 // ... code here ...
@@ -39,15 +40,25 @@ loadAssetsHead('Lihat Data Kelas Siswa');
           </div>
 
           <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Data Kelas Siswa <span class="uk-text-large">
-            <?php  if (isset($_SESSION['administrator'])) {?>
-            { Master Data }</span></h1>
-            <?php  }?>
+            <div id="tablewrapper">
+              <div id="tableheader">
+              <div class="search">
+               <h1 class="uk-article-title">Data Siswa <span class="uk-text-large">
+                { Daftar Siswa Sekelas }                 
+              </span></h1></div>
+              <span class="details">
+<?php
+$sql = "SELECT * from siswa, kelas_siswa where kelas_siswa.id_siswa=siswa.id_siswa AND nis = $_SESSION[usernamesiswa]";
+$result = mysql_query($sql);
+$row=mysql_fetch_array($result);
+?>
+                <div><span class="uk-text-large"> Kelas <b><?php echo "{$row['id_kelas']}";?></b> </span></div>
+              </span>
+              </div>
+              </div>
+           
             <br>
-            <?php if (isset($_SESSION['administrator'])) { ?>
-            <a href="./kelas.siswa.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Kelas Siswa"><i class="uk-icon-plus"></i> Data Kelas Siswa</a>
-
-            <?php } ?>
+           
             <br><br>
 
             <div id="tablewrapper">
@@ -65,20 +76,20 @@ loadAssetsHead('Lihat Data Kelas Siswa');
                 <thead>
                   <tr>
 
-                   <th><h3 class="uk-text-center">NIS</th>
-                   <th><h3 class="uk-text-center">Nama Siswa</th>
-                   <th><h3 class="uk-text-center">Tahun Pelajaran</th>
-                   <th><h3 class="uk-text-center">Kelas</th>
-
-                   <?php if (isset($_SESSION['administrator'])) { ?>
-                   <th><h3 class="uk-text-center">Aksi</h3></th>
-                   <?php }?>
+                   <th><h3>NIS</th>
+                   <th><h3>Nama Siswa</th>
+                   <th><h3>Kelas</th>
+                   <th><h3>Tahun Pelajaran</th>
+                   <th><h3>Aksi</h3></th>
+                   
                  </tr>
                </thead>
                <tbody>
                 <?php 
-
-                $query="SELECT * FROM siswa, kelas_siswa, tahun_ajaran , kelas WHERE kelas.id_kelas=kelas_siswa.id_kelas and siswa.id_siswa=kelas_siswa.id_siswa and tahun_ajaran.id_tahun=kelas_siswa.id_tahun and tahun_ajaran.status='1' order by kelas.id_kelas asc";
+                $nis= $_SESSION['usernamesiswa'];
+                $query="SELECT * from siswa, kelas_siswa 
+                WHERE siswa.id_siswa=kelas_siswa.id_siswa 
+                and kelas.id_kelas=$_SESSION[usernamesiswa]";
                 $exe=mysql_query($query);
 
 
@@ -196,14 +207,13 @@ loadAssetsHead('Lihat Data Kelas Siswa');
                   <td ><?php echo $row[nm_siswa]?></td>
                   <td ><?php echo $row[thn_ajaran]?></td>
                   <td ><?php echo $row[nm_kelas]?></td>
-                  <?php if (isset($_SESSION['administrator'])) { ?>
+                  
                   <td width="15%"><div class="uk-text-center">
-                    <button class="uk-button" data-uk-modal="{target:'#modal<?php echo $id_kelas_siswa ;?>'}"><i class="uk-icon-search"></i></button>
-                    <button class="uk-button" data-uk-modal="{target:'#modaledit<?php echo $id_kelas_siswa ;?>'}"><i class="uk-icon-pencil"></i></button>
-                    <a href="kelas.siswa.action?act=hapus&&id_kelas_siswa=<?php echo $id_kelas_siswa; ?>" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a>
+                    <a href="guru.siswa.lihat?id=<?php echo $row[id_siswa]?>" title="Lihat" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-search"></i></a>
+           
 
                   </td>
-                  <?php } ?>            
+                             
                 </tr>
                 <?php  } ?>
               </tbody>
