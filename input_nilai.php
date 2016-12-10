@@ -208,8 +208,12 @@ loadAssetsHead('Lihat Data Siswa');
                 </tr>
                 <?php  } ?>
               </tbody>
-            </table>
 
+            </table>
+ 
+        <div style="text-align:center" class="form-actions no-margin-bottom">
+         <button type="submit" id="berita_simpan" name="berita_simpan" class="btn btn-success">Submit</button>
+       </div>
 
             <!-- PAGINATION -->
             <div id="tablefooter">
