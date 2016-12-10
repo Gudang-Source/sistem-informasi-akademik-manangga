@@ -47,8 +47,17 @@ loadAssetsHead('Lihat Data Siswa');
                 { Daftar Siswa Sekelas }                 
               </span></h1></div>
               <span class="details">
+              <?php
+$sqls = "SELECT * from kelas_siswa where id_siswa= $_SESSION[id_siswa]";
+$results = mysql_query($sqls);
+$rows=mysql_fetch_array($results);
+$id_kelasab=$rows[id_kelas];
+?>
+
+
+
 <?php
-$sql = "SELECT * from siswa, kelas_siswa where kelas_siswa.id_siswa=siswa.id_siswa AND nis = $_SESSION[usernamesiswa]";
+$sql = "SELECT * from siswa, kelas_siswa where kelas_siswa.id_siswa=siswa.id_siswa AND kelas_siswa.id_kelas='$id_kelasab'";
 $result = mysql_query($sql);
 $row=mysql_fetch_array($result);
 ?>
@@ -80,16 +89,18 @@ $row=mysql_fetch_array($result);
                    <th><h3>Nama Siswa</th>
                    <th><h3>Kelas</th>
                    <th><h3>Tahun Pelajaran</th>
-                   <th><h3>Aksi</h3></th>
                    
                  </tr>
                </thead>
                <tbody>
                 <?php 
-                $nis= $_SESSION['usernamesiswa'];
-                $query="SELECT * from siswa, kelas_siswa 
-                WHERE siswa.id_siswa=kelas_siswa.id_siswa 
-                and kelas.id_kelas=$_SESSION[usernamesiswa]";
+            
+                $query="SELECT * from siswa, kelas_siswa, kelas, tahun_ajaran 
+                where kelas_siswa.id_siswa=siswa.id_siswa
+                AND kelas_siswa.id_kelas=kelas.id_kelas
+                AND kelas_siswa.id_tahun=tahun_ajaran.id_tahun
+                AND kelas_siswa.id_tahun='$_SESSION[id_tahun]'
+                AND kelas_siswa.id_kelas='$id_kelasab'";
                 $exe=mysql_query($query);
 
 
@@ -97,123 +108,12 @@ $row=mysql_fetch_array($result);
                 while ($row=mysql_fetch_array($exe)) { $no++;
                   $id_kelas_siswa= $row[id_kelas_siswa];
                   ?>
-                  <div id="modal<?php echo $id_kelas_siswa ;?>" class="uk-modal">
-                    <div class="uk-modal-dialog">
-                      <button type="button" class="uk-modal-close uk-close"></button>
-                      <div class="uk-modal-header">
-                        <h2>Lihat Data Kelas Siswa</h2>
-                      </div>
-
-                      <div class="form-group">
-                        <label>NIS</label>
-                        <input class="form-control" name="nis" id="nis" value="<?php echo $row['nis']; ?>" readonly  required  />
-
-                      </div>
-
-                      <div class="form-group">
-                        <label>Nama Siswa</label>
-                        <input class="form-control" name="nm_siswa" id="nm_siswa" value="<?php echo $row['nm_siswa']; ?>" readonly required />
-                      </div>
-
-                      <div class="form-group">
-                        <label>Tahun Ajaran</label>
-                        <input class="form-control" name="thn_ajaran"  id="thn_ajaran" value="<?php echo $row['thn_ajaran']; ?>" readonly required  />
-                      </div>
-                      <div class="form-group">
-                        <label>Kelas</label>
-                        <select name="id_kelas"  id="id_kelas" value="" readonly disabled="disabled" class="form-control col-md-7 col-xs-12">
-                        <option value="">--- Pilih Kelas --</option>
-                          <?php
-                      //MENGAMBIL NAMA PROVINSI YANG DI DATABASE
-                          $kelas =mysql_query("SELECT * FROM kelas ORDER BY nm_kelas");
-                          while ($datakelas=mysql_fetch_array($kelas)) {
-                           if ($datakelas['id_kelas']==$row['id_kelas']) {
-                             $cek ="selected";
-                           }
-                           else{
-                            $cek= "";
-                          }
-                          echo "<option value=\"$datakelas[id_kelas]\" $cek>$datakelas[nm_kelas]</option>\n";
-                        }
-                        ?>
-                      </select>
-                    </div>
-
-                    <div class="uk-modal-footer uk-text-right">
-                      <button type="button" class="uk-button uk-modal-close ">Cancel</button>
-                      <button data-uk-modal="{target:'#modaledit<?php echo $id_kelas_siswa ;?>'}" class="uk-button uk-button-primary">Edit</button>
-                    </div>
-
-                    
-                  </div>
-                </div>
-
-                <div id="modaledit<?php echo $id_kelas_siswa ;?>" class="uk-modal">
-                  <div class="uk-modal-dialog">
-                    <button type="button" class="uk-modal-close uk-close"></button>
-                    <div class="uk-modal-header">
-                      <h2>Edit Data Kelas Siswa</h2>
-                    </div>
-                    <form role="form" method="post" action="kelas.siswa.action?act=update&&id_kelas_siswa=<?php echo $id_kelas_siswa;  ?>" enctype="multipart/form-data" >
-                      <div class="form-group">
-                        <label>NIS</label>
-                        <input class="form-control" name="nis" id="nis" value="<?php echo $row['nis']; ?>"  readonly  required required  />
-                     
-                      </div>
-
-                      <div class="form-group">
-                        <label>Nama Siswa</label>
-                        <input class="form-control" name="nm_siswa" id="nm_siswa" value="<?php echo $row['nm_siswa']; ?>" readonly  required required />
-                        <div class="reg-info">Contoh: Bahasa Sunda</div>
-                      </div>
-
-                      <div class="form-group">
-                        <label>Tahun Ajaran</label>
-                        <input class="form-control" name="thn_ajaran"  id="thn_ajaran" value="<?php echo $row['thn_ajaran']; ?>"  readonly  required required  />
-                        <div class="reg-info">Contoh: 65</div>
-                      </div>
-                       <div class="form-group">
-                        <label>Kelas</label>
-                        <select name="id_kelas"  id="id_kelas" value="" required class="form-control col-md-7 col-xs-12">
-                        <option value="">--- Pilih Kelas --</option>
-                          <?php
-                      //MENGAMBIL NAMA PROVINSI YANG DI DATABASE
-                          $kelas =mysql_query("SELECT * FROM kelas ORDER BY nm_kelas");
-                          while ($datakelas=mysql_fetch_array($kelas)) {
-                           if ($datakelas['id_kelas']==$row['id_kelas']) {
-                             $cek ="selected";
-                           }
-                           else{
-                            $cek= "";
-                          }
-                          echo "<option value=\"$datakelas[id_kelas]\" $cek>$datakelas[nm_kelas]</option>\n";
-                        }
-                        ?>
-                      </select>
-                    </div>
-
-                      <div class="uk-modal-footer uk-text-right">
-                        <button type="button" class="uk-button uk-modal-close ">Cancel</button>
-                        <button type="submit" class="uk-button uk-button-primary">Save</button>
-                      </div>
-                      <input type="hidden" name="edit" value="edit">
-                    </form>
-
-                  </div>
-                </div>
                 <tr>
 
                   <td ><?php echo $row[nis]?></td>
                   <td ><?php echo $row[nm_siswa]?></td>
-                  <td ><?php echo $row[thn_ajaran]?></td>
                   <td ><?php echo $row[nm_kelas]?></td>
-                  
-                  <td width="15%"><div class="uk-text-center">
-                    <a href="guru.siswa.lihat?id=<?php echo $row[id_siswa]?>" title="Lihat" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-search"></i></a>
-           
-
-                  </td>
-                             
+                  <td ><?php echo $row[thn_ajaran]?></td>                             
                 </tr>
                 <?php  } ?>
               </tbody>
