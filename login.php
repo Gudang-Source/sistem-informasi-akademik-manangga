@@ -57,6 +57,7 @@ if( isset($_POST['login']) ){
 					$_SESSION['id_user'] = $c['id_user'];
 					$_SESSION['usernamesiswa'] = $c['nis'];
 					$_SESSION['tingkat_user'] = $c['tingkat_user'];
+					$_SESSION['id_siswa'] = $c['id_siswa'];
 
 					$cektahun = mysql_query("SELECT * FROM tahun_ajaran WHERE status='1'");
 					mysql_num_rows($cektahun);
