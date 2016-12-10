@@ -40,26 +40,22 @@ loadAssetsHead('Dashboard - Sistem Informasi Akademik SDN II Manangga');
 
 
 					<div class='uk-form-row'>
-						<div class='uk-alert'>
-							Selamat datang di Sistem Informasi Akademik.
+						<div class="alert alert-success" role="alert">
+							Selamat datang di Sistem Informasi Akademik Sekolah
 						</div>
 					</div>
 
 					<div class="panel panel-info">
-						<div class="panel-heading">Berita</div>
+						<div class="panel-heading"><center>Berita Pengumuman Sekolah</center></div>
 						<div class="panel-body">
 							<table cellpadding="0" cellspacing="0" border="0" id="table" class="tinytable">
 								<thead>
 									<tr>
-
-
 									</tr>
 								</thead>
 								<tbody>
 									<?php if (isset($_SESSION['administrator'])) { ?>
-									<a href="./berita.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Berita"><i class="uk-icon-plus"></i> Berita</a>
-									<br>
-									<br>
+									<center><a href="./berita.tambah" class="btn btn-primary btn-lg" type="button" title="Tambah Data Berita"><i class="uk-icon-plus"></i> Berita</a></center>
 
 									<?php } ?>
 									<?php
@@ -80,7 +76,7 @@ loadAssetsHead('Dashboard - Sistem Informasi Akademik SDN II Manangga');
                 		<article class='uk-article'>
 
                 			<a href='./tampil-news?id={$row['id_berita']}'><h1 class='uk-article'>{$row['judul_berita']}</h1></a>
-                			<span class='uk-text-success'>Dirilis Pada Tanggal {$tgl} || Pukul 
+                			<span class='label label-default'>Dirilis Pada Tanggal {$tgl} || Pukul 
                 				{$pukul}  </span>
                 			</br></br>
                 			<img style='width:120px; float:left; margin:0px; margin-right: 8px;' src='gallery/news/{$row['gambar']}' alt=''> $artikel <hr class='uk-article-divider'>";?>

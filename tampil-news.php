@@ -38,7 +38,7 @@ loadAssetsHead('Dashboard');
             <h1 class="uk-article-title">Berita Hari Ini</h1> 
             <hr class="uk-article-divider">
             <br>
-            <?php
+              <a class="uk-button uk-button-primary"  href="./dashboard" style="margin: 2; color: #FFF;">< Kembali</a>                   <?php
             include "config.php";
             include "./inc/tanggal.php";
           $id=$_GET['id'];
@@ -48,28 +48,32 @@ loadAssetsHead('Dashboard');
 $tgl=$row['tgl'];
 $pukul=$row['pukul'];
           ?>
+<br>
+<br>
 
               <div class="uk-form-row">
                 <article class="uk-article">
-                <h2><?php echo"{$row['judul_berita']}";?></h1>
-                  <h7><span class="uk-text-success">Dirilis Pada Tanggal <?php 
-echo TanggalIndo($tgl).' || Pukul ';
-                  echo $pukul ?></span></h7>
-                  </br></br>
+                
             <div class="uk-panel uk-panel-box">
               <div class="uk-overflow-container">
                 <table>
                   <tbody>
                     <tr>
-                  <img style="width:350px; float:right; alignment:center; margin:0px; margin-right: 0px;" src="<?php echo"gallery/news/{$row['gambar']}";?>" alt="">
-                 <td> <?php echo "{$row['content']}";?></td>
+                    <h2 style="float:center;"><?php echo"{$row['judul_berita']}";?></h1>
+                  <h7><span class="label label-default">Dirilis Pada Tanggal <?php 
+echo TanggalIndo($tgl).' || Pukul ';
+                  echo $pukul ?></span></h7>
+                  </br></br>
+                    <div class="col-xs-6 col-md-3">
+                  <img class="thumbnail" src="<?php echo"gallery/news/{$row['gambar']}";?>" alt=""></div>
+                    <td><?php echo "{$row['content']}";?></td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
             <br>
-                   <a class="uk-button uk-button-primary"  href="./dashboard" style="margin: 2; float: right; color: #FFF;">Kembali</a>            
+                      
                 </article>
             </div>
 
