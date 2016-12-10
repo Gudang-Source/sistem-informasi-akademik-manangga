@@ -39,7 +39,7 @@ loadAssetsHead('Lihat Data Siswa');
                   <img class="uk-margin-bottom" width="500px" height="50px" src="assets/images/banner.png" alt="Sistem Informasi Akademik SD N II Manangga" title="Sistem Informasi Akademik SD N II Manangga">
                 </div>
                 <hr class="uk-article-divider">
-                <h1 class="uk-article-title"> <?php echo ucwords( strtolower($rowks[nm_siswa])); ?> <span class="uk-text-large">{ Lihat Data Pribadi Siswa  }</span></h1>
+                <h1 class="uk-article-title"> <?php echo ucwords( strtolower($rowks[nm_siswa])); ?> <span class="uk-text-large">{ Lihat Data Pribadi Siswa }</span></h1>
                 <br>
                 <a href="./guru.siswa" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Siswa"><i class="uk-icon-angle-left"></i> Kembali</a>
                 <!-- <hr class="uk-article-divider"> -->
@@ -67,8 +67,7 @@ loadAssetsHead('Lihat Data Siswa');
 
                               <ul id="tabs_example2" class="uk-switcher uk-width-7-10">
                                 <li>
-                                  <div class="uk-panel uk-panel-box"> 
-                                  <table class="uk-table uk-table-hover  uk-table-condensed"><tr><td><code class="title">Data Pribadi Siswa</code></td><td></td><td></td><td></td><td width="70"><li></li></td> </tr></table>  
+                                  <table class="uk-table uk-table-hover  uk-table-condensed"><tr><td><code class="title">Data Pribadi Siswa</code></td><td></td><td></td><td></td><td width="70"> <a href="siswa-siswa.update?id=<?php echo $rowks[id_siswa]?>" ><i  class="uk-icon-pencil"></i> Edit</a><li></li></td> </tr></table>  
            
                                    <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="foto">Image <span class="required">*</span>
