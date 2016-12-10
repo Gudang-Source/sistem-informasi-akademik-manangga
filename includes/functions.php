@@ -362,10 +362,10 @@ function admin(){
 
    ?>
    <div class="sia-profile">
-    <p style="text-align:center"; font-weight:bold;>Selamat Datang</p>
-    <img class="sia-profile-image" src="gallery/news/<?=$row['foto'];?>"> </br> 
-    <p style="text-align:center"; font-weight:bold;><b><?php echo "{$row['nip']}";?></b></p>
-    <p style="text-align:center"; font-weight:bold;><b><?php echo "{$row['nm_guru']}";?></b></p>
+    <p style="text-align:center"; font-weight:bold;>Selamat Datang</p>     <p style="text-align:center"; font-weight:bold;><b><?php echo "{$row['nm_guru']}";?></b></p>
+    <img class="sia-profile-image" src="gallery/news/<?=$row['foto'];?>"> 
+    <p style="text-align:left";><?php echo "{$row['nip']}";?></p>
+
 
 
   </div>
@@ -471,9 +471,9 @@ function admin(){
       <?php if (isset($_SESSION['usernameguru'])) { ?>
       <hr class="uk-article-divider">  
       <li class="uk-nav-header"><i class="uk-icon-file-text"></i>  Data Nilai</li> 
-      <?php generateNavElement(array(1,0), 'nilai', './nilai', 'Nilai') ?>
-      <?php generateNavElement(array(1,0), 'nilai', './guru_nilai', 'Nilai') ?>
-      <?php generateNavElement(array(1,0), 'nilai', './siswa_nilai', 'Nilai Siswa') ?>
+      <?php generateNavElement(array(1), 'guru.nilai', './guru.nilai', 'Nilai') ?>
+      <?php generateNavElement(array(1), 'guru.nilai.tambah', './guru.nilai.tambah', 'Input Nilai') ?>
+
      
       <li class="uk-nav-divider"></li>
 <?php } ?>
