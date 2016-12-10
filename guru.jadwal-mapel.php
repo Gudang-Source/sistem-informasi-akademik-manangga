@@ -81,7 +81,6 @@ if (trim($kkm)=="") {
 										<th>Kelas</th>
 										
 										<th>Tahun Ajaran</th>
-										<th>Semester</th>
 										
 									</tr>
 								</thead>
@@ -124,7 +123,6 @@ if (trim($kkm)=="") {
 	<td><?php echo $row[nm_kelas]?></td>
 	
 	<td><?php echo $row[thn_ajaran]?></td>
-	<td><?php echo $row[semester]?></td>                
 
 	
 </tr>
