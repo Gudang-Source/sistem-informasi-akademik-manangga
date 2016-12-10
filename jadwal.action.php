@@ -106,13 +106,52 @@ elseif ( $act=='tambah'){
 	$id_sesi=$_POST['id_sesi'];
 //// cek tabel mengajar
 	$jikukidmengajar = mysql_query("SELECT * FROM mengajar WHERE id_guru='$id_guru' and id_kelas='$id_kelas' and kd_mapel='$kd_mapel' ");
-	$datamengajar = mysql_fetch_array($jikukidmengajar);         
+	$datamengajar = mysql_fetch_array($jikukidmengajar);
+
+	
 
 	$id_mengajar = $datamengajar['id_mengajar'];
 
 	
 	$tambahjadwal=mysql_query("INSERT INTO jadwal SET id_mengajar='$id_mengajar' , id_hari='$id_hari' , id_sesi='$id_sesi' , id_tahun='$id_tahun' ");
-	if ($tambahjadwal) { ?>
+	if ($tambahjadwal) { 
+
+//  			$jikukidkelassiswa = mysql_query("SELECT distinct * from (
+// 													SELECT kelas_siswa.id_kelas_Siswa id_kelas_siswa, mengajar.kd_mapel,  siswa.nis nis, siswa.nm_siswa nm_siswa, kelas_siswa.id_kelas kelas 
+// 													FROM siswa, kelas_Siswa, mengajar, jadwal
+// 													WHERE siswa.id_siswa=kelas_Siswa.id_siswa
+// 													and jadwal.id_mengajar=mengajar.id_mengajar
+// 													and mengajar.id_kelas=kelas_Siswa.id_kelas
+// 													and mengajar.kd_mapel = '$kd_mapel'
+// 													and jadwal.id_tahun='$id_tahun'
+// 													) ss
+// 											");
+			$jikukidkelassiswa = mysql_query("SELECT distinct * from (
+													SELECT nilai.id_kelas_siswa, nilai.kd_mapel
+													FROM nilai, kelas_siswa 
+													WHERE kelas_siswa.id_kelas_siswa=nilai.id_kelas_siswa
+													and nilai.kd_mapel = '$kd_mapel'
+													and kelas_siswa.id_kelas = '$id_kelas'
+													and nilai.id_tahun='$id_tahun'
+													) ceksiswa
+											");
+			$jumlahe = mysql_num_rows($jikukidkelassiswa);  
+			if ($jumlahe<0){
+					mysql_query("INSERT INTO nilai (id_kelas_siswa, kd_mapel, id_tahun)  SELECT distinct * from (
+													SELECT kelas_siswa.id_kelas_Siswa , mengajar.kd_mapel, jadwal.id_tahun
+													FROM siswa, kelas_Siswa, mengajar, jadwal
+													WHERE siswa.id_siswa=kelas_Siswa.id_siswa
+													and jadwal.id_mengajar=mengajar.id_mengajar
+													and mengajar.id_kelas=kelas_Siswa.id_kelas
+													and mengajar.kd_mapel = '$kd_mapel'
+													and jadwal.id_tahun='$id_tahun'
+													) ss ");
+			}else{
+				
+			}
+
+
+		?>
 	
 
 	<script language="JavaScript">alert('Data Jadwal Mata Pelajaran Berhasil Ditambah')</script>
