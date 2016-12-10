@@ -93,7 +93,6 @@ $row=mysql_fetch_array($result);
 										<th>Kelas</th>
 										
 										<th>Tahun Ajaran</th>
-										<th>Semester</th>
 										
 									</tr>
 								</thead>
