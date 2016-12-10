@@ -342,7 +342,7 @@ if (isset($_POST['profil_simpan'])) {
                   </div>
                    
                   </div></div>
-                  <div class="uk-width-7-10">  <div class="uk-panel uk-panel-box"> <table class="uk-table uk-table-hover  uk-table-condensed"><tr><td></td><td></td><td></td><td></td><td width="70"><li><a href="profil-sekolah.update" ><i  class="uk-icon-pencil"></i> Edit</a></li></td> </tr></table>                   
+                  <div class="uk-width-7-10">  <div class="uk-panel uk-panel-box"> <table class="uk-table uk-table-hover  uk-table-condensed"><tr><td></td><td></td><td></td><td></td><td width="70"><li><?php if (isset($_SESSION['administrator'])) { ?><a href="profil-sekolah.update" ><i  class="uk-icon-pencil"></i> Edit</a></li><?php } ?></td> </tr></table>                   
                     <table class="uk-table uk-table-hover  uk-table-condensed">
                       <tbody>
                         <tr>

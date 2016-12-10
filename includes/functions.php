@@ -420,7 +420,8 @@ function admin(){
       <li class="uk-nav-header"><i class="uk-icon-mortar-board"></i> Data Sekolah</li>
        <!--<?php generateNavElement(array(10,2,1,0), 'siswa-profilsekolah', './siswa-profilsekolah', 'Profil Sekolah') ?>-->
       <?php generateNavElement(array(10,1,0,24), 'profil-sekolah', './profil-sekolah', 'Profil Sekolah') ?>
-      <?php generateNavElement(array(10,1,0,24), 'ekstrakurikuler', './ekstrakurikuler', 'Ekstrakurikuler') ?> 
+      <?php generateNavElement(array(10,1,0,24), 'ekstrakurikuler', './ekstrakurikuler', 'Ekstrakurikuler') ?>
+      <?php generateNavElement(array(1,24), 'info-pribadi-guru', './info-pribadi-guru', 'Info Pribadi Guru') ?>  
 
       <hr class="uk-article-divider">
       

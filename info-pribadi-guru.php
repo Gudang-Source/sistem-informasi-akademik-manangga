@@ -5,7 +5,7 @@ checkUserAuth();
 checkUserRole(array(10,1,24));
 
 // TEMPLATE CONTROL
-$ui_register_page     = 'guru';
+$ui_register_page     = 'info-pribadi-guru';
 $ui_register_assets   = array('datepicker');
 
 // LOAD HEADER
@@ -188,7 +188,7 @@ if (isset($_POST['guru_simpan'])) {
 
           }
           if ($query){
-            header('location: ./guru');
+            header('location: ./dashboard');
           }
           else { $error = "Uploaded image should be jpg or gif or png"; } 
 
@@ -199,7 +199,7 @@ if (isset($_POST['guru_simpan'])) {
 
 # MEMBUAT NILAI DATA PADA FORM
 # SIMPAN DATA PADA FORM, Jika saat Sumbit ada yang kosong (lupa belum diisi)
-      $edit = mysql_query("SELECT * FROM guru WHERE id_guru='$_GET[id]'");
+      $edit = mysql_query("SELECT * FROM guru WHERE id_guru='$_SESSION[id_guru]'");
       $rowks  = mysql_fetch_array($edit);
 
       ?>
@@ -269,7 +269,7 @@ if (isset($_POST['guru_simpan'])) {
   </div>
           <hr class="uk-article-divider">
           <h1 class="uk-article-title">Manajemen Data Guru <span class="uk-text-large">{ Tampil Profil Guru }</span></h1>
-          <a href="./guru" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Guru"><i class="uk-icon-angle-left"></i> Kembali</a> 
+          <a href="./dashboard" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali"><i class="uk-icon-angle-left"></i> Kembali</a> 
           <?php if (isset($_SESSION['administrator'])) { ?>
 
                     <br>

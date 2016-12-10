@@ -66,9 +66,9 @@ loadAssetsHead('Data Guru');
 								<th><h3 class="uk-text-center" >Nama Guru</h3></th>
 								<th><h3 class="uk-text-center" >Alamat</h3></th>
 								
-								<?php if (isset($_SESSION['administrator'])) { ?>
+	
 								<th><h3 class="uk-text-center">Aksi</h3></th>
-								<?php }?>
+								
 							</tr>
 						</thead>
 							<tbody>
@@ -87,9 +87,10 @@ loadAssetsHead('Data Guru');
 								<td ><?php echo $row[nm_guru]?></td>
 								<td ><?php echo ucwords(strtolower('provinsi '.$row[nama_prov].', kabupaten '.$row[nama_kab].', kecamatan '.$row[nama_kec].', kelurahan '.$row[nama_kel].', '.$row[almt_sekarang]))?></td>
 								
-								<?php if (isset($_SESSION['administrator'])) { ?>
+
 								<td width="15%"><div class="uk-text-center">
 								  <a href="guru.lihat?id=<?php echo $row[0]?>" title="Lihat" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-search"></i></a>
+								  <?php if (isset($_SESSION['administrator'])) { ?>
 								  <a href="guru.update?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
 								  <a href="guru.hapus?id=<?php echo $row[0]?>" onclick="return confirm('Apakah anda yakin akan menghapus data guru: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a></div>
 								</td>

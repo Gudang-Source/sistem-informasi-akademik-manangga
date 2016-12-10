@@ -14,8 +14,22 @@ loadAssetsHead('Lihat Data Siswa');
 
 // FORM PROCESSING
 // ... code here ...
-?>
 
+                if (isset($_POST['nilai_simpann'])) {
+                  $id_siswa= $_POST['id_siswa'];
+                  $nilai = $_POST['nilai'];
+
+            $query = mysql_query("INSERT INTO berita SET judul_berita ='$judul_berita', content='$content', gambar='$jeneng', tgl='$tgl', pukul='$pukul' ") or die(mysql_error());
+                
+
+             }
+             if ($query){
+             header('location: ./dashboard');
+              }
+
+               else { $error = "Uploaded image should be jpg or gif or png"; } 
+
+    ?>
 <link rel="stylesheet" href="assets/tablesorter/style.css" />
 <body>
 
@@ -200,7 +214,7 @@ loadAssetsHead('Lihat Data Siswa');
                   </div>
                 </div>
                 <tr>
-
+    <form id="form_input_nilai" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
                   <td ><?php echo $row[nis]?></td>
                   <td ><?php echo $row[nm_siswa]?></td>
                   <td ><input type="text" id="input" name="input" value="<?php echo $input; ?>" required="required" class="form-control"></td>
@@ -214,7 +228,7 @@ loadAssetsHead('Lihat Data Siswa');
         <div style="text-align:center" class="form-actions no-margin-bottom">
          <button type="submit" id="berita_simpan" name="berita_simpan" class="btn btn-success">Submit</button>
        </div>
-
+     </form>      
             <!-- PAGINATION -->
             <div id="tablefooter">
               <div id="tablenav">
