@@ -372,14 +372,16 @@ function admin(){
   <?php } ?>
 
   <?php function siswa(){
-   $sql = "SELECT * from siswa where nis = $_SESSION[usernamesiswa]";
+   $sql = "SELECT * from siswa, kelas_siswa where nis = $_SESSION[usernamesiswa]";
    $result = mysql_query($sql);
    $row=mysql_fetch_array($result);?>
    <div class="sia-profile">
-    <p style="text-align:left"; font-weight:bold;>Selamat Datang, <b><?php echo "{$row['nm_siswa']}";?></b></p>
-    <img class="sia-profile-image" src="gallery/news/<?=$rowks['foto'];?>"> </br> 
+    <p style="text-align:left"; font-weight:bold;>Selamat Datang</p>
+    <img class="sia-profile-image" src="gallery/news/<?=$row['foto'];?>"> </br>
+    </br>
+    <p style="text-align:left"; font-weight:bold;>Nama: <b><?php echo "{$row['nm_siswa']}";?></b></p> 
     <p style="text-align:left"; font-weight:bold;>NIS: <b><?php echo "{$row['nis']}";?></b></p>
-    <p style="text-align:left"; font-weight:bold;>Kelas: <b><?php echo "{$row['kd_kelas']}";?></b></p>
+    <p style="text-align:left"; font-weight:bold;>Kelas: <b><?php echo "{$row['id_kelas']}";?></b></p>
   </div>
   <?php } ?>
 
@@ -427,8 +429,8 @@ function admin(){
       
       <li class="uk-nav-header"><i class="uk-icon-child"></i> Siswa</li> 
       <?php generateNavElement(array(10), 'siswa', './siswa', 'Data Siswa') ?>
-       <?php generateNavElement(array(1), 'guru.siswa', './guru.siswa', 'Data Siswa') ?>
-
+      <?php generateNavElement(array(1), 'guru.siswa', './guru.siswa', 'Data Siswa') ?>
+      <?php generateNavElement(array(0), 'info-pribadi-siswa', './info-pribadi-siswa', 'Info Pribadi Siswa') ?>  
 <?php if(isset($_SESSION['administrator'])) { ?>
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-child"></i> Kelas Siswa</li>
