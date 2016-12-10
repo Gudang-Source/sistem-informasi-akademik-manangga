@@ -23,9 +23,19 @@ $kkm=$_POST['kkm'];
 if( $act=='hapus'){
 	
 	$id_jadwal=$_GET['id_jadwal'];
+	$querycek = mysql_query("SELECT * FROM jadwal, mengajar where jadwal.id_mengajar=mengajar.id_mengajar and jadwal.id_jadwal_mapel='$id_jadwal'");
+	$datasikdihapus=mysql_fetch_array($querycek);
+	$id_kelassikdihapus=$datasikdihapus['id_kelas'];
+	$kd_mapelsikdihapus=$datasikdihapus['kd_mapel'];
+	$id_tahunsikdihapus=$datasikdihapus['id_tahun'];
+
+
+	$hapusdatanilai=mysql_query("DELETE FROM nilai WHERE kd_mapel='$kd_mapelsikdihapus' and id_kelas='$id_kelassikdihapus' and id_tahun='$id_tahunsikdihapus' ");
 	$hapusjadwal=mysql_query("DELETE FROM jadwal WHERE id_jadwal_mapel='$id_jadwal'");
 
-	if ($hapusjadwal) { ?>
+	if ($hapusjadwal) { 
+	
+		?>
 	
 
 	<script language="JavaScript">alert('Data Jadwal Mata Pelajaran Berhasil Dihapus')</script>
@@ -68,7 +78,10 @@ elseif ( $act=='update'){
 	$id_mengajar = $datamengajar['id_mengajar'];
 	$updatejadwalmapel=mysql_query("UPDATE jadwal SET id_mengajar='$id_mengajar' , id_hari='$id_hari' , id_sesi='$id_sesi' , id_tahun='$id_tahun' where id_jadwal_mapel='$id_jadwal' ");
 
-	if ($updatejadwalmapel) { ?>
+	if ($updatejadwalmapel) { 
+
+	
+		?>
 	
 
 	<script language="JavaScript">alert('Data Jadwal Mata Pelajaran Berhasil Diubah')</script>
@@ -114,52 +127,45 @@ elseif ( $act=='tambah'){
 
 	
 	$tambahjadwal=mysql_query("INSERT INTO jadwal SET id_mengajar='$id_mengajar' , id_hari='$id_hari' , id_sesi='$id_sesi' , id_tahun='$id_tahun' ");
-	if ($tambahjadwal) { 
-
-//  			$jikukidkelassiswa = mysql_query("SELECT distinct * from (
-// 													SELECT kelas_siswa.id_kelas_Siswa id_kelas_siswa, mengajar.kd_mapel,  siswa.nis nis, siswa.nm_siswa nm_siswa, kelas_siswa.id_kelas kelas 
-// 													FROM siswa, kelas_Siswa, mengajar, jadwal
-// 													WHERE siswa.id_siswa=kelas_Siswa.id_siswa
-// 													and jadwal.id_mengajar=mengajar.id_mengajar
-// 													and mengajar.id_kelas=kelas_Siswa.id_kelas
-// 													and mengajar.kd_mapel = '$kd_mapel'
-// 													and jadwal.id_tahun='$id_tahun'
-// 													) ss
-// 											");
-			$jikukidkelassiswa = mysql_query("SELECT distinct * from (
-													SELECT nilai.id_kelas_siswa, nilai.kd_mapel
-													FROM nilai, kelas_siswa 
-													WHERE kelas_siswa.id_kelas_siswa=nilai.id_kelas_siswa
-													and nilai.kd_mapel = '$kd_mapel'
-													and kelas_siswa.id_kelas = '$id_kelas'
-													and nilai.id_tahun='$id_tahun'
-													) ceksiswa
-											");
-			$jumlahe = mysql_num_rows($jikukidkelassiswa);  
-			if ($jumlahe<0){
-					mysql_query("INSERT INTO nilai (id_kelas_siswa, kd_mapel, id_tahun)  SELECT distinct * from (
-													SELECT kelas_siswa.id_kelas_Siswa , mengajar.kd_mapel, jadwal.id_tahun
+	
+	if($tambahjadwal){
+	$querycek = mysql_query("SELECT * FROM nilai, siswa, kelas_siswa 
+	where nilai.id_kelas_siswa=kelas_siswa.id_kelas_siswa
+	and kelas_siswa.id_siswa=siswa.id_siswa  
+	and nilai.id_tahun='$_SESSION[id_tahun]'
+	and nilai.kd_mapel='$kd_mapel'
+	and kelas_siswa.id_kelas='$id_kelas'
+	order by siswa.nm_siswa asc");
+	$jumlahe=mysql_num_rows($querycek);
+	if ($jumlahe<1){
+		
+		$lebokke=mysql_query("INSERT INTO nilai (id_kelas_siswa, kd_mapel, id_tahun)  SELECT id_kelas_siswa, kd_mapel, id_tahun from ( SELECT distinct * from (
+													SELECT kelas_siswa.id_kelas_siswa , mengajar.kd_mapel, jadwal.id_tahun
 													FROM siswa, kelas_Siswa, mengajar, jadwal
 													WHERE siswa.id_siswa=kelas_Siswa.id_siswa
 													and jadwal.id_mengajar=mengajar.id_mengajar
 													and mengajar.id_kelas=kelas_Siswa.id_kelas
 													and mengajar.kd_mapel = '$kd_mapel'
-													and jadwal.id_tahun='$id_tahun'
-													) ss ");
-			}else{
-				
-			}
+													and jadwal.id_tahun='$_SESSION[id_tahun]'
+													) ss) asd ");
+
+		
+	}else{
+		
+	}
 
 
-		?>
-	
+
+	?>
 
 	<script language="JavaScript">alert('Data Jadwal Mata Pelajaran Berhasil Ditambah')</script>
 	<script>
 		window.location=history.go(-1);
 	</script>		
 
-	<?php	
+	<?php
+
+	
 } 
 else {
 	?>
