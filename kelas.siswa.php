@@ -65,13 +65,13 @@ loadAssetsHead('Lihat Data Kelas Siswa');
                 <thead>
                   <tr>
 
-                   <th><h3 class="uk-text-center">NIS</th>
-                   <th><h3 class="uk-text-center">Nama Siswa</th>
-                   <th><h3 class="uk-text-center">Tahun Pelajaran</th>
-                   <th><h3 class="uk-text-center">Kelas</th>
+                   <th><h3 >NIS</th>
+                   <th><h3 >Nama Siswa</th>
+                   <th><h3 >Tahun Pelajaran</th>
+                   <th><h3 >Kelas</th>
 
                    <?php if (isset($_SESSION['administrator'])) { ?>
-                   <th><h3 class="uk-text-center">Aksi</h3></th>
+                   <th><h3 >Aksi</h3></th>
                    <?php }?>
                  </tr>
                </thead>
