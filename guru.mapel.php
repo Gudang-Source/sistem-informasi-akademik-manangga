@@ -50,12 +50,38 @@ loadAssetsHead('Data Mata Pelajaran');
 					<hr class="uk-article-divider">
 					<h1 class="uk-article-title">Data Mata Pelajaran <span class="uk-text-large">
 						<?php  if (isset($_SESSION['id_guru'])) {?>
-						{ Data Mata Pelajaran Yang Di Ampu}</span></h1>
+						{ Data Mata Pelajaran Yang Diampu}</span></h1>
 						<?php  }?>
-						<br>
-						
-						<br><br>
-
+         <br>
+          <br>
+           <?php
+            $sqll = "SELECT * FROM user, guru WHERE guru.id_user=user.id_user AND nip={$_SESSION['usernameguru']}";
+            $resultl = mysql_query($sqll);
+            $rowsl=mysql_fetch_array($resultl); 
+            ?> 
+            <div class="uk-panel uk-panel-box">
+              <div class="uk-overflow-container">
+                <table class="uk-table uk-table-condensed uk-text-nowrap">
+                  <thead>
+                    <tr>
+                      <th class="uk-width-1-4">Data </th>
+                      <th class="uk-width-3-4"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>NIP.</td>
+                      <td><?php echo $rowsl['nip'];?></td>
+                    </tr>
+                    <tr>
+                      <td>Nama Guru</td>
+                      <td><?php echo $rowsl['nm_guru'];?></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <br>
 						<div id="tablewrapper">
 							<div id="tableheader">
 								<div class="search">

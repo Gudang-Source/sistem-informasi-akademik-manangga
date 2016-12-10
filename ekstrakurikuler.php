@@ -41,7 +41,35 @@ loadAssetsHead('Master Data Ekstrakurikuler');
           <?php  if (isset($_SESSION['administrator'])) {?>
       { Master Data }</span></h1>
           <?php  }?>
-          <br>
+          <br><br>
+           <?php
+            $sqll = "SELECT * FROM user, guru WHERE guru.id_user=user.id_user AND nip={$_SESSION['usernameguru']}";
+            $resultl = mysql_query($sqll);
+            $rowsl=mysql_fetch_array($resultl); 
+            ?> 
+            <div class="uk-panel uk-panel-box">
+              <div class="uk-overflow-container">
+                <table class="uk-table uk-table-condensed uk-text-nowrap">
+                  <thead>
+                    <tr>
+                      <th class="uk-width-1-4">Data </th>
+                      <th class="uk-width-3-4"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>NIP.</td>
+                      <td><?php echo $rowsl['nip'];?></td>
+                    </tr>
+                    <tr>
+                      <td>Nama Guru</td>
+                      <td><?php echo $rowsl['nm_guru'];?></td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
           <?php if (isset($_SESSION['administrator'])) { ?>
           <a href="./ekstrakurikuler.tambah" class="uk-button uk-button-success" type="button" title="Tambah Data Ekstrakurikuler"><i class="uk-icon-plus"></i> Ekstrakurikuler</a>
       <?php } ?>
