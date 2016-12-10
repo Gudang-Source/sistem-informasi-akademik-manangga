@@ -56,12 +56,12 @@ loadAssetsHead('Dashboard - Sistem Informasi Akademik SDN II Manangga');
 								<tbody>
 									<?php if (isset($_SESSION['administrator'])) { ?>
 									<center><a href="./berita.tambah" class="btn btn-primary btn-lg" type="button" title="Tambah Data Berita"><i class="uk-icon-plus"></i> Berita</a></center>
-
+									<br>
 									<?php } ?>
 									<?php
 									include "config.php";
 									include "./inc/tanggal.php";
-									$sql="SELECT * FROM berita order by id_berita desc";            
+									$sql="SELECT * FROM berita order by id_berita desc limit 2";            
 									$result = mysql_query($sql);
               $num = mysql_num_rows($result); // menghitung jumlah record
                 if($num>0){     // jika ditemukan record akan ditampilkan
@@ -72,21 +72,31 @@ loadAssetsHead('Dashboard - Sistem Informasi Akademik SDN II Manangga');
                 	$artikel=substr($row['content'], 0, $berapa);
                 	$jumlah=strlen($row['content']);?>
                 	<?php echo"
-                	<div class='uk-form-row'>
-                		<article class='uk-article'>
-
-                			<a href='./tampil-news?id={$row['id_berita']}'><h1 class='uk-article'>{$row['judul_berita']}</h1></a>
-                			<span class='label label-default'>Dirilis Pada Tanggal {$tgl} || Pukul 
-                				{$pukul}  </span>
-                			</br></br>
-                			<img style='width:120px; float:left; margin:0px; margin-right: 8px;' src='gallery/news/{$row['gambar']}' alt=''> $artikel <hr class='uk-article-divider'>";?>
-                			<?php if($jumlah>600)if(isset($_SESSION['administrator'])){ echo"
-                			<a class='uk-button uk-button-primary'  href='./tampil-news?id={$row['id_berita']}' style='margin: 2; float: right; color: #FFF;'><i class='uk-icon-search'></i> Lihat</a>";?>
+ 
+                	<div class='row'>
+                	<div><br>
+                		<div class='thumbnail'>
+                		<img src='gallery/news/{$row['gambar']}' alt='...'>
+                		
+                			<div class='caption'>
+        <h3>{$row['judul_berita']}</h3>
+        <p>$artikel</p>
+        
+            </div>";?>
+<?php if($jumlah>600){ echo"
+                			<a class='uk-button uk-button-primary'  role='button' href='./tampil-news?id={$row['id_berita']}' style='margin: 0; float:right; color: #FFF;'><i class='uk-icon-search'></i> Lihat</a>";?>
                 			<?php if(isset($_SESSION['administrator'])){ echo"
-                			<a class='uk-button uk-button-primary'  href='./berita.update?id={$row['id_berita']}' style='margin: 2; float: right; color: #FFF;'><i class='uk-icon-pencil'></i> Edit</a>";}?>
+                			<a class='uk-button uk-button-primary'  href='./berita.update?id={$row['id_berita']}' style='margin: 0; float:right; color: #FFF;'><i class='uk-icon-pencil'></i> Edit</a>";}?>
                 			<?php if(isset($_SESSION['administrator'])){?>
-                			<a class="uk-button uk-button-primary"  href="./berita.hapus?id=<?php echo "{$row['id_berita']}";?>&file=<?php echo $row['gambar'];?>" onclick="return : confirm("Apakah anda yakin akan menghapus berita ini?")"; style="margin: 2; float: right; color: #FFF;"><i class="uk-icon-remove"></i> Hapus</a><?php }?> 
-                		</article>
+                			<a class="uk-button uk-button-primary"  href="./berita.hapus?id=<?php echo "{$row['id_berita']}";?>&file=<?php echo $row['gambar'];?>" onclick="return : confirm("Apakah anda yakin akan menghapus berita ini?")"; style="margin: 0; float:right; color: #FFF;"><i class="uk-icon-remove"></i> Hapus</a><?php }?> 
+    </div>
+
+  </div>
+</div>
+                		<p><a class='btn btn-primary' role='button' href='arsip-berita'>Arsip Berita</a></p>
+                			
+                		</div>
+                		</div>
                 	</div>
                 	<?php
                 }
