@@ -2,7 +2,7 @@
 <?php
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(10));
+checkUserRole(array(10,1));
 
 // TEMPLATE CONTROL
 $ui_register_page     = 'guru';
