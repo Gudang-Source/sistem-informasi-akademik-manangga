@@ -117,9 +117,6 @@ if (isset($_POST['siswa_simpan'])) {
       if (trim($pekerjaan_bapak)=="") {
         $pesanError[]="Data <b>Pekerjaan Bapak</b> Masih Kosong.";
       }
-      if (trim($gaji_bapak)=="") {
-        $pesanError[]="Data <b>Gaji Bapak</b> Masih Kosong.";
-      }
       if (trim($nohp_bapak)=="") {
         $pesanError[]="Data <b>No Handphone Bapak</b> Masih Kosong.";
       }
@@ -128,10 +125,6 @@ if (isset($_POST['siswa_simpan'])) {
       }
       if (trim($pekerjaan_ibu)=="") {
         $pesanError[]="Data <b>Pekerjaan Ibu</b> Masih Kosong.";
-      }
-
-      if (trim($gaji_ibu)=="") {
-        $pesanError[]="Data <b>Gaji Ibu</b> Masih Kosong.";
       }
       if (trim($nohp_ibu)=="") {
         $pesanError[]="Data <b>No Handphone Ibu</b> Masih Kosong.";
@@ -201,6 +194,7 @@ if (isset($_POST['siswa_simpan'])) {
               alamat='$alamat',
               email='$email',
               no_hp='$no_hp',
+              foto='$jeneng',
               tahun_masuk='$tahun_masuk',
               tahun_keluar='0',
               id_wali='$nis',
