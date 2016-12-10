@@ -2,7 +2,7 @@
 <?php
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(10));
+checkUserRole(array(0));
 
 // TEMPLATE CONTROL
 $ui_register_page     = 'siswa';
@@ -210,7 +210,7 @@ if (isset($_POST['siswa_simpan'])) {
 
           }
           if ($query){
-            header('location: ./siswa');
+            header('location: ./info-pribadi-siswa');
           }
           else { $error = "Uploaded image should be jpg or gif or png"; } 
 
@@ -329,7 +329,7 @@ if (isset($_POST['siswa_simpan'])) {
                 <hr class="uk-article-divider">
                 <h1 class="uk-article-title">Manajemen Siswa <span class="uk-text-large">{ Edit Siswa }</span></h1>
                 <br>
-                <a href="./siswa" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Siswa"><i class="uk-icon-angle-left"></i> Kembali</a>
+                <a href="./info-pribadi-siswa" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Siswa"><i class="uk-icon-angle-left"></i> Kembali</a>
                 <!-- <hr class="uk-article-divider"> -->
                 <form id="formsiswa" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
                   <div class="uk-grid" data-uk-grid-margin>
@@ -375,11 +375,6 @@ if (isset($_POST['siswa_simpan'])) {
                                     </div>
                                   </div>                
 
-
-
-
-
-
                                   <div class="item form-group">
                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nis">NIS<span class="required">*</span>
                                    </label>
@@ -388,8 +383,6 @@ if (isset($_POST['siswa_simpan'])) {
                                      <div class="reg-info">Contoh: 151601001. Wajib Diisi Minimal 9 Karakter (Digunakan sebagai username untuk login)</div>
                                    </div>
                                  </div>
-
-
 
                                  <div class="item form-group">
                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nm_siswa">Nama Siswa<span class="required">*</span>
@@ -462,9 +455,6 @@ if (isset($_POST['siswa_simpan'])) {
                                       <?php     } 
                                       ?>
                                     </select>
-
-
-
 
                                   </div>
                                 </div>
@@ -759,10 +749,6 @@ if (isset($_POST['siswa_simpan'])) {
   <div class="reg-info">Contoh: Jalan Kenanga, Depok, Sleman, Yogyakarta</div>
 </div>
 </div>
-
-
-
-
 
 
 <div class="uk-form-row">

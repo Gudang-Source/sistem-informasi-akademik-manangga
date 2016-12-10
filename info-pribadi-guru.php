@@ -293,7 +293,7 @@ if (isset($_POST['guru_simpan'])) {
                   </div></div></div>
                   <div class="uk-width-7-10">  <div class="uk-panel uk-panel-box"> <table class="uk-table uk-table-hover  uk-table-condensed"><tr><td></td><td></td><td></td><td></td><td width="70"><li>
 
-                  <a href="guru.update?id=<?php echo $rowks[id_guru]?>" ><i  class="uk-icon-pencil"></i> Edit</a>   </li></td> </tr></table> 
+                  <a href="guru-guru.update?id=<?php echo $rowks[id_guru]?>" ><i  class="uk-icon-pencil"></i> Edit</a>   </li></td> </tr></table> 
 
                     <table class="uk-table uk-table-hover  uk-table-condensed">
                       <tbody>

@@ -2,10 +2,10 @@
 <?php
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(10));
+checkUserRole(array(1,24));
 
 // TEMPLATE CONTROL
-$ui_register_page     = 'guru';
+$ui_register_page     = 'info-pribadi-guru';
 $ui_register_assets   = array('datepicker');
 
 // LOAD HEADER
@@ -187,7 +187,7 @@ if (isset($_POST['guru_simpan'])) {
 
           }
           if ($query){
-            header('location: ./guru');
+            header('location: ./info-pribadi-guru');
           }
           else { $error = "Uploaded image should be jpg or gif or png"; } 
 

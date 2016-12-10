@@ -139,7 +139,6 @@ if (trim($kkm)=="") {
 										<th>Hari</th>
 										<th>Jam Ke</th>
 										<th>Tahun Ajaran</th>
-										<th>Semester</th>
 										<th>Aksi</th>
 									</tr>
 								</thead>
@@ -228,7 +227,7 @@ if (trim($kkm)=="") {
 
 									<?php 
 
-									$query="SELECT guru.nm_guru, guru.nip , jadwal.id_jadwal_mapel, mapel.kd_mapel,mengajar.id_mengajar, mapel.nm_mapel, kelas.nm_kelas, mengajar.id_kelas, jadwal.id_hari, jadwal.id_sesi, hari.nm_hari, sesi.jam, tahun_ajaran.thn_ajaran, tahun_ajaran.semester, mengajar.id_guru FROM jadwal, sesi, hari, mengajar, mapel, guru, kelas, tahun_ajaran 
+									$query="SELECT guru.nm_guru, guru.nip , jadwal.id_jadwal_mapel, mapel.kd_mapel,mengajar.id_mengajar, mapel.nm_mapel, kelas.nm_kelas, mengajar.id_kelas, jadwal.id_hari, jadwal.id_sesi, hari.nm_hari, sesi.jam, tahun_ajaran.thn_ajaran, mengajar.id_guru FROM jadwal, sesi, hari, mengajar, mapel, guru, kelas, tahun_ajaran 
 									where jadwal.id_mengajar=mengajar.id_mengajar 
 									and jadwal.id_sesi=sesi.id_sesi
 									and jadwal.id_hari=hari.id_hari
