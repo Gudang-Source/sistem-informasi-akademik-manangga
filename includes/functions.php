@@ -372,12 +372,12 @@ function admin(){
   <?php } ?>
 
   <?php function siswa(){
-   $sql = "SELECT * from siswa, kelas_siswa where nis = $_SESSION[usernamesiswa]";
+   $sql = "SELECT * from siswa, kelas_siswa where kelas_siswa.id_siswa=siswa.id_siswa AND nis = $_SESSION[usernamesiswa]";
    $result = mysql_query($sql);
    $row=mysql_fetch_array($result);?>
    <div class="sia-profile">
     <p style="text-align:left"; font-weight:bold;>Selamat Datang</p>
-    <img class="sia-profile-image" src="gallery/news/<?=$row['foto'];?>"> </br>
+    <img class="sia-profile-image" src="gallery/news/<?=$row['foto'];?>"> </br> 
     </br>
     <p style="text-align:left"; font-weight:bold;>Nama: <b><?php echo "{$row['nm_siswa']}";?></b></p> 
     <p style="text-align:left"; font-weight:bold;>NIS: <b><?php echo "{$row['nis']}";?></b></p>
@@ -431,6 +431,7 @@ function admin(){
       <?php generateNavElement(array(10), 'siswa', './siswa', 'Data Siswa') ?>
       <?php generateNavElement(array(1), 'guru.siswa', './guru.siswa', 'Data Siswa') ?>
       <?php generateNavElement(array(0), 'info-pribadi-siswa', './info-pribadi-siswa', 'Info Pribadi Siswa') ?>  
+      <?php generateNavElement(array(0), 'siswa.datakelas', './siswa.datakelas', 'Data Kelas') ?>  
 <?php if(isset($_SESSION['administrator'])) { ?>
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-child"></i> Kelas Siswa</li>
@@ -452,6 +453,7 @@ function admin(){
       <li class="uk-nav-header"><i class="uk-icon-tasks"></i> Mata Pelajaran</li>
       <?php generateNavElement(array(10), 'mapel', './mapel', 'Data Mapel') ?>
       <?php generateNavElement(array(1), 'guru.mapel', './guru.mapel', 'Data Mapel') ?>
+      <?php generateNavElement(array(0), 'siswa.mapel', './siswa.mapel', 'Data Mapel') ?>
       <!--<?php generateNavElement(array(10,1,0), 'kkm', './kkm', 'Data KKM') ?>-->
 <?php if(isset($_SESSION['administrator'])) { ?>
       <hr class="uk-article-divider">
@@ -476,6 +478,14 @@ function admin(){
       <li class="uk-nav-divider"></li>
 <?php } ?>
 
+
+     <?php if (isset($_SESSION['usernamesiswa'])) { ?>
+      <hr class="uk-article-divider">  
+      <li class="uk-nav-header"><i class="uk-icon-file-text"></i>  Data Nilai</li> 
+      <?php generateNavElement(array(0), 'siswa_nilai', './siswa_nilai', 'Nilai Siswa') ?>
+     
+      <li class="uk-nav-divider"></li>
+<?php } ?>
 
       <li><a href="./logout">Keluar</a></li>
     </ul>
