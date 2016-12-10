@@ -70,7 +70,7 @@ loadAssetsHead('Dashboard - Sistem Informasi Akademik SDN II Manangga');
               $num = mysql_num_rows($result); // menghitung jumlah record
                 if($num>0){     // jika ditemukan record akan ditampilkan
                 while($row = mysql_fetch_array($result)){   // perintah mysql_fetch_array untuk
-                	$berapa=500;
+                	$berapa=250;
                 	$tgl=TanggalIndo($row['tgl']);
                 	$pukul=$row['pukul'];
                 	$artikel=substr($row['content'], 0, $berapa);
@@ -83,8 +83,8 @@ loadAssetsHead('Dashboard - Sistem Informasi Akademik SDN II Manangga');
                 			<span class='uk-text-success'>Dirilis Pada Tanggal {$tgl} || Pukul 
                 				{$pukul}  </span>
                 			</br></br>
-                			<img style='width:120px; float:left; margin:0px; margin-right: 8px;' src='gallery/news/{$row['gambar']}' alt=''>  $artikel ";?>
-                			<?php if($jumlah>600){ echo"
+                			<img style='width:120px; float:left; margin:0px; margin-right: 8px;' src='gallery/news/{$row['gambar']}' alt=''> $artikel <hr class='uk-article-divider'>";?>
+                			<?php if($jumlah>600)if(isset($_SESSION['administrator'])){ echo"
                 			<a class='uk-button uk-button-primary'  href='./tampil-news?id={$row['id_berita']}' style='margin: 2; float: right; color: #FFF;'><i class='uk-icon-search'></i> Lihat</a>";?>
                 			<?php if(isset($_SESSION['administrator'])){ echo"
                 			<a class='uk-button uk-button-primary'  href='./berita.update?id={$row['id_berita']}' style='margin: 2; float: right; color: #FFF;'><i class='uk-icon-pencil'></i> Edit</a>";}?>

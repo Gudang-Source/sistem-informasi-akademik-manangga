@@ -36,6 +36,7 @@ loadAssetsHead('Dashboard');
 
             <hr class="uk-article-divider">
             <h1 class="uk-article-title">Berita Hari Ini</h1> 
+            <hr class="uk-article-divider">
             <br>
             <?php
             include "config.php";
@@ -50,16 +51,28 @@ $pukul=$row['pukul'];
 
               <div class="uk-form-row">
                 <article class="uk-article">
-                <h1 class="uk-article-title"><?php echo"{$row['judul_berita']}";?></h1>
-                  <span class="uk-text-success">Dirilis Pada Tanggal <?php 
+                <h2><?php echo"{$row['judul_berita']}";?></h1>
+                  <h7><span class="uk-text-success">Dirilis Pada Tanggal <?php 
 echo TanggalIndo($tgl).' || Pukul ';
-                  echo $pukul ?></span>
+                  echo $pukul ?></span></h7>
                   </br></br>
-                  <img style="width:500px; float:left; margin:0px; margin-right: 8px;" src="<?php echo"gallery/news/{$row['gambar']}";?>" alt="">
-                  <?php echo "{$row['content']}";?>
+            <div class="uk-panel uk-panel-box">
+              <div class="uk-overflow-container">
+                <table>
+                  <tbody>
+                    <tr>
+                  <img style="width:350px; float:right; alignment:center; margin:0px; margin-right: 0px;" src="<?php echo"gallery/news/{$row['gambar']}";?>" alt="">
+                 <td> <?php echo "{$row['content']}";?></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <br>
                    <a class="uk-button uk-button-primary"  href="./dashboard" style="margin: 2; float: right; color: #FFF;">Kembali</a>            
                 </article>
             </div>
+
 		    </article>
       </div>
     </div>
