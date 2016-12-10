@@ -363,7 +363,7 @@ function admin(){
    ?>
    <div class="sia-profile">
     <p style="text-align:center"; font-weight:bold;>Selamat Datang</p>
-    <img class="sia-profile-image" <?php echo "src='gallery/guru/logo.jpg'";?> </br> 
+    <img class="sia-profile-image" src="gallery/news/<?=$row['foto'];?>"> </br> 
     <p style="text-align:center"; font-weight:bold;><b><?php echo "{$row['nip']}";?></b></p>
     <p style="text-align:center"; font-weight:bold;><b><?php echo "{$row['nm_guru']}";?></b></p>
 
