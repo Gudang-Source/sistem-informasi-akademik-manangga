@@ -203,14 +203,8 @@ loadAssetsHead('Lihat Data Siswa');
 
                   <td ><?php echo $row[nis]?></td>
                   <td ><?php echo $row[nm_siswa]?></td>
-                  <td ><?php echo $row[nilai]?></td>
-                  
-                  <td width="15%"><div class="uk-text-center">
-                    <a href="guru.siswa.lihat?id=<?php echo $row[id_siswa]?>" title="Lihat" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-search"></i></a>
-           
-
-                  </td>
-                             
+                  <td ><input type="text" id="input" name="input" value="<?php echo $input; ?>" required="required" class="form-control"></td>
+                                   
                 </tr>
                 <?php  } ?>
               </tbody>
