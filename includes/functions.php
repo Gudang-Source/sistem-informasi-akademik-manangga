@@ -356,7 +356,7 @@ function admin(){
 
   <?php function guru(){
 
-   $sql = "SELECT * FROM user, guru WHERE guru.id_user=user.id_user AND nip={$_SESSION['usernameguru']}";
+   $sql = "SELECT * FROM guru WHERE id_guru='$_SESSION[id_guru]'";
    $result = mysql_query($sql);
    $row=mysql_fetch_array($result); 
 
@@ -406,7 +406,7 @@ function admin(){
       <hr class="uk-article-divider">
 
       <li class="uk-nav-header"></li>
-      <?php generateNavElement(array(0,1,2,10), 'dashboard', './dashboard', 'Dashboard') ?>
+      <?php generateNavElement(array(0,1,2,10,24), 'dashboard', './dashboard', 'Dashboard') ?>
       <?php if(isset($_SESSION['administrator'])) { ?>
       <hr class="uk-article-divider"> 
       
@@ -427,7 +427,7 @@ function admin(){
       <hr class="uk-article-divider">
       
       <li class="uk-nav-header"><i class="uk-icon-child"></i> Siswa</li> 
-      <?php generateNavElement(array(10), 'siswa', './siswa', 'Data Siswa') ?>
+      <?php generateNavElement(array(10,24), 'siswa', './siswa', 'Data Siswa') ?>
       <?php generateNavElement(array(1), 'guru.siswa', './guru.siswa', 'Data Siswa') ?>
       <?php generateNavElement(array(0), 'info-pribadi-siswa', './info-pribadi-siswa', 'Info Pribadi Siswa') ?>  
       <?php generateNavElement(array(0), 'siswa.datakelas', './siswa.datakelas', 'Data Kelas') ?>  
@@ -450,7 +450,7 @@ function admin(){
 <?php }?>
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-tasks"></i> Mata Pelajaran</li>
-      <?php generateNavElement(array(10), 'mapel', './mapel', 'Data Mapel') ?>
+      <?php generateNavElement(array(10,24), 'mapel', './mapel', 'Data Mapel') ?>
       <?php generateNavElement(array(1), 'guru.mapel', './guru.mapel', 'Data Mapel') ?>
       <?php generateNavElement(array(0), 'siswa.mapel', './siswa.mapel', 'Data Mapel') ?>
       <!--<?php generateNavElement(array(10,1,0), 'kkm', './kkm', 'Data KKM') ?>-->
@@ -463,15 +463,15 @@ function admin(){
       <li class="uk-nav-header"><i class="uk-icon-calendar"></i> Jadwal Mapel</li>  
       <?php generateNavElement(array(10), 'jadwal-mapel-admin', './jadwal-mapel-admin', 'Manajemen Jadwal') ?>
       <?php generateNavElement(array(10), 'manajemen-sesi', './manajemen-sesi', 'Manajemen Sesi') ?>
-      <?php generateNavElement(array(1), 'guru.jadwal-mapel', './guru.jadwal-mapel', 'Jadwal Pelajaran') ?>
+      <?php generateNavElement(array(1,24), 'guru.jadwal-mapel', './guru.jadwal-mapel', 'Jadwal Pelajaran') ?>
       <?php generateNavElement(array(0), 'jadwal-mapel-siswa', './jadwal-mapel-siswa', 'Jadwal Pelajaran') ?>
      
      
       <?php if (isset($_SESSION['usernameguru'])) { ?>
       <hr class="uk-article-divider">  
       <li class="uk-nav-header"><i class="uk-icon-file-text"></i>  Data Nilai</li> 
-      <?php generateNavElement(array(1), 'guru.nilai', './guru.nilai', 'Nilai') ?>
-      <?php generateNavElement(array(1), 'guru.nilai.tambah', './guru.nilai.tambah', 'Input Nilai') ?>
+      <?php generateNavElement(array(1,24), 'guru.nilai', './guru.nilai', 'Nilai') ?>
+      <?php generateNavElement(array(1,24), 'guru.nilai.tambah', './guru.nilai.tambah', 'Input Nilai') ?>
 
      
       <li class="uk-nav-divider"></li>
@@ -485,7 +485,7 @@ function admin(){
      
       <li class="uk-nav-divider"></li>
 <?php } ?>
-
+<li class="uk-nav-divider"></li>
       <li><a href="./logout">Keluar</a></li>
     </ul>
     
