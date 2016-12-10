@@ -20,15 +20,11 @@ if (isset ($_POST["tahun_simpan"])) {
     $thn_ajaran     = str_replace("", "&acute;", $thn_ajaran);
     $thn_ajaran     = ucwords(strtolower($thn_ajaran));
 
-    $semester     = $_POST['semester'];
 
     // validation form kosong
    $pesanError= array();
   if (trim($thn_ajaran)=="") {
     $pesanError[]="Data <b>Nama Tahun Ajaran</b> Masih Kosong.";
-  }
-  if (trim($semester)=="") {
-    $pesanError[]="Data <b>Semester</b> Masih Kosong.";
   }
 
 
@@ -45,7 +41,7 @@ if (isset ($_POST["tahun_simpan"])) {
     }
 
    else{
-          $cekenegpoora = mysql_query("SELECT * FROM tahun_ajaran WHERE thn_ajaran='$thn_ajaran' and semester='$semester'");
+          $cekenegpoora = mysql_query("SELECT * FROM tahun_ajaran WHERE thn_ajaran='$thn_ajaran'");
            $jumlahe=mysql_num_rows($cekenegpoora);
           
           if ($jumlahe > 0) {
@@ -65,11 +61,10 @@ if (isset ($_POST["tahun_simpan"])) {
           // tahun ajaran session
           $_SESSION['id_tahun'] = $tahun_ajaransession['id_tahun'];
           $_SESSION['thn_ajaran'] = $tahun_ajaransession['thn_ajaran'];
-          $_SESSION['semester'] = $tahun_ajaransession['semester'];
           $_SESSION['status'] = $tahun_ajaransession['status'];
     // simpan ke database
-  $querytambahtahun = mysql_query("INSERT INTO tahun_ajaran (thn_ajaran, semester,status) 
-    VALUES ('$thn_ajaran' , '$semester','0' )") or die(mysql_error());
+  $querytambahtahun = mysql_query("INSERT INTO tahun_ajaran (thn_ajaran, status) 
+    VALUES ('$thn_ajaran' , '0' )") or die(mysql_error());
   $update=mysql_query("UPDATE tahun_ajaran SET  status='0' WHERE status='1'");
   $update=mysql_query("UPDATE tahun_ajaran SET  status='1' WHERE id_tahun='$tahun_ajaransession[id_tahun]'");
 
@@ -81,7 +76,6 @@ if (isset ($_POST["tahun_simpan"])) {
           // tahun ajaran session
           $_SESSION['id_tahun'] = $tahun_ajaransession['id_tahun'];
           $_SESSION['thn_ajaran'] = $tahun_ajaransession['thn_ajaran'];
-          $_SESSION['semester'] = $tahun_ajaransession['semester'];
           $_SESSION['status'] = $tahun_ajaransession['status'];
     header('location: ./tahun-ajaran');
   }
@@ -92,7 +86,6 @@ if (isset ($_POST["tahun_simpan"])) {
 
     // simpan pada form, dan jika form belum terisi
   $datanamatahunajaran = isset($_POST['thn_ajaran']) ? $_POST['thn_ajaran'] : '';
-  $datasemester  = isset($_POST['semester']) ? $_POST['semester'] : '';
 
 ?>
   <script type="text/javascript">
@@ -141,18 +134,6 @@ if (isset ($_POST["tahun_simpan"])) {
 
         </div>
 
-      <div class="item form-group">
-           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="semester">Semester<span class="required">*</span>
-           </label>
-           <div class="col-md-6 col-sm-6 col-xs-12">
-            <select name="semester" id="semester" value="<?php echo $datasemester; ?>" class="form-control col-md-7 col-xs-12">
-              <option value="">--- Semester --</option>
-              <option value="Ganjil">Ganjil</option>
-              <option value="Genap">Genap</option>
-            </select>
-          </div>
-        </div>
-
         <div style="text-align:center" class="form-actions no-margin-bottom">
          <button type="submit" id="tahun_simpan" name="tahun_simpan" class="btn btn-success">Submit</button>
        </div>
@@ -196,16 +177,6 @@ if (isset ($_POST["tahun_simpan"])) {
         
    }
  }, 
-semester: {
-  message: 'Nama Semester Tidak Benar',
-  validators: {
-    notEmpty: {
-      message: 'Nama Semester Harus Diisi'
-    },
-
-
-  }
-}
 
 }
 });

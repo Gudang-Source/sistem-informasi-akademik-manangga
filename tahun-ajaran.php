@@ -64,7 +64,6 @@ loadAssetsHead('Master Data Tahun Ajaran');
 							<tr>
 								<th><h3 class="uk-text-center">No</h3></th>
 								<th><h3 class="uk-text-center">Tahun Ajaran</h3></th>
-								<th><h3 class="uk-text-center">Semester</h3></th>
 								<th><h3 class="uk-text-center">Status</h3></th>
 								<th><h3 class="uk-text-center">Aktivasi</h3></th>
 								<?php if (isset($_SESSION['administrator'])) { ?>
@@ -75,7 +74,7 @@ loadAssetsHead('Master Data Tahun Ajaran');
 							<tbody>
 						  <?php 
 						
-						  $query="SELECT id_tahun, thn_ajaran, semester, status FROM tahun_ajaran";
+						  $query="SELECT id_tahun, thn_ajaran, status FROM tahun_ajaran";
 						  $exe=mysql_query($query);
 						  $no=0;
 						  while ($row=mysql_fetch_array($exe)) { $no++;?>
@@ -84,7 +83,6 @@ loadAssetsHead('Master Data Tahun Ajaran');
 								<?php  } else { ?><tr> <?php }?>
 								<td><div class="uk-text-center"><?php echo $no?></div></td>
 								<td><div class="uk-text-center"><?php echo $row[1]?></div></td>
-								<td><div class="uk-text-center"><?php echo $row[2]?></div></td>
 								<?php if($row[status]=="1"){ ?>
 								<td bgcolor="#99ddff"><div class="uk-text-center"><i class="uk-icon-check-square"></i> </div></td>
 								<?php }else {?>
@@ -94,7 +92,7 @@ loadAssetsHead('Master Data Tahun Ajaran');
 								<?php if (isset($_SESSION['administrator'])) { ?>
 								<td width="15%"><div class="uk-text-center">
 								   <a href="tahun-ajaran.update?id=<?php echo $row[0]?>" title="Sunting" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-pencil"></i></a>
-								  <a href="tahun-ajaran.hapus?id=<?php echo $row[1]?>" onclick="return confirm('Apakah anda yakin akan menghapus data tahun ajaran: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a></div>
+								  <a href="tahun-ajaran.hapus?id=<?php echo $row[0]?>" onclick="return confirm('Apakah anda yakin akan menghapus data tahun ajaran: <?php echo $row[1] ?> ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a></div>
 								</td>
 								<?php } ?>						
 							  </tr>
