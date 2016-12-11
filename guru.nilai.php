@@ -316,6 +316,8 @@ if (trim($kkm)=="") {
 														<button type="submit" class="uk-button uk-button-primary">Save</button>
 													</div>
 													<input type="hidden" name="edit" value="edit">
+													<input type="hidden" name="id_kelas_siswa_edit" value="<?php echo $rows['id_kelas_siswa']; ?>">
+													<input type="hidden" name="id_tahun_edit" value="<?php echo $rows['id_tahun']; ?>">
 												</form>
 
 											</div>
