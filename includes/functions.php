@@ -371,7 +371,7 @@ function admin(){
   <?php } ?>
 
   <?php function siswa(){
-    $sqll1 = "SELECT * FROM siswa, kelas_siswa ,kelas
+    $sqll1 = "SELECT * FROM siswa, kelas_siswa, kelas, tahun_ajaran
             WHERE siswa.id_siswa=kelas_siswa.id_siswa 
             and  kelas.id_kelas=kelas_siswa.id_kelas 
             and kelas_siswa.id_tahun='$_SESSION[id_tahun]' 
@@ -381,7 +381,7 @@ function admin(){
             $kelase=$row['id_kelas'];
             $jenengkelase=$row['nm_kelas'];
             ?>
-   <div class="sia-profile"><div style="float:right; margin:-0;" class="uk-button-dropdown" data-uk-dropdown="{pos:'right-top'}" aria-haspopup="true" aria-expanded="false"><button  class="uk-badge uk-badge" ><i class="uk-icon-pencil"></i></button><div class="uk-dropdown uk-dropdown-right uk-dropdown-small" aria-hidden="true" tabindex="" style="top: 0px; left: 27px;">
+   <div class="sia-profile"><div style="float:right; margin:-0;" class="uk-button-dropdown" data-uk-dropdown="{pos:'right-top'}" aria-haspopup="true" aria-expanded="false"><button  class="btn btn-primary btn-fab btn-fab-mini btn-round" ><i class="uk-icon-pencil"></i></button><div class="uk-dropdown uk-dropdown-right uk-dropdown-small" aria-hidden="true" tabindex="" style="top: 0px; left: 45px;">
                                     <ul class="uk-nav uk-nav-dropdown" >
                                         <li><a href="info-pribadi-siswa.account">Account</a></li>
                                         <li><a href="info-pribadi-siswa">Profile</a></li>
@@ -390,12 +390,8 @@ function admin(){
                                 </div>
                             </div>
 
-   <br>
-    <p style="text-align:left"; font-weight:bold;>Selamat Datang</p>
-
-    <img class="sia-profile-image" src="gallery/news/<?=$row['foto'];?>"> </br> 
-    </br>
-    <p style="text-align:left"; font-weight:bold;>Nama: <b><?php echo "{$row['nm_siswa']}";?></b></p> 
+    <img class="img-circle img-no-padding img-responsive" src="gallery/news/<?=$row['foto'];?>"> </br> 
+     <div class="name"><h5 class="title"><strong><?php echo "{$row['nm_siswa']}";?></h5></strong></div>
     <p style="text-align:left"; font-weight:bold;>NIS: <b><?php echo "{$row['nis']}";?></b></p>
     <p style="text-align:left"; font-weight:bold;>Kelas: <b><?php echo "{$row['nm_kelas']}";?></b></p>
   </div>
@@ -446,8 +442,7 @@ function admin(){
       <li class="uk-nav-header"><i class="uk-icon-child"></i> Siswa</li> 
       <?php generateNavElement(array(10,24), 'siswa', './siswa', 'Data Siswa') ?>
       <?php generateNavElement(array(1), 'guru.siswa', './guru.siswa', 'Data Siswa') ?>
-      <?php generateNavElement(array(0), 'info-pribadi-siswa', './info-pribadi-siswa', 'Info Pribadi Siswa') ?>  
-      <?php generateNavElement(array(0), 'siswa.datakelas', './siswa.datakelas', 'Data Kelas') ?>  
+      <?php generateNavElement(array(0), 'siswa.datakelas', './siswa.datakelas', 'Data Siswa Sekelas') ?>  
 <?php if(isset($_SESSION['administrator'])) { ?>
       <hr class="uk-article-divider">
       <li class="uk-nav-header"><i class="uk-icon-child"></i> Kelas Siswa</li>
