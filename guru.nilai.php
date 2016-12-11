@@ -133,6 +133,7 @@ if (trim($kkm)=="") {
 								<br><br>
 
 								<?php if (isset ($_POST["nilai_tampilkan"]) ) : ?>
+									<div class="uk-alert uk-alert-sucess">
 									<div class="uk-form-row">
 										<?php $exe123  = mysql_query("SELECT * FROM mengajar,mapel,kelas 
 											where mengajar.id_kelas=kelas.id_kelas 
@@ -142,6 +143,8 @@ if (trim($kkm)=="") {
 											$keterangane=mysql_fetch_array($exe123); ?>
 											<label class="uk-form-label">Mata Pelajaran : <span class="uk-text-success"><?php echo $keterangane[nm_mapel];?></span></label>
 											<label class="uk-form-label">Kelas : <span class="uk-text-success"><?php echo $keterangane[nm_kelas];?></span></label>
+											<label class="uk-form-label">KKM : <span class="uk-text-success"><?php echo $keterangane[kkm];?></span></label>
+										</div>
 										</div>
 									</form>
 

@@ -243,10 +243,16 @@ $_SESSION['status_sblm'] = $thn_ajaran_sblm['status'];
 										}
 
 										?>
-										<label class="uk-form-label">Mata Pelajaran : <span class="uk-text-success"><?php echo $keterangane[nm_mapel];?></span></label>
-										<label class="uk-form-label">Kelas : <span class="uk-text-success"><?php echo $keterangane[nm_kelas];?></span></label>
-										<label class="uk-form-label">Komponen Nilai : <span class="uk-text-success"><?php echo $namakomponen;?></span></label>
+										
 									</div>
+									<div class="uk-alert uk-alert-sucess">
+									<div class="uk-form-row">
+										
+											<label class="uk-form-label">Mata Pelajaran : <span class="uk-text-success"><?php echo $keterangane[nm_mapel];?></span></label>
+											<br><label class="uk-form-label">Kelas : <span class="uk-text-success"><?php echo $keterangane[nm_kelas];?></span></label>
+											<br><label class="uk-form-label">KKM : <span class="uk-text-success"><?php echo $keterangane[kkm];?></span></label>
+										</div>
+										</div>
 									<br>
 									<div id="tablewrapper">
 										<div id="tableheader">
