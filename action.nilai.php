@@ -31,9 +31,10 @@ if ( $act=='input'){
 		$multi_id_kelas_siswa=$id_kelas_siswa[$i];
 		$multi_id_nilai_siswa=$id_nilai_input[$i];
 		$multi_nilai=$_POST[$sik][$i];
-		
+			$bijine= !empty($multi_nilai) ? "'$multi_nilai'" : "NULL";
 
-		$queryupdate =  mysql_query("UPDATE nilai set $sik='$multi_nilai' where id_nilai='$multi_id_nilai_siswa' ") ;
+		
+		$queryupdate =  mysql_query("UPDATE nilai set $sik=$bijine where id_nilai='$multi_id_nilai_siswa' ") ;
 
 
 	}
@@ -69,33 +70,49 @@ elseif ( $act=='update'){
 	$uts=$_POST['uts'];
 	$uas=$_POST['uas'];
 
+	$uh1= !empty($uh1) ? "'$uh1'" : "NULL";
+$uh2= !empty($uh2) ? "'$uh2'" : "NULL";
+$uh3= !empty($uh3) ? "'$uh3'" : "NULL";
+$uh4= !empty($uh4) ? "'$uh4'" : "NULL";
+$uh5= !empty($uh5) ? "'$uh5'" : "NULL";
+$uh6= !empty($uh6) ? "'$uh6'" : "NULL";
+$uh7= !empty($uh7) ? "'$uh7'" : "NULL";
+$t1= !empty($t1) ? "'$t1'" : "NULL";
+$t2= !empty($t2) ? "'$t2'" : "NULL";
+$t3= !empty($t3) ? "'$t3'" : "NULL";
+$t4= !empty($t4) ? "'$t4'" : "NULL";
+$t5= !empty($t5) ? "'$t5'" : "NULL";
+$t6= !empty($t6) ? "'$t6'" : "NULL";
+$t7= !empty($t7) ? "'$t7'" : "NULL";
+$uts= !empty($uts) ? "'$uts'" : "NULL";
+$uas= !empty($uas) ? "'$uas'" : "NULL";
+
 	$id_kelas=$_POST['id_kelas'];
 	$kd_mapel=$_POST['kd_mapel'];
 	$id_kelas_siswa_edit=$_POST['id_kelas_siswa_edit'];
 	$id_tahun_edit=$_POST['id_tahun_edit'];
 	
 	
-	$updatemapel=mysql_query("UPDATE nilai SET uh1='$uh1', 
-											   uh2='$uh2', 
-											   uh3='$uh3', 
-											   uh4='$uh4', 
-											   uh5='$uh5', 
-											   uh6='$uh6', 
-											   uh7='$uh7', 
-											   t1='$t1', 
-											   t2='$t2', 
-											   t3='$t3', 
-											   t4='$t4', 
-											   t5='$t5', 
-											   t6='$t6', 
-											   t7='$t7', 
-											   uts='$uts', 
-											   uas='$uas'
-							WHERE id_nilai='$id_nilai'
-								  AND id_kelas_siswa='$id_kelas_siswa_edit'
-								  AND kd_mapel='$kd_mapel'
-								  AND id_tahun='$id_tahun_edit'
-							");
+	$updatenilai=mysql_query("UPDATE nilai SET uh1=$uh1, 
+											   uh2=$uh2, 
+											   uh3=$uh3, 
+											   uh4=$uh4, 
+											   uh5=$uh5, 
+											   uh6=$uh6, 
+											   uh7=$uh7, 
+											   t1=$t1, 
+											   t2=$t2, 
+											   t3=$t3, 
+											   t4=$t4, 
+											   t5=$t5, 
+											   t6=$t6, 
+											   t7=$t7, 
+											   uts=$uts, 
+											   uas=$uas
+								WHERE id_nilai='$id_nilai'
+								  
+							")or die(mysql_error());
+	
 	?>
 	<script language="JavaScript">alert('Data Nilai Berhasil Di Update')</script>
 	<script>

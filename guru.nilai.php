@@ -227,87 +227,87 @@ if (trim($kkm)=="") {
 													</div>
 													<div class="form-group">
 														<label>Ulangan Harian 1</label>
-														<input onkeyup="convertAngka(this);" class="form-control" name="uh1"  id="uh1" value="<?php echo $rows['uh1']; ?>"  required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="uh1"  id="uh1" value="<?php echo $rows['uh1']; ?>"    />
     														<div class="reg-info">Contoh: 80</div>
 													</div>
 													<div class="form-group">
 														<label>Ulangan Harian 2</label>
-														<input onkeyup="convertAngka(this);" class="form-control" name="uh1"  id="uh1" value="<?php echo $rows['uh1']; ?>"  required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="uh1"  id="uh1" value="<?php echo $rows['uh1']; ?>"    />
     														<div class="reg-info">Contoh: 80</div>
 													</div>
 													<div class="form-group">
 														<label>Ulangan Harian 2</label>
-														<input onkeyup="convertAngka(this);" class="form-control" name="uh2"  id="uh2" value="<?php echo $rows['uh2']; ?>"  required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="uh2"  id="uh2" value="<?php echo $rows['uh2']; ?>"    />
     														<div class="reg-info">Contoh: 80</div>
 													</div>
 													<div class="form-group">
 														<label>Ulangan Harian 3</label>
-														<input onkeyup="convertAngka(this);" class="form-control" name="uh3"  id="uh3" value="<?php echo $rows['uh3']; ?>"  required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="uh3"  id="uh3" value="<?php echo $rows['uh3']; ?>"    />
     														<div class="reg-info">Contoh: 80</div>
 													</div>
 													<div class="form-group">
 														<label>Ulangan Harian 4</label>
-														<input onkeyup="convertAngka(this);" class="form-control" name="uh4"  id="uh4" value="<?php echo $rows['uh4']; ?>"  required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="uh4"  id="uh4" value="<?php echo $rows['uh4']; ?>"    />
     														<div class="reg-info">Contoh: 80</div>
 													</div>
 													<div class="form-group">
 														<label>Ulangan Harian 5</label>
-														<input onkeyup="convertAngka(this);" class="form-control" name="uh5"  id="uh5" value="<?php echo $rows['uh5']; ?>"  required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="uh5"  id="uh5" value="<?php echo $rows['uh5']; ?>"    />
     														<div class="reg-info">Contoh: 80</div>
 													</div>
 													<div class="form-group">
 														<label>Ulangan Harian 6</label>
-														<input onkeyup="convertAngka(this);" class="form-control" name="uh6"  id="uh6" value="<?php echo $rows['uh6']; ?>"  required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="uh6"  id="uh6" value="<?php echo $rows['uh6']; ?>"    />
     														<div class="reg-info">Contoh: 80</div>
 													</div>
 													<div class="form-group">
 														<label>Ulangan Harian 7</label>
-														<input onkeyup="convertAngka(this);" class="form-control" name="uh7"  id="uh7" value="<?php echo $rows['uh7']; ?>"  required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="uh7"  id="uh7" value="<?php echo $rows['uh7']; ?>"    />
     														<div class="reg-info">Contoh: 80</div>
 													</div>
 													<div class="form-group">
 														<label>Tugas 1</label>
-														<input onkeyup="convertAngka(this);" class="form-control" name="t1"  id="t1" value="<?php echo $rows['t1']; ?>"  required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="t1"  id="t1" value="<?php echo $rows['t1']; ?>"    />
     														<div class="reg-info">Contoh: 80</div>
 													</div>
 													<div class="form-group">
 														<label>Tugas 2</label>
-														<input onkeyup="convertAngka(this);" class="form-control" name="t2"  id="t2" value="<?php echo $rows['t2']; ?>"  required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="t2"  id="t2" value="<?php echo $rows['t2']; ?>"    />
     														<div class="reg-info">Contoh: 80</div>
 													</div>
 													<div class="form-group">
 														<label>Tugas 3</label>
-														<input onkeyup="convertAngka(this);" class="form-control" name="t3"  id="t3" value="<?php echo $rows['t3']; ?>"  required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="t3"  id="t3" value="<?php echo $rows['t3']; ?>"    />
     														<div class="reg-info">Contoh: 80</div>
 													</div>
 													<div class="form-group">
 														<label>Tugas 4</label>
-														<input onkeyup="convertAngka(this);" class="form-control" name="t4"  id="t4" value="<?php echo $rows['t4']; ?>"  required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="t4"  id="t4" value="<?php echo $rows['t4']; ?>"    />
     														<div class="reg-info">Contoh: 80</div>
 													</div>
 													<div class="form-group">
 														<label>Tugas 5</label>
-														<input onkeyup="convertAngka(this);" class="form-control" name="t5"  id="t5" value="<?php echo $rows['t5']; ?>"  required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="t5"  id="t5" value="<?php echo $rows['t5']; ?>"    />
     														<div class="reg-info">Contoh: 80</div>
 													</div>
 													<div class="form-group">
 														<label>Tugas 6</label>
-														<input onkeyup="convertAngka(this);" class="form-control" name="t6"  id="t6" value="<?php echo $rows['t6']; ?>"  required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="t6"  id="t6" value="<?php echo $rows['t6']; ?>"    />
     														<div class="reg-info">Contoh: 80</div>
 													</div>
 													<div class="form-group">
 														<label>Tugas 7</label>
-														<input onkeyup="convertAngka(this);" class="form-control" name="t7"  id="t7" value="<?php echo $rows['t7']; ?>"  required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="t7"  id="t7" value="<?php echo $rows['t7']; ?>"    />
     														<div class="reg-info">Contoh: 80</div>
 													</div>
 													<div class="form-group">
 														<label>Ujian Tengah Semester</label>
-														<input onkeyup="convertAngka(this);" class="form-control" name="uts"  id="uts" value="<?php echo $rows['uts']; ?>"  required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="uts"  id="uts" value="<?php echo $rows['uts']; ?>"    />
     														<div class="reg-info">Contoh: 80</div>
 													</div>
 													<div class="form-group">
 														<label>Ujian Akhir Semester</label>
-														<input onkeyup="convertAngka(this);" class="form-control" name="uas"  id="uas" value="<?php echo $rows['uas']; ?>"  required  />
+														<input onkeyup="convertAngka(this);" class="form-control" name="uas"  id="uas" value="<?php echo $rows['uas']; ?>"    />
     														<div class="reg-info">Contoh: 80</div>
 													</div>
 
