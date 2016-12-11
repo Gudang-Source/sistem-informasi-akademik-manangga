@@ -76,10 +76,11 @@ loadAssetsHead('Dashboard - Sistem Informasi Akademik SDN II Manangga');
                 	<div class='row'>
                 	<div><br>
                 		<div class='thumbnail'>
-                		<img src='gallery/news/{$row['gambar']}' alt='...'>
-                		
+                		<img src='gallery/news/{$row['gambar']}' width='512px' alt='...'>
                 			<div class='caption'>
         <h3>{$row['judul_berita']}</h3>
+        <span class='uk-text-success'>Dirilis Pada Tanggal {$tgl} || Pukul 
+                				{$pukul}  </span>
         <p>$artikel</p>
         
             </div>";?>
@@ -93,11 +94,12 @@ loadAssetsHead('Dashboard - Sistem Informasi Akademik SDN II Manangga');
 
   </div>
 </div>
-                		<p><a class='btn btn-primary' role='button' href='arsip-berita'>Arsip Berita</a></p>
+                	
                 			
                 		</div>
                 		</div>
                 	</div>
+
                 	<?php
                 }
             }         }
@@ -108,6 +110,7 @@ loadAssetsHead('Dashboard - Sistem Informasi Akademik SDN II Manangga');
         </article>
     </tbody>
 </table>
+<p><a class='btn btn-primary' role='button' href='arsip-berita'>Arsip Berita</a></p>
 </div>
 </div>
 </div>

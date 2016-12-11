@@ -371,16 +371,33 @@ function admin(){
   <?php } ?>
 
   <?php function siswa(){
-   $sql = "SELECT * from siswa, kelas_siswa where kelas_siswa.id_siswa=siswa.id_siswa AND nis = $_SESSION[usernamesiswa]";
-   $result = mysql_query($sql);
-   $row=mysql_fetch_array($result);?>
-   <div class="sia-profile">
+    $sqll1 = "SELECT * FROM siswa, kelas_siswa ,kelas
+            WHERE siswa.id_siswa=kelas_siswa.id_siswa 
+            and  kelas.id_kelas=kelas_siswa.id_kelas 
+            and kelas_siswa.id_tahun='$_SESSION[id_tahun]' 
+            AND kelas_siswa.id_siswa='$_SESSION[id_siswa]'";
+            $resultl1 = mysql_query($sqll1);
+            $row=mysql_fetch_array($resultl1); 
+            $kelase=$row['id_kelas'];
+            $jenengkelase=$row['nm_kelas'];
+            ?>
+   <div class="sia-profile"><div style="float:right; margin:-0;" class="uk-button-dropdown" data-uk-dropdown="{pos:'right-top'}" aria-haspopup="true" aria-expanded="false"><button  class="uk-badge uk-badge" ><i class="uk-icon-pencil"></i></button><div class="uk-dropdown uk-dropdown-right uk-dropdown-small" aria-hidden="true" tabindex="" style="top: 0px; left: 27px;">
+                                    <ul class="uk-nav uk-nav-dropdown" >
+                                        <li><a href="info-pribadi-siswa.account">Account</a></li>
+                                        <li><a href="info-pribadi-siswa">Profile</a></li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+
+   <br>
     <p style="text-align:left"; font-weight:bold;>Selamat Datang</p>
+
     <img class="sia-profile-image" src="gallery/news/<?=$row['foto'];?>"> </br> 
     </br>
     <p style="text-align:left"; font-weight:bold;>Nama: <b><?php echo "{$row['nm_siswa']}";?></b></p> 
     <p style="text-align:left"; font-weight:bold;>NIS: <b><?php echo "{$row['nis']}";?></b></p>
-    <p style="text-align:left"; font-weight:bold;>Kelas: <b><?php echo "{$row['id_kelas']}";?></b></p>
+    <p style="text-align:left"; font-weight:bold;>Kelas: <b><?php echo "{$row['nm_kelas']}";?></b></p>
   </div>
   <?php } ?>
 
