@@ -144,6 +144,7 @@ if (trim($kkm)=="") {
 											<label class="uk-form-label">Kelas : <span class="uk-text-success"><?php echo $keterangane[nm_kelas];?></span></label>
 										</div>
 									</form>
+
 									<div id="tablewrapper">
 										<div id="tableheader">
 											<div class="search">
@@ -155,6 +156,7 @@ if (trim($kkm)=="") {
 												<div><a href="javascript:sorter.reset()">(atur ulang)</a></div>
 											</span>
 										</div>
+										<a href="guru.nilai.tambah"><button   class="uk-button uk-button-danger" type="button" title="Tambah Nilai">  <i class="uk-icon-pencil">   Input Nilai</i>  </button></a>
 										<table id="table" class="uk-table uk-table-hover uk-table-striped uk-table-condensed" width="100%" width="100%">
 											<thead>
 												<tr>
