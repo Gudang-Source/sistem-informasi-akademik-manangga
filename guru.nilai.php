@@ -133,6 +133,7 @@ if (trim($kkm)=="") {
 								<br><br>
 
 								<?php if (isset ($_POST["nilai_tampilkan"]) ) : ?>
+									<div class="uk-alert uk-alert-sucess">
 									<div class="uk-form-row">
 										<?php $exe123  = mysql_query("SELECT * FROM mengajar,mapel,kelas 
 											where mengajar.id_kelas=kelas.id_kelas 
@@ -142,8 +143,11 @@ if (trim($kkm)=="") {
 											$keterangane=mysql_fetch_array($exe123); ?>
 											<label class="uk-form-label">Mata Pelajaran : <span class="uk-text-success"><?php echo $keterangane[nm_mapel];?></span></label>
 											<label class="uk-form-label">Kelas : <span class="uk-text-success"><?php echo $keterangane[nm_kelas];?></span></label>
+											<label class="uk-form-label">KKM : <span class="uk-text-success"><?php echo $keterangane[kkm];?></span></label>
+										</div>
 										</div>
 									</form>
+
 									<div id="tablewrapper">
 										<div id="tableheader">
 											<div class="search">
@@ -155,6 +159,7 @@ if (trim($kkm)=="") {
 												<div><a href="javascript:sorter.reset()">(atur ulang)</a></div>
 											</span>
 										</div>
+										<a href="guru.nilai.tambah"><button   class="uk-button uk-button-danger" type="button" title="Tambah Nilai">  <i class="uk-icon-pencil">   Input Nilai</i>  </button></a>
 										<table id="table" class="uk-table uk-table-hover uk-table-striped uk-table-condensed" width="100%" width="100%">
 											<thead>
 												<tr>
@@ -191,12 +196,255 @@ if (trim($kkm)=="") {
 												JSKDJS
 												group by id_siswa order by nm_siswa asc
 												");
-												while($rows=mysql_fetch_array($exes)) { 
+												while($rows=mysql_fetch_array($exes)) {
+
+													$id_nilai=$rows[id_nilai]; 
 
 													$tugasakhir=($rows['t1']+$rows['t2']+$rows['t3']+$rows['t4']+$rows['t5']+$rows['t6']+$rows['t7'])/7;
 													$uhakhir=($rows['uh1']+$rows['uh2']+$rows['uh3']+$rows['uh4']+$rows['uh5']+$rows['uh6']+$rows['uh7'])/7;
 													$no++; ?>
 
+										<div id="modaledit<?php echo $id_nilai ;?>" class="uk-modal">
+											<div class="uk-modal-dialog">
+												<button type="button" class="uk-modal-close uk-close"></button>
+												<div class="uk-modal-header">
+													<h2>Edit Data Nilai <?php echo $keterangane[nm_mapel];?></h2>
+												</div>
+												<form role="form" method="post" action="action.nilai?act=update&&id_nilai=<?php echo $id_nilai;  ?>" enctype="multipart/form-data" >
+													<div class="form-group">
+														<label>NIS</label>
+														<input onkeyup="convertAngka(this);" class="form-control" readonly name="nis" id="nis" value="<?php echo $rows['nis']; ?>"   required  />
+														
+													</div>
+
+													<div class="form-group">
+														<label>Nama Siswa</label>
+														<input class="form-control" name="nm_siswa" id="nm_siswa" readonly value="<?php echo $rows['nm_siswa']; ?>"  required />
+      														
+													</div>
+
+													<div class="form-group">
+														<label>Kelas</label>
+														<input onkeyup="convertAngka(this);" class="form-control" name="nm_kelas" readonly="readonly"  id="nm_kelas" value="<?php echo $keterangane['nm_kelas']; ?>"  required  />
+    														
+													</div>
+													<div class="form-group">
+														<label>Ulangan Harian 1</label>
+														<input onkeyup="convertAngka(this);" class="form-control" name="uh1"  id="uh1" value="<?php echo $rows['uh1']; ?>"    />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Ulangan Harian 2</label>
+														<input onkeyup="convertAngka(this);" class="form-control" name="uh1"  id="uh1" value="<?php echo $rows['uh1']; ?>"    />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Ulangan Harian 2</label>
+														<input onkeyup="convertAngka(this);" class="form-control" name="uh2"  id="uh2" value="<?php echo $rows['uh2']; ?>"    />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Ulangan Harian 3</label>
+														<input onkeyup="convertAngka(this);" class="form-control" name="uh3"  id="uh3" value="<?php echo $rows['uh3']; ?>"    />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Ulangan Harian 4</label>
+														<input onkeyup="convertAngka(this);" class="form-control" name="uh4"  id="uh4" value="<?php echo $rows['uh4']; ?>"    />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Ulangan Harian 5</label>
+														<input onkeyup="convertAngka(this);" class="form-control" name="uh5"  id="uh5" value="<?php echo $rows['uh5']; ?>"    />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Ulangan Harian 6</label>
+														<input onkeyup="convertAngka(this);" class="form-control" name="uh6"  id="uh6" value="<?php echo $rows['uh6']; ?>"    />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Ulangan Harian 7</label>
+														<input onkeyup="convertAngka(this);" class="form-control" name="uh7"  id="uh7" value="<?php echo $rows['uh7']; ?>"    />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Tugas 1</label>
+														<input onkeyup="convertAngka(this);" class="form-control" name="t1"  id="t1" value="<?php echo $rows['t1']; ?>"    />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Tugas 2</label>
+														<input onkeyup="convertAngka(this);" class="form-control" name="t2"  id="t2" value="<?php echo $rows['t2']; ?>"    />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Tugas 3</label>
+														<input onkeyup="convertAngka(this);" class="form-control" name="t3"  id="t3" value="<?php echo $rows['t3']; ?>"    />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Tugas 4</label>
+														<input onkeyup="convertAngka(this);" class="form-control" name="t4"  id="t4" value="<?php echo $rows['t4']; ?>"    />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Tugas 5</label>
+														<input onkeyup="convertAngka(this);" class="form-control" name="t5"  id="t5" value="<?php echo $rows['t5']; ?>"    />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Tugas 6</label>
+														<input onkeyup="convertAngka(this);" class="form-control" name="t6"  id="t6" value="<?php echo $rows['t6']; ?>"    />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Tugas 7</label>
+														<input onkeyup="convertAngka(this);" class="form-control" name="t7"  id="t7" value="<?php echo $rows['t7']; ?>"    />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Ujian Tengah Semester</label>
+														<input onkeyup="convertAngka(this);" class="form-control" name="uts"  id="uts" value="<?php echo $rows['uts']; ?>"    />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Ujian Akhir Semester</label>
+														<input onkeyup="convertAngka(this);" class="form-control" name="uas"  id="uas" value="<?php echo $rows['uas']; ?>"    />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+
+													<div class="uk-modal-footer uk-text-right">
+														<button type="button" class="uk-button uk-modal-close ">Cancel</button>
+														<button type="submit" class="uk-button uk-button-primary">Save</button>
+													</div>
+													<input type="hidden" name="edit" value="edit">
+													<input type="hidden" name="id_kelas_siswa_edit" value="<?php echo $rows['id_kelas_siswa']; ?>">
+													<input type="hidden" name="id_tahun_edit" value="<?php echo $rows['id_tahun']; ?>">
+												</form>
+
+											</div>
+										</div>
+
+										<div id="modal<?php echo $id_nilai ;?>" class="uk-modal">
+											<div class="uk-modal-dialog">
+												<button type="button" class="uk-modal-close uk-close"></button>
+												<div class="uk-modal-header">
+													<h2>Lihat Data Nilai <?php echo $keterangane[nm_mapel];?></h2>
+												</div>
+												
+													<div class="form-group">
+														<label>NIS</label>
+														<input readonly onkeyup="convertAngka(this);" class="form-control" readonly name="nis" id="nis" value="<?php echo $rows['nis']; ?>"   required  />
+														
+													</div>
+
+													<div class="form-group">
+														<label>Nama Siswa</label>
+														<input readonly class="form-control" name="nm_siswa" id="nm_siswa" readonly value="<?php echo $rows['nm_siswa']; ?>"  required />
+      														
+													</div>
+
+													<div class="form-group">
+														<label>Kelas</label>
+														<input readonly onkeyup="convertAngka(this);" class="form-control" name="nm_kelas" readonly="readonly"  id="nm_kelas" value="<?php echo $keterangane['nm_kelas']; ?>"  required  />
+    														
+													</div>
+													<div class="form-group">
+														<label>Ulangan Harian 1</label>
+														<input readonly onkeyup="convertAngka(this);" class="form-control" name="uh1"  id="uh1" value="<?php echo $rows['uh1']; ?>"  required  />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Ulangan Harian 2</label>
+														<input readonly onkeyup="convertAngka(this);" class="form-control" name="uh1"  id="uh1" value="<?php echo $rows['uh1']; ?>"  required  />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Ulangan Harian 2</label>
+														<input readonly onkeyup="convertAngka(this);" class="form-control" name="uh2"  id="uh2" value="<?php echo $rows['uh2']; ?>"  required  />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Ulangan Harian 3</label>
+														<input readonly onkeyup="convertAngka(this);" class="form-control" name="uh3"  id="uh3" value="<?php echo $rows['uh3']; ?>"  required  />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Ulangan Harian 4</label>
+														<input readonly onkeyup="convertAngka(this);" class="form-control" name="uh4"  id="uh4" value="<?php echo $rows['uh4']; ?>"  required  />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Ulangan Harian 5</label>
+														<input readonly onkeyup="convertAngka(this);" class="form-control" name="uh5"  id="uh5" value="<?php echo $rows['uh5']; ?>"  required  />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Ulangan Harian 6</label>
+														<input readonly onkeyup="convertAngka(this);" class="form-control" name="uh6"  id="uh6" value="<?php echo $rows['uh6']; ?>"  required  />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Ulangan Harian 7</label>
+														<input readonly onkeyup="convertAngka(this);" class="form-control" name="uh7"  id="uh7" value="<?php echo $rows['uh7']; ?>"  required  />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Tugas 1</label>
+														<input readonly onkeyup="convertAngka(this);" class="form-control" name="t1"  id="t1" value="<?php echo $rows['t1']; ?>"  required  />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Tugas 2</label>
+														<input readonly onkeyup="convertAngka(this);" class="form-control" name="t2"  id="t2" value="<?php echo $rows['t2']; ?>"  required  />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Tugas 3</label>
+														<input readonly onkeyup="convertAngka(this);" class="form-control" name="t3"  id="t3" value="<?php echo $rows['t3']; ?>"  required  />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Tugas 4</label>
+														<input readonly onkeyup="convertAngka(this);" class="form-control" name="t4"  id="t4" value="<?php echo $rows['t4']; ?>"  required  />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Tugas 5</label>
+														<input readonly onkeyup="convertAngka(this);" class="form-control" name="t5"  id="t5" value="<?php echo $rows['t5']; ?>"  required  />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Tugas 6</label>
+														<input readonly onkeyup="convertAngka(this);" class="form-control" name="t6"  id="t6" value="<?php echo $rows['t6']; ?>"  required  />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Tugas 7</label>
+														<input readonly onkeyup="convertAngka(this);" class="form-control" name="t7"  id="t7" value="<?php echo $rows['t7']; ?>"  required  />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Ujian Tengah Semester</label>
+														<input readonly onkeyup="convertAngka(this);" class="form-control" name="uts"  id="uts" value="<?php echo $rows['uts']; ?>"  required  />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+													<div class="form-group">
+														<label>Ujian Akhir Semester</label>
+														<input readonly onkeyup="convertAngka(this);" class="form-control" name="uas"  id="uas" value="<?php echo $rows['uas']; ?>"  required  />
+    														<div class="reg-info">Contoh: 80</div>
+													</div>
+
+													<div class="uk-modal-footer uk-text-right">
+														<button type="button" class="uk-button uk-modal-close ">Cancel</button>
+														<button data-uk-modal="{target:'#modaledit<?php echo $id_nilai ;?>'}" class="uk-button uk-button-primary">Edit</button>
+													</div>
+													<input readonly type="hidden" name="edit" value="edit">
+												
+
+											</div>
+										</div>
 													<tr>
 
 														<td><div class="uk-text-center"><?php echo $no?></div></td>
@@ -211,9 +459,9 @@ if (trim($kkm)=="") {
 
 														<?php if (isset($_SESSION['id_guru'])) { ?>
 														<td width="15%"><div class="uk-text-center">
-															<button class="uk-button" data-uk-modal="{target:'#modal<?php echo $kd_mapel ;?>'}"><i class="uk-icon-search"></i></button>
-															<button class="uk-button" data-uk-modal="{target:'#modaledit<?php echo $kd_mapel ;?>'}"><i class="uk-icon-pencil"></i></button>
-															<a href="mapel.action?act=hapus&&kd_mapel=<?php echo $kd_mapel; ?>" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')" title="Hapus" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small uk-button-danger"><i class="uk-icon-remove"></i></a>
+															<button class="uk-button" data-uk-modal="{target:'#modal<?php echo $id_nilai ;?>'}"><i class="uk-icon-search"></i></button>
+															<button class="uk-button uk-button-success" data-uk-modal="{target:'#modaledit<?php echo $id_nilai ;?>'}"><i class="uk-icon-pencil"></i></button>
+															
 
 														</td>
 														<?php } ?>            
