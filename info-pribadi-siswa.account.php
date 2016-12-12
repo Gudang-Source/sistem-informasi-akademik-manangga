@@ -121,7 +121,7 @@ $edit = mysql_query("SELECT * FROM siswa WHERE id_siswa='$_SESSION[id_siswa]'");
       </div>
     </div>
                            <div class="item form-group">
-                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nip">Password Baru<span class="required">*</span>
+                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password Baru<span class="required">*</span>
                            </label>
                            <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" id="password" name="password" value="<?php echo $datapassword; ?>" required="required" class="form-control col-md-7 col-xs-12">

@@ -2,7 +2,7 @@
 <?php
 require ( __DIR__ . '/init.php');
 checkUserAuth();
-checkUserRole(array(1,10,24));
+checkUserRole(array(10,24,1));
 
 // TEMPLATE CONTROL
 $ui_register_page     = 'info-pribadi-guru.account';
@@ -27,8 +27,9 @@ if (isset($_POST['account_simpan'])) {
    
       if (empty($file_sik_dipilih)){
         $query = mysql_query("UPDATE guru 
-          SET nip='$nip', 
-          password='$password'") or die(mysql_error());
+              SET password='$password'
+              WHERE id_guru='$_SESSION[id_guru]'
+              ") or die(mysql_error());
          $edit = mysql_query("SELECT * FROM guru WHERE id_guru='$_SESSION[id_guru]'");
             $rowks  = mysql_fetch_array($edit);
 
@@ -51,9 +52,9 @@ if (isset($_POST['account_simpan'])) {
         else{
 
             $query = mysql_query("UPDATE guru 
-              SET nip='$nip', 
-              password='$password'
-              WHERE id_guru='$_SESSION[id_guru]'") or die(mysql_error());
+              SET password='$password'
+              WHERE id_guru='$_SESSION[id_guru]'
+              ") or die(mysql_error());
 
             $edit = mysql_query("SELECT * FROM guru WHERE id_guru='$_SESSION[id_guru]'");
             $rowks  = mysql_fetch_array($edit);
@@ -71,10 +72,8 @@ if (isset($_POST['account_simpan'])) {
 # MEMBUAT NILAI DATA PADA FORM
 # SIMPAN DATA PADA FORM, Jika saat Sumbit ada yang kosong (lupa belum diisi)
               $datapassword  = isset($_POST['password']) ? $_POST['password'] : '';
-
-      $edit = mysql_query("SELECT * FROM guru WHERE id_guru='$_SESSION[id_guru]'");
-      $rowks  = mysql_fetch_array($edit);
-
+$edit = mysql_query("SELECT * FROM guru WHERE id_guru='$_SESSION[id_guru]'");
+            $rowks  = mysql_fetch_array($edit);
       ?>
 
       
