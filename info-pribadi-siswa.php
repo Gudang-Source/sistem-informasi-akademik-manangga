@@ -15,7 +15,7 @@ loadAssetsHead('Lihat Data Siswa');
 
 # MEMBUAT NILAI DATA PADA FORM
 # SIMPAN DATA PADA FORM, Jika saat Sumbit ada yang kosong (lupa belum diisi)
-      $edit = mysql_query("SELECT * FROM siswa, wali WHERE siswa.id_Wali=wali.id_wali and nis='$_SESSION[usernamesiswa]'");
+      $edit = mysql_query("SELECT * FROM siswa, wali WHERE siswa.id_Wali=wali.id_wali and id_siswa='$_SESSION[id_siswa]'");
       $rowks  = mysql_fetch_array($edit);
 
       ?>
@@ -41,7 +41,7 @@ loadAssetsHead('Lihat Data Siswa');
                 <hr class="uk-article-divider">
                 <h1 class="uk-article-title"> <?php echo ucwords( strtolower($rowks[nm_siswa])); ?> <span class="uk-text-large">{ Lihat Data Pribadi Siswa }</span></h1>
                 <br>
-                <a href="./guru.siswa" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali ke Manajemen Siswa"><i class="uk-icon-angle-left"></i> Kembali</a>
+
                 <!-- <hr class="uk-article-divider"> -->
                 <form id="formsiswa" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
                   <div class="uk-grid" data-uk-grid-margin>
