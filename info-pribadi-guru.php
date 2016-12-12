@@ -268,7 +268,7 @@ if (isset($_POST['guru_simpan'])) {
 
   </div>
           <hr class="uk-article-divider">
-          <h1 class="uk-article-title">Manajemen Data Guru <span class="uk-text-large">{ Tampil Profil Guru }</span></h1>
+                <h1 class="uk-article-title"> <?php echo ucwords( strtolower($rowks[nm_guru])); ?> <span class="uk-text-large">{ Info Pribadi Guru }</span></h1>
           <a href="./dashboard" class="uk-button uk-button-primary uk-margin-bottom" type="button" title="Kembali"><i class="uk-icon-angle-left"></i> Kembali</a> 
           <?php if (isset($_SESSION['administrator'])) { ?>
 

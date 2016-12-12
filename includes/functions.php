@@ -361,10 +361,16 @@ function admin(){
    $row=mysql_fetch_array($result); 
 
    ?>
-   <div class="sia-profile">
-    <p style="text-align:center"; font-weight:bold;>Selamat Datang</p><p style="text-align:center"; font-weight:bold;><b><?php echo "{$row['nm_guru']}";?></b></p>
-    <img class="sia-profile-image" src="gallery/news/<?=$row['foto'];?>"> 
-
+   <div class="sia-profile"><div style="float:right; margin:-0;" class="uk-button-dropdown" data-uk-dropdown="{pos:'right-top'}" aria-haspopup="true" aria-expanded="false"><button  class="btn btn-primary btn-fab btn-fab-mini btn-round" ><i class="uk-icon-pencil"></i></button><div class="uk-dropdown uk-dropdown-right uk-dropdown-small" aria-hidden="true" tabindex="" style="top: 0px; left: 45px;">
+         <ul class="uk-nav uk-nav-dropdown" >
+                                        <li><a href="info-pribadi-guru.account">Account</a></li>
+                                        <li><a href="info-pribadi-guru">Profile</a></li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+    <img class="img-circle img-no-padding img-responsive" src="gallery/news/<?=$row['foto'];?>"> 
+<div class="name"><h5 class="title" style="text-align:left";><strong><?php echo "{$row['nm_guru']}";?></h5></strong></div>
 
 
   </div>
@@ -435,7 +441,6 @@ function admin(){
        <!--<?php generateNavElement(array(10,2,1,0), 'siswa-profilsekolah', './siswa-profilsekolah', 'Profil Sekolah') ?>-->
       <?php generateNavElement(array(10,1,0,24), 'profil-sekolah', './profil-sekolah', 'Profil Sekolah') ?>
       <?php generateNavElement(array(10,1,0,24), 'ekstrakurikuler', './ekstrakurikuler', 'Ekstrakurikuler') ?>
-      <?php generateNavElement(array(1,24), 'info-pribadi-guru', './info-pribadi-guru', 'Info Pribadi Guru') ?>  
 
       <hr class="uk-article-divider">
       
