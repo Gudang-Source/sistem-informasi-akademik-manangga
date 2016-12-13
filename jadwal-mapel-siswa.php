@@ -90,7 +90,7 @@ $row=mysql_fetch_array($result);
 										<th>Hari</th>
 										<th>Jam Ke</th>
 										<th>Mata Pelajaran</th>
-										<th>Kelas</th>
+										<th>Guru Pengampu</th>
 										
 										<th>Tahun Ajaran</th>
 										
@@ -98,44 +98,36 @@ $row=mysql_fetch_array($result);
 								</thead>
 								<tbody>
 
-									
-
 									<?php 
 
-									$query="SELECT guru.nm_guru, guru.nip , jadwal.id_jadwal_mapel, mapel.kd_mapel,mengajar.id_mengajar, mapel.nm_mapel, kelas.nm_kelas, mengajar.id_kelas, jadwal.id_hari, jadwal.id_sesi, hari.nm_hari, sesi.jam, tahun_ajaran.thn_ajaran, tahun_ajaran.semester, mengajar.id_guru FROM jadwal, sesi, hari, mengajar, mapel, guru, kelas, tahun_ajaran 
-									where jadwal.id_mengajar=mengajar.id_mengajar 
-									and jadwal.id_sesi=sesi.id_sesi
-									and jadwal.id_hari=hari.id_hari
-									and mengajar.id_guru=guru.id_guru
-									and mengajar.id_kelas=kelas.id_kelas
-									and mengajar.kd_mapel=mapel.kd_mapel
-									and jadwal.id_tahun=tahun_ajaran.id_tahun
-									and jadwal.id_tahun='$id_tahun'
-									and mengajar.id_guru= '$_SESSION[id_guru]' 
-									order by hari.nm_hari asc";
+									$query="SELECT DISTINCT * FROM (
+SELECT jadwal.*,hari.nm_hari,sesi.jam,guru.*,tahun_ajaran.thn_ajaran,mapel.nm_mapel
+ from jadwal,  kelas_siswa, mapel, hari, sesi, guru, mengajar, tahun_ajaran
+WHERE jadwal.id_mengajar=mengajar.id_mengajar
+AND jadwal.id_hari=hari.id_hari
+AND jadwal.id_sesi=sesi.id_sesi
+AND jadwal.id_tahun=tahun_ajaran.id_tahun
+AND mengajar.id_kelas=kelas_siswa.id_kelas
+AND mengajar.id_guru=guru.id_guru
+AND mengajar.kd_mapel=mapel.kd_mapel
+AND jadwal.id_tahun='$_SESSION[id_tahun]'
+AND kelas_siswa.id_kelas='$row[id_kelas]'
+) asd ORDER by nm_hari asc";
 									$exe=mysql_query($query);
 									$no=0;
 									while ($row=mysql_fetch_array($exe)) { $no++;
-
-										$id_jadwal=$row['id_jadwal_mapel'];
-										$id_gurumengajar=$row[mengajar.id_guru];
 										?>
-
-
-
-										
-
-
 
 <tr>
 	<td><?php echo $no;?></td>
 	<td><?php echo $row[nm_hari]?></td>
 	<td><?php echo $row[jam]?></td>
 	<td><?php echo $row[nm_mapel]?></td>
-	<td><?php echo $row[nm_kelas]?></td>
+
+	<td><?php echo $row[gelar_depan]?> <?php echo $row[gelar_depan_akademik]?> <?php echo $row[nm_guru]?>, <?php echo $row[gelar_belakang]?></td>
 	
 	<td><?php echo $row[thn_ajaran]?></td>
-	<td><?php echo $row[semester]?></td>                
+           
 
 	
 </tr>
