@@ -25,12 +25,18 @@ if( $act=='hapus'){
 	$id_jadwal=$_GET['id_jadwal'];
 	$querycek = mysql_query("SELECT * FROM jadwal, mengajar where jadwal.id_mengajar=mengajar.id_mengajar and jadwal.id_jadwal_mapel='$id_jadwal'");
 	$datasikdihapus=mysql_fetch_array($querycek);
+	$id_gurusikdihapus=$datasikdihapus['id_guru'];
 	$id_kelassikdihapus=$datasikdihapus['id_kelas'];
 	$kd_mapelsikdihapus=$datasikdihapus['kd_mapel'];
 	$id_tahunsikdihapus=$datasikdihapus['id_tahun'];
 
+	$querycekkelassiswa = mysql_query("SELECT * FROM kelas_siswa where id_kelas='$id_kelassikdihapus' and id_tahun='$id_tahunsikdihapus'");
+	$hapussetupnilai=mysql_query("DELETE FROM setup_nilai WHERE kd_mapel='$kd_mapelsikdihapus' and id_kelas='$id_kelassikdihapus' and id_guru='$id_gurusikdihapus' and id_tahun='$id_tahunsikdihapus' ");
 
-	$hapusdatanilai=mysql_query("DELETE FROM nilai WHERE kd_mapel='$kd_mapelsikdihapus' and id_kelas='$id_kelassikdihapus' and id_tahun='$id_tahunsikdihapus' ");
+	while ($datasikdihapuskelas=mysql_fetch_array($querycekkelassiswa)){
+					$hapusdatanilai=mysql_query("DELETE FROM nilai WHERE kd_mapel='$kd_mapelsikdihapus' and id_kelas_siswa='$datasikdihapuskelas[id_kelas_siswa]' and id_tahun='$id_tahunsikdihapus' ");
+	
+		}
 	$hapusjadwal=mysql_query("DELETE FROM jadwal WHERE id_jadwal_mapel='$id_jadwal'");
 
 	if ($hapusjadwal) { 
@@ -148,6 +154,27 @@ elseif ( $act=='tambah'){
 													and mengajar.kd_mapel = '$kd_mapel'
 													and jadwal.id_tahun='$_SESSION[id_tahun]'
 													) ss) asd ");
+
+				
+				$queryceksetup = mysql_query("SELECT * FROM setup_nilai 
+													   WHERE id_tahun='$_SESSION[id_tahun]'
+															and kd_mapel='$kd_mapel'
+															and id_kelas='$id_kelas'
+															and id_guru='$id_guru'
+											")or die(mysql_error());
+				$jumlahesetup=mysql_num_rows($queryceksetup);
+
+			
+
+				if ($jumlahesetup<1){
+				
+						$lebokkesetup=mysql_query("INSERT INTO setup_nilai (id_guru, kd_mapel, id_kelas,  id_tahun, uh, t,uts,uas)  
+																	value  ('$id_guru', '$kd_mapel', '$id_kelas', '$id_tahun', 20 , 20, 30, 40)
+												  ")or die(mysql_error());
+						
+				}else{
+					
+				}
 
 		
 	}else{

@@ -485,6 +485,7 @@ function admin(){
       <li class="uk-nav-header"><i class="uk-icon-file-text"></i>  Data Nilai</li> 
       <?php generateNavElement(array(1,24), 'guru.nilai', './guru.nilai', 'Nilai') ?>
       <?php generateNavElement(array(1,24), 'guru.nilai.tambah', './guru.nilai.tambah', 'Input Nilai') ?>
+      <?php generateNavElement(array(1,24), 'guru.setup.nilai', './guru.setup.nilai', 'Setup Perhitungan Nilai') ?>
 
      
       <li class="uk-nav-divider"></li>
