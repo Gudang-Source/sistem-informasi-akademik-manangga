@@ -268,16 +268,11 @@ $_SESSION['status_sblm'] = $thn_ajaran_sblm['status'];
 										<table id="table" class="uk-table uk-table-hover uk-table-striped uk-table-condensed" width="100%" width="100%">
 											<thead>
 												<tr>
-
 													<th><h3 class="uk-text-center" >NO</h3></th>
 													<th><h3 class="uk-text-center" >NIS</h3></th>
 													<th><h3 class="uk-text-center" >Nama Siswa</h3></th>
-
 													<th><h3 class="uk-text-center" >Jenis Kelamin</h3></th>
 													<th><h3 class="uk-text-center" >Nilai <?php echo $_POST['komponen_nilai'] ?></h3></th>
-
-
-
 												</tr>
 											</thead>
 											<tbody>
@@ -370,6 +365,7 @@ $_SESSION['status_sblm'] = $thn_ajaran_sblm['status'];
 									<input type="hidden" name="id_kelas_input" value="<?php echo $id_kelas ?>">
 									<input type="hidden" name="kd_mapel_input" value="<?php echo $kd_mapel ?>">
 									<input type="hidden" name="id_tahun_input" value="<?php echo $_SESSION[id_tahun] ?>">
+									<input type="hidden" name="id_guru_input" value="<?php echo $_SESSION[id_guru] ?>">
 									<input type="hidden" name="sik" value="<?php echo $sik ?>">
 									<div style="text-align:center" class="form-actions no-margin-bottom">
 										<button type="submit" id="simpan_nilai" name="simpan_nilai" class="btn btn-success">Submit</button>

@@ -181,6 +181,17 @@ if (trim($kkm)=="") {
 												</tr>
 											</thead>
 											<tbody>
+
+											<?php 
+												$exesetup  = mysql_query("SELECT * FROM setup_nilai WHERE 
+													 id_tahun='$_SESSION[id_tahun]'
+													and kd_mapel='$kd_mapel'
+													and id_kelas='$id_kelas'
+													and id_guru='$id_guru'
+													");
+												$rowsetup=mysql_fetch_array($exesetup);
+												?>
+
 												<?php 
 												$no=0;
 												$exes  = mysql_query("SELECT distinct * FROM ( SELECT distinct nilai.*, siswa.* FROM nilai, siswa, kelas_siswa, kelas, mengajar 
@@ -202,6 +213,14 @@ if (trim($kkm)=="") {
 
 													$tugasakhir=($rows['t1']+$rows['t2']+$rows['t3']+$rows['t4']+$rows['t5']+$rows['t6']+$rows['t7'])/7;
 													$uhakhir=($rows['uh1']+$rows['uh2']+$rows['uh3']+$rows['uh4']+$rows['uh5']+$rows['uh6']+$rows['uh7'])/7;
+
+													$tugasakhirpersen=(($rows['t1']+$rows['t2']+$rows['t3']+$rows['t4']+$rows['t5']+$rows['t6']+$rows['t7'])/7) * $rowsetup[t]/100;
+													$uhakhirpersen=(($rows['uh1']+$rows['uh2']+$rows['uh3']+$rows['uh4']+$rows['uh5']+$rows['uh6']+$rows['uh7'])/7 ) * $rowsetup[uh]/100;
+													$utspersen=$rows[uts] * $rowsetup[uts]/100;
+													$uaspersen=$rows[uas] * $rowsetup[uas]/100;
+
+													$nilaiakhirfix=$tugasakhirpersen + $uhakhirpersen + $utspersen + $uaspersen;
+													$nilaiakhirfix=round($nilaiakhirfix,2);
 													$no++; ?>
 
 										<div id="modaledit<?php echo $id_nilai ;?>" class="uk-modal">
@@ -451,11 +470,19 @@ if (trim($kkm)=="") {
 														<td><div class="uk-text-center"><?php echo $rows[nis]?></div></td>
 														<td><div class="uk-text-left"><?php echo ucwords( strtolower($rows[nm_siswa]))?></div></td>
 														<td><div class="uk-text-center"><?php echo $rows[jns_kelamin]?></div></td>
-														<td><div class="uk-text-center"><?php echo round($uhakhir,2);?></div></td>
+														<td><div class="uk-text-center"><?php echo $uhnopersen=round($uhakhir,2) ;?></div></td>
 														<td><div class="uk-text-center"><?php echo round($tugasakhir,2);?></div></td>
 														<td><div class="uk-text-center"><?php if($rows[uts]==''){echo "0"; }else{echo $rows[uts];}?></div></td>
 														<td><div class="uk-text-center"><?php if($rows[uas]==''){echo "0"; }else{echo $rows[uas];}?></div></td>
-														<td><div class="uk-text-center"><?php if($rows[nilaiakhir]==''){echo "0"; }else{echo $rows[nilaiakhir];}?></div></td>
+														<?php 
+														if ($nilaiakhirfix >= $keterangane[kkm]) {
+															$warna='<span class="uk-badge uk-badge-notification uk-badge-success">'.$nilaiakhirfix.'</span>';
+														}else{
+															$warna='<span class="uk-badge uk-badge-notification uk-badge-danger">'.$nilaiakhirfix.'</span>';
+														}
+														?>
+
+														<td><div class="uk-text-center"><?php echo $warna;?></div></td>
 
 														<?php if (isset($_SESSION['id_guru'])) { ?>
 														<td width="15%"><div class="uk-text-center">

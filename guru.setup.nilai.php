@@ -9,15 +9,15 @@ $ui_register_page = 'guru.setup.nilai';
 
 
 // LOAD HEADER
-loadAssetsHead('Setup Perhitungan Nilai Siswa');
+loadAssetsHead('Setup Nilai');
 if (isset ($_POST["nilai_tampilkan"]) ){ 
 
 
-	$id_guru       = $_POST['id_guru'];
+	 $id_guru       = $_POST['id_guru'];
 	
-	$id_kelas       = $_POST['id_kelas'];
+	 $id_kelas       = $_POST['id_kelas'];
 	
-	$kd_mapel       = $_POST['kd_mapel'];
+	 $kd_mapel       = $_POST['kd_mapel'];
 	
 
 	
@@ -79,7 +79,7 @@ $_SESSION['status_sblm'] = $thn_ajaran_sblm['status'];
 
 					<form id="formkelassblm" method="POST" class="uk-form" enctype="multipart/form-data">
 
-						<h1 class="uk-article-title">Setup Perhitungan Nilai<span class="uk-text-large">
+						<h1 class="uk-article-title">Setup Nilai<span class="uk-text-large">
 
 							<?php  if (isset($_SESSION['id_guru'])) { ?>
 							{ Master Data }</span></h1>
@@ -122,6 +122,7 @@ $_SESSION['status_sblm'] = $thn_ajaran_sblm['status'];
 									</div>
 								</div>
 								<br>
+								<br>
 								
 								<br>
 								<div class="uk-form-row">
@@ -135,9 +136,9 @@ $_SESSION['status_sblm'] = $thn_ajaran_sblm['status'];
 						<br>
 						
 						
-						<form id="forminputnilai" method="POST" action="action.nilai?act=input" class="uk-form" enctype="multipart/form-data">
+						<form id="forminputnilai" method="POST" action="action.setup.nilai?act=input" class="uk-form" enctype="multipart/form-data">
 							<div class="uk-panel uk-panel-box uk-panel-box-secondary">
-								<code><label>Masukan Nilai</label></code>
+								<code><label>Masukan Presentase Nilai</label></code>
 								<?php if (isset ($_POST["nilai_tampilkan"]) ) : ?>
 									<div class="uk-form-row">
 										<?php 
@@ -148,75 +149,7 @@ $_SESSION['status_sblm'] = $thn_ajaran_sblm['status'];
 											and mengajar.kd_mapel='$kd_mapel'
 											and mengajar.id_kelas='$id_kelas'"); 
 										$keterangane=mysql_fetch_array($exe123); 
-										$sik=$_POST[komponen_nilai];
-										if($sik=='uh1'){
-											$namakomponen='Ulangan Harian 1';
-											$rowtampilkomponen=$rows[uh1];
-										}
-										elseif ($sik=='uh2') {
-											$rowtampilkomponen=$rows[uh2];
-											$namakomponen='Ulangan Harian 2';
-										}
-										elseif ($sik=='uh3') {
-											$rowtampilkomponen=$rows[uh3];
-											$namakomponen='Ulangan Harian 3';
-										}
-										elseif ($sik=='uh4') {
-											$rowtampilkomponen=$rows[uh4];
-											$namakomponen='Ulangan Harian 4';
-										}
-										elseif ($sik=='uh5') {
-											$rowtampilkomponen=$rows[uh5];
-											$namakomponen='Ulangan Harian 5';
-										}
-										elseif ($sik=='uh6') {
-											$rowtampilkomponen=$rows[uh6];
-											$namakomponen='Ulangan Harian 6';
-										}
-										elseif ($sik=='uh7') {
-											$rowtampilkomponen=$rows[uh7];
-											$namakomponen='Ulangan Harian 7';
-										}
-										elseif($sik=='t1'){
-											$rowtampilkomponen=$rows[t1];
-											$namakomponen='Tugas 1';
-										}
-										elseif ($sik=='t2') {
-											$rowtampilkomponen=$rows[t2];
-											$namakomponen='Tugas 2';
-										}
-										elseif ($sik=='t3') {
-											$rowtampilkomponen=$rows[t3];
-											$namakomponen='Tugas 3';
-										}
-										elseif ($sik=='t4') {
-											$rowtampilkomponen=$rows[t4];
-											$namakomponen='Tugas 4';
-										}
-										elseif ($sik=='t5') {
-											$rowtampilkomponen=$rows[t5];
-											$namakomponen='Tugas 5';
-										}
-										elseif ($sik=='t6') {
-											$rowtampilkomponen=$rows[t6];
-											$namakomponen='Tugas 6';
-										}
-										elseif ($sik=='t7') {
-											$rowtampilkomponen=$rows[t7];
-											$namakomponen='Tugas 7';
-										}
-										elseif ($sik=='uts') {
-											$rowtampilkomponen=$rows[uts];
-											$namakomponen='Ujian Tengah Semester';
-										}
-										elseif ($sik=='uas') {
-											$rowtampilkomponen=$rows[uas];
-											$namakomponen='Ujian Akhir Semester';
-										}
-										elseif ($sik=='nilaiakhir') {
-											$rowtampilkomponen=$rows[nilaiakhir];
-											$namakomponen='Nilai Akhir';
-										}
+										
 
 										?>
 										
@@ -255,22 +188,35 @@ $_SESSION['status_sblm'] = $thn_ajaran_sblm['status'];
 											</thead>
 											<tbody>
 												<?php 
-												$no=0;
-												$exes  = mysql_query("SELECT * FROM setup_nilai			");
-												while($rows=mysql_fetch_array($exes)) { 
-
-													$tugasakhir=($rows['t1']+$rows['t2']+$rows['t3']+$rows['t4']+$rows['t5']+$rows['t6']+$rows['t7'])/7;
-													$uhakhir=($rows['uh1']+$rows['uh2']+$rows['uh3']+$rows['uh4']+$rows['uh5']+$rows['uh6']+$rows['uh7'])/7;
-													$no++; ?>
+												$exes  = mysql_query("SELECT * FROM setup_nilai WHERE 
+													 id_tahun='$_SESSION[id_tahun]'
+													and kd_mapel='$kd_mapel'
+													and id_kelas='$id_kelas'
+													and id_guru='$id_guru'
+													");
+												$rows=mysql_fetch_array($exes);
+												?>
 
 													<tr>
-
-														<td><div class="uk-text-center"><input type="hidden" name="id_nilai_input[]" value="<?php echo $rows[id_nilai]?>" ><?php echo $no?></div></td>
-														<td><div class="uk-text-center"><input type="hidden" name="id_kelas_siswa_input[]" value="<?php echo $rows[id_kelas_siswa]?>" > <?php echo $rows[nis]?></div></td>
-														<td><div class="uk-text-left"><?php echo ucwords( strtolower($rows[nm_siswa]))?></div></td>
-														<td><div class="uk-text-center"><?php echo $rows[jns_kelamin]?></div></td>
-														<td><div class="uk-text-center"><input type="text" id="<?php echo $sik ?>[]" name="<?php echo $sik ?>[]" value="<?php echo $rows[$sik]; ?>" onkeyup="convertAngka(this);"  class="uk-form-width-small"></div></td>
-
+														<td><div class="uk-text-center">1</div></td>
+														<td><div class="uk-text-left">Ulangan Harian</div></td>
+														<td><div class="uk-text-center"><input type="text" id="uh" name="uh" value="<?php echo $rows[uh]; ?>" onkeyup="convertAngka(this);"  class="uk-form-width-small">  %</div></td>
+													</tr>
+													<tr>
+														<td><div class="uk-text-center">2</div></td>
+														<td><div class="uk-text-left">Tugas</div></td>
+														<td><div class="uk-text-center"><input type="text" id="t" name="t" value="<?php echo $rows[t]; ?>" onkeyup="convertAngka(this);"  class="uk-form-width-small">  %</div></td>
+													</tr>
+													<tr>
+														<td><div class="uk-text-center">3</div></td>
+														<td><div class="uk-text-left">Ujian Tengah Semester</div></td>
+														<td><div class="uk-text-center"><input type="text" id="uts" name="uts" value="<?php echo $rows[uts]; ?>" onkeyup="convertAngka(this);"  class="uk-form-width-small">  %</div></td>
+													</tr>
+													<tr>
+														<td><div class="uk-text-center">4</div></td>
+														<td><div class="uk-text-left">Ujian Akhir Semester</div></td>
+														<td><div class="uk-text-center"><input type="text" id="uas" name="uas" value="<?php echo $rows[uas]; ?>" onkeyup="convertAngka(this);"  class="uk-form-width-small">  %</div></td>
+													</tr>
 														<script type="text/javascript">
 															function convertAngka(objek) {
 
@@ -281,13 +227,10 @@ $_SESSION['status_sblm'] = $thn_ajaran_sblm['status'];
 
 															}            
 														</script>
-													</tr>
-													<?php  } 
-
-													?>
+													
+													
 												</tbody>
 											</table>
-
 
 											<!-- PAGINATION -->
 											<div id="tablefooter">
@@ -328,12 +271,12 @@ $_SESSION['status_sblm'] = $thn_ajaran_sblm['status'];
 									<div class="uk-form-row">
 										<div class="uk-alert">Pastikan semua isian sudah terisi dengan benar!</div>
 									</div>
-									<input type="hidden" name="id_kelas_input" value="<?php echo $id_kelas ?>">
-									<input type="hidden" name="kd_mapel_input" value="<?php echo $kd_mapel ?>">
-									<input type="hidden" name="id_tahun_input" value="<?php echo $_SESSION[id_tahun] ?>">
+									<input type="hidden" name="id_setup_nilai" value="<?php echo $rows[id_setup_nilai]; ?>">
+									<input type="hidden" name="id_tahun" value="<?php echo $rows[id_tahun]; ?>">
+									
 									<input type="hidden" name="sik" value="<?php echo $sik ?>">
 									<div style="text-align:center" class="form-actions no-margin-bottom">
-										<button type="submit" id="simpan_nilai" name="simpan_nilai" class="btn btn-success">Submit</button>
+										<button type="submit" id="simpan_nilai" name="simpan_nilai" class="btn btn-success">Simpan</button>
 									</div>
 								</form>
 							<?php endif; ?>
