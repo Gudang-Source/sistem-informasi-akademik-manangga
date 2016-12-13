@@ -91,7 +91,7 @@ $cektahun = mysql_query("SELECT * FROM tahun_ajaran WHERE status='1'");
   
   ?>
   <!DOCTYPE html>
-  <?php global $ui_register_bg; echo ($ui_register_bg === 'secondary' ) ? '<html lang="en-us" dir="ltr" class="tm-bg-secondary">' : '<html lang="en-us" dir="ltr" class="tm-bg-primary">' ?>
+  <?php global $ui_register_bg; echo ($ui_register_bg === 'secondary' ) ? '<html lang="en-us" dir="ltr" class="tm-bg-secondary">' : '<html lang="en-us" dir="ltr" >' ?>
 
   <head>
     <meta charset="utf-8">
@@ -150,14 +150,10 @@ function loadAssetsFoot($scripts = ''){
   echo $scripts;
   ?>
   <br><br><br>
-  <div class="sia-basic_main-full">
-    <?php include "footer.php";?>
-    <div class="copyright">
-
-        Handcrafted with <span class="doc-heart"><i class="fa fa-heart"></i></span>  and a lot of <i class="fa fa-coffee"></i> 
  
-  </div>
-</div>
+    <?php include "footer.php";?>
+
+
 </div>
 <?php
 }
@@ -199,7 +195,7 @@ function loadMainMenu(){
 if( isset($_SESSION['tingkat_user']) ) :
   ?>
 
-<div class="sia-basic_header-top"></div>
+<div></div>
 <div class="uk-container-center uk-text-center tm-menu-main">
   <nav class="uk-button-dropdown uk-visible-small" data-uk-dropdown="{mode:'click'}">
     <div><button class="uk-button uk-button-large uk-text-bold">- Menu -</button></div>

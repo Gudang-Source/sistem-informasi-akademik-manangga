@@ -469,3 +469,75 @@ li .underline-menu {
   -ms-animation: heart-beat 1s linear infinite;
   animation: heart-beat 1s linear infinite;
 }
+
+/* [ 4. pre-footer ] */
+#pre-footer {
+}
+#pre-footer .uk-button-xlarge {
+    padding: 14px 18px;
+}
+
+/* [ 5. footer ] */
+#idz-footer {
+  font-size:12px;
+  padding:90px 0 40px;
+    background-color: #303030;
+}
+
+#idz-footer .footer-menu li {
+  font-size:14px;
+    font-weight: 300;
+}
+
+#idz-footer .uk-list li a,
+#idz-footer .idz-footer-social li a {
+    color: #747474
+}
+
+#idz-footer .uk-list li a:hover {
+    color: #a8a8a8;
+    text-decoration: none
+}
+#idz-footer .idz-footer-social li {
+    display: inline-block;
+    margin-right: 15px;
+}
+#idz-footer.style2 .idz-footer-social {
+    display: block;
+    text-align: center;
+    margin-bottom: 30px;
+}
+#idz-footer .idz-footer-social li a {
+    font-size: 11px;
+    text-transform: uppercase;
+}
+#idz-footer .idz-footer-social li a i {
+    margin-right: 5px;
+}
+#idz-footer .uk-grid-divider {
+    border-color: #414141;
+}
+.footer-subscription-form {
+}
+.footer-subscription-form input[type="text"] {
+    font-size: 13px;
+}
+.footer-subscription-form .uk-button {
+    margin-left: -5px;
+}
+.footer-subscription-form .uk-button i {
+    margin-right: 10px;
+}
+.copyright {
+  color:#747474;
+  font-size:14px;
+  font-weight:300;
+  line-height:34px;
+}
+.copyright a:hover {
+    color: #efefef;
+}
+#idz-footer.style2 .copyright{ 
+    font-size: 14px;
+    text-align: center;
+}

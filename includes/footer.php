@@ -18,30 +18,18 @@
 									 Jawa Barat <br>
 								</div>
 							</div>
-							<div class="col-med-3">
-								<div class="sitemap">
-									<a href="#">Peta Situs</a>
-									&nbsp;&nbsp;|&nbsp;&nbsp;
-									<a href="#">Privasi &amp; Kebijakan</a>
-								</div>
-							</div>
-							<div class="col-med-3">	
-								<div class="social-media">
-									<a style="margin-left:6px; display:inline;" title="Google Plus" href="#" target="_blank"><img src="assets/images/icons/gplus.png" height="30" width="30"></a>
-									<a style="margin-left:7px; display:inline;" title="Facebook" href="https://www.facebook.com/pages/SMA-N-2-PLAYEN/115735181774436" target="_blank"><img src="assets/images/icons/facebook.png" height="30" width="30"></a>
-									<a style="margin-left:6px; display:inline;" title="Twitter" href="https://twitter.com/_duplayKeras" target="_blank"><img src="assets/images/icons/twitter.png" height="30" width="30"></a>
-									<a style="margin-left:6px; display:inline;" title="Youtube" href="#" target="_blank"><img src="assets/images/icons/youtube.png" height="30" width="30"></a>
-									<a style="margin-left:6px; display:inline;" title="Instagram" href="#" target="_blank"><img src="assets/images/icons/instagram.png" height="30" width="30"></a>
-									<a style="margin-left:6px; display:inline;" title="Foursquare" href="#" target="_blank"><img src="assets/images/icons/foursquare.png" height="30" width="30"></a>
-								</div>
-							</div>
-						</div>	
-						<div class="clear20"></div>
 
-							</div>
+
+						</div>	
+
 						</div>	
 						<div style="clear:both;"></div>
 					</div>
 			</div>
 	</body>
 	</html>
+	    <div class="copyright">
+
+        Handcrafted with <span class="doc-heart"><i class="fa fa-heart"></i></span>  and a lot of <i class="fa fa-coffee"></i> 
+ 
+  </div>
