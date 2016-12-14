@@ -383,20 +383,19 @@ function admin(){
             $kelase=$row['id_kelas'];
             $jenengkelase=$row['nm_kelas'];
             ?>
-   <div class="sia-profile"><div style="float:right; margin:-0;" class="uk-button-dropdown" data-uk-dropdown="{pos:'right-top'}" aria-haspopup="true" aria-expanded="false"><button  class="btn btn-primary btn-fab btn-fab-mini btn-round" ><i class="uk-icon-pencil"></i></button><div class="uk-dropdown uk-dropdown-right uk-dropdown-small" aria-hidden="true" tabindex="" style="top: 0px; left: 45px;">
-                                    <ul class="uk-nav uk-nav-dropdown" >
-                                        <li><a href="info-pribadi-siswa.account">Account</a></li>
-                                        <li><a href="info-pribadi-siswa">Profile</a></li>
-                                        
-                                    </ul>
-                                </div>
-                            </div>
+   
 
-    <img class="img-circle img-no-padding img-responsive" src="gallery/news/<?=$row['foto'];?>"> </br> 
-     <div class="name"><h5 class="title"><strong><?php echo "{$row['nm_siswa']}";?></h5></strong></div>
-    <p style="text-align:left"; font-weight:bold;>NIS: <b><?php echo "{$row['nis']}";?></b></p>
-    <p style="text-align:left"; font-weight:bold;>Kelas: <b><?php echo "{$row['nm_kelas']}";?></b></p>
-  </div>
+<div class="tile tile-profile">
+                <img src="gallery/news/<?=$row['foto'];?>" alt="">
+                <h4><?php echo "{$row['nm_siswa']}";?></h4>
+                <p><?php echo "{$row['nis']}";?></p>
+                <p><b>Kelas {<?php echo "{$row['nm_kelas']}";?>}</b></p>
+            <a href="info-pribadi-siswa"><div class="uk-button-dropdown"><button  class="btn btn-block btn-danger btn-embossed" >Profile</i></button><div class="uk-dropdown tool-container gradient tool-vertical-bottom tool-rounded"></div></a>
+</div>
+<a href="info-pribadi-siswa.account"><button  class="btn btn-primary btn-fab btn-fab-mini btn-round" ><i class="uk-icon-pencil"></i></button></a>
+</div>
+
+
   <?php } ?>
 
 
