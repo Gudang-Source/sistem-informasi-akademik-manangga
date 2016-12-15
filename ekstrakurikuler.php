@@ -44,7 +44,7 @@ loadAssetsHead('Master Data Ekstrakurikuler');
           <br><br>
 <?php  if (isset($_SESSION['id_guru'])) {?>
            <?php
-            $sqll = "SELECT * FROM user, guru WHERE guru.id_user=user.id_user AND nip={$_SESSION['usernameguru']}";
+            $sqll = "SELECT * FROM user, guru WHERE guru.id_user=user.id_user AND id_guru={$_SESSION['id_guru']}";
             $resultl = mysql_query($sqll);
             $rowsl=mysql_fetch_array($resultl); 
             ?> 

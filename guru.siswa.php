@@ -45,7 +45,7 @@ loadAssetsHead('Lihat Data Siswa');
            </span></h1>
                     <br>
             <?php
-            $sqll = "SELECT * FROM user, guru WHERE guru.id_user=user.id_user AND nip={$_SESSION['usernameguru']}";
+            $sqll = "SELECT * FROM user, guru WHERE guru.id_user=user.id_user AND id_guru={$_SESSION['id_guru']}";
             $resultl = mysql_query($sqll);
             $rowsl=mysql_fetch_array($resultl); 
             ?> 
