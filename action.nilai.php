@@ -93,7 +93,7 @@ $uas= !empty($uas) ? "'$uas'" : "NULL";
 	$id_tahun_edit=$_POST['id_tahun_edit'];
 
 	$uhtotal= (($uh1+$uh2+$uh3+$uh4+$uh5+$uh6+$uh7)/7)*20;
-	$tugastotal= ((t1+t2+t3+t4+t5+t6+t7)/7)*;
+	$tugastotal= ((t1+t2+t3+t4+t5+t6+t7)/7);
 	
 	$updatenilai=mysql_query("UPDATE nilai SET uh1=$uh1, 
 											   uh2=$uh2, 
