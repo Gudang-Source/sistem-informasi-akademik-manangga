@@ -357,16 +357,14 @@ function admin(){
    $row=mysql_fetch_array($result); 
 
    ?>
-   <div class="sia-profile"><div style="float:right; margin:-0;" class="uk-button-dropdown" data-uk-dropdown="{pos:'right-top'}" aria-haspopup="true" aria-expanded="false"><button  class="btn btn-primary btn-fab btn-fab-mini btn-round" ><i class="uk-icon-pencil"></i></button><div class="uk-dropdown uk-dropdown-right uk-dropdown-small" aria-hidden="true" tabindex="" style="top: 0px; left: 45px;">
-         <ul class="uk-nav uk-nav-dropdown" >
-                                        <li><a href="info-pribadi-guru.account">Account</a></li>
-                                        <li><a href="info-pribadi-guru">Profile</a></li>
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-    <img class="img-circle img-no-padding img-responsive" src="gallery/news/<?=$row['foto'];?>"> 
-<div class="name"><h5 class="title" style="text-align:left";><strong><?php echo "{$row['nm_guru']}";?></h5></strong></div>
+ <div class="tile tile-profile">
+                <img src="gallery/news/<?=$row['foto'];?>" alt="">
+                <h4><?php echo "{$row['nm_guru']}";?></h4>
+                <p style="font-size:12px;"><?php echo "{$row['nip']}";?></p>
+
+            <a href="info-pribadi-guru"><div class="uk-button-dropdown"><button  class="btn btn-block btn-danger btn-embossed" >Profile</i></button><div class="uk-dropdown tool-container gradient tool-vertical-bottom tool-rounded"></div></a>
+</div>
+<a href="info-pribadi-guru.account"><button  class="btn btn-primary btn-fab btn-fab-mini btn-round" ><i class="uk-icon-pencil"></i></button></a>
 
 
   </div>
