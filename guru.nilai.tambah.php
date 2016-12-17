@@ -286,7 +286,7 @@ $_SESSION['status_sblm'] = $thn_ajaran_sblm['status'];
 													and nilai.kd_mapel='$kd_mapel'
 													and kelas_siswa.id_kelas='$id_kelas'
 													and mengajar.id_guru='$id_guru'
-													order by siswa.nm_siswa asc
+													order by siswa.nm_siswa
 													) 
 												JSKDJS
 												group by id_siswa order by nm_siswa asc

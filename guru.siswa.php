@@ -102,14 +102,18 @@ loadAssetsHead('Lihat Data Siswa');
                <tbody>
                 <?php 
  $id_guru= $_SESSION['id_guru'];
-                $query="SELECT * FROM mengajar, siswa, kelas_siswa, tahun_ajaran , kelas 
+                $query="SELECT DISTINCT * from (
+SELECT siswa.id_siswa, siswa.nis, siswa.nm_siswa, tahun_ajaran.thn_ajaran, kelas.nm_kelas  FROM mengajar, siswa, kelas_siswa, tahun_ajaran , kelas 
                 WHERE kelas.id_kelas=kelas_siswa.id_kelas 
                 and siswa.id_siswa=kelas_siswa.id_siswa 
                 and tahun_ajaran.id_tahun=kelas_siswa.id_tahun
                 and mengajar.id_kelas=kelas.id_kelas 
                 and tahun_ajaran.status='1' 
                 and mengajar.id_guru='$id_guru'
-                order by kelas.nm_kelas asc";
+                order by kelas.nm_kelas asc
+                ) sfds 
+                order by nm_kelas asc
+                ";
                 $exe=mysql_query($query);
 
 
@@ -223,10 +227,10 @@ loadAssetsHead('Lihat Data Siswa');
                 </div>
                 <tr>
 
-                  <td ><?php echo $row[nis]?></td>
-                  <td ><?php echo $row[nm_siswa]?></td>
-                  <td ><?php echo $row[thn_ajaran]?></td>
-                  <td ><?php echo $row[nm_kelas]?></td>
+                  <td><?php echo $row[nis]?></td>
+                  <td><?php echo $row[nm_siswa]?></td>
+                  <td><?php echo $row[thn_ajaran]?></td>
+                  <td><?php echo $row[nm_kelas]?></td>
                   
                   <td width="15%"><div class="uk-text-center">
                     <a href="guru.siswa.lihat?id=<?php echo $row[id_siswa]?>" title="Lihat" data-uk-tooltip="{pos:'top-left'}" class="uk-button uk-button-small"><i class="uk-icon-search"></i></a>
