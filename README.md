@@ -1,2 +1,1 @@
-# skripsi-belangwetan
-skripsi e-learning belangwetan
+# Sistem Informasi Akademik SDN II Manangga, Tasikmalaya
